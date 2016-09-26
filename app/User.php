@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function university()
+    {
+        return $this->belongsTo('App\University');
+    }
+
+    public function references()
+    {
+        return $this->hasMany('App\Reference', 'submitter_id');
+    }
+
+    public function verifications()
+    {
+        return $this->hasMany('App\Verification', 'verifier_id');
+    }
 }

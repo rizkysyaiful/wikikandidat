@@ -18,6 +18,15 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('national_pin')->nullable();
+            $table->string('pin_card_photo_url')->nullable();
+
+            $table->boolean('is_verifier')->default(false);
+            $table->date('join_verifier_date')->nullable();
+            $table->date('exit_verifier_date')->nullable();
+            $table->integer('university_id')->unsigned()->nullable();
+            $table->foreign('university_id')->references('id')->on('universities');
+
             $table->rememberToken();
             $table->timestamps();
         });
