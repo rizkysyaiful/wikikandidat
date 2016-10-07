@@ -25,4 +25,9 @@ class Fact extends Model
     {
     	return $this->hasMany('App\Reference');
     }
+
+    public function topics()
+    {
+        return $this->belongsToMany('App\Topic');
+    }
 }

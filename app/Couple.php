@@ -21,4 +21,9 @@ class Couple extends Model
     {
     	return $this->belongsTo('App\Candidate', 'running_mate_id');
     }
+
+    public function parties()
+    {
+        return $this->belongsToMany('App\Party');
+    }
 }

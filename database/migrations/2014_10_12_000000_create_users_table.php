@@ -16,9 +16,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('national_pin')->nullable();
+            $table->string('phone_number')->unique();
+            $table->bigInteger('national_pin')->unique();
             $table->string('pin_card_photo_url')->nullable();
 
             $table->boolean('is_verifier')->default(false);

@@ -12,15 +12,121 @@ class MvpTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('candidates')->insert([
-            'name' => 'Tri Rismaharini',
-            'urlname' => 'trismaharini',
-            'photo_url' => 'http://speakerdata.s3.amazonaws.com/photo/image/848865/Tri_Rismaharini1.jpg',
+        DB::table('places')->insert([
+            'name' => 'Banten',
+            'level' => 1,
         ]);
+        DB::table('places')->insert([
+            'name' => 'DKI Jakarta',
+            'level' => 1,
+        ]);
+        DB::table('places')->insert([
+            'name' => 'Kota Tangerang',
+            'level' => 2,
+            'parent_id' => 1,
+        ]);
+
+        DB::table('elections')->insert([
+            'name' => 'Pilkada 2017',
+            'is_gov' => true,
+            'vote_date' => '2017-02-15',
+            'description' => 'Tes satu dua tiga',
+            'place_id' => 2,
+        ]);
+
         DB::table('candidates')->insert([
             'name' => 'Basuki Cahaya Purnama',
-            'urlname' => 'basukicp',
+            'nickname' => 'Ahok',
+            'urlname' => 'basuki_cp',
             'photo_url' => 'http://poskotanews.com/cms/wp-content/uploads/2014/07/Ahok-seragam-DKI-n.jpg',
+        ]);
+        DB::table('candidates')->insert([
+            'name' => 'Djarot Saiful Hidayat',
+            'nickname' => 'Djarot',
+            'urlname' => 'djarot_sh',
+            'photo_url' => 'https://upload.wikimedia.org/wikipedia/id/1/1a/Wagub_DKI_Djarot.jpg',
+        ]);
+        DB::table('candidates')->insert([
+            'name' => 'Agus Harimukti Yudhoyono',
+            'nickname' => 'AHY',
+            'urlname' => 'agus_hy',
+            'photo_url' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mayor_Infanteri_Agus_Harimurti_Yudhoyono%2C_M.Sc.%2C_MPA.png/220px-Mayor_Infanteri_Agus_Harimurti_Yudhoyono%2C_M.Sc.%2C_MPA.png',
+        ]);
+        DB::table('candidates')->insert([
+            'name' => 'Sylviana Murni',
+            'nickname' => 'Sylvi',
+            'urlname' => 'sylviana_m',
+            'photo_url' => 'https://upload.wikimedia.org/wikipedia/id/5/54/Sylviana_Murni_%28Wali_Kota_Jakarta_Utara%29.jpg',
+        ]);
+        DB::table('candidates')->insert([
+            'name' => 'Anies Baswedan',
+            'nickname' => 'Anies',
+            'urlname' => 'anies_b',
+            'photo_url' => 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Anies-baswedan-Dec-2010.jpg',
+        ]);
+        DB::table('candidates')->insert([
+            'name' => 'Sandiaga Uno',
+            'nickname' => 'Sandi',
+            'urlname' => 'sandiaga_u',
+            'photo_url' => 'http://1.bp.blogspot.com/-KmRGVWPghSg/Vbzz76KZ-YI/AAAAAAAAFuo/_ZHk4Ygx3yc/s1600/Biografi%2BSandiaga%2BUno.jpg',
+        ]);
+
+        DB::table('parties')->insert([
+            'name' => 'Partai Demokrasi Indonesia Perjuangan',
+            'abbreviation' => 'PDIP'
+        ]);
+        DB::table('parties')->insert([
+            'name' => 'Partian Nasional Demokrat',
+            'abbreviation' => 'Nasdem'
+        ]);
+        DB::table('parties')->insert([
+            'name' => 'Partai Demokrat',
+            'abbreviation' => 'Demokrat'
+        ]);
+        DB::table('parties')->insert([
+            'name' => 'Partai Keadilan Sejahtera',
+            'abbreviation' => 'PKS'
+        ]);
+        DB::table('parties')->insert([
+            'name' => 'Partai Gerakan Indonesia Raya',
+            'abbreviation' => 'Gerindra'
+        ]);
+
+        DB::table('couples')->insert([
+            'election_id' => 1,
+            'candidate_id' => 1,
+            'running_mate_id' => 2,
+        ]);
+        DB::table('couples')->insert([
+            'election_id' => 1,
+            'candidate_id' => 3,
+            'running_mate_id' => 4,
+        ]);
+        DB::table('couples')->insert([
+            'election_id' => 1,
+            'candidate_id' => 5,
+            'running_mate_id' => 6,
+        ]);
+
+        DB::table('couple_party')->insert([
+            'couple_id' => 1,
+            'party_id' => 1
+        ]);
+        DB::table('couple_party')->insert([
+            'couple_id' => 1,
+            'party_id' => 2
+        ]);
+        DB::table('couple_party')->insert([
+            'couple_id' => 2,
+            'party_id' => 3
+        ]);
+        DB::table('couple_party')->insert([
+            'couple_id' => 3,
+            'party_id' => 4
+        ]);
+        DB::table('couple_party')->insert([
+            'couple_id' => 3,
+            'party_id' => 5
         ]);
 
         DB::table('types')->insert([
@@ -78,43 +184,33 @@ class MvpTableSeeder extends Seeder
             'candidate_id' => 1,
         ]);
 
-        DB::table('places')->insert([
-        	'name' => 'Banten',
-        	'level' => 1,
+        DB::table('topics')->insert([
+            'name' => 'Tata Kota'
         ]);
-        DB::table('places')->insert([
-        	'name' => 'DKI Jakarta',
-        	'level' => 1,
+        DB::table('topics')->insert([
+            'name' => 'Wirausaha'
         ]);
-        DB::table('places')->insert([
-        	'name' => 'Kota Tangerang',
-        	'level' => 2,
-        	'parent_id' => 1,
+        DB::table('topics')->insert([
+            'name' => 'Lingkungan'
         ]);
 
-        DB::table('elections')->insert([
-        	'name' => 'Pilkada 2017',
-        	'is_gov' => true,
-        	'vote_date' => '2017-02-15',
-        	'description' => 'Tes satu dua tiga',
-        	'place_id' => 2,
+        DB::table('fact_topic')->insert([
+            'fact_id' => 2,
+            'topic_id' => 1,
         ]);
-
-        DB::table('couples')->insert([
-        	'election_id' => 1,
-        	'candidate_id' => 1,
-        	'running_mate_id' => 2,
-        ]);
-        DB::table('couples')->insert([
-        	'election_id' => 1,
-        	'candidate_id' => 2,
+        DB::table('fact_topic')->insert([
+            'fact_id' => 3,
+            'topic_id' => 1,
         ]);
 
         DB::table('users')->insert([
             'name' => 'Rizky Syaiful',
+            'username' => 'rizkysyaiful',
             'email' => 'rizky@gmail.com',
             'password' => bcrypt('secret'),
             'is_verifier' => false,
+            'national_pin' => 3674022904900002,
+            'phone_number' => '089678601060'
         ]);
 
         DB::table('references')->insert([
@@ -124,15 +220,15 @@ class MvpTableSeeder extends Seeder
         	'submitter_id' => 1,
         ]);
 
+        DB::table('verifications')->insert([
+            'reference_id' => 1,
+            'verifier_id' => 1,
+        ]);
+
         DB::table('universities')->insert([
         	'name' => 'Universitas Indonesia',
         	'abbreviation' => 'UI',
         	'place_id' => 2,
-        ]);
-
-		DB::table('verifications')->insert([
-        	'reference_id' => 1,
-        	'verifier_id' => 1,
         ]);
 
     }

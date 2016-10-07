@@ -28,6 +28,17 @@ class CreateFactsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::create('fact_topic', function (Blueprint $table) {
+            $table->bigIncrements('id');
+
+            $table->bigInteger('fact_id')->unsigned();
+            $table->foreign('fact_id')->references('id')->on('facts');
+
+            $table->integer('topic_id')->unsigned();
+            $table->foreign('topic_id')->references('id')->on('topics');
+
+        });
     }
 
     /**
@@ -37,6 +48,7 @@ class CreateFactsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('fact_topic');
         Schema::dropIfExists('facts');
     }
 }

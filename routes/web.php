@@ -13,8 +13,8 @@
 */
 
 Route::get('/', function () {
-    //return view('landing')->with('candidates', App\Candidate::all());
-    // return view('landing');
+    return view('landing')->with('election', App\Election::find(1));
+   // return view('landing');
 /*   
     $risma = App\Candidate::find(1);
     echo App\Type::where('name', 'Educations')->get();
@@ -23,9 +23,14 @@ Route::get('/', function () {
     	$f->text;
     }
 */
-  $election = App\Election::find(1);
-  echo $election->couples->first()->candidate->facts->first()->references->first()->fact->references->first()->submitter->verifications;
 
-  $verification = App\Verification::find(1);
-  //echo $verification->reference;
 });
+
+Auth::routes();
+
+Route::get('/logout', function(){
+  Auth::logout();
+  return redirect('/');
+});
+
+Route::get('/home', 'HomeController@index');

@@ -1,107 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Wikikandidat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.css" media="screen">
-    <link rel="stylesheet" href="https://bootswatch.com/assets/css/custom.min.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://bootswatch.com/bower_components/html5shiv/dist/html5shiv.js"></script>
-      <script src="https://bootswatch.com/bower_components/respond/dest/respond.min.js"></script>
-    <![endif]-->
-    <style type="text/css">
-      /* bootstrap manipulation */
-      .panel-body {
-        background-color: rgba(240,240,240,1);
-      }
-      .panel{
-        border: none;
-      }
-      /* self-made */
-      .panel-body > .head{
-        text-align: center
-      }
-      .panel-body > .head > img{
-        width: 100%;
-      }
-      .panel-body > .data{
-        border: 1px solid #cacaca;
-        padding: 2px 5px;
-        margin-bottom: 5px; 
-      }
-      .panel-body .verification-btn{
-        margin-top: 3px;
-        cursor: pointer;
-      }
-      .panel-body > h5{
-        color: #008cba;
-        font-weight: bold;
-      }
-      .random-quote{
-        max-width: 300px;
-        margin-top: 25px;
-        text-align: right;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=125602920880407";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand">Wikikandidat</a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="#">Pilkada 2017</a>
-            </li>
-            <li>
-              <a href="#">Pileg 2014</a>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="about-us">Tentang Kami <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="about-us">
-                <li><a href="#">Sejarah</a></li>
-                <li><a href="#">Tujuan</a></li>
-                <li><a href="#">Tim Kerja</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="about-us">Register <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="about-us">
-                <li><a href="#">Sebagai Verifikator</a></li>
-                <li><a href="#">Sebagai Donatur</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="about-us">Login <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="about-us">
-                <li><a href="#">Sebagai Verifikator</a></li>
-                <li><a href="#">Sebagai Donatur</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+@extends('layouts.app')
+
+@section('title')
+DKI Jakarta - Pilkada 2017 
+@endsection
+
+@section('content')
     <div class="container">
       <span class="pull-right random-quote"><em>"Demokrasi tidak bisa hanya berisi pemilu, yang hampir selalu fiktif dan diatur oleh tuan tanah serta politisi profesional."<br>~ Che Guavara</em></span>
       <h1>Pilkada 2017</h1>
@@ -128,77 +31,265 @@
         </ul>
       </div>
       <hr>
-      <ul class="nav nav-tabs">
+ <!--     <ul class="nav nav-tabs">
         <li class="active"><a href="#primary-tab" class="btn-md" data-toggle="tab" aria-expanded="true">Calon Wakilkota</a></li>
         <li class=""><a href="#vice-tab" class="btn-md" data-toggle="tab" aria-expanded="false">Calon Wakil Walikota</a></li>
       </ul>
-      <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active in" id="primary-tab">
+      <div class="tab-content">
+        <div class="tab-pane fade active in" id="primary-tab"> -->
           <div class="row">
+            <?php
+              $types =  App\Type::all();
+            ?>
+            @foreach($election->couples as $co)
+              <?php 
+                $c = App\Candidate::find($co->candidate_id);
+                $rm = App\Candidate::find($co->running_mate_id);
+              ?>
             <div class="col-md-4">
-              <div class="panel panel-default" >
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#primary-tab-{{$co->id}}" class="btn-md" data-toggle="tab" aria-expanded="true">{{$c->nickname}}</a></li>
+                <li class=""><a href="#vice-tab-{{$co->id}}" class="btn-md" data-toggle="tab" aria-expanded="false">{{$rm->nickname}}</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade active in" id="primary-tab-{{$co->id}}">
+                
+                  <div class="panel panel-default" >
+                    <div class="panel-body">
+                      <div class="head">
+                        <img src="{{$c->photo_url}}" alt="">
+                        <h3><strong>{{$c->name}}</strong></h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-body" style="background-color: rgb(235, 244, 255);">
+                    <?php
+                      $facts = $c->facts->where('type_id', $types->where('name', 'Careers')->first()->id);
+                      $first = "first";
+                    ?>
+                    <h5>Karir:</h5>
+                    @foreach($facts as $i => $f)
+                    <div class="data {{$first}}">
+                      <?php $first = ""; ?>
+                      <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
+                        referensi
+                      </span>
+                      <strong>
+                        @if(isset($f->year_start))
+                        {{$f->year_start}} -
+                        @endif
+                        {{$f->year_end}}
+                      </strong><br>
+                      {{$f->text}}
+                    </div>
+                    @endforeach
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-body" style="background-color: rgb(255, 235, 235);">
+                    <?php
+                      $facts = $c->facts->where('type_id', $types->where('name', 'Contributions')->first()->id);
+                      $first = "first";
+                    ?>
+                    <h5>Kontribusi:</h5>
+                    @foreach($facts as $i => $f)
+                    <div class="data {{$first}}">
+                      <?php $first = ""; ?>
+                      <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
+                        referensi
+                      </span>
+                      <strong>
+                        @if(isset($f->year_start))
+                        {{$f->year_start}} -
+                        @endif
+                        {{$f->year_end}}
+                      </strong><br>
+                      {{$f->text}}
+                    </div>
+                    @endforeach
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-body" style="background-color: rgb(235, 236, 255);">
+                    <?php
+                      $facts = $c->facts->where('type_id', $types->where('name', 'Achievements')->first()->id);
+                      $first = "first";
+                    ?>
+                    <h5>Prestasi:</h5>
+                    @foreach($facts as $i => $f)
+                    <div class="data {{$first}}">
+                      <?php $first = ""; ?>
+                      <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
+                        referensi
+                      </span>
+                      <strong>
+                        @if(isset($f->year_start))
+                        {{$f->year_start}} -
+                        @endif
+                        {{$f->year_end}}
+                      </strong><br>
+                      {{$f->text}}
+                    </div>
+                    @endforeach
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-body" style="background-color: rgb(255, 251, 235);">
+                    <?php
+                      $facts = $c->facts->where('type_id', $types->where('name', 'Controversies')->first()->id);
+                      $first = "first";
+                    ?>
+                    <h5>Kontroversi:</h5>
+                    @foreach($facts as $i => $f)
+                    <div class="data {{$first}}">
+                      <?php $first = ""; ?>
+                      <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
+                        referensi
+                      </span>
+                      <strong>
+                        @if(isset($f->year_start))
+                        {{$f->year_start}} -
+                        @endif
+                        {{$f->year_end}}
+                      </strong><br>
+                      {{$f->text}}
+                    </div>
+                    @endforeach
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="vice-tab-{{$co->id}}">
+
+                  <div class="panel panel-default" >
+                    <div class="panel-body">
+                      <div class="head">
+                        <img src="{{$rm->photo_url}}" alt="">
+                        <h3><strong>{{$rm->name}}</strong></h3>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="panel panel-default" >
+                    <div class="panel-body" style="background-color: rgb(235, 244, 255);">
+                    <?php
+                      $facts = $rm->facts->where('type_id', $types->where('name', 'Careers')->first()->id);
+                      $first = "first";
+                    ?>
+                    <h5>Karir:</h5>
+                    @foreach($facts as $i => $f)
+                    <div class="data {{$first}}">
+                      <?php $first = ""; ?>
+                      <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
+                        referensi
+                      </span>
+                      <strong>
+                        @if(isset($f->year_start))
+                        {{$f->year_start}} -
+                        @endif
+                        {{$f->year_end}}
+                      </strong><br>
+                      {{$f->text}}
+                    </div>
+                    @endforeach
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-body" style="background-color: rgb(255, 235, 235);">
+                    <?php
+                      $facts = $rm->facts->where('type_id', $types->where('name', 'Contributions')->first()->id);
+                      $first = "first";
+                    ?>
+                    <h5>Kontribusi:</h5>
+                    @foreach($facts as $i => $f)
+                    <div class="data {{$first}}">
+                      <?php $first = ""; ?>
+                      <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
+                        referensi
+                      </span>
+                      <strong>
+                        @if(isset($f->year_start))
+                        {{$f->year_start}} -
+                        @endif
+                        {{$f->year_end}}
+                      </strong><br>
+                      {{$f->text}}
+                    </div>
+                    @endforeach
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-body" style="background-color: rgb(235, 236, 255);">
+                    <?php
+                      $facts = $rm->facts->where('type_id', $types->where('name', 'Achievements')->first()->id);
+                      $first = "first";
+                    ?>
+                    <h5>Prestasi:</h5>
+                    @foreach($facts as $i => $f)
+                    <div class="data {{$first}}">
+                      <?php $first = ""; ?>
+                      <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
+                        referensi
+                      </span>
+                      <strong>
+                        @if(isset($f->year_start))
+                        {{$f->year_start}} -
+                        @endif
+                        {{$f->year_end}}
+                      </strong><br>
+                      {{$f->text}}
+                    </div>
+                    @endforeach
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-body" style="background-color: rgb(255, 251, 235);">
+                    <?php
+                      $facts = $rm->facts->where('type_id', $types->where('name', 'Controversies')->first()->id);
+                      $first = "first";
+                    ?>
+                    <h5>Kontroversi:</h5>
+                    @foreach($facts as $i => $f)
+                    <div class="data {{$first}}">
+                      <?php $first = ""; ?>
+                      <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
+                        referensi
+                      </span>
+                      <strong>
+                        @if(isset($f->year_start))
+                        {{$f->year_start}} -
+                        @endif
+                        {{$f->year_end}}
+                      </strong><br>
+                      {{$f->text}}
+                    </div>
+                    @endforeach
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+<!--                  <h5>Testimoni:</h5>
+                  <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="5"></div> -->
+            </div>    
+            @endforeach
+<!--          </div>
+        </div>
+        <div class="tab-pane fade" id="vice-tab"> 
+          <div class="row"> 
+            <div class="col-md-4">
+              <div class="panel panel-default">
                 <div class="panel-body">
-                  <div class="head">
-                    <img src="http://speakerdata.s3.amazonaws.com/photo/image/848865/Tri_Rismaharini1.jpg" alt="">
-                    <h3><strong>Tri Rismaharini</strong></h3>
-                    Calon Wakil : <a href="#" class="link-to-vice-tab">Wisnu Sakti Buana</a>
-                  </div>
-                  <h5>Karir:</h5>
-                  <div class="data">
-                    <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
-                      referensi
-                    </span>
-                    <strong>2010-2016</strong><br>
-                    Walikota Surabaya
-                  </div>
-                  <div class="data">
-                    <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
-                      referensi
-                    </span>
-                    <strong>2008-2010</strong><br>
-                    Kepala Badan Perencanaan Pembangunan Kota Surabaya
-                  </div>
-                  <h5>Organisasi:</h5>
-                  <div class="data">
-                    <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
-                      referensi
-                    </span>
-                    <strong>2016-2016</strong><br>
-                    Dewan Penasihat Asosiasi Arsitek Indonesia 
-                  </div>
-                  <h5>Pendidikan:</h5>
-                  <div class="data">
-                    <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
-                      referensi
-                    </span>
-                    <strong>2002</strong><br>
-                    Pascasarjana Manajemen Pembangunan Kota di ITS (Lulus) 
-                  </div>
-                  <h5>Prestasi:</h5>
-                  <div class="data">
-                    <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
-                      referensi
-                    </span>
-                    <strong>2015</strong><br>
-                    Termasuk 50 tokoh berpengaruh di dunia versi majalah Fortune. 
-                  </div>
-                  <div class="data">
-                    <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
-                      referensi
-                    </span>
-                    <strong>2015</strong><br>
-                    Menutup tempat pelacuran Gang Dolly 
-                  </div>
-                  <h5>Kontroversi:</h5>
-                  <div class="data">
-                    <span class="label label-primary pull-right verification-btn" data-toggle="modal" data-target="#myModal">
-                      referensi
-                    </span>
-                    <strong>2015</strong><br>
-                    Laporan PT. Gala Bumi Perkasa, atas lalai membongkar pasar Turi
-                  </div>
-                  <h5>Testimoni</h5>
-                  <div class="fb-comments" data-href="https://facebook.com" data-width="335" data-numposts="5"></div>
                 </div>
               </div>
             </div>
@@ -215,34 +306,10 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="tab-pane fade" id="vice-tab">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!--        </div>
+      </div> -->
       
     </div>
-
-    
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -264,15 +331,13 @@
         </div>
       </div>
     </div>
+@endsection
 
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://bootswatch.com/assets/js/custom.js"></script>
+@section('js')
     <script>
       $('.link-to-vice-tab').click(function (e) {
         e.preventDefault();
         $("a[href='#vice-tab']").click();
       });
     </script>
-  </body>
-</html>
+@endsection

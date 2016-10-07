@@ -17,7 +17,9 @@ class CreateCouplesTable extends Migration
             $table->increments('id');
 
             $table->integer('election_id')->unsigned();
-            $table->foreign('election_id')->references('id')->on('elections');          
+            $table->foreign('election_id')->references('id')->on('elections');
+
+            $table->tinyInteger('order')->unsigned()->nullable();    
 
             $table->integer('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates');
@@ -26,6 +28,16 @@ class CreateCouplesTable extends Migration
             $table->foreign('running_mate_id')->references('id')->on('candidates');
 
             $table->timestamps();
+        });
+
+        Schema::create('couple_party', function(Blueprint $table){
+            $table->increments('id');
+
+            $table->integer('couple_id')->unsigned();
+            $table->foreign('couple_id')->references('id')->on('couples');
+
+            $table->integer('party_id')->unsigned();
+            $table->foreign('party_id')->references('id')->on('parties');
         });
     }
 
@@ -36,6 +48,7 @@ class CreateCouplesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('couple_party');
         Schema::dropIfExists('couples');
     }
 }
