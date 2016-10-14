@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,8 +14,12 @@
 |
 */
 
+Route::get('/tes', function(){
+  
+});
+
 Route::get('/', function () {
-    return view('landing')->with('election', App\Election::find(1));
+  return view('landing')->with('election', App\Election::find(1));
    // return view('landing');
 /*   
     $risma = App\Candidate::find(1);
@@ -26,6 +32,8 @@ Route::get('/', function () {
 
 });
 
+Route::post('/user/submit-fact', 'UserController@submit_fact')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/logout', function(){
@@ -33,4 +41,4 @@ Route::get('/logout', function(){
   return redirect('/');
 });
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'UserController@index');

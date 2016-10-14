@@ -10,6 +10,7 @@ class Fact extends Model
 	use SoftDeletes;
     //
     protected $dates = ['deleted_at'];
+    protected $fillable = ['type_id', 'candidate_id', 'text'];
 
     public function type()
     {

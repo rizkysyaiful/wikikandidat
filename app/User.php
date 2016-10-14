@@ -42,6 +42,21 @@ class User extends Authenticatable
         return $this->hasMany('App\Reference', 'submitter_id');
     }
 
+    public function jobs_as_first()
+    {
+        return $this->hasMany('App\Reference', 'first_verifier_id');
+    }
+
+    public function jobs_as_second()
+    {
+        return $this->hasMany('App\Reference', 'second_verifier_id');
+    }
+
+    public function jobs_as_third()
+    {
+        return $this->hasMany('App\Reference', 'third_verifier_id');
+    }    
+
     public function verifications()
     {
         return $this->hasMany('App\Verification', 'verifier_id');

@@ -154,6 +154,7 @@ class MvpTableSeeder extends Seeder
             'text' => 'Walikota Surabaya',
             'type_id' => 2,
             'candidate_id' => 1,
+            'is_verified' => true,
         ]);
 		DB::table('facts')->insert([
             'year_start' => 2008,
@@ -161,6 +162,7 @@ class MvpTableSeeder extends Seeder
             'text' => 'Kepala Badan Perencanaan Pembangunan Kota Surabaya',
             'type_id' => 2,
             'candidate_id' => 1,
+            'is_verified' => true,
         ]);
         DB::table('facts')->insert([
             'year_start' => 2016,
@@ -168,6 +170,7 @@ class MvpTableSeeder extends Seeder
             'text' => 'Dewan Penasihat Asosiasi Arsitek Indonesia',
             'type_id' => 3,
             'candidate_id' => 1,
+            'is_verified' => true,
         ]);
         DB::table('facts')->insert([
             'year_start' => null,
@@ -175,6 +178,7 @@ class MvpTableSeeder extends Seeder
             'text' => 'Pascasarjana Manajemen Pembangunan Kota di ITS (Lulus)',
             'type_id' => 1,
             'candidate_id' => 1,
+            'is_verified' => true,
         ]);
         DB::table('facts')->insert([
             'year_start' => null,
@@ -182,6 +186,7 @@ class MvpTableSeeder extends Seeder
             'text' => 'Laporan PT. Gala Bumi Perkasa, atas lalai membongkar pasar Turi',
             'type_id' => 5,
             'candidate_id' => 1,
+            'is_verified' => true,
         ]);
 
         DB::table('topics')->insert([
@@ -203,6 +208,12 @@ class MvpTableSeeder extends Seeder
             'topic_id' => 1,
         ]);
 
+        DB::table('universities')->insert([
+            'name' => 'Universitas Indonesia',
+            'abbreviation' => 'UI',
+            'place_id' => 2,
+        ]);
+
         DB::table('users')->insert([
             'name' => 'Rizky Syaiful',
             'username' => 'rizkysyaiful',
@@ -210,10 +221,55 @@ class MvpTableSeeder extends Seeder
             'password' => bcrypt('secret'),
             'is_verifier' => false,
             'national_pin' => 3674022904900002,
-            'phone_number' => '089678601060'
+            'phone_number' => '089678601060',
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Mahasiswi 1',
+            'username' => 'tes1',
+            'email' => 'tes1@gmail.com',
+            'password' => bcrypt('secret'),
+            'is_verifier' => true,
+            'national_pin' => 3674022904900003,
+            'phone_number' => '08967860106',
+            'university_id' => 1,
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Mahasiswi 2',
+            'username' => 'tes2',
+            'email' => 'tes2@gmail.com',
+            'password' => bcrypt('secret'),
+            'is_verifier' => true,
+            'national_pin' => 3674022904900004,
+            'phone_number' => '0896786010',
+            'university_id' => 1,
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Mahasiswi 3',
+            'username' => 'tes3',
+            'email' => 'tes3@gmail.com',
+            'password' => bcrypt('secret'),
+            'is_verifier' => true,
+            'national_pin' => 3674022904900005,
+            'phone_number' => '089678601',
+            'university_id' => 1,
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Mahasiswi 4',
+            'username' => 'tes4',
+            'email' => 'tes4@gmail.com',
+            'password' => bcrypt('secret'),
+            'is_verifier' => true,
+            'national_pin' => 3674022904900006,
+            'phone_number' => '08967860',
+            'university_id' => 1,
         ]);
 
         DB::table('references')->insert([
+            'title' => 'Surabaya.go.id', 
         	'eternal_url' => 'https://web.archive.org/web/20160916120336/http://www.surabaya.go.id/berita/8058-daftar-nama-&-alamat-walikota,-sekdakota-dan-asisten-pemerintah-kota-surabaya',
         	'photo_url' => 'http://speakerdata.s3.amazonaws.com/photo/image/848865/Tri_Rismaharini1.jpg',
         	'fact_id' => 1,
@@ -223,12 +279,6 @@ class MvpTableSeeder extends Seeder
         DB::table('verifications')->insert([
             'reference_id' => 1,
             'verifier_id' => 1,
-        ]);
-
-        DB::table('universities')->insert([
-        	'name' => 'Universitas Indonesia',
-        	'abbreviation' => 'UI',
-        	'place_id' => 2,
         ]);
 
     }

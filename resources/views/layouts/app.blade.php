@@ -53,6 +53,12 @@
         font-weight: bold;
         margin-top: 0;
       }
+      .panel-body > .pull-right.glyphicon-plus{
+        font-size: 20px;
+        margin-top: -5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
       .random-quote{
         max-width: 300px;
         margin-top: 25px;

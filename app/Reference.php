@@ -9,6 +9,7 @@ class Reference extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
+    protected $fillable = ['eternal_url', 'fact_id', 'submitter_id', 'first_verifier_id', 'second_verifier_id', 'third_verifier_id'];
 
     public function submitter()
     {
