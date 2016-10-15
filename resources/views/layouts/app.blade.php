@@ -22,48 +22,7 @@
     <![endif]-->
     <!-- Scripts -->
     <style type="text/css">
-      /* bootstrap manipulation */
-      .panel-body {
-        background-color: rgba(240,240,240,1);
-      }
-      .panel{
-        border: none;
-      }
-      /* self-made */
-      .panel-body > .head{
-        text-align: center
-      }
-      .panel-body > .head > img{
-        width: 100%;
-      }
-      .panel-body > .data{
-        border-bottom: 1px solid #cacaca;
-        padding: 2px 5px;
-        margin-bottom: 5px; 
-      }
-      .data.first{
-        border-top: 1px solid #cacaca;
-      }
-      .panel-body .verification-btn{
-        margin-top: 3px;
-        cursor: pointer;
-      }
-      .panel-body > h5{
-        color: #008cba;
-        font-weight: bold;
-        margin-top: 0;
-      }
-      .panel-body > .pull-right.glyphicon-plus{
-        font-size: 20px;
-        margin-top: -5px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      .random-quote{
-        max-width: 300px;
-        margin-top: 25px;
-        text-align: right;
-      }
+      
     </style>
     <script>
         window.Laravel = <?php echo json_encode([

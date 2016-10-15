@@ -459,14 +459,17 @@ class Builder
      *
      * @param  bool  $value
      * @param  \Closure  $callback
+     * @param  \Closure  $default
      * @return \Illuminate\Database\Query\Builder
      */
-    public function when($value, $callback)
+    public function when($value, $callback, $default = null)
     {
         $builder = $this;
 
         if ($value) {
             $builder = call_user_func($callback, $builder);
+        } elseif ($default) {
+            $builder = call_user_func($default, $builder);
         }
 
         return $builder;
@@ -2169,7 +2172,7 @@ class Builder
             return $this->insert(array_merge($attributes, $values));
         }
 
-        return (bool) $this->where($attributes)->take(1)->update($values);
+        return (bool) $this->take(1)->update($values);
     }
 
     /**

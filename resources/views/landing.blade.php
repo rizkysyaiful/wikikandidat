@@ -4,6 +4,56 @@
 DKI Jakarta - Pilkada 2017 
 @endsection
 
+@section('head')
+<style type="text/css">
+  /* bootstrap manipulation */
+  .panel-body {
+    background-color: rgba(240,240,240,1);
+  }
+  .panel{
+    border: none;
+  }
+  /* self-made */
+  .panel-body > .head{
+    text-align: center
+  }
+  .panel-body > .head > img{
+    width: 100%;
+  }
+  .panel-body > .data{
+    border-bottom: 1px solid #cacaca;
+    padding: 2px 5px;
+    margin-bottom: 5px; 
+  }
+  .data.first{
+    border-top: 1px solid #cacaca;
+  }
+  .panel-body .verification-btn{
+    margin-top: 3px;
+    cursor: pointer;
+  }
+  .panel-body > h5{
+    color: #008cba;
+    font-weight: bold;
+    margin-top: 0;
+  }
+  .panel-body > .pull-right.glyphicon-plus{
+    font-size: 20px;
+    margin-top: -5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .random-quote{
+    max-width: 300px;
+    margin-top: 25px;
+    text-align: right;
+  }
+  .well > img{
+    width: 100%;
+  }
+</style>
+@endsection
+
 @section('content')
     <div class="container">
       <span class="pull-right random-quote"><em>"Demokrasi tidak bisa hanya berisi pemilu, yang hampir selalu fiktif dan diatur oleh tuan tanah serta politisi profesional."<br>~ Che Guavara</em></span>
@@ -409,14 +459,16 @@ DKI Jakarta - Pilkada 2017
                 </div>
                 <div class="modal-body">
                   @foreach($f->references as $r)
-                  <a href="{{$r->eternal_url}}">{{$r->title}}</a><br>
-                  <span>Data diajukan oleh: <a href="user/{{$r->submitter->username}}">{{$r->submitter->name}}</a></span><br>
-                  <span>Diverifikasi secara terpisah oleh:
-                    @foreach($r->verifications as $v)
-                    <a href="user/{{$v->verifier->username}}">{{$v->verifier->name}}</a>
-                    @endforeach
-                  </span>
-                  <hr>
+                  <div class="well well-sm">
+                    <img src="https://docs.google.com/uc?id={{$r->photo_id}}"> 
+                    <a href="{{$r->eternal_url}}" class="pull-right">{{$r->title}}</a><br>
+                    <span>Data diajukan oleh: <a href="user/{{$r->submitter->username}}">{{$r->submitter->name}}</a></span><br>
+                    <span>Diverifikasi secara terpisah oleh:
+                      @foreach($r->verifications as $v)
+                      <a href="user/{{$v->verifier->username}}" title="{{$v->comment}}">{{$v->verifier->name}}</a>
+                      @endforeach
+                    </span>
+                  </div>
                   @endforeach
                 </div>
               </div>

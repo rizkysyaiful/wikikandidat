@@ -271,7 +271,7 @@ class MvpTableSeeder extends Seeder
         DB::table('references')->insert([
             'title' => 'Surabaya.go.id', 
         	'eternal_url' => 'https://web.archive.org/web/20160916120336/http://www.surabaya.go.id/berita/8058-daftar-nama-&-alamat-walikota,-sekdakota-dan-asisten-pemerintah-kota-surabaya',
-        	'photo_url' => 'http://speakerdata.s3.amazonaws.com/photo/image/848865/Tri_Rismaharini1.jpg',
+        	'photo_id' => '0B4xZJEKibSkJOGdzckkxS2kwemc',
         	'fact_id' => 1,
         	'submitter_id' => 1,
         ]);

@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/tes', function(){
-  
+  $random_students = DB::select('select id from users where is_verifier = ? AND id != ? ORDER BY rand() LIMIT 3', [1, Auth::user()->id]);
+  echo Auth::user()->id."<br>";
+  print_r($random_students);
 });
 
 Route::get('/', function () {
@@ -32,7 +34,13 @@ Route::get('/', function () {
 
 });
 
-Route::post('/user/submit-fact', 'UserController@submit_fact')->middleware('auth');
+Route::post('/user/submit-fact',
+  'UserController@submit_fact')
+  ->middleware('auth');
+
+Route::post('/student/approve-fact',
+  'StudentController@approve_fact')
+  ->middleware('auth'); // nanti cari middleware yang bisa filter student
 
 Auth::routes();
 

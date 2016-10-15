@@ -58,6 +58,7 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
         'P' => 
         array (
             'Psy\\' => 4,
+            'Psr\\Log\\' => 8,
             'PhpParser\\' => 10,
         ),
         'M' => 
@@ -184,6 +185,10 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src/Psy',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -233,10 +238,6 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
     public static $prefixesPsr0 = array (
         'P' => 
         array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
-            ),
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
@@ -279,11 +280,18 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
     public static $classMap = array (
         'CandidatesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CandidatesTableSeeder.php',
         'CreateCandidatesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_15_211840_create_candidates_table.php',
+        'CreateCouplesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_114740_create_couples_table.php',
+        'CreateElectionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_114519_create_elections_table.php',
         'CreateFactsTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_17_201038_create_facts_table.php',
+        'CreatePartiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_114520_create_parties_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePlacesTable' => __DIR__ . '/../..' . '/database/migrations/2013_09_23_114453_create_places_table.php',
+        'CreateReferencesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_114830_create_references_table.php',
         'CreateTopicsTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_17_201028_create_topics_table.php',
         'CreateTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_17_200804_create_types_table.php',
+        'CreateUniversitiesTable' => __DIR__ . '/../..' . '/database/migrations/2013_09_23_115038_create_universities_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'CreateVerificationsTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_114856_create_verifications_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
@@ -379,6 +387,7 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
         'PHPUnit_Framework_Constraint_ClassHasStaticAttribute' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/ClassHasStaticAttribute.php',
         'PHPUnit_Framework_Constraint_Composite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/Composite.php',
         'PHPUnit_Framework_Constraint_Count' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/Count.php',
+        'PHPUnit_Framework_Constraint_DirectoryExists' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/DirectoryExists.php',
         'PHPUnit_Framework_Constraint_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/Exception.php',
         'PHPUnit_Framework_Constraint_ExceptionCode' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/ExceptionCode.php',
         'PHPUnit_Framework_Constraint_ExceptionMessage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/ExceptionMessage.php',
@@ -396,8 +405,10 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
         'PHPUnit_Framework_Constraint_IsJson' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsJson.php',
         'PHPUnit_Framework_Constraint_IsNan' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsNan.php',
         'PHPUnit_Framework_Constraint_IsNull' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsNull.php',
+        'PHPUnit_Framework_Constraint_IsReadable' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsReadable.php',
         'PHPUnit_Framework_Constraint_IsTrue' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsTrue.php',
         'PHPUnit_Framework_Constraint_IsType' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsType.php',
+        'PHPUnit_Framework_Constraint_IsWritable' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsWritable.php',
         'PHPUnit_Framework_Constraint_JsonMatches' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/JsonMatches.php',
         'PHPUnit_Framework_Constraint_JsonMatches_ErrorMessageProvider' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/JsonMatches/ErrorMessageProvider.php',
         'PHPUnit_Framework_Constraint_LessThan' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/LessThan.php',

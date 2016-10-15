@@ -17,7 +17,7 @@ class CreateReferencesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->string('eternal_url');
-            $table->string('photo_url')->nullable();
+            $table->string('photo_id')->nullable();
             $table->boolean('is_againts_fact')->default(false);
             $table->boolean('is_anon')->default(false);
 

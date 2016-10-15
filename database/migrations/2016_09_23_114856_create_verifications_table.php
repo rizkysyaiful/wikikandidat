@@ -16,6 +16,8 @@ class CreateVerificationsTable extends Migration
         Schema::create('verifications', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('comment')->nullable();
+
             $table->bigInteger('reference_id')->unsigned();
             $table->foreign('reference_id')->references('id')->on('references');
 
