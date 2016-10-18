@@ -22,7 +22,9 @@
     <![endif]-->
     <!-- Scripts -->
     <style type="text/css">
-      
+      .container.reading{
+        max-width: 600px;
+      }
     </style>
     <script>
         window.Laravel = <?php echo json_encode([
@@ -59,12 +61,7 @@
               <a href="#">Pileg 2014</a>
             </li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="about-us">Tentang Kami <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="about-us">
-                <li><a href="#">Sejarah</a></li>
-                <li><a href="#">Tujuan</a></li>
-                <li><a href="#">Tim Kerja</a></li>
-              </ul>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="faq" id="about-us">FAQ</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

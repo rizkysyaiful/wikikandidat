@@ -49,6 +49,7 @@ class UserController extends Controller
             'candidate_id' => $req->input("candidate_id"),
         ]);
 
+        // id 2, 3, 4, & 5 adalah mahasiswa test
         $random_students = DB::select('select id from users where is_verifier = ? AND id != ? AND id != ? AND id != ? AND id != ? AND id != ? ORDER BY rand() LIMIT 3', [1, Auth::user()->id, 2, 3, 4, 5]);
 
         $reference = Reference::create([

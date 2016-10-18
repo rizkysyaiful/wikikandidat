@@ -34,6 +34,10 @@ Route::get('/', function () {
 
 });
 
+Route::get('/faq', function(){
+  return view('static.faq');
+});
+
 Route::post('/user/submit-fact',
   'UserController@submit_fact')
   ->middleware('auth');
