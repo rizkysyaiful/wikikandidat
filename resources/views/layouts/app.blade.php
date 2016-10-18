@@ -61,7 +61,7 @@
               <a href="#">Pileg 2014</a>
             </li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="faq" id="about-us">FAQ</a>
+              <a href="faq" id="faq">FAQ</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
