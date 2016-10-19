@@ -460,7 +460,8 @@ DKI Jakarta - Pilkada 2017
                 <div class="modal-body">
                   @foreach($f->references as $r)
                   <div class="well well-sm">
-                    <img src="https://docs.google.com/uc?id={{$r->photo_id}}"> 
+                    <img class="loading_gif" src="{{asset('img/loading.gif')}}">
+                    <img class="lazy_load" data-src="https://docs.google.com/uc?id={{$r->photo_id}}">
                     <a href="{{$r->eternal_url}}" class="pull-right">{{$r->title}}</a><br>
                     <span>Data diajukan oleh: <a href="user/{{$r->submitter->username}}">{{$r->submitter->name}}</a></span><br>
                     <span>Diverifikasi secara terpisah oleh:
@@ -526,5 +527,15 @@ DKI Jakarta - Pilkada 2017
         $("#SubmitFactModal span#nickname").html( $(this).data("nickname") );
         $("#SubmitFactModal span#type").html( $(this).data("fact-type-name") );
       });
+      $('.modal').on("show.bs.modal", function () {
+          $(".loading_gif").show();
+          $('.lazy_load').each(function(){
+              var img = $(this);
+              img.attr('src', img.data('src'));
+              $(this).on('load', function(){
+                $(".loading_gif").hide();
+              });
+          });
+      });    
     </script>
 @endsection

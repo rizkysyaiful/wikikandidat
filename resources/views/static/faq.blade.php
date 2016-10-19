@@ -51,7 +51,7 @@ F.A.Q
 					Jauh sebelum memulai Wikikandidat di 2014, Rizky tidak pernah terafiliasi dengan pihak politik manapun. Alasan memulai Wikikandidat sendiri, adalah karena rasa salah sudah bangga golput di pemilu 2009. Rizky Syaiful netral dan tidak pernah mempublikasikan pilihan pribadinya di pemilu.
 				</p>
 				<p>
-					Mahasiswa yang jadi relawan Wikikandidat saat di pileg 2014, mayoritas dari Kelompok Studi Mahasiswa Eka Prasetya UI. Mereka termasuk kelompok yang rekam jejaknya netral secara politik.
+					Mayoritas relawan mahasiswa Wikikandidat saat pileg 2014, berasal dari Kelompok Studi Mahasiswa Eka Prasetya UI. Kelompok studi tersebut termasuk netral rekam jejak politiknya.
 				</p>
 				<p>
 					Mahasiswa verifikator Wikikandidat di pilkada 2017, diseleksi secara khusus agar tidak punya sejarah afiliasi.
@@ -78,7 +78,7 @@ F.A.Q
 	<?php
 		$faq = [
 			[
-				'Bukti Fakta Seperti Apa yang Valid buat Verifikator Wikikandidat?',
+				'Bukti Valid buat Verifikator Wikikandidat Seperti Apa?',
 				'definisi-valid',
 				'
 				<ol>
@@ -102,6 +102,15 @@ F.A.Q
 					Tidak dihapusnya fakta akan berguna bagi mereka yang hanya tahu berita versi lama. Pergerakan sebuah isu akan terekam di Wikikandidat.
 				</p>
 				'
+			],
+			[
+				'Cara jadi Verifikator?',
+				'gabung-verifikator',
+				'
+				<p>
+					Saat ini belum ada perekrutan terbuka. Yang pasti, syaratnya adalah mahasiswa aktif di program sarjana atau diploma.
+				</p>
+				',
 			],
 		];
 	?>
