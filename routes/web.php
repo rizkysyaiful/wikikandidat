@@ -15,36 +15,40 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/tes', function(){
-  $random_students = DB::select('select id from users where is_verifier = ? AND id != ? AND id != ? AND id != ? AND id != ? AND id != ? ORDER BY rand() LIMIT 3', [1, Auth::user()->id, 2, 3, 4, 5]);
-  echo Auth::user()->id."<br>";
-  print_r($random_students);
+  echo Auth::user()->jobs_as_second;
 });
 
+/**
+* Pages for reader
+*/
 Route::get('/', function () {
   return view('landing')->with('election', App\Election::find(1));
-   // return view('landing');
-/*   
-    $risma = App\Candidate::find(1);
-    echo App\Type::where('name', 'Educations')->get();
-    echo $risma->facts()->where('type_id', 1)->get();
-    foreach ($risma->facts()->where('type_id', 1) as $f) {
-    	$f->text;
-    }
-*/
-
 });
-
 Route::get('/faq', function(){
   return view('static.faq');
 });
 
+/**
+* Pages for user
+*/
+Route::get('/home', 'UserController@index');
+
+/**
+* Actions of user
+*/
 Route::post('/user/submit-fact',
   'UserController@submit_fact')
   ->middleware('auth');
 
+/**
+* Actions of student
+*/
 Route::post('/student/approve-fact',
   'StudentController@approve_fact')
   ->middleware('auth'); // nanti cari middleware yang bisa filter student
+Route::post('/student/reject-fact', 
+  'StudentController@reject_fact')
+  ->middleware('auth');
 
 Auth::routes();
 
@@ -52,5 +56,3 @@ Route::get('/logout', function(){
   Auth::logout();
   return redirect('/');
 });
-
-Route::get('/home', 'UserController@index');

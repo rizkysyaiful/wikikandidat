@@ -25,6 +25,9 @@
       .container.reading{
         max-width: 600px;
       }
+      .alert{
+        margin-top: -5px;
+      }
     </style>
     <script>
         window.Laravel = <?php echo json_encode([
@@ -55,7 +58,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="">Pilkada 2017</a>
+              <a href="#">Pilkada 2017</a>
             </li>
             <li>
               <a href="#">Pileg 2014</a>
@@ -76,6 +79,14 @@
         </div>
       </div>
     </div>
+
+    @if(session('status'))
+    <div class="container">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{session('status')}}
+        </div>
+    </div>
+    @endif
 
     @yield('content')
 

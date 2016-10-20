@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 use App\Fact;
 use App\Reference;
@@ -49,8 +50,12 @@ class UserController extends Controller
             'candidate_id' => $req->input("candidate_id"),
         ]);
 
-        // id 2, 3, 4, & 5 adalah mahasiswa test
-        $random_students = DB::select('select id from users where is_verifier = ? AND id != ? AND id != ? AND id != ? AND id != ? AND id != ? ORDER BY rand() LIMIT 3', [1, Auth::user()->id, 2, 3, 4, 5]);
+        // id 2, 3, 4, & 5 adalah mahasiswa test, tidak dijalankan di production
+        if (App::environment('local')) {
+            $random_students = DB::select('select id from users where is_verifier = ? ORDER BY rand() LIMIT 3', [1, Auth::user()->id]);
+        }else{
+            $random_students = DB::select('select id from users where is_verifier = ? AND id != ? AND id != ? AND id != ? AND id != ? AND id != ? ORDER BY rand() LIMIT 3', [1, Auth::user()->id, 2, 3, 4, 5]);
+        }         
 
         $reference = Reference::create([
             'first_verifier_id' => $random_students[0]->id,

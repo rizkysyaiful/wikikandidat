@@ -48,13 +48,22 @@ F.A.Q
 					Satu-satunya pihak yang resmi terafiliasi dengan Wikikandidat adalah Rizky Syaiful, seorang konsultan pengembangan software.
 				</p>
 				<p>
-					Jauh sebelum memulai Wikikandidat di 2014, Rizky tidak pernah terafiliasi dengan pihak politik manapun. Alasan memulai Wikikandidat sendiri, adalah karena rasa salah sudah bangga golput di pemilu 2009. Rizky Syaiful netral dan tidak pernah mempublikasikan pilihan pribadinya di pemilu.
+					Jauh sebelum memulai Wikikandidat di 2014, Rizky tidak pernah terafiliasi dengan pihak politik manapun. Alasan memulai Wikikandidat sendiri, hanya karena ingin memperbaiki sebuah inovasi KPU di Pileg 2014: Curriculum Vitae caleg yang berbentuk scan PDF kertas tulis tangan. Rizky Syaiful netral dan tidak pernah mempublikasikan pilihan pribadinya di pemilu.
 				</p>
 				<p>
 					Mayoritas relawan mahasiswa Wikikandidat saat pileg 2014, berasal dari Kelompok Studi Mahasiswa Eka Prasetya UI. Kelompok studi tersebut termasuk netral rekam jejak politiknya.
 				</p>
 				<p>
 					Mahasiswa verifikator Wikikandidat di pilkada 2017, diseleksi secara khusus agar tidak punya sejarah afiliasi.
+				</p>
+				',
+			],
+			[
+				'Cara Menambahkan Fakta Seorang Kandidat?',
+				'tambah-fakta',
+				'
+				<p>
+					Pertama, kamu harus registrasi Wikikandidat.
 				</p>
 				',
 			],
