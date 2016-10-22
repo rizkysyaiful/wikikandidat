@@ -24,6 +24,27 @@ class StudentController extends Controller
         $this->middleware('auth');
     }
 
+    public function edit_reference_fact(Request $request)
+    {
+    	$request->session()->flash('status', 'Gagal tersimpan..');
+
+    	$r = Reference::find($request->input('reference_id'));
+    	$r->title = $request->input('title');
+		$r->eternal_url = $request->input('eternal_url');
+		$r->photo_id = $request->input('photo_id');
+    	$r->save();
+
+    	$fact = Fact::find($request->input('fact_id'));
+    	$fact->text = $request->input('text');
+    	$fact->year_start = ( $request->input('year_start') == "" ? null : $request->input('year_start') );
+    	$fact->year_end = ( $request->input('year_end') == "" ? null : $request->input('year_end') );
+    	$fact->save();
+
+    	$request->session()->flash('status', 'Berhasil diperbarui... Ingat, jangan sebar link ini. Ini hanya saat entrier-nya masih di satu waktu & tempat.');
+
+    	return redirect('/edit-bukti');
+    }
+
     public function reject_fact(Request $request)
     {
     	Validator::make($request->all(), [
@@ -109,7 +130,12 @@ class StudentController extends Controller
     		$r->title = $request->input('title');
     		$r->eternal_url = $request->input('eternal_url');
     		$r->photo_id = $request->input('photo_id');
-	    	$r->save();
+
+    		Verification::create([
+    			'comment' => $request->input('comment'),
+    			'reference_id' => $request->input('reference_id'),
+    			'verifier_id' => Auth::user()->id,
+    			]);
 
 	    	$fact = Fact::find($request->input('fact_id'));
 	    	$fact->text = $request->input('text');
@@ -123,8 +149,11 @@ class StudentController extends Controller
 	    		)
 	    	{ // maka resmikan Faktanya
 		    	$fact->is_verified = true;
+		    	$r->is_rejected = false;
 	    	}
+
 	    	$fact->save();
+	    	$r->save();
 
 	    	$request->session()->flash('status', 'Tersimpan di database, kalau fakta & bukti barusan terverifikasi...');
     	}

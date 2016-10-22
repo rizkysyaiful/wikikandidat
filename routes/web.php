@@ -31,13 +31,19 @@ Route::get('/faq', function(){
 /**
 * Pages for user
 */
-Route::get('/home', 'UserController@index');
+Route::get('/home', 'UserController@index')->middleware('auth');
+Route::get('/edit-bukti', function(){
+  return view('edit-bukti')->with('references', App\Reference::all());
+})->middleware('auth');
 
 /**
 * Actions of user
 */
 Route::post('/user/submit-fact',
   'UserController@submit_fact')
+  ->middleware('auth');
+Route::post('/user/add-reference',
+  'UserController@add_reference')
   ->middleware('auth');
 
 /**
@@ -48,6 +54,9 @@ Route::post('/student/approve-fact',
   ->middleware('auth'); // nanti cari middleware yang bisa filter student
 Route::post('/student/reject-fact', 
   'StudentController@reject_fact')
+  ->middleware('auth');
+Route::post('student/edit-reference-fact',
+  'StudentController@edit_reference_fact')
   ->middleware('auth');
 
 Auth::routes();

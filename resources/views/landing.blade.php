@@ -302,7 +302,7 @@ DKI Jakarta - Pilkada 2017
                     </span>
                     <strong>
                       @if(isset($f->year_start))
-                      {{$f->year_start}} -
+                        {{$f->year_start}} -
                       @endif
                       {{$f->year_end}}
                     </strong><br>
@@ -455,22 +455,46 @@ DKI Jakarta - Pilkada 2017
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Bukti</h4>
+                  <h4 class="modal-title">Bukti<br><small>dari Fakta "{{$f->text}}"</small></h4>
                 </div>
                 <div class="modal-body">
                   @foreach($f->references as $r)
                   <div class="well well-sm">
                     <img class="loading_gif" src="{{asset('img/loading.gif')}}">
                     <img class="lazy_load" data-src="https://docs.google.com/uc?id={{$r->photo_id}}">
-                    <a href="{{$r->eternal_url}}" class="pull-right">{{$r->title}}</a><br>
-                    <span>Data diajukan oleh: <a href="user/{{$r->submitter->username}}">{{$r->submitter->name}}</a></span><br>
-                    <span>Diverifikasi secara terpisah oleh:
-                      @foreach($r->verifications as $v)
-                      <a href="user/{{$v->verifier->username}}" title="{{$v->comment}}">{{$v->verifier->name}}</a>
-                      @endforeach
+                    <span class="pull-right">
+                      <strong>Tautan ke bukti</strong>:<br>
+                      <a href="{{$r->eternal_url}}" class="pull-right">{{$r->title}}</a>
                     </span>
+                    <br>
+                    <span><strong>Pengaju</strong>:<br>
+                    <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $r->submitter->email ) ) )}}?s=20">
+                    <a href="user/{{$r->submitter->username}}">{{$r->submitter->name}}</a></span><br>
+                    <strong>Verifikator</strong>:<br>
+                    @foreach($r->verifications as $v)
+                    <div>
+                      <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $v->verifier->email ) ) )}}?s=20"> <a href="user/{{$v->verifier->username}}" title="">{{$v->verifier->name}}</a>: {{$v->comment}}
+                    </div>
+                    @endforeach
                   </div>
                   @endforeach
+                  <hr>
+                  <div style="text-align: center;">
+                    <p>
+                      Merasa ada yang kurang di teks fakta "{{$f->text}}"?  
+                    </p>
+                    <p>
+                      Bantu Wikikandidat melengkapinya dengan berikan bukti baru. Akan ditambahkan kalau memang itu sesuatu yang baru dan valid.
+                    </p>
+                    <form id="AddReference" method="POST" action="user/add-reference">
+                      {{ csrf_field() }}
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
+                      </div>
+                      <input type="hidden" name="fact_id" value="{{$f->id}}">
+                      <button type="submit" class="btn btn-primary">Tambah</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -497,7 +521,7 @@ DKI Jakarta - Pilkada 2017
               {{ csrf_field() }}
               <div class="form-group">
                 <label>Link ke Bukti Fakta</label>
-                <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="eternal_url">
+                <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
               </div>
               <div class="form-group">
                 <label>Fakta bahwa...</label>
@@ -505,7 +529,6 @@ DKI Jakarta - Pilkada 2017
               </div>
               <input type="hidden" name="type_id" value="">
               <input type="hidden" name="candidate_id" value="">
-              <input type="hidden" name="submitter_id" value="{{Auth::user()->id}}">
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
             @else
