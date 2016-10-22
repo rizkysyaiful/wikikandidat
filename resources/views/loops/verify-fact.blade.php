@@ -18,13 +18,20 @@
                 </h5>
                 <hr>
                 <p>
-                    Fakta{{ $is_new_reference ? " saat ini" : "" }}:<br>
+                    <u>Fakta{{ $is_new_reference ? " saat ini" : " yang diajukan" }}</u>:<br>
                     {{$j->fact->text}}
                 </p>
                 <p>
-                    Link ke bukti{{ $is_new_reference ? "  tambahan" : "" }}:<br>
+                    <u>Link ke bukti{{ $is_new_reference ? "  tambahan" : "" }}</u>:<br>
                     <a href="{{$j->eternal_url}}">{{$j->eternal_url}}</a>
                 </p>
+                <p>
+                    @if(isset($j->reason))
+                        <u>Alasan bukti baru ini ditambahkan</u>:<br>
+                    {{$j->reason}}
+                    @endif
+                </p>
+                <hr>
                 <p>
                     <em>Hayo {{Auth::user()->name}}... 
                     @if(!$is_new_reference)

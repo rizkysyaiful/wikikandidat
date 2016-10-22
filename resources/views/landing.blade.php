@@ -116,7 +116,8 @@ DKI Jakarta - Pilkada 2017
                 ?>
                 <span class="glyphicon glyphicon-plus pull-right" 
                 data-toggle="modal"
-                data-target="#SubmitFactModal" data-candidate="{{$c->id}}"
+                data-target="#SubmitFactModal"
+                data-candidate="{{$c->id}}"
                 data-nickname="{{$c->nickname}}" data-fact-type-name="Karir"
                 data-fact-type="{{$type_id}}"
                 aria-hidden="true"></span>
@@ -448,8 +449,6 @@ DKI Jakarta - Pilkada 2017
         </div>
     
         @foreach($c->facts as $f)
-          @if(count($f->references) != 0)
-          {{-- if di atas hanya karena seed-nya belum bagus --}}
           <div class="modal fade" id="modal-{{$f->id}}" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -458,24 +457,42 @@ DKI Jakarta - Pilkada 2017
                   <h4 class="modal-title">Bukti<br><small>dari Fakta "{{$f->text}}"</small></h4>
                 </div>
                 <div class="modal-body">
-                  @foreach($f->references as $r)
+                  <?php
+                    $references = $f->references
+                      ->where('first_verifier_id', null)
+                      ->where('second_verifier_id', null)
+                      ->where('third_verifier_id', null);
+                  ?>
+                  @foreach($references as $r)
                   <div class="well well-sm">
                     <img class="loading_gif" src="{{asset('img/loading.gif')}}">
                     <img class="lazy_load" data-src="https://docs.google.com/uc?id={{$r->photo_id}}">
-                    <span class="pull-right">
-                      <strong>Tautan ke bukti</strong>:<br>
-                      <a href="{{$r->eternal_url}}" class="pull-right">{{$r->title}}</a>
-                    </span>
                     <br>
-                    <span><strong>Pengaju</strong>:<br>
-                    <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $r->submitter->email ) ) )}}?s=20">
-                    <a href="user/{{$r->submitter->username}}">{{$r->submitter->name}}</a></span><br>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <span><strong>Pengaju bukti</strong>:<br>
+                        <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $r->submitter->email ) ) )}}?s=20">
+                        <a href="user/{{$r->submitter->username}}">{{$r->submitter->name}}</a></span>
+                      </div>
+                      <div class="col-sm-3">
+                        <strong>Sumber Bukti</strong>:<br>
+                        <a href="{{$r->eternal_url}}">{{$r->title}}</a>
+                      </div>
+                      <div class="col-sm-5">
+                        <button data-id="{{$r->id}}" class="toggle-replace-reference btn btn-xs btn-primary pull-right">Ada yang lebih valid?</button>
+                      </div>
+                    </div>
+                    
                     <strong>Verifikator</strong>:<br>
                     @foreach($r->verifications as $v)
                     <div>
                       <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $v->verifier->email ) ) )}}?s=20"> <a href="user/{{$v->verifier->username}}" title="">{{$v->verifier->name}}</a>: {{$v->comment}}
                     </div>
                     @endforeach
+
+                    <div id="replaceReference-{{$r->id}}" class="div-replace-reference" style="text-align: center;">
+                      Fitur ini belum selesai...
+                    </div>
                   </div>
                   @endforeach
                   <hr>
@@ -491,6 +508,9 @@ DKI Jakarta - Pilkada 2017
                       <div class="form-group">
                         <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
                       </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Info apa yang baru dan penting dari bukti itu?" name="reason">
+                      </div>
                       <input type="hidden" name="fact_id" value="{{$f->id}}">
                       <button type="submit" class="btn btn-primary">Tambah</button>
                     </form>
@@ -499,7 +519,6 @@ DKI Jakarta - Pilkada 2017
               </div>
             </div>
           </div>
-          @endif
         @endforeach
 
         @endforeach
@@ -524,7 +543,7 @@ DKI Jakarta - Pilkada 2017
                 <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
               </div>
               <div class="form-group">
-                <label>Fakta bahwa...</label>
+                <label>Berdasarkan bukti tersebut, adalah fakta bahwa <span id="nickname"></span> pernah...</label>
                 <input type="text" class="form-control" placeholder="Penjelasan singkat fakta tersebut." name="text">
               </div>
               <input type="hidden" name="type_id" value="">
@@ -542,23 +561,29 @@ DKI Jakarta - Pilkada 2017
 
 @section('js')
     <script>
-      $('.panel-body > .pull-right.glyphicon-plus').click(function (e) {
-        $("#SubmitFactModal input[name='eternal_url']").val("");
-        $("#SubmitFactModal input[name='text']").val("");
-        $("#SubmitFactModal input[name='type_id']").val( $(this).data("fact-type") );
-        $("#SubmitFactModal input[name='candidate_id']").val( $(this).data("candidate") );
-        $("#SubmitFactModal span#nickname").html( $(this).data("nickname") );
-        $("#SubmitFactModal span#type").html( $(this).data("fact-type-name") );
-      });
-      $('.modal').on("show.bs.modal", function () {
+      $(document).ready(function(){
+        $('.panel-body > .pull-right.glyphicon-plus').click(function (e) {
+          $("#SubmitFactModal input[name='eternal_url']").val("");
+          $("#SubmitFactModal input[name='text']").val("");
+          $("#SubmitFactModal input[name='type_id']").val( $(this).data("fact-type") );
+          $("#SubmitFactModal input[name='candidate_id']").val( $(this).data("candidate") );
+          $("#SubmitFactModal span#nickname").html( $(this).data("nickname") );
+          $("#SubmitFactModal span#type").html( $(this).data("fact-type-name") );
+        });
+        $('.modal').on("show.bs.modal", function () {
           $(".loading_gif").show();
           $('.lazy_load').each(function(){
-              var img = $(this);
-              img.attr('src', img.data('src'));
-              $(this).on('load', function(){
-                $(".loading_gif").hide();
-              });
+            var img = $(this);
+            img.attr('src', img.data('src'));
+            $(this).on('load', function(){
+              $(".loading_gif").hide();
+            });
           });
-      });    
+        });
+        $(".div-replace-reference").hide();
+        $('.toggle-replace-reference').click(function(){
+          $('#replaceReference-'+$(this).data('id') ).slideToggle("slow");
+        });
+      });
     </script>
 @endsection

@@ -52,6 +52,7 @@ class UserController extends Controller
 
         Validator::make($request->all(), [
             'url' => 'required|url',
+            'reason' => 'required',
         ])->validate();
 
         $random_students = $this->get_random_students();
@@ -61,6 +62,7 @@ class UserController extends Controller
             'second_verifier_id' => $random_students[1]->id,
             'third_verifier_id' => $random_students[2]->id,
             'eternal_url' => $request->input("url"),
+            'reason' => $request->input("reason"),
             'fact_id' => $request->input("fact_id"),
             'submitter_id' => Auth::user()->id,
         ]);

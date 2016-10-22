@@ -44,7 +44,11 @@ Route::post('/user/submit-fact',
   ->middleware('auth');
 Route::post('/user/add-reference',
   'UserController@add_reference')
-  ->middleware('auth');
+  ->middleware('auth'); 
+/*
+Route::post('/user/add-reference', function(Request $request){
+  print_r($request->input());
+}); */
 
 /**
 * Actions of student
