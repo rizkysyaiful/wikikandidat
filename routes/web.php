@@ -22,13 +22,13 @@ Route::get('/tes', function(){
 * Pages for reader
 */
 
+Route::get('/', function () {
+  return view('landing')->with('election', App\Election::find(1));
+});
 Route::get('/banten-2017', function(){
   return view('landing')->with('election', App\Election::find(2));
 });
 
-Route::get('/', function () {
-  return view('landing')->with('election', App\Election::find(1));
-});
 Route::get('/faq', function(){
   return view('static.faq');
 });
