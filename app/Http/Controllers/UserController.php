@@ -74,7 +74,7 @@ class UserController extends Controller
 
     public function submit_fact(Request $req)
     {
-        $request->session()->flash('status', 'gagal tersimpan...');
+        $req->session()->flash('status', 'gagal tersimpan...');
 
         Validator::make($req->all(), [
             'url' => 'required|url',
@@ -100,7 +100,7 @@ class UserController extends Controller
             'submitter_id' => Auth::user()->id,
         ]);
 
-        $request->session()->flash('status', 'Fakta dan bukti sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa..');
+        $req->session()->flash('status', 'Fakta dan bukti sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa..');
 
         return redirect('/');
 
