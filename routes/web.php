@@ -25,7 +25,7 @@ Route::get('/tes', function(){
 Route::get('/', function () {
   return view('landing')->with('election', App\Election::find(1));
 });
-Route::get('/banten-2017', function(){
+Route::get('/banten', function(){
   return view('landing')->with('election', App\Election::find(2));
 });
 
