@@ -87,6 +87,21 @@ F.A.Q
 	<?php
 		$faq = [
 			[
+				'Bisa Memasukan Fakta Apa Saja ke Wikikandidat?',
+				'jenis-fakta',
+				'
+				<p>
+					Saat ini. Fakta berikut bisa dimasukan ke Wikikandidat:
+				</p>
+				<p>				
+					<strong>1. Karir</strong>. Karir adalah segala kegiatan yang jadi mata pencaharian utama selepas lulus sekolah.
+				</p>
+				<p>
+					<strong>2. </strong>. 
+				</p>
+				'
+			],
+			[
 				'Bukti Valid buat Verifikator Wikikandidat Seperti Apa?',
 				'definisi-valid',
 				'
