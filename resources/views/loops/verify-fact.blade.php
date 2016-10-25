@@ -18,18 +18,32 @@
                 </h5>
                 <hr>
                 <p>
-                    <u>Fakta{{ $is_new_reference ? " saat ini" : " yang diajukan" }}</u>:<br>
+                    <span class="label label-primary"><strong>
+                        Fakta{{ $is_new_reference ? " saat ini" : " yang diajukan" }}</strong>
+                    </span><br>
                     {{$j->fact->text}}
                 </p>
                 <p>
-                    <u>Link ke bukti{{ $is_new_reference ? "  tambahan" : "" }}</u>:<br>
+                    <span class="label label-primary"><strong>Link ke bukti{{ $is_new_reference ? "  tambahan" : "" }}:</strong></span><br>
                     <a href="{{$j->eternal_url}}">{{$j->eternal_url}}</a>
                 </p>
                 <p>
                     @if(isset($j->reason))
-                        <u>Alasan bukti baru ini ditambahkan</u>:<br>
+                        <span class="label label-primary"><strong>Alasan bukti baru ini ditambahkan:</strong></span><br>
                     {{$j->reason}}
                     @endif
+                </p>
+                <p>
+                    <span class="label label-primary"><strong>
+                        Kandidat:
+                    </strong></span><br>
+                    {{$j->fact->candidate->name}}
+                </p>
+                <p>
+                    <span class="label label-primary"><strong>
+                        Pengaju Bukti:
+                    </strong></span><br>
+                    {{$j->submitter->name}}
                 </p>
                 <hr>
                 <p>
@@ -52,7 +66,7 @@
                         </ul>
                     @endif
                     </em>
-                </p> 
+                </p>
             </div>
             <div class="col-md-4">
                 <h5><strong>&#10140; Kalau kamu pikir layak</strong></h5>
@@ -81,6 +95,20 @@
                         </div>
                         @endif
                     </div>
+                    <?php
+                        $avalaible_types = App\Type::all();
+                    ?>
+                    <div class="form-group">
+                        <select class="form-control" name="type_id">
+                            @foreach($avalaible_types as $t)
+                            <option 
+                                @if($t->id == $j->fact->type_id)
+                                selected="selected" 
+                                @endif
+                            value="{{$t->id}}">{{$t->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
                         <label>Perilis bukti (nama media massa)</label>
                         <input type="text" class="form-control" value="{{$j->title}}" name="title">
@@ -106,7 +134,9 @@
                     <div class="form-group {{ $errors->has('photo_id') ? ' has-error' : '' }}">
                         <label>ID Google Drive Skrinsut Bukti</label>
                         <input type="text" class="form-control" placeholder="" value="{{$j->photo_id}}" name="photo_id">
-                        <img style="width: 100%;" src="https://docs.google.com/uc?id={{$j->photo_id}}">
+                        @if($j->photo_id != "")
+                            <img style="width: 100%;" src="https://docs.google.com/uc?id={{$j->photo_id}}">
+                        @endif
                         @if ($errors->has('photo_id'))
                         <div class="has-error">
                             <span class="help-block">

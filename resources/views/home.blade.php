@@ -18,17 +18,29 @@ Home
 
     @if(Auth::user()->is_verifier)
     <?php
-      $user = Auth::user();
+      $jobs = App\Reference::where([
+            ['first_verifier_id', '=', Auth::user()->id],
+        ])->orderBy('created_at', 'desc')->get();
     ?>
     <h2>Tugas sebagai Verifikator Pertama</h2>
-    @each('loops.verify-fact', $user->jobs_as_first->sortByDesc('created_at'), 'j')
+    @each('loops.verify-fact', $jobs, 'j')
     <hr>
     <?php
-      $jobs = $user->jobs_as_second;
-      $jobs = $jobs->merge($user->jobs_as_third); 
-      $jobs = $jobs->sortByDesc('created_at');
+      $jobs = App\Reference::where([
+            ['second_verifier_id', '=', Auth::user()->id],
+            ['first_verifier_id', '=', null],
+        ])->orderBy('created_at', 'desc')->get();
     ?>
-    <h2>Tugas sebagai Verifikator Kedua &amp; Ketiga</h2>
+    <h2>Tugas sebagai Verifikator Kedua</h2>
+    @each('loops.verify-fact', $jobs, 'j')
+    <hr>
+    <?php
+      $jobs = App\Reference::where([
+            ['third_verifier_id', '=', Auth::user()->id],
+            ['second_verifier_id', '=', null],
+        ])->orderBy('created_at', 'desc')->get();
+    ?>
+    <h2>Tugas sebagai Verifikator Ketiga</h2>
     @each('loops.verify-fact', $jobs, 'j')
     @endif
 

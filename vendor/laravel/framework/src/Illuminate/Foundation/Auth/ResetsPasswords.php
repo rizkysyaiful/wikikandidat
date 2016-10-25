@@ -18,7 +18,7 @@ trait ResetsPasswords
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string|null  $token
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showResetForm(Request $request, $token = null)
     {
@@ -35,10 +35,7 @@ trait ResetsPasswords
      */
     public function reset(Request $request)
     {
-        $this->validate($request, [
-            'token' => 'required', 'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        $this->validate($request, $this->rules());
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
@@ -55,6 +52,19 @@ trait ResetsPasswords
         return $response == Password::PASSWORD_RESET
                     ? $this->sendResetResponse($response)
                     : $this->sendResetFailedResponse($request, $response);
+    }
+
+    /**
+     * Get the password reset validation rules.
+     *
+     * @return array
+     */
+    protected function rules()
+    {
+        return [
+            'token' => 'required', 'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ];
     }
 
     /**
@@ -104,7 +114,7 @@ trait ResetsPasswords
      *
      * @param  \Illuminate\Http\Request
      * @param  string  $response
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {

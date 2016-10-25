@@ -22,6 +22,9 @@
     <![endif]-->
     <!-- Scripts -->
     <style type="text/css">
+        .container{
+            width: 1200px !important;
+          }
         .container.reading{
             max-width: 600px;
         }

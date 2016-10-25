@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddReasonColumnToReferences' => $baseDir . '/database/migrations/2016_10_22_224316_add_reason_column_to_references.php',
     'CandidatesTableSeeder' => $baseDir . '/database/seeds/CandidatesTableSeeder.php',
     'CreateCandidatesTable' => $baseDir . '/database/migrations/2016_09_15_211840_create_candidates_table.php',
     'CreateCouplesTable' => $baseDir . '/database/migrations/2016_09_23_114740_create_couples_table.php',

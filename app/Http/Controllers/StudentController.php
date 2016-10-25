@@ -36,6 +36,7 @@ class StudentController extends Controller
 
     	$fact = Fact::find($request->input('fact_id'));
     	$fact->text = $request->input('text');
+    	$fact->type_id = $request->input('type_id');
     	$fact->year_start = ( $request->input('year_start') == "" ? null : $request->input('year_start') );
     	$fact->year_end = ( $request->input('year_end') == "" ? null : $request->input('year_end') );
     	$fact->save();
@@ -76,6 +77,8 @@ class StudentController extends Controller
     		$r->is_rejected = true;
     		$r->save();
 
+    		// kasih notif ke pengirim fakta kalau ditolak
+
     		$request->session()->flash('status', 'Fakta & bukti barusan berhasil ditolak...');
     	}
 
@@ -99,6 +102,7 @@ class StudentController extends Controller
     		'text' => 'required',
     		'year_start' => 'numeric',
     		'year_end' => 'numeric',
+    		'type_id' => 'required|exists:types,id',
     		'fact_id' => 'required|exists:facts,id',
             'reference_id' => 'required|exists:references,id',
         ], $messages)->validate();
@@ -139,6 +143,7 @@ class StudentController extends Controller
 
 	    	$fact = Fact::find($request->input('fact_id'));
 	    	$fact->text = $request->input('text');
+	    	$fact->type_id = $request->input('type_id');
 	    	$fact->year_start = ( $request->input('year_start') == "" ? null : $request->input('year_start') );
 	    	$fact->year_end = ( $request->input('year_end') == "" ? null : $request->input('year_end') );
 	    	
@@ -150,6 +155,8 @@ class StudentController extends Controller
 	    	{ // maka resmikan Faktanya
 		    	$fact->is_verified = true;
 		    	$r->is_rejected = false;
+
+		    	// TODO kasih notif ke submitter 
 	    	}
 
 	    	$fact->save();

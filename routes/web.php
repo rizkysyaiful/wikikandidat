@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/tes', function(){
-  echo Auth::user()->jobs_as_second;
+  echo markdown('# Hello');
 });
 
 /**
@@ -50,10 +50,6 @@ Route::post('/user/submit-fact',
 Route::post('/user/add-reference',
   'UserController@add_reference')
   ->middleware('auth'); 
-/*
-Route::post('/user/add-reference', function(Request $request){
-  print_r($request->input());
-}); */
 
 /**
 * Actions of student

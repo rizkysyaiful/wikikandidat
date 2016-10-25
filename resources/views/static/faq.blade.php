@@ -140,6 +140,7 @@ F.A.Q
 	?>
 	<h2 id="faq">Frequently Asked Question<br><small>
 	Yang Sering Ditanyakan</small></h2>
+	<ul>
 	@foreach($faq as $q)
 		<li>
 			<a href="#{{$q[1]}}">

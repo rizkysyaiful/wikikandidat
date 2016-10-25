@@ -13,6 +13,10 @@ DKI Jakarta - Pilkada 2017
   .panel{
     border: none;
   }
+  .panel ol,ul{
+    list-style-position: inside;
+    padding-left:0;
+  }
   /* self-made */
   .panel-body > .head{
     text-align: center
@@ -134,7 +138,7 @@ DKI Jakarta - Pilkada 2017
                     @endif
                     {{$f->year_end}}
                   </strong><br>
-                  {{$f->text}}
+                  {!!markdown($f->text)!!}
                 </div>
                 @endforeach
                 </div>
@@ -166,7 +170,7 @@ DKI Jakarta - Pilkada 2017
                     @endif
                     {{$f->year_end}}
                   </strong><br>
-                  {{$f->text}}
+                  {!!markdown($f->text)!!}
                 </div>
                 @endforeach
                 </div>
@@ -198,7 +202,7 @@ DKI Jakarta - Pilkada 2017
                     @endif
                     {{$f->year_end}}
                   </strong><br>
-                  {{$f->text}}
+                  {!!markdown($f->text)!!}
                 </div>
                 @endforeach
                 </div>
@@ -230,7 +234,7 @@ DKI Jakarta - Pilkada 2017
                     @endif
                     {{$f->year_end}}
                   </strong><br>
-                  {{$f->text}}
+                  {!!markdown($f->text)!!}
                 </div>
                 @endforeach
                 </div>
@@ -262,7 +266,7 @@ DKI Jakarta - Pilkada 2017
                     @endif
                     {{$f->year_end}}
                   </strong><br>
-                  {{$f->text}}
+                  {!!markdown($f->text)!!}
                 </div>
                 @endforeach
                 </div>
@@ -307,7 +311,7 @@ DKI Jakarta - Pilkada 2017
                       @endif
                       {{$f->year_end}}
                     </strong><br>
-                    {{$f->text}}
+                    {!!markdown($f->text)!!}
                   </div>
                   @endforeach
                 </div>
@@ -339,7 +343,7 @@ DKI Jakarta - Pilkada 2017
                       @endif
                       {{$f->year_end}}
                     </strong><br>
-                    {{$f->text}}
+                    {!!markdown($f->text)!!}
                   </div>
                   @endforeach
                 </div>
@@ -371,7 +375,7 @@ DKI Jakarta - Pilkada 2017
                     @endif
                     {{$f->year_end}}
                   </strong><br>
-                  {{$f->text}}
+                  {!!markdown($f->text)!!}
                 </div>
                 @endforeach
                 </div>
@@ -403,7 +407,7 @@ DKI Jakarta - Pilkada 2017
                     @endif
                     {{$f->year_end}}
                   </strong><br>
-                  {{$f->text}}
+                  {!!markdown($f->text)!!}
                 </div>
                 @endforeach
                 </div>
@@ -435,7 +439,7 @@ DKI Jakarta - Pilkada 2017
                     @endif
                     {{$f->year_end}}
                   </strong><br>
-                  {{$f->text}}
+                  {!!markdown($f->text)!!}
                 </div>
                 @endforeach
                 </div>
@@ -454,7 +458,7 @@ DKI Jakarta - Pilkada 2017
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Bukti<br><small>dari Fakta "{{$f->text}}"</small></h4>
+                  <h4 class="modal-title">Bukti<br><small>dari Fakta "{!!markdown($f->text)!!}"</small></h4>
                 </div>
                 <div class="modal-body">
                   <?php
@@ -498,7 +502,7 @@ DKI Jakarta - Pilkada 2017
                   <hr>
                   <div style="text-align: center;">
                     <p>
-                      Merasa ada yang kurang di teks fakta "{{$f->text}}"?  
+                      Merasa ada yang kurang di teks fakta "{!!markdown($f->text)!!}"?  
                     </p>
                     <p>
                       Bantu Wikikandidat melengkapinya dengan berikan bukti baru. Akan ditambahkan kalau memang itu sesuatu yang baru dan valid.

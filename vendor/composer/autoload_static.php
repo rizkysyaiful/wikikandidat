@@ -16,6 +16,7 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '080b6e0c5b1fb395a583a005cd5b4924' => __DIR__ . '/..' . '/andreasindal/laravel-markdown/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -71,6 +72,7 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
         ),
         'I' => 
         array (
+            'Indal\\Markdown\\' => 15,
             'Illuminate\\' => 11,
         ),
         'F' => 
@@ -201,6 +203,10 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
+        'Indal\\Markdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/andreasindal/laravel-markdown/src',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -242,6 +248,10 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
             ),
+            'Parsedown' => 
+            array (
+                0 => __DIR__ . '/..' . '/erusev/parsedown',
+            ),
         ),
         'M' => 
         array (
@@ -278,6 +288,7 @@ class ComposerStaticInit81cc32d3df4c2f2e07c3a90f9bdb767b
     );
 
     public static $classMap = array (
+        'AddReasonColumnToReferences' => __DIR__ . '/../..' . '/database/migrations/2016_10_22_224316_add_reason_column_to_references.php',
         'CandidatesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CandidatesTableSeeder.php',
         'CreateCandidatesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_15_211840_create_candidates_table.php',
         'CreateCouplesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_114740_create_couples_table.php',
