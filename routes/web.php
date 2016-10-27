@@ -38,7 +38,12 @@ Route::get('/faq', function(){
 */
 Route::get('/home', 'UserController@index')->middleware('auth');
 Route::get('/edit-bukti', function(){
-  return view('edit-bukti')->with('references', App\Reference::all());
+  $references = App\Reference::where([
+      ['first_verifier_id', '=', null],
+      ['second_verifier_id', '=', null],
+      ['third_verifier_id', '=', null],
+    ])->get();
+  return view('edit-bukti')->with('references', $references);
 })->middleware('auth');
 
 /**

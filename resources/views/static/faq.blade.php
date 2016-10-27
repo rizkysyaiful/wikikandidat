@@ -6,8 +6,7 @@ F.A.Q
 
 @section('content')
 <div class="container reading">
-	<h2 id="vfaq">Very Frequently Asked Question<br><small>
-	Yang Sering Sekali Ditanyakan</small></h2>
+	<h2 class="anchor" id="utama">Pertanyaan Utama<br></h2>
 	<?php
 		$faq = [
 			[
@@ -15,19 +14,19 @@ F.A.Q
 				'apa-itu',
 				'
 				<p>
-					Wikikandidat (kb): Sebuah produk digital yang menampilkan fakta positif dan negatif tentang seorang kandidat, yang lengkap karena bersumber dari publik luas, juga valid karena diverifikasi oleh mahasiswa.
+					Wikikandidat (kb): Sebuah produk digital yang menampilkan fakta positif dan negatif tentang seorang kandidat, yang lengkap&mdash;karena bersumber dari publik luas, juga valid&mdash;karena diverifikasi oleh tiga mahasiswa yang dipilih acak.
 				</p>
 				',
 			],
 			[
-				'Kelebihannya Dibanding Solusi Serupa?',
+				'Kelebihannya dibanding solusi serupa?',
 				'kelebihan',
 				'
 				<p>
 					Pertanyaan yang bagus! :) 
 				</p>
 				<p>
-					Sebagus pertanyaan <strong>"Kenapa Wikikandidat harus ada?"</strong>
+					Sebagus pertanyaan <em>"Kenapa Wikikandidat harus ada?"</em>
 				</p>
 				<p>
 					Dibanding media massa: Wikikandidat pasti tidak memihak. 
@@ -41,7 +40,7 @@ F.A.Q
 				',
 			],
 			[
-				'Siapa di Baliknya?',
+				'Siapa di baliknya?',
 				'siapa',
 				'
 				<p>
@@ -59,101 +58,172 @@ F.A.Q
 				',
 			],
 			[
-				'Cara Menambahkan Fakta Seorang Kandidat?',
+				'Siapa publik luas yang bisa menambahkan fakta?',
 				'tambah-fakta',
 				'
 				<p>
-					Pertama, kamu harus registrasi Wikikandidat.
+					Semua orang yang terdaftar di wikikandidat.com. Semua orang yang sudah memiliki KTP bisa mendaftar.
+				</p>
+				<p>
+					KTP diperlukan saat pendaftaran. Di masa depan, akan ada fitur Wikikandidat yang memerlukan identitas asli.
+				</p>
+				<p>
+					Jika kamu belum bisa membuat KTP, kamu bisa membantu dengan mengajak kakak atau orang tua kamu. 
 				</p>
 				',
 			],
+			[
+				'Siapa mahasiswa yang bisa memverifikasi fakta?',
+				'mahasiswa',
+				'
+					<p>
+						Mahasiswa aktif program sarjana atau diploma. Idealnya.
+					</p>
+					<p>
+						Wikikandidat.com belum cukup matang pada saat ini. Jadi mohon maaf, mahasiswa yang jadi verifikator masih harus berada dalam satu area. Dengan begitu, kami bisa bertemu langsung untuk mematangkan Wikikandidat.com dan cara kerja kami. 
+					</p>
+					<p>
+						Mahasiswa yang tinggal di dekat Universitas Indonesia Depok bisa menghubungi rizky.syaiful@gmail.com untuk jadi verifikator. 
+					</p>
+				',
+			],
+			[
+				'Seberapa kredibel yang fakta yang tertulis di Wikikandidat?',
+				'disclaimer',
+				'
+				<p>
+					Disclaimer: Wikikandidat tidak bisa menjamin kebenaran dan terlepas atas apa yang tertulis di atasnya. Wikikandidat.com adalah sebuah tempat. Semua yang berdiri di atasnya bertanggung jawab atas segala aksi masing-masing.</p>
+				<p>
+					Sama seperti Facebook yang tidak bisa dituntut atas apa yang penggunanya tulis, Wikikandidat juga tidak bisa dituntut oleh pasal pencemaran nama baik atau apapun.</p>
+				<p>
+					Jika ada sumber rujukan media massa yang ternyata tidak benar&mdash;yang bisa jadi mencemarkan nama baik, silahkan masukan rujukan tambahan yang membuktikan hal tersebut. Mahasiswa di Wikikandidat.com akan memverifikasinya sesuai prosedur.</p>',
+			]
 		];
 	?>
 	<ul>
 	@foreach($faq as $q)
 		<li>
-			<a href="#{{$q[1]}}">
+			<a data-scroll href="#{{$q[1]}}">
 				{{$q[0]}}
 			</a>
 		</li>
 	@endforeach
 	</ul>
 	@foreach($faq as $q)
-		<span class="pull-right"><a href="#vfaq">balik ke atas</a></span>
-		<h5 id="{{$q[1]}}"><strong>{{$q[0]}}</strong></h5>
+		<span class="pull-right"><a data-scroll href="#utama">balik ke atas</a></span>
+		<h5 class="anchor" id="{{$q[1]}}"><strong>{{$q[0]}}</strong></h5>
 		{!!$q[2]!!}
 	@endforeach
 	<hr>
+	<h2 class="anchor" id="fakta-bukti">Mengajukan Fakta &amp; Bukti Baru ke Wikikandidat<br><small>
+	Cara Semua Orang untuk Berkontribusi</small></h2>
 	<?php
 		$faq = [
 			[
-				'Bisa Memasukan Fakta Apa Saja ke Wikikandidat?',
+				'Bisa memasukan fakta apa saja?',
 				'jenis-fakta',
 				'
 				<p>
 					Saat ini. Fakta berikut bisa dimasukan ke Wikikandidat:
 				</p>
-				<p>				
-					<strong>1. Karir</strong>. Karir adalah segala kegiatan yang jadi mata pencaharian utama selepas lulus sekolah.
+				<ol>
+					<li>				
+						<p>Karir: segala kegiatan yang jadi mata pencaharian utama selepas lulus sekolah. Jika pernah penuh-waktu sebagai pejabat partai, tetap masuk bagian ini.</p>
+					</li>
+					<li>
+						<p>Pendidikan: program edukasi baik dari lembaga formal maupun informal. SD &amp; SMP tidak kami masukan.</p> 
+					</li>
+					<li>
+						<p>Kontribusi ke Organisasi: jabatan atau pemberian ke organisasi apapun di luar karirnya. Dari sini akan terlihat afiliasi-afiliasi seorang kandidat.</p>
+					</li>
+					<li>
+						<p>Prestasi: penghargaan dari sebuah lembaga atau tindakan yang mayoritas orang menganggapnya baik.</p>
+					</li>
+					<li>
+						<p>Kontroversi: tindakan yang mayoritas orang menganggapnya buruk, atau yang cukup terbagi pandangan baik atau buruknya.</p>
+					</li>
+				</ol>
+				'
+			],
+			[
+				'Aku tahu fakta yang belum ada di Wikikandidat, bagaimana cara menambahkannya?',
+				'cara-tambah-fakta',
+				'
+				<p>
+					Terima kasih atas niat baik kontribusinya. Kalau semua orang seperti kamu, dunia akan jadi lebih baik dari sekarang.
 				</p>
 				<p>
-					<strong>2. </strong>. 
+					Semua fakta kandidat yang tertulis di Wikikandidat memiliki bukti pendukung. 
+				</p>
+				<p>
+					Langkah kamu selanjutnya, adalah memastikan fakta yang akan kamu tambahkan itu, memiliki bukti pendukung yang bisa diakses dari alamat internet. Kenapa? Karena perlu divalidasi dulu oleh tiga mahasiswa acak sebelum bisa tampil di halaman depan.
+				</p>
+				<p>
+					Dan mahasiswa&mdash;yang tidak mungkin kamu ketahui identitasnya&mdash;hanya bisa memvalidasi kredibilitas sumber bukti kamu lewat internet.
 				</p>
 				'
 			],
 			[
-				'Bukti Valid buat Verifikator Wikikandidat Seperti Apa?',
+				'Sumber bukti yang kredibel buat verifikator?',
 				'definisi-valid',
 				'
+				<p>
+					Berdasarkan urutan...
+				</p>
 				<ol>
 					<li>
-						Bukti langsung: contoh rekaman video, percakapan, atau dokumen bocoran yang sudah diinvestigasi kebenarannya oleh jurnalis dan aktifis luas.
+						<p>Bukti langsung: contoh rekaman video, percakapan, atau dokumen bocoran yang sudah diinvestigasi kebenarannya oleh jurnalis dan aktifis luas.</p>
 					</li>
 					<li>
-						Apa yang disampaikan oleh media massa profesional dan bereputasi. <a href="https://en.wikipedia.org/wiki/Wikipedia:Identifying_reliable_sources#News_organizations" target="_blank">Kami mengikuti standar Wikipedia dalam hal ini</a>.
+						<p>Apa yang disampaikan oleh media massa profesional dan bereputasi. <a href="https://en.wikipedia.org/wiki/Wikipedia:Identifying_reliable_sources#News_organizations" target="_blank">Kami mengambil definisi yayasan Wikipedia tentang media massa yang professional dan bereputasi</a>.</p>
+						<ul>
+							<li>Kredibilitas media massa perilis berita adalah hal penting.</li>
+							<li>Media massa daring (<em>online</em>) yang juga punya produk cetak lebih kredibel dari yang tidak.
+							<li>Media massa daring yang tidak punya alamat dan tim redaksi yang bisa dikontak tidak bisa dijadikan sumber bukti.</li>
+							<li>Media massa yang punya riwayat merevisi kesalahan jurnalistiknya memiliki level kredibilitas lebih tinggi dibanding yang tidak. Apalagi yang memiliki riwayat menghilangkan tautan ke beritanya.</li>
+						</ul>
 					</li>
 				</ol>
 				',
 			],
 			[
-				'Kalau Bukti Fakta Ternyata Dinyatakan Tidak Valid Lagi?',
+				'Kalau bukti fakta ternyata dinyatakan tidak valid lagi?',
 				'bukti-tidak-valid',
 				'
 				<p>
-					Penjelasan fakta tersebut akan direvisi. Bukti penunjang akan ditambahkan ke fakta tersebut&mdash;ingat, satu fakta bisa memiliki lebih dari satu bukti.
+					Berarti seperti putusan pengadilan yang direvisi? Ada perubahaan terkait fakta di masa lampau?
 				</p>
 				<p>
-					Tidak dihapusnya fakta akan berguna bagi mereka yang hanya tahu berita versi lama. Pergerakan sebuah isu akan terekam di Wikikandidat.
+					Penjelasan fakta tersebut akan ditambahkan dengan perubahan tersebut. Bukti penunjang akan ditambahkan ke fakta tersebut&mdash;ingat, satu fakta bisa memiliki lebih dari satu bukti.
 				</p>
-				'
-			],
-			[
-				'Cara jadi Verifikator?',
-				'gabung-verifikator',
-				'
 				<p>
-					Saat ini belum ada perekrutan terbuka. Yang pasti, syaratnya adalah mahasiswa aktif di program sarjana atau diploma.
+					Pergerakan sebuah isu akan terekam di Wikikandidat. Itu lebih baik dan informatif daripada isunya dihilangkan sama sekali. 
 				</p>
-				',
+				'
 			],
 		];
 	?>
-	<h2 id="faq">Frequently Asked Question<br><small>
-	Yang Sering Ditanyakan</small></h2>
 	<ul>
 	@foreach($faq as $q)
 		<li>
-			<a href="#{{$q[1]}}">
+			<a data-scroll href="#{{$q[1]}}">
 				{{$q[0]}}
 			</a>
 		</li>
 	@endforeach
 	</ul>
 	@foreach($faq as $q)
-		<span class="pull-right"><a href="#faq">balik ke atas</a></span>
-		<h5 id="{{$q[1]}}"><strong>{{$q[0]}}</strong></h5>
+		<span class="pull-right"><a data-scroll href="#fakta-bukti">balik ke atas</a></span>
+		<h5 class="anchor" id="{{$q[1]}}"><strong>{{$q[0]}}</strong></h5>
 		{!!$q[2]!!}
 	@endforeach
 	<hr>
 </div>
+@endsection
+
+@section('js')
+	<script src="{{asset('js/smooth-scroll.js')}}"></script>
+	<script>
+		smoothScroll.init();
+	</script>
 @endsection

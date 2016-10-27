@@ -189,7 +189,7 @@ DKI Jakarta - Pilkada 2017
                 data-nickname="{{$c->nickname}}" data-fact-type-name="Kontribusi"
                 data-fact-type="{{$type_id}}"
                 aria-hidden="true"></span>
-                <h5>Kontribusi:</h5>
+                <h5>Kontribusi ke Organisasi:</h5>
                 @foreach($facts as $i => $f)
                 <div class="data {{$first}}">
                   <?php $first = ""; ?>
@@ -362,7 +362,7 @@ DKI Jakarta - Pilkada 2017
                     data-nickname="{{$rm->nickname}}" data-fact-type-name="Kontribusi"
                     data-fact-type="{{$type_id}}"
                     aria-hidden="true"></span>
-                <h5>Kontribusi:</h5>
+                <h5>Kontribusi ke Organisasi:</h5>
                 @foreach($facts as $i => $f)
                 <div class="data {{$first}}">
                   <?php $first = ""; ?>
@@ -458,7 +458,7 @@ DKI Jakarta - Pilkada 2017
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Bukti<br><small>dari Fakta "{!!markdown($f->text)!!}"</small></h4>
+                  <h4 class="modal-title">Bukti<br><small>dari Fakta "{{$f->text}}"</small></h4>
                 </div>
                 <div class="modal-body">
                   <?php
@@ -502,22 +502,43 @@ DKI Jakarta - Pilkada 2017
                   <hr>
                   <div style="text-align: center;">
                     <p>
-                      Merasa ada yang kurang di teks fakta "{!!markdown($f->text)!!}"?  
+                      Merasa ada yang kurang di teks fakta "{{$f->text}}"?  
                     </p>
                     <p>
                       Bantu Wikikandidat melengkapinya dengan berikan bukti baru. Akan ditambahkan kalau memang itu sesuatu yang baru dan valid.
                     </p>
-                    <form id="AddReference" method="POST" action="user/add-reference">
-                      {{ csrf_field() }}
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
+                    <?php
+                      // kalau fakta ini punya reference tambahan yang sedang diproses,
+                      $references = App\Reference::where('fact_id', '=', $f->id)
+                        ->where(function($query){
+                          $query->whereNotNull('first_verifier_id')
+                          ->orWhere('second_verifier_id', '<>', null)
+                          ->orWhere('third_verifier_id', '<>', null);
+                        })
+                        ->get();
+                    ?>
+                    @if($references->count() == 0)
+                      <form id="AddReference" method="POST" action="user/add-reference">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Info apa yang baru dan penting dari bukti itu?" name="reason">
+                        </div>
+                        <input type="hidden" name="fact_id" value="{{$f->id}}">
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                      </form>
+                    @else
+                      <div class="bs-callout bs-callout-primary">
+                        <p>
+                          Mohon maaf. Sekarang kamu harus mengantri. Karena ada sebuah bukti yang sedang diproses tiga mahasiswa acak.
+                        </p>
+                        <p>
+                          Nanti akan dibuat fitur, yang akan mengirim email ke kamu kalau proses sudah selesai. Jadi kamu sudah bisa tambahkan bukti baru yang melengkapi fakta ini. Sekarang fiturnya belum jadi. Kamu rajin-rajin cek halaman ini dulu aja ya.. :)
+                        </p>
                       </div>
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Info apa yang baru dan penting dari bukti itu?" name="reason">
-                      </div>
-                      <input type="hidden" name="fact_id" value="{{$f->id}}">
-                      <button type="submit" class="btn btn-primary">Tambah</button>
-                    </form>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -540,20 +561,20 @@ DKI Jakarta - Pilkada 2017
           </div>
           <div class="modal-body">
             @if(Auth::check())
-            <form id="AddFactForm" method="POST" action="user/submit-fact" >
-              {{ csrf_field() }}
-              <div class="form-group">
-                <label>Link ke Bukti Fakta</label>
-                <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
-              </div>
-              <div class="form-group">
-                <label>Berdasarkan bukti tersebut, adalah fakta bahwa <span id="nickname"></span> pernah...</label>
-                <input type="text" class="form-control" placeholder="Penjelasan singkat fakta tersebut." name="text">
-              </div>
-              <input type="hidden" name="type_id" value="">
-              <input type="hidden" name="candidate_id" value="">
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+              <form id="AddFactForm" method="POST" action="user/submit-fact" >
+                {{ csrf_field() }}
+                <div class="form-group">
+                  <label>Link ke Bukti Fakta</label>
+                  <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
+                </div>
+                <div class="form-group">
+                  <label>Berdasarkan bukti tersebut, adalah fakta bahwa <span id="nickname"></span> pernah...</label>
+                  <input type="text" class="form-control" placeholder="Penjelasan singkat fakta tersebut." name="text">
+                </div>
+                <input type="hidden" name="type_id" value="">
+                <input type="hidden" name="candidate_id" value="">
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
             @else
             Login dahulu untuk memasukan fakta baru. Kalau ingin anonimus karena faktanya terlalu sensitif, ikuti petunjuk berikut. 
             @endif
