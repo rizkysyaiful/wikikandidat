@@ -54,7 +54,10 @@ Route::post('/user/submit-fact',
   ->middleware('auth');
 Route::post('/user/add-reference',
   'UserController@add_reference')
-  ->middleware('auth'); 
+  ->middleware('auth');
+Route::post('/user/change-reference',
+  'UserController@change_reference')
+  ->middleware('auth');
 
 /**
 * Actions of student

@@ -155,7 +155,14 @@ class StudentController extends Controller
 	    	{ // maka resmikan Faktanya
 		    	$fact->is_verified = true;
 		    	$r->is_rejected = false;
-
+		    	// kalau ternyata ini adalah penggantian bukti yang sudah ada.. taruh successor_id ke tempat sesuai di sini.
+		    	if(isset($r->successor_id))
+		    	{
+		    		$old_reference = Reference::find($r->successor_id);
+		    		$old_reference->successor_id = $r->successor_id;
+		    		$old_reference->save();
+		    		$r->successor_id = null;
+		    	}
 		    	// TODO kasih notif ke submitter 
 	    	}
 

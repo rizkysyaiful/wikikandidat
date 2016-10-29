@@ -72,11 +72,40 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function submit_fact(Request $req)
+    public function change_reference(Request $request)
     {
-        $req->session()->flash('status', 'gagal tersimpan...');
+        $request->session()->flash('status', 'Gagal tersimpan...');
 
-        Validator::make($req->all(), [
+        Validator::make($request->all(), [
+            'url' => 'required|url',
+            'reference_id' => 'required|exists:references,id',
+            'fact_id' => 'required|exists:facts,id'
+        ])->validate();
+
+        $random_students = $this->get_random_students();
+
+        $reference = Reference::create([
+            'first_verifier_id' => $random_students[0]->id,
+            'second_verifier_id' => $random_students[1]->id,
+            'third_verifier_id' => $random_students[2]->id,
+            'eternal_url' => $request->input("url"),
+            'fact_id' => $request->input("fact_id"),
+            // yang di bawah ini akan dipindahkan ke reference yang sesuai saat reference ini berhasil diverifikasi. Jadinya tidak sesuai dengan semantik. Tapi biar hemat kolom
+            'successor_id' => $request->input("reference_id"),
+            'submitter_id' => Auth::user()->id,
+        ]);
+
+        $request->session()->flash('status', 'Bukti baru yang sumbernya lebih kredibel sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa..');
+
+        return redirect('/');
+
+    }
+
+    public function submit_fact(Request $request)
+    {
+        $request->session()->flash('status', 'gagal tersimpan...');
+
+        Validator::make($request->all(), [
             'url' => 'required|url',
             'text' => 'required',
             'type_id' => 'required|exists:types,id',
@@ -84,9 +113,9 @@ class UserController extends Controller
         ])->validate();
 
         $fact = Fact::create([
-            'text' => $req->input("text"),
-            'type_id' => $req->input("type_id"),
-            'candidate_id' => $req->input("candidate_id"),
+            'text' => $request->input("text"),
+            'type_id' => $request->input("type_id"),
+            'candidate_id' => $request->input("candidate_id"),
         ]);        
 
         $random_students = $this->get_random_students();
@@ -95,12 +124,12 @@ class UserController extends Controller
             'first_verifier_id' => $random_students[0]->id,
             'second_verifier_id' => $random_students[1]->id,
             'third_verifier_id' => $random_students[2]->id,
-            'eternal_url' => $req->input("url"),
+            'eternal_url' => $request->input("url"),
             'fact_id' => $fact->id,
             'submitter_id' => Auth::user()->id,
         ]);
 
-        $req->session()->flash('status', 'Fakta dan bukti sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa..');
+        $request->session()->flash('status', 'Fakta dan bukti sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa..');
 
         return redirect('/');
 

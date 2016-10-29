@@ -4,6 +4,9 @@
 Home 
 @endsection
 
+@section('head')
+@endsection
+
 @section('content')
 <div class="container">
     <span class="pull-right">Login sebagai {{Auth::user()->name}}</span>

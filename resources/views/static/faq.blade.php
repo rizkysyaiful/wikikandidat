@@ -19,6 +19,31 @@ F.A.Q
 				',
 			],
 			[
+				'Apa tujuannya?',
+				'tujuan',
+				'
+				<ol>
+				<li>
+					<p>
+						Membantu publik memilih pemimpin terbaik seobjektif mungkin, dengan menjadi museum digital yang mengumpulkan fakta-fakta penting dari para kandidat.
+					</p>
+				</li>
+				<li>
+					<p>
+						Membuat calon-calon pejabat publik makin takut melakukan hal korup, karena sadar bahwa internet tidak akan pernah lupa.
+					</p>
+				</li>
+				<li>
+					<p>
+						Membuat calon-calon pejabat publik makin bersemangat melakukan hal-hal baik, karena sadar bahwa internet tidak akan pernah lupa.
+					</p>
+				</li>
+				<li>
+					<p>Menyediakan informasi yang paling netral, karena sifatnya aggregat dan dijaga oleh kelas sosial paling idealis: mahasiswa.</p>
+				</li>
+				</ol>'
+			],
+			[
 				'Kelebihannya dibanding solusi serupa?',
 				'kelebihan',
 				'
@@ -32,7 +57,7 @@ F.A.Q
 					Dibanding media massa: Wikikandidat pasti tidak memihak. 
 				</p>
 				<p>
-					Dibanding Wikipedia: Wikikandidat pasti ada bukti-bukti pendukung, juga diverifikasi oleh tiga mahasiswa secara acak. 
+					Dibanding Wikipedia: Wikikandidat pasti ada bukti-bukti pendukung, diverifikasi oleh tiga mahasiswa secara acak, tidak bisa langsung diubah oleh siapapun.  
 				</p>
 				<p>
 					Dibanding Linkedin atau website buatan tim sukses: Wikikandidat tidak bisa diubah semau yang bersangkutan. 
@@ -77,10 +102,13 @@ F.A.Q
 				'mahasiswa',
 				'
 					<p>
-						Mahasiswa aktif program sarjana atau diploma. Idealnya.
+						Mahasiswa aktif program sarjana atau diploma, yang berwarga negara Indonesia.
 					</p>
 					<p>
-						Wikikandidat.com belum cukup matang pada saat ini. Jadi mohon maaf, mahasiswa yang jadi verifikator masih harus berada dalam satu area. Dengan begitu, kami bisa bertemu langsung untuk mematangkan Wikikandidat.com dan cara kerja kami. 
+						Wikikandidat.com belum cukup matang pada saat ini. Jadi mohon maaf, verifikator masih harus berada dalam satu area.
+					</p>
+					<p>
+						Tujuannya, agar kami bisa bertemu langsung untuk pelatihan penggunakan Wikikandidat.com sebagai verifikator.
 					</p>
 					<p>
 						Mahasiswa yang tinggal di dekat Universitas Indonesia Depok bisa menghubungi rizky.syaiful@gmail.com untuk jadi verifikator. 
@@ -96,8 +124,26 @@ F.A.Q
 				<p>
 					Sama seperti Facebook yang tidak bisa dituntut atas apa yang penggunanya tulis, Wikikandidat juga tidak bisa dituntut oleh pasal pencemaran nama baik atau apapun.</p>
 				<p>
-					Jika ada sumber rujukan media massa yang ternyata tidak benar&mdash;yang bisa jadi mencemarkan nama baik, silahkan masukan rujukan tambahan yang membuktikan hal tersebut. Mahasiswa di Wikikandidat.com akan memverifikasinya sesuai prosedur.</p>',
-			]
+					Jika ada bukti dari media massa yang ternyata tidak benar&mdash;yang bisa jadi mencemarkan nama baik, silahkan ajukan bukti baru yang membuktikan bahwa yang lama tidak benar lagi. Mahasiswa di Wikikandidat.com akan memverifikasinya sesuai prosedur.</p>',
+			],
+			[
+				'Wikikandidat sejenis Wikileaks?',
+				'wikileaks',
+				'
+				<p>
+					Bukan. Kami tidak menerima bukti mentah &amp; melakukan proses verifikasi kebenaran seperti Wikileaks.
+				</p>
+				<p>
+					Fokus kami adalah kurasi/pengumpulan/pencatatatan apa yang sudah terverifikasi di publik. Sehingga publik bisa langsung mengenal seorang kandidat seobyektif mungkin.
+				</p>
+				<p>
+					Namun, jika kamu memiliki fakta sensitif &amp; rahasia, yang bisa mengubah pandangan orang banyak tentang seseorang, kami menyarankan untuk mempublikasikan fakta tersebut.
+				</p>
+				<p>
+					Kami akan mengajarkan cara mempublikasikan fakta tersebut dengan anonimus, sehingga ada pihak yang bisa memverifikasi kebenarannya. Dan akhirnya, bisa dicatat di Wikikandidat.
+				</p>
+				'
+			],
 		];
 	?>
 	<ul>

@@ -465,7 +465,8 @@ DKI Jakarta - Pilkada 2017
                     $references = $f->references
                       ->where('first_verifier_id', null)
                       ->where('second_verifier_id', null)
-                      ->where('third_verifier_id', null);
+                      ->where('third_verifier_id', null)
+                      ->where('successor_id', null);
                   ?>
                   @foreach($references as $r)
                   <div class="well well-sm">
@@ -495,7 +496,15 @@ DKI Jakarta - Pilkada 2017
                     @endforeach
 
                     <div id="replaceReference-{{$r->id}}" class="div-replace-reference" style="text-align: center;">
-                      Fitur ini belum selesai...
+                      <form id="ChangeReference" method="POST" action="user/change-reference">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Taruh alamat internet dari bukti serupa namun dengan sumber lebih kredibel." name="url">
+                        </div>
+                        <input type="hidden" name="reference_id" value="{{$r->id}}">
+                        <input type="hidden" name="fact_id" value="{{$f->id}}">
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                      </form>
                     </div>
                   </div>
                   @endforeach
@@ -524,20 +533,24 @@ DKI Jakarta - Pilkada 2017
                           <input type="text" class="form-control" placeholder="Taruh alamat http:// atau https:// dari bukti." name="url">
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Info apa yang baru dan penting dari bukti itu?" name="reason">
+                          <input type="text" class="form-control" placeholder="Apa yang baru & penting dari bukti itu?" name="reason">
                         </div>
                         <input type="hidden" name="fact_id" value="{{$f->id}}">
                         <button type="submit" class="btn btn-primary">Tambah</button>
                       </form>
                     @else
-                      <div class="bs-callout bs-callout-primary">
-                        <p>
-                          Mohon maaf. Sekarang kamu harus mengantri. Karena ada sebuah bukti yang sedang diproses tiga mahasiswa acak.
-                        </p>
-                        <p>
-                          Nanti akan dibuat fitur, yang akan mengirim email ke kamu kalau proses sudah selesai. Jadi kamu sudah bisa tambahkan bukti baru yang melengkapi fakta ini. Sekarang fiturnya belum jadi. Kamu rajin-rajin cek halaman ini dulu aja ya.. :)
-                        </p>
-                      </div>
+                      @if(Auth::check())
+                        <div class="bs-callout bs-callout-primary">
+                          <p>
+                            Mohon maaf. Sekarang kamu harus mengantri. Karena ada sebuah bukti yang sedang diproses tiga mahasiswa acak.
+                          </p>
+                          <p>
+                            Nanti akan dibuat fitur, yang akan mengirim email ke kamu kalau proses sudah selesai. Jadi kamu sudah bisa tambahkan bukti baru yang melengkapi fakta ini. Sekarang fiturnya belum jadi. Kamu rajin-rajin cek halaman ini dulu aja ya.. :)
+                          </p>
+                        </div>
+                      @else
+                        Daftar ya...
+                      @endif
                     @endif
                   </div>
                 </div>

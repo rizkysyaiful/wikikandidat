@@ -1,58 +1,78 @@
 
-    <div class="well">
+    <?php
+        $is_additional_reference = false;
+        if($j->fact->is_verified == true)
+            $is_additional_reference = true;
+    ?>
+
+    <div class="well" style="background:  
+        @if($is_additional_reference)
+            @if(isset($j->successor_id))
+                #ffe5e5
+            @else
+                #e5f1ff
+            @endif
+        @else
+            #fffce5
+        @endif
+    ">
         <div class="row">
-            <?php
-                $is_new_reference = false;
-                if($j->fact->is_verified == true)
-                    $is_new_reference = true;
-            ?>
             <div class="col-md-4 dont-break-out">
                 <h5>
                     <strong>
-                        @if($is_new_reference)
-                            Bukti tambahan yang harus diverifikasi 
-                        @else
-                            Fakta &amp; bukti yang harus diverifikasi
-                        @endif
+                        Pertanyaan Verifikasi 
                     </strong>
                 </h5>
                 <hr>
                 <p>
-                    <span class="label label-primary"><strong>
-                        Fakta{{ $is_new_reference ? " saat ini" : " yang diajukan" }}</strong>
-                    </span><br>
-                    {{$j->fact->text}}
+                    Menurut {{Auth::user()->name}}
                 </p>
-                <p>
-                    <span class="label label-primary"><strong>Link ke bukti{{ $is_new_reference ? "  tambahan" : "" }}:</strong></span><br>
-                    <a href="{{$j->eternal_url}}">{{$j->eternal_url}}</a>
-                </p>
-                <p>
-                    @if(isset($j->reason))
-                        <span class="label label-primary"><strong>Alasan bukti baru ini ditambahkan:</strong></span><br>
-                    {{$j->reason}}
-                    @endif
-                </p>
-                <p>
-                    <span class="label label-primary"><strong>
-                        Kandidat:
-                    </strong></span><br>
-                    {{$j->fact->candidate->name}}
-                </p>
-                <p>
-                    <span class="label label-primary"><strong>
-                        Pengaju Bukti:
-                    </strong></span><br>
-                    {{$j->submitter->name}}
-                </p>
-                <hr>
-                <p>
-                    <em>Hayo {{Auth::user()->name}}... 
-                    @if(!$is_new_reference)
-                        Apa faktanya relevan buat ditambahkan? Kalau relevan, apa buktinya cukup otentik?
+                @if($is_additional_reference)
+                    @if(isset($j->successor_id))
+                        <p>
+                            apakah
+                        </p>
+                        <p>
+                            <em><a href="{{$j->eternal_url}}" target="_blank">{{$j->eternal_url}}</a></em>
+                        </p>
+                        <p>
+                            lebih kredibel dari 
+                        </p>
+                        <p>
+                            <em><a href="{{$j->successor->eternal_url}}" target="_blank">{{$j->successor->title}}</a></em> ?
+                        </p>
+                        <p>
+                            Apakah {{$j->eternal_url}} juga menyatakan fakta tentang {{$j->fact->candidate->name}} di bawah ini?
+                        </p>
+                        <div class="bs-callout bs-callout-default">
+                            {!!markdown($j->fact->text)!!}
+                        </div>
+                        <p>
+                            Berarti boleh-kah <em><a href="{{$j->eternal_url}}" target="_blank">{{$j->eternal_url}}</a></em> menggantikan <em><a href="{{$j->successor->eternal_url}}" target="_blank">{{$j->successor->eternal_url}}</a></em>?
+                        </p>
                     @else
-                        Apa bukti baru ini valid?<br><br>
-                        Juga belum tergambarkan oleh bukti-bukti sebelumnya?
+                        <!-- Menambah reference ke fakta  -->
+                        <p>
+                            apakah sumber 
+                        </p>
+                        <p>
+                            <em><a href="{{$j->eternal_url}}" target="_blank">{{$j->eternal_url}}</a></em>
+                        </p>
+                        <p>
+                            cukup kredibel?
+                        </p>
+                        <p>
+                            Pengaju bukti ini bilang "{{$j->reason}}" belum ada di fakta di bawah ini
+                        </p>
+                        <div class="bs-callout bs-callout-default">
+                            {!!markdown($j->fact->text)!!}
+                        </div>
+                        <p>
+                            Apa itu benar?
+                        </p>
+                        <p>
+                            Meskipun benar, apa memang belum ada di sumber bukti di bawah ini (sehingga harus menambah bukti baru ini)?
+                        </p>
                         <?php
                             $existing_references = $j->fact->references
                                 ->where('first_verifier_id', null)
@@ -64,17 +84,58 @@
                             <li><a href="{{$r->eternal_url}}">{{$r->eternal_url}}</a></li>
                         @endforeach
                         </ul>
+                        <p>
+                            Apakah hal baru itu bermanfaat untuk pembaca Wikikandidat.com? 
+                        </p>
                     @endif
-                    </em>
+                @else
+                    <!-- Menambah fakta baru berikut buktinya -->
+                    <p>
+                        apakah sumber 
+                    </p>
+                    <p>
+                        <em><a href="{{$j->eternal_url}}" target="_blank">{{$j->eternal_url}}</a></em>
+                    </p>
+                    <p>
+                        cukup kredibel?
+                    </p>
+                    <p>
+                        Pengaju bukti tersebut bilang fakta berikut
+                    </p>
+                    <div class="bs-callout bs-callout-default">
+                        {!!markdown($j->fact->text)!!}
+                    </div>
+                    <p>
+                        cukup penting untuk ada di halaman {{$j->fact->candidate->nickname}} Wikikandidat.com.
+                    </p>
+                    <p>
+                        Apa kamu setuju?
+                    </p>
+                @endif
+                <p>
+                    <span class="label label-primary"><strong>
+                        Pengaju Bukti:
+                    </strong></span><br>
+                    {{$j->submitter->name}}
                 </p>
             </div>
             <div class="col-md-4">
-                <h5><strong>&#10140; Kalau kamu pikir layak</strong></h5>
+                <h5><strong class="text-success">&#10140; Kalau kamu pikir semua jawabannya "iya"</strong></h5>
                 <hr>
                 <form method="POST" action="student/approve-fact">
                     {{ csrf_field() }}
                     <div class="form-group {{ $errors->has('comment') ? ' has-error' : '' }}">
-                        <label>Kenapa buktinya dianggap valid{{ $is_new_reference ? " dan memberikan informasi baru" : ""}}?</label>
+                        <label>
+                        @if($is_additional_reference)
+                            @if(isset($j->successor_id))
+                                Kenapa buktinya kredibel dan layak menggantikan bukti lama?
+                            @else
+                                Kenapa buktinya kredibel dan layak digabungkan bersama bukti-bukti yang sudah ada?
+                            @endif
+                        @else
+                            Kenapa bukti ini kredibel dan fakta baru ini penting dibaca publik?
+                        @endif
+                        </label>
                         <textarea class="form-control" name="comment" rows="3"></textarea>
                         @if ($errors->has('comment'))
                         <div class="has-error">
@@ -84,8 +145,19 @@
                         </div>
                         @endif
                     </div>
+                    <h5><strong><em>Ada yang mau diubah dari sisi fakta (yang terlihat di halaman depan wikikandidat)?</em></strong></h5>
                     <div class="form-group {{ $errors->has('text') ? ' has-error' : '' }}">
-                        <label>Teks fakta yang lebih sesuai{{ $is_new_reference ? " jika bukti tambahan ini valid" : ""}}</label>
+                        <label>
+                            @if($is_additional_reference)
+                                @if(isset($j->successor_id))
+                                    Teks fakta? (harusnya ini tidak berubah, karena bukti baru hanya menggantikan bukti lama)
+                                @else
+                                    Dengan bukti baru ini, teks fakta-nya berubah jadi seperti apa? (khusus untuk kontroversi, gunakan nomor 1. 2. 3. setiap baris poin.)
+                                @endif
+                            @else
+                                Teks fakta yang nanti akan dibaca publik baiknya seperti apa?
+                            @endif
+                        </label>
                         <textarea class="form-control" name="text" rows="4">{{$j->fact->text}}</textarea>
                         @if ($errors->has('text'))
                         <div class="has-error">
@@ -95,10 +167,33 @@
                         </div>
                         @endif
                     </div>
+                    <div class="form-group {{ $errors->has('year_start') ? ' has-error' : '' }}">
+                        <label>Tahun Mulai</label>
+                        <input type="number" class="form-control" placeholder="" value="{{$j->fact->year_start}}" name="year_start">
+                        @if ($errors->has('year_start'))
+                        <div class="has-error">
+                            <span class="help-block">
+                                <strong>{{ $errors->first('year_start') }}</strong>
+                            </span>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="form-group {{ $errors->has('year_end') ? ' has-error' : '' }}">
+                        <label>Tahun Selesai / Tahun Terjadi</label>
+                        <input type="number" class="form-control" placeholder="" value="{{$j->fact->year_end}}" name="year_end">
+                        @if ($errors->has('year_end'))
+                        <div class="has-error">
+                            <span class="help-block">
+                                <strong>{{ $errors->first('year_end') }}</strong>
+                            </span>
+                        </div>
+                        @endif
+                    </div>
                     <?php
                         $avalaible_types = App\Type::all();
                     ?>
                     <div class="form-group">
+                        <label>Kategori Fakta</label>
                         <select class="form-control" name="type_id">
                             @foreach($avalaible_types as $t)
                             <option 
@@ -109,6 +204,7 @@
                             @endforeach
                         </select>
                     </div>
+                    <h5><em><strong>Ada yang mau diubah dari sisi bukti?</strong></em></h5>
                     <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
                         <label>Perilis bukti (nama media massa)</label>
                         <input type="text" class="form-control" value="{{$j->title}}" name="title">
@@ -145,40 +241,18 @@
                         </div>
                         @endif
                     </div>
-                    <div class="form-group {{ $errors->has('year_start') ? ' has-error' : '' }}">
-                        <label>Tahun Mulai</label>
-                        <input type="number" class="form-control" placeholder="" value="{{$j->fact->year_start}}" name="year_start">
-                        @if ($errors->has('year_start'))
-                        <div class="has-error">
-                            <span class="help-block">
-                                <strong>{{ $errors->first('year_start') }}</strong>
-                            </span>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="form-group {{ $errors->has('year_end') ? ' has-error' : '' }}">
-                        <label>Tahun Selesai / Tahun Terjadi</label>
-                        <input type="number" class="form-control" placeholder="" value="{{$j->fact->year_end}}" name="year_end">
-                        @if ($errors->has('year_end'))
-                        <div class="has-error">
-                            <span class="help-block">
-                                <strong>{{ $errors->first('year_end') }}</strong>
-                            </span>
-                        </div>
-                        @endif
-                    </div>
                     <input type="hidden" name="fact_id" value="{{$j->fact->id}}">
                     <input type="hidden" name="reference_id" value="{{$j->id}}">
                     <button type="submit" class="btn btn-primary">Setujui</button>
                 </form>
             </div>
             <div class="col-md-4">
-                <h5><strong>&#10140; Kalau kamu pikir tidak layak</strong></h5>
+                <h5><strong class="text-danger">&#10140; Kalau ada yang jawabannya "tidak"</strong></h5>
                 <hr>
                 <form method="POST" action="student/reject-fact">
                     {{ csrf_field() }}
                     <div class="form-group {{ $errors->has('rejection_reason') ? ' has-error' : '' }}">
-                        <label>Kenapa{{ $is_new_reference ? " " : " fakta atau "}}bukti{{ $is_new_reference ? " tambahan" : ""}}nya dianggap tidak valid?</label>
+                        <label>Bisa jelaskan alasan dari setiap "tidak" tersebut?</label>
                         <textarea class="form-control" rows="3" name="rejection_reason"></textarea>
                         @if ($errors->has('rejection_reason'))
                         <div class="has-error">
