@@ -452,7 +452,12 @@ DKI Jakarta - Pilkada 2017
               <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="5"></div> -->
         </div>
     
-        @foreach($c->facts as $f)
+        <?php
+          $facts = $c->facts;
+          $facts = $facts->merge($rm->facts);
+        ?>
+
+        @foreach($facts as $f)
           <div class="modal fade" id="modal-{{$f->id}}" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
