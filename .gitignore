@@ -1,4 +1,9 @@
+/bootstrap/cache
+/storage
+/vendor
+
 /node_modules
+/public/storage
 /.idea
 Homestead.json
 Homestead.yaml
