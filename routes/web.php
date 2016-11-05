@@ -25,9 +25,6 @@ Route::get('/tes', function(){
 Route::get('/', function () {
   return view('landing-sub')->with('election', App\Election::find(1));
 });
-Route::get('/banten-2017', function(){
-  return view('landing')->with('election', App\Election::find(2));
-});
 
 Route::get('/verification', function(){
   return view('home-sub');
@@ -45,7 +42,7 @@ Route::get('{any}', function($any){
   $election = App\Election::where('urlname', $any)->first();
   if($election)
   {
-    return view('landing')->with('election', $election);
+    return view('landing-sub')->with('election', $election);
   }
 });
 

@@ -69,25 +69,20 @@ DKI Jakarta - Pilkada 2017
       <span class="pull-right random-quote"><em>"Demokrasi tidak bisa hanya berisi pemilu, yang hampir selalu fiktif dan diatur oleh tuan tanah serta politisi profesional."<br>~ Che Guavara</em></span>
       <h1>Pilkada 2017</h1>
       <div class="btn-group">
-        <a href="#" class="btn btn-default btn-lg">Aceh</a>
+        <a href="#" class="btn btn-default btn-lg">Provinsi</a>
         <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
+          <li><a href="pilkada-2017-aceh">Aceh</a></li>
+          <li><a href="pilkada-2017-jakarta">DKI Jakarta</a></li>
+          <li><a href="pilkada-2017-banten">Banten</a></li>
+          <li><a href="pilkada-2017-sulbar">Sulawesi Barat</a></li>
+          <li><a href="pilkada-2017-babel">Bangka Belitung</a></li>
         </ul>
       </div>
       <div class="btn-group">
-        <a href="#" class="btn btn-default btn-lg">Banda Aceh</a>
+        <a href="#" class="btn btn-default btn-lg">Kota/Kab</a>
         <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
         </ul>
       </div>
       <hr>
