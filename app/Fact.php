@@ -10,7 +10,7 @@ class Fact extends Model
 	use SoftDeletes;
     //
     protected $dates = ['deleted_at'];
-    protected $fillable = ['type_id', 'candidate_id', 'text'];
+    protected $guarded = [];
 
     public function type()
     {
@@ -25,6 +25,11 @@ class Fact extends Model
     public function references()
     {
     	return $this->hasMany('App\Reference');
+    }
+
+    public function submissions()
+    {
+        return $this->hasMany('App\Submission');
     }
 
     public function topics()

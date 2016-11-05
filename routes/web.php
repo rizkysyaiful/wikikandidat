@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/tes', function(){
-  echo markdown('# Hello');
+  echo markdown('I have more <sup>[1](http://tes.cuk)</sup>. http://tes.cuk');
 });
 
 /**
@@ -23,7 +23,7 @@ Route::get('/tes', function(){
 */
 
 Route::get('/', function () {
-  return view('landing')->with('election', App\Election::find(1));
+  return view('landing-sub')->with('election', App\Election::find(1));
 });
 Route::get('/banten-2017', function(){
   return view('landing')->with('election', App\Election::find(2));
@@ -33,10 +33,21 @@ Route::get('/faq', function(){
   return view('static.faq');
 });
 
+Route::post('user/process_new_fact_submission', 'UserController@process_new_fact_submission')->middleware('auth');
+Route::post('user/process_edit_fact_submission', 'UserController@process_edit_fact_submission')->middleware('auth');
+Route::post('student/reject_submission', 'StudentController@reject_submission')->middleware('auth');
+
+Route::get('/verification', function(){
+  return view('home-sub');
+})->middleware('auth');
+
+Route::post('student/create_edit', 'StudentController@create_edit')->middleware('auth');
+
 /**
 * Pages for user
 */
-Route::get('/home', 'UserController@index')->middleware('auth');
+// Route::get('/home', 'UserController@index')->middleware('auth');
+
 Route::get('/edit-bukti', function(){
   $references = App\Reference::where([
       ['first_verifier_id', '=', null],

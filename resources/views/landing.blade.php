@@ -32,7 +32,7 @@ DKI Jakarta - Pilkada 2017
   .data.first{
     border-top: 1px solid #cacaca;
   }
-  .panel-body .verification-btn{
+  .panel-body .corner-btn{
     margin-top: 3px;
     cursor: pointer;
   }

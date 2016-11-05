@@ -29,6 +29,7 @@ class MvpTableSeeder extends Seeder
         DB::table('elections')->insert([
             'name' => 'Pilkada 2017',
             'is_gov' => true,
+            'urlname' => 'pilkada-2017-jakarta',
             'vote_date' => '2017-02-15',
             'description' => 'Tes satu dua tiga',
             'place_id' => 2,
@@ -148,47 +149,6 @@ class MvpTableSeeder extends Seeder
             'name' => 'Quotes',
         ]);
 
-		DB::table('facts')->insert([
-            'year_start' => 2010,
-            'year_end' => 2016,
-            'text' => 'Walikota Surabaya',
-            'type_id' => 2,
-            'candidate_id' => 1,
-            'is_verified' => true,
-        ]);
-		DB::table('facts')->insert([
-            'year_start' => 2008,
-            'year_end' => 2016,
-            'text' => 'Kepala Badan Perencanaan Pembangunan Kota Surabaya',
-            'type_id' => 2,
-            'candidate_id' => 1,
-            'is_verified' => true,
-        ]);
-        DB::table('facts')->insert([
-            'year_start' => 2016,
-            'year_end' => 2016,
-            'text' => 'Dewan Penasihat Asosiasi Arsitek Indonesia',
-            'type_id' => 3,
-            'candidate_id' => 1,
-            'is_verified' => true,
-        ]);
-        DB::table('facts')->insert([
-            'year_start' => null,
-            'year_end' => 2002,
-            'text' => 'Pascasarjana Manajemen Pembangunan Kota di ITS (Lulus)',
-            'type_id' => 1,
-            'candidate_id' => 1,
-            'is_verified' => true,
-        ]);
-        DB::table('facts')->insert([
-            'year_start' => null,
-            'year_end' => 2015,
-            'text' => 'Laporan PT. Gala Bumi Perkasa, atas lalai membongkar pasar Turi',
-            'type_id' => 5,
-            'candidate_id' => 1,
-            'is_verified' => true,
-        ]);
-
         DB::table('topics')->insert([
             'name' => 'Tata Kota'
         ]);
@@ -197,15 +157,6 @@ class MvpTableSeeder extends Seeder
         ]);
         DB::table('topics')->insert([
             'name' => 'Lingkungan'
-        ]);
-
-        DB::table('fact_topic')->insert([
-            'fact_id' => 2,
-            'topic_id' => 1,
-        ]);
-        DB::table('fact_topic')->insert([
-            'fact_id' => 3,
-            'topic_id' => 1,
         ]);
 
         DB::table('universities')->insert([
@@ -217,7 +168,7 @@ class MvpTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Rizky Syaiful',
             'username' => 'rizkysyaiful',
-            'email' => 'rizky@gmail.com',
+            'email' => 'rizky.syaiful@gmail.com',
             'password' => bcrypt('secret'),
             'is_verifier' => false,
             'national_pin' => 3674022904900002,
@@ -266,19 +217,6 @@ class MvpTableSeeder extends Seeder
             'national_pin' => 3674022904900006,
             'phone_number' => '08967860',
             'university_id' => 1,
-        ]);
-
-        DB::table('references')->insert([
-            'title' => 'Surabaya.go.id', 
-        	'eternal_url' => 'https://web.archive.org/web/20160916120336/http://www.surabaya.go.id/berita/8058-daftar-nama-&-alamat-walikota,-sekdakota-dan-asisten-pemerintah-kota-surabaya',
-        	'photo_id' => '0B4xZJEKibSkJOGdzckkxS2kwemc',
-        	'fact_id' => 1,
-        	'submitter_id' => 1,
-        ]);
-
-        DB::table('verifications')->insert([
-            'reference_id' => 1,
-            'verifier_id' => 1,
         ]);
 
     }

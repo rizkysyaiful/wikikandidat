@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Fact;
 use App\Reference;
 use App\Verification;
+use App\Submission;
+use App\Edit;
 
 
 class StudentController extends Controller
@@ -22,6 +24,114 @@ class StudentController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function create_edit(Request $request)
+    {
+    	$request->session()->flash('status', 'Gagal tersimpan..');
+
+    	Validator::make($request->all(), [
+            'text' => 'required',
+            'submission_id' => 'required|exists:submissions,id'
+        ])->validate();
+
+        $submission = Submission::find($request->input('submission_id'));
+
+        // TODO buat filter kedua, apakah faktanya sedang tidak memproses submission... takutnya ada yang iseng nembak URL (kurang kalau dijaga di view doang)
+
+        $is_valid_verifier = false;
+
+    	// hilangkan flag butuh untuk verifikasi
+		if($submission->first_verifier_id == Auth::user()->id)
+    	{
+			$is_valid_verifier = true;    		
+    		$submission->first_verifier_id = null;
+    	}
+    	elseif($submission->second_verifier_id == Auth::user()->id)
+    	{
+    		$is_valid_verifier = true;
+    		$submission->second_verifier_id = null;
+    	}
+    	elseif($submission->third_verifier_id == Auth::user()->id)
+    	{
+    		$is_valid_verifier = true;
+    		$submission->third_verifier_id = null;
+    	}
+    	$submission->save();
+
+    	if($is_valid_verifier)
+    	{
+    		$edit = Edit::create([
+	        	'text' => $request->input('text'),
+	        	'comment' => $request->input('comment'),
+	        	'submission_id' => $submission->id,
+	        	'verifier_id' => Auth::user()->id,
+	        	'date_start' => $request->input('year_s').
+	        				"-".$request->input('month_s').
+	        				"-".$request->input('date_s'),
+	        	'date_finish' => $request->input('year_f').
+	        				"-".$request->input('month_f').
+	        				"-".$request->input('date_f'),
+	        	]);
+
+    		// jika ini verifikasi ketiga, update submission
+			if(	$submission->first_verifier_id == null &&
+	    		$submission->second_verifier_id == null &&
+	    		$submission->third_verifier_id == null 
+	    		)
+	    	{
+	    		// jika fact-nya belum ada
+	    		if($submission->fact_id == null)
+	    		{
+	    			$fact = Fact::create([
+		    			'text' => $request->input('text'),
+		    			'date_start' => $edit->date_start,
+		    			'date_finish' => $edit->date_finish,
+		    			'type_id' => $submission->type_id,
+		    			'candidate_id' => $submission->candidate_id,
+	    			]);
+	    			$submission->fact_id = $fact->id;
+	    		}
+	    		else // jika fact-nya sudah ada
+	    		{
+	    			$fact = Fact::find($submission->fact_id);
+	    			$fact->text = $request->input('text');
+	    			$fact->date_start = $edit->date_start;
+	    			$fact->date_finish = $edit->date_finish;
+	    			$fact->save();
+	    		}
+	    		$submission->is_rejected = false;
+	    		$submission->save();
+	    	}
+
+    		$request->session()->flash('status', 'Edit kamu berhasil tersimpan...');
+    	}
+
+        return redirect('/verification');
+    }
+
+    public function reject_submission(Request $request)
+    {
+    	$request->session()->flash('status', 'Gagal tersimpan..');
+
+    	Validator::make($request->all(), [
+            'rejection_reason' => 'required',
+            'submission_id' => 'required|exists:submissions,id'
+        ])->validate();
+
+        $submission = Submission::find($request->input('submission_id'));
+        $submission->is_rejected = true;
+        $submission->rejection_reason = $request->input('rejection_reason');
+        $submission->first_verifier_id = null;
+        $submission->second_verifier_id = null;
+        $submission->third_verifier_id = null;
+        $submission->save();
+
+        // TODO, notif submitter, kalau ditolak doi...
+
+        $request->session()->flash('status', 'Penolakan kamu berhasil tersimpan...');
+
+        return redirect('/verification');
     }
 
     public function edit_reference_fact(Request $request)

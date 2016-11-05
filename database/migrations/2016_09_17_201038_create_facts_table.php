@@ -15,9 +15,10 @@ class CreateFactsTable extends Migration
     {
         Schema::create('facts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->boolean('is_verified')->default(false);
-            $table->integer('year_start')->nullable();
-            $table->integer('year_end')->nullable();
+
+            $table->date('date_start')->nullable();
+            $table->date('date_finish')->nullable();
+
             $table->text('text');
             
             $table->integer('type_id')->unsigned();

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\App;
 
 use App\Fact;
 use App\Reference;
+use App\Submission;
+use App\Edit;
 
 
 class UserController extends Controller
@@ -95,10 +97,68 @@ class UserController extends Controller
             'submitter_id' => Auth::user()->id,
         ]);
 
-        $request->session()->flash('status', 'Bukti baru yang sumbernya lebih kredibel sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa..');
+        $request->session()->flash('status', 'Bukti baru yang sumbernya lebih kredibel sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa.. ');
 
         return redirect('/');
 
+    }
+
+    public function process_new_fact_submission(Request $request)
+    {
+        $request->session()->flash('status', 'gagal tersimpan...');
+
+        Validator::make($request->all(), [
+            'text' => 'required',
+            'type_id' => 'required|exists:types,id',
+            'candidate_id' => 'required|exists:candidates,id'
+        ])->validate();
+
+        $random_students = $this->get_random_students();
+
+        // fact_id null karena ini submission baru
+        $submission = Submission::create([
+            'first_verifier_id' => $random_students[0]->id,
+            'second_verifier_id' => $random_students[1]->id,
+            'third_verifier_id' => $random_students[2]->id,
+            'text' => $request->input('text'),
+            'type_id' => $request->input('type_id'),
+            'submitter_id' => Auth::user()->id,
+            'candidate_id' => $request->input('candidate_id'),
+        ]);
+
+        $request->session()->flash('status', 'Saran fakta baru sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa... (Ingat, mahasiswa berhak melakukan investigasi lanjut sehingga munkgin saran kamu bukan satu-satunya yang akan ditampilkan.)');
+
+        return redirect('/');
+    }
+
+    public function process_edit_fact_submission(Request $request)
+    {
+        $request->session()->flash('status', 'gagal tersimpan...');
+
+        Validator::make($request->all(), [
+            'text' => 'required',
+            'fact_id' => 'required|exists:facts,id',
+            'type_id' => 'required|exists:types,id',
+            'candidate_id' => 'required|exists:candidates,id'
+        ])->validate();
+
+        $random_students = $this->get_random_students();
+
+        // fact_id null karena ini submission baru
+        $submission = Submission::create([
+            'first_verifier_id' => $random_students[0]->id,
+            'second_verifier_id' => $random_students[1]->id,
+            'third_verifier_id' => $random_students[2]->id,
+            'text' => $request->input('text'),
+            'fact_id' => $request->input('fact_id'),
+            'submitter_id' => Auth::user()->id,
+            'candidate_id' => $request->input('candidate_id'),
+            'type_id' => $request->input('type_id'),
+        ]);
+
+        $request->session()->flash('status', 'Saran perubahaan kamu sudah tersimpan di basis data, siap menunggu verifikasi mahasiwa... (Ingat, mahasiswa berhak melakukan investigasi lanjut sehingga munkgin saran kamu bukan satu-satunya yang akan ditampilkan.)');
+
+        return redirect('/');
     }
 
     public function submit_fact(Request $request)
@@ -116,7 +176,7 @@ class UserController extends Controller
             'text' => $request->input("text"),
             'type_id' => $request->input("type_id"),
             'candidate_id' => $request->input("candidate_id"),
-        ]);        
+        ]);
 
         $random_students = $this->get_random_students();
 
