@@ -132,7 +132,7 @@
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=125602920880407";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script> -->
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top" style="background-color: #2c7eb9;">
       <div class="container">
         <div class="navbar-header">
           <a href="/" class="navbar-brand">Wikikandidat</a>

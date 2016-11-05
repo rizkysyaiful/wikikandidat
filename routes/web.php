@@ -29,17 +29,30 @@ Route::get('/banten-2017', function(){
   return view('landing')->with('election', App\Election::find(2));
 });
 
+Route::get('/verification', function(){
+  return view('home-sub');
+})->middleware('auth');
+Route::get('/logout', function(){
+  Auth::logout();
+  return redirect('/');
+});
+
 Route::get('/faq', function(){
   return view('static.faq');
 });
 
+Route::get('{any}', function($any){
+  $election = App\Election::where('urlname', $any)->first();
+  if($election)
+  {
+    return view('landing')->with('election', $election);
+  }
+});
+
+
 Route::post('user/process_new_fact_submission', 'UserController@process_new_fact_submission')->middleware('auth');
 Route::post('user/process_edit_fact_submission', 'UserController@process_edit_fact_submission')->middleware('auth');
 Route::post('student/reject_submission', 'StudentController@reject_submission')->middleware('auth');
-
-Route::get('/verification', function(){
-  return view('home-sub');
-})->middleware('auth');
 
 Route::post('student/create_edit', 'StudentController@create_edit')->middleware('auth');
 
@@ -85,7 +98,4 @@ Route::post('student/edit-reference-fact',
 
 Auth::routes();
 
-Route::get('/logout', function(){
-  Auth::logout();
-  return redirect('/');
-});
+
