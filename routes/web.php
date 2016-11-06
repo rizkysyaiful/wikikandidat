@@ -38,6 +38,8 @@ Route::get('/faq', function(){
   return view('static.faq');
 });
 
+Auth::routes();
+
 Route::get('{any}', function($any){
   $election = App\Election::where('urlname', $any)->first();
   if($election)
@@ -93,6 +95,6 @@ Route::post('student/edit-reference-fact',
   'StudentController@edit_reference_fact')
   ->middleware('auth');
 
-Auth::routes();
+
 
 
