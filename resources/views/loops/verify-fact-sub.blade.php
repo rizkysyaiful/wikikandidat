@@ -68,7 +68,7 @@
             style="margin-top: 20px;" 
         >
             <li role="presentation" class="active">
-                <a  href="#agree" 
+                <a  href="#agree-{{$s->id}}" 
                     aria-controls="agree"
                     role="tab"
                     data-toggle="tab"
@@ -77,7 +77,7 @@
                 </a>
             </li>
             <li role="presentation">
-                <a  href="#disagree" 
+                <a  href="#disagree-{{$s->id}}" 
                     aria-controls="disagree" 
                     role="tab" 
                     data-toggle="tab"
@@ -90,7 +90,7 @@
         <div class="tab-content">
             <div    role="tabpanel" 
                     class="tab-pane active" 
-                    id="agree">
+                    id="agree-{{$s->id}}">
                 @if($latest_edit)
                     <p>
                         Berarti kamu setuju ya.
@@ -222,7 +222,7 @@
             </div>
             <div    role="tabpanel"
                     class="tab-pane" 
-                    id="disagree"
+                    id="disagree-{{$s->id}}"
             >
                 <form   method="POST"
                         action="student/reject_submission">
