@@ -166,8 +166,6 @@
                         <div class="form-group">
                             <label>Tahun</label>
                             <input  type="number"
-                                min="1900"
-                                max="{{date("Y")}}"
                                 class="form-control input-sm"
                                 name="year_s"
                                 style="width: 80px;"
@@ -204,8 +202,6 @@
                         <div class="form-group">
                             <label>Tahun</label>
                             <input  type="number"
-                                min="1900"
-                                max="{{date("Y")}}"
                                 class="form-control input-sm"
                                 name="year_f"
                                 style="width: 80px;"

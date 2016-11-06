@@ -132,7 +132,7 @@ DKI Jakarta - Pilkada 2017
 
               @include('layouts.fact-panel', [
                 'category' => 'Achievements',
-                'name' => 'Penghargaan',
+                'name' => 'Prestasi',
                 'color' => 'rgb(235, 236, 255)',
                 'candidate' => $c])
 
@@ -175,7 +175,7 @@ DKI Jakarta - Pilkada 2017
 
               @include('layouts.fact-panel', [
                 'category' => 'Achievements',
-                'name' => 'Penghargaan',
+                'name' => 'Prestasi',
                 'color' => 'rgb(235, 236, 255)',
                 'candidate' => $rm])
 
