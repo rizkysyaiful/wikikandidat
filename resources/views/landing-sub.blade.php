@@ -14,8 +14,7 @@ DKI Jakarta - Pilkada 2017
     border: none;
   }
   .panel ol,ul{
-    list-style-position: inside;
-    padding-left:0;
+    padding-left: 17px;
   }
   /* self-made */
   .panel-body > .head{
