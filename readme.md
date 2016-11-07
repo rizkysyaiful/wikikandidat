@@ -12,4 +12,17 @@ Are you a Laravel artisan? Front-end web developer? Visual graphic artist? **And
 
 Drop an email at rizky.syaiful@gmail.com.
 
-_This is just the early phase of the movement, I still need high-bandwidth communication a.k.a face to face. So, able to meetup in Depok regularly is a must._
+_This is just the early phase of the movement, I still need high-bandwidth communication a.k.a face to face. So, able to meetup in UI Depok regularly is a must._
+
+### Gallery
+
+Here are some photos of our activity in October. Basically, we iterate the first version of wikikandidat.com
+
+_Me with the four verifier_ 
+![image](https://cloud.githubusercontent.com/assets/2253841/20075588/5848374c-a567-11e6-8118-c54c6fdc3f4f.png)
+
+_Inserting candidate's fact_
+![image](https://cloud.githubusercontent.com/assets/2253841/20076043/679dd326-a569-11e6-9220-1e4e626bd7c4.png)
+
+_Funny thing happened in the verifiying session_
+![image](https://cloud.githubusercontent.com/assets/2253841/20075565/416d1844-a567-11e6-8e4f-13e159d99baa.png)
