@@ -16,13 +16,19 @@ _This is just the early phase of the movement, I still need high-bandwidth commu
 
 ### Gallery
 
-Here are some photos of our activity in October. Basically, we iterate the first version of wikikandidat.com
+Here are some photos of our activity in October. Basically, we iterate the first version of wikikandidat.com.
 
-_Me with the four verifier_ 
-![image](https://cloud.githubusercontent.com/assets/2253841/20075588/5848374c-a567-11e6-8118-c54c6fdc3f4f.png)
+_Me with the four verifier_
+
+![image](https://cloud.githubusercontent.com/assets/2253841/20076355/b1360070-a56a-11e6-9c82-19323f5cdf2b.png)
+
 
 _Inserting candidate's fact_
+
 ![image](https://cloud.githubusercontent.com/assets/2253841/20076043/679dd326-a569-11e6-9220-1e4e626bd7c4.png)
 
 _Funny thing happened in the verifiying session_
+
 ![image](https://cloud.githubusercontent.com/assets/2253841/20075565/416d1844-a567-11e6-8e4f-13e159d99baa.png)
+
+Drop an email at rizky.syaiful@gmail.com.
