@@ -10,6 +10,48 @@ F.A.Q
 	<?php
 		$faq = [
 			[
+				'Kenapa?',
+				'why',
+				'
+				<p>
+					Ekosistem pemerintahan sekarang membuat kami muak.
+				</p>
+				<p>
+					Tujuan umat manusia membuat pemerintahan, adalah untuk menyelesaikan masalah bersama, di konteks hubungan mereka.
+				</p>
+				<p>
+					Mulai dari sepasang kekasih, lima orang anggota keluarga penghuni rumah, perusahaan yang baru didirikan, rukun tetangga, perusahaan multi-nasional, perkumpulan penggemar drama korea. Semua. Semua yang punya urusan bersama. 
+				</p>
+				<p>
+					Sekelompok manusia menegakan aturan, kegiatan, proses, dan segala kesepakatan lain untuk menyelesaikan masalah mereka&mdash;demi mencapai tujuan bersama. Kita menyebut kelompok tersebut "organisasi".
+				</p>
+				<p>
+					Sekarang pertanyaannya, "sudah seberapa efektif organisasi Negara Kesatuan Republik Indonesia menghasilkan kesepakatan yang paling diinginkan rakyatnya"?
+				</p>
+				<p>
+					Jawaban kami, "masih jauh". <strong>Orang-orang kuat masih bisa mempengaruhi kesepakatan NKRI, demi kepentingan mereka sendiri. Oknum-oknum di pemerintah, pengusaha, media massa, masih bisa telanjang bersama di dalam selimut</strong>.
+				</p>
+				<p>
+					Betul, kami setuju kondisi memuakan tersebut tidak disebabkan oleh satu hal. Itu adalah masalah kompleks. Benang kusut.
+				</p>
+				<p>
+					Tapi kami percaya, ada bagian di benang kusut yang mudah kita urai. Bagian itu adalah pemilu.
+				</p>
+				<p>
+					Kami percaya rakyat Indonesia harus memilih karena impian terdalam si kandidat. Karena impian kandidatlah yang akan berujung ke keputusan-keputusan&mdash;yang akan mempengaruhi hidup si rakyat. 
+				</p>
+				<p>
+					Satu-satunya cara terakurat untuk melihat impian terdalam seseorang, adalah bukan dengan membaca janji kampanye, tapi dengan melihat semua yang sudah nyata dia lakukan di masa lalu. Semua. Positif. Maupun negatif.
+				</p>
+				<p>
+					Terima kasih kepada teknologi internet, saat ini kita punya mekanisme untuk mengumpulkan dan menjaga informasi rekam jejak seseorang.
+				</p>
+				<p>
+					Kalau kamu juga setuju ada yang salah di ekosistem pemerintahan sekarang, bergabunglah dengan kami. Kalau kamu percaya pemilu bisa dibuat lebih baik. Bantu Wikikandidat.com.
+				</p>
+				',
+			],
+			[
 				'Wikikandidat?',
 				'apa-itu',
 				'
@@ -47,12 +89,6 @@ F.A.Q
 				'Kelebihannya dibanding solusi serupa?',
 				'kelebihan',
 				'
-				<p>
-					Pertanyaan yang bagus! :) 
-				</p>
-				<p>
-					Sebagus pertanyaan <em>"Kenapa Wikikandidat harus ada?"</em>
-				</p>
 				<p>
 					Dibanding media massa: Wikikandidat pasti tidak memihak. 
 				</p>
@@ -134,7 +170,7 @@ F.A.Q
 					Bukan. Kami tidak menerima bukti mentah &amp; melakukan proses verifikasi kebenaran seperti Wikileaks.
 				</p>
 				<p>
-					Fokus kami adalah kurasi/pengumpulan/pencatatatan apa yang sudah terverifikasi di publik. Sehingga publik bisa langsung mengenal seorang kandidat seobyektif mungkin.
+					Fokus kami adalah kurasi/pengumpulan/pencatatatan apa yang sudah terverifikasi benar di publik. Sehingga publik bisa langsung mengenal seorang kandidat seobyektif mungkin.
 				</p>
 				<p>
 					Namun, jika kamu memiliki fakta sensitif &amp; rahasia, yang bisa mengubah pandangan orang banyak tentang seseorang, kami menyarankan untuk mempublikasikan fakta tersebut.

@@ -22,8 +22,7 @@ _Me with the four verifier_
 
 ![image](https://cloud.githubusercontent.com/assets/2253841/20076355/b1360070-a56a-11e6-9c82-19323f5cdf2b.png)
 
-
-_Inserting candidate's fact_
+y_Inserting candidate's fact_
 
 ![image](https://cloud.githubusercontent.com/assets/2253841/20076043/679dd326-a569-11e6-9220-1e4e626bd7c4.png)
 
