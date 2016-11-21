@@ -18,7 +18,8 @@ Route::get('/tes', function(){
   $facts = App\Fact::all();
   foreach ($facts as $f) {
     if($f->date_start == $f->date_finish){
-      echo $f->text."<br>";
+      $f->date_start = "0000-00-00";
+      $f->save();
     }
   }
 });
