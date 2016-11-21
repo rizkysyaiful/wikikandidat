@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/tes', function(){
-  echo markdown('I have more <sup>[1](http://tes.cuk)</sup>. http://tes.cuk');
+  $facts = App\Fact::all();
+  foreach ($facts as $f) {
+    if($f->date_start == $f->date_finish){
+      echo $f->text."<br>";
+    }
+  }
 });
 
 /**
@@ -48,14 +53,6 @@ Route::get('/register', function(){
     Dari sisi pengembangan software di <a href='https://github.com/rizkysyaiful/wikikandidat#readme'>github.com/rizkysyaiful/wikikandidat#readme</a><br><br>Tertarik bantu? Hubungi kami di rizky.syaiful@gmail.com."; 
 });
 
-Route::get('{any}', function($any){
-  $election = App\Election::where('urlname', $any)->first();
-  if($election)
-  {
-    return view('landing-sub')->with('election', $election);
-  }
-});
-
 
 Route::post('user/process_new_fact_submission', 'UserController@process_new_fact_submission')->middleware('auth');
 Route::post('user/process_edit_fact_submission', 'UserController@process_edit_fact_submission')->middleware('auth');
@@ -76,6 +73,14 @@ Route::get('/edit-bukti', function(){
     ])->get();
   return view('edit-bukti')->with('references', $references);
 })->middleware('auth');
+
+Route::get('{any}', function($any){
+  $election = App\Election::where('urlname', $any)->first();
+  if($election)
+  {
+    return view('landing-sub')->with('election', $election);
+  }
+});
 
 /**
 * Actions of user

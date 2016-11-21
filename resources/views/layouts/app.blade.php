@@ -28,9 +28,16 @@
             margin-top: -50px;
         }
         /** bootstrap tweak **/
-        .container{
-            width: 1200px !important;
-          }
+        @media (min-width: 992px) {
+            .container{
+                max-width: 992px;
+            }
+        }
+        @media (min-width: 1200px) {
+            .container{
+                max-width: 1200px;
+            }
+        }
         .container.reading{
             max-width: 600px;
         }
