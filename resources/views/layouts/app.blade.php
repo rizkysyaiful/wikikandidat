@@ -39,10 +39,13 @@
             }
         }
         .container.reading{
-            max-width: 600px;
+            max-width: 650px;
         }
         .container.reading h5{
             line-height: 1.3;
+        }
+        .nav-pills > li > a:hover{
+            background-color: transparent;
         }
 
         /** callout **/

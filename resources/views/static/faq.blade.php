@@ -265,6 +265,11 @@ F.A.Q
 							<li>Media massa yang punya riwayat merevisi kesalahan jurnalistiknya memiliki level kredibilitas lebih tinggi dibanding yang tidak. Apalagi yang memiliki riwayat menghilangkan tautan ke beritanya.</li>
 						</ul>
 					</li>
+					<li>
+						<p>
+							Apa yang diklaim sendiri oleh kandidat yang bersangkuan&mdash;atau tim suksesnya.
+						</p>
+					</li>
 				</ol>
 				',
 			],

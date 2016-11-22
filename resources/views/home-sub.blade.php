@@ -5,6 +5,17 @@ Home
 @endsection
 
 @section('head')
+<style type="text/css">
+    .media{
+        margin-top: 5px;
+    }
+    select.date{
+        display: inline;
+    }
+    ol,ul{
+    padding-left: 17px;
+  }
+</style>
 @endsection
 
 @section('content')
@@ -48,4 +59,18 @@ Home
     @endif
 
 </div>
+@endsection
+
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.5.0/showdown.min.js"></script>
+    <script src="{{asset('js/donetyping.js')}}"></script>
+    <script src="{{asset('js/jashkenas/underscore-min.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var converter = new showdown.Converter();
+            $(".markdown-input").donetyping(function(){
+                $("#preview-"+$(this).data("s-id")).html(converter.makeHtml($(this).val()));
+            });
+        });
+    </script>
 @endsection
