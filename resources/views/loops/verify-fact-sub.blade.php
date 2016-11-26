@@ -48,30 +48,10 @@
             #ffe5e5
         @endif
     ">
-        
-        <?php
-            // TODO, refactor ini jadi global function, hapus juga yang di fact panel page page
-            function flexible_date($db_date)
-            {
-              $date = (int)substr($db_date, 8, 10);
-              $month = (int)substr($db_date, 5, -3);
-              $year = (int)substr($db_date, 0, 4);
-              $month_opt = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
-              $output = "";
-              $output = $date != 0 ? $date." " : "";
-              $output .= $month != 0 ? $month_opt[$month-1]." " : "";
-              $output .= $year != 0 ? $year : "";
-              return $output;
-            }
-        ?>
         @if(!$is_new)
             <strong>{{$s->candidate->nickname}}, {{$s->fact->type->name}}</strong>
             <div class="bs-callout bs-callout-default" style="margin-top: 5px;">
-                <?php
-                    $fact_start = flexible_date($s->fact->date_start);
-                    $fact_finish = flexible_date($s->fact->date_finish);
-                ?>
-                <strong>{{($fact_start != "" ? $fact_start." - " : "")}}{{$fact_finish}}</strong>
+                <strong>{{Helper::wk_date($s->fact->date_start, $s->fact->date_finish)}}</strong>
                 {!!markdown($s->fact->text)!!}
             </div>
         @endif
@@ -134,11 +114,7 @@
                         </a>
                       </div>
                       <div class="media-body">
-                        <?php
-                            $start = flexible_date($latest_edit->date_start);
-                            $finish = flexible_date($latest_edit->date_finish);
-                        ?>
-                        <strong>{{($start != "" ? $start." - " : "")}}{{$finish}}</strong><br>
+                        <strong>{{{{Helper::wk_date($latest_edit->date_start, $latest_edit->date_finish)}}</strong><br>
                         {!!markdown($latest_edit->text)!!}
                         <span class="text-muted">Berikut teks di atas dalam format markdown: (silahkan copy paste)</span><br>
                         <textarea   class="form-control"            style="width:100%;"

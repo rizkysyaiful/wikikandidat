@@ -22,29 +22,9 @@
     <span class="corner-btn label label-primary pull-right" 
     data-toggle="modal"
     data-target="#EditFactModal-{{$f->id}}">edit</span>
-    <?php 
-        // TODO, refactor ini jadi global function, hapus juga yang di verification page
-        function flexible_date($db_date)
-        {
-          $date = (int)substr($db_date, 8, 10);
-          $month = (int)substr($db_date, 5, -3);
-          $year = (int)substr($db_date, 0, 4);
-          $month_opt = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
-          $output = "";
-          $output = $date != 0 ? $date." " : "";
-          $output .= $month != 0 ? $month_opt[$month-1]." " : "";
-          $output .= $year != 0 ? $year : "";
-          return $output;
-        }
-        
-      ?>
     <span class="corner-date">
-      <?php
-        $start = flexible_date($f->date_start);
-        $finish = flexible_date($f->date_finish);
-      ?>
-      <strong>{{($start != "" ? $start." - " : "")}}{{$finish}}</strong></span><br>
-    {!!markdown($f->text)!!}
+      <strong>{{Helper::wk_date($f->date_start, $f->date_finish)}}</strong></span><br>
+      {!!markdown($f->text)!!}
   </div>
   @endforeach
   </div>
