@@ -23,16 +23,27 @@
     data-toggle="modal"
     data-target="#EditFactModal-{{$f->id}}">edit</span>
     <?php 
-        $date_s = (int)substr($f->date_start, 8, 10);
-        $month_s = (int)substr($f->date_start, 5, -3);
-        $year_s = (int)substr($f->date_start, 0, 4);
-        $date_f = (int)substr($f->date_finish, 8, 10);
-        $month_f = (int)substr($f->date_finish, 5, -3);
-        $year_f = (int)substr($f->date_finish, 0, 4);
-        // TODO, bikin atau cari function convert to tiga huruf bulan 
+        // TODO, refactor ini jadi global function, hapus juga yang di verification page
+        function flexible_date($db_date)
+        {
+          $date = (int)substr($db_date, 8, 10);
+          $month = (int)substr($db_date, 5, -3);
+          $year = (int)substr($db_date, 0, 4);
+          $month_opt = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+          $output = "";
+          $output = $date != 0 ? $date." " : "";
+          $output .= $month != 0 ? $month_opt[$month-1]." " : "";
+          $output .= $year != 0 ? $year : "";
+          return $output;
+        }
+        
       ?>
-    <span class="corner-date"><strong>
-      {{$date_s != 0 ? $date_s." " : "" }}{{ $month_s != 0 ? $month_s." " : "" }}{{$year_s != 0 ? $year_s." - " : ""}}{{$date_f != 0 ? $date_f." " : "" }}{{ $month_f != 0 ? $month_f." " : "" }}{{$year_f != 0 ? $year_f : ""}}</strong></span><br>
+    <span class="corner-date">
+      <?php
+        $start = flexible_date($f->date_start);
+        $finish = flexible_date($f->date_finish);
+      ?>
+      <strong>{{($start != "" ? $start." - " : "")}}{{$finish}}</strong></span><br>
     {!!markdown($f->text)!!}
   </div>
   @endforeach

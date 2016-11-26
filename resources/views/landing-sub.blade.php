@@ -60,6 +60,12 @@ DKI Jakarta - Pilkada 2017
   .well > img{
     width: 100%;
   }
+  .media-body > .well > ol,ul,p{
+    margin-bottom: 0px;
+  }
+  .media-body > .well > ol,ul{
+    padding-left: 17px;
+  }
 </style>
 @endsection
 
@@ -202,42 +208,52 @@ DKI Jakarta - Pilkada 2017
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Riwayat Perubahan dari...</h4>
-                  <div class="bs-callout bs-callout-default">
-                    {!!markdown($f->text)!!}
-                  </div>
+                  <h4 class="modal-title">Riwayat Perubahan</h4>
                 </div>
                 <div class="modal-body">
                   @foreach($f->submissions as $s)
-                    @if($s->is_rejected == 0)
-                      <?php $datetime = new DateTime($s->created_at); ?>
-                      <p>
-                        <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=20"> {{$datetime->format('j M Y, H:i')}}, {{$s->submitter->name}}
-                        @if($loop->first)
-                          memasukan informasi berikut ke Wikikandidat
-                        @else
-                          menambahkan informasi berikut ke fakta ini.
-                        @endif
-                      </p>
-                      <div  class="well well-sm"
-                            style="background-color: rgb(235, 255, 245);">
-                        "{{$s->text}}"
-                      </div>
-                      @foreach($s->edits as $e)
-                        <?php $datetime = new DateTime($e->created_at); ?>
-                        <p>
-                          {{$datetime->format('j M Y, H:i')}}, {{$e->verifier->name}} merespon, "{{$e->comment}}". Teks fakta dia edit menjadi seperti ini:
-                        </p>
-                        <div class="bs-callout bs-callout-default">
-                            {!!markdown($e->text)!!}
+                    @if($s->is_rejected === 0)
+                      <div class="media">
+                        <div class="media-left">
+                          <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=45">
                         </div>
-                         @if ($loop->last)
-                          <p>
-                            Versi di atas, terpublikasi sebagai fakta {{$c->nickname}} pada {{$datetime->format('j M Y, H:i')}}.
-                          </p>
-                          <hr>
-                        @endif
-                      @endforeach
+                        <div class="media-body">
+                          <strong>{{$s->submitter->name}}</strong>, <span class="text-muted">{{Helper::wk_date($s->created_at, null)}}</span>
+                          <div>
+                            {{$s->text}}
+                          </div>
+                          <?php 
+                            $previous_edit;
+                           ?>
+                          @foreach($s->edits as $e)
+                          <div class="media">
+                            <div class="media-left">
+                              <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->verifier->email ) ) )}}?s=45">
+                            </div>
+                            <div class="media-body">
+                              <strong>{{$e->verifier->name}}</strong>, <span class="text-muted">{{(new DateTime($e->created_at))->format(('j M Y'))}}</span><br>
+                              <?php
+                                $is_no_change = false;
+                                if(!$loop->first && $previous_edit->text == $e->text && $previous_edit->date_start == $e->date_start && $previous_edit->date_finish == $e->date_finish)
+                                  $is_no_change = true;
+                              ?>
+                              @if($is_no_change)
+                              <span class="text-muted">Setuju dengan hasil edit di atas</span>
+                              @else
+                              "{{$e->comment}}"
+                              <div class="well well-sm" style="margin-bottom:0px;">
+                                <u>
+                                  {{Helper::wk_date($e->date_start, $e->date_finish)}}
+                                </u>
+                                {!!markdown($e->text)!!}  
+                              </div>
+                              @endif
+                            </div>
+                          </div>
+                          <?php $previous_edit = $e; ?>
+                          @endforeach
+                        </div>
+                      </div>
                     @endif
                   @endforeach
                 </div>

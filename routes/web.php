@@ -24,6 +24,10 @@ Route::get('/tes', function(){
   }
 });
 
+Route::post('/reveal-all', function(Request $r){
+  print_r($r->all());
+});
+
 /**
 * Pages for reader
 */
@@ -58,7 +62,6 @@ Route::get('/register', function(){
 Route::post('user/process_new_fact_submission', 'UserController@process_new_fact_submission')->middleware('auth');
 Route::post('user/process_edit_fact_submission', 'UserController@process_edit_fact_submission')->middleware('auth');
 Route::post('student/reject_submission', 'StudentController@reject_submission')->middleware('auth');
-
 Route::post('student/create_edit', 'StudentController@create_edit')->middleware('auth');
 
 /**

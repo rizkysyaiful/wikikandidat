@@ -31,13 +31,10 @@ class StudentController extends Controller
     	$request->session()->flash('status', 'Gagal tersimpan..');
 
     	Validator::make($request->all(), [
-            'text' => 'required',
-            'submission_id' => 'required|exists:submissions,id'
+            'submission_id' => 'required|exists:submissions,id',
         ])->validate();
 
         $submission = Submission::find($request->input('submission_id'));
-
-        // TODO buat filter kedua, apakah faktanya sedang tidak memproses submission... takutnya ada yang iseng nembak URL (kurang kalau dijaga di view doang)
 
         $is_valid_verifier = false;
 
@@ -61,17 +58,37 @@ class StudentController extends Controller
 
     	if($is_valid_verifier)
     	{
+    		if($request->has('is_no_change'))
+    		{
+    			$latest_edit = Edit::find($request->input("latest_edit_id"));
+    			$text = $latest_edit->text;
+    			$comment = $latest_edit->comment;
+    			$submission_id = $latest_edit->submission_id;
+    			$date_start = $latest_edit->date_start;
+    			$date_finish = $latest_edit->date_finish;
+    		}else
+    		{
+    			$text = $request->input('text');
+	        	$comment = $request->input('comment');
+	        	$submission_id = $submission->id;
+	        	$date_start = $request->input('year_s').
+	        				"-".($request->input('month_s')<10?"0":"").
+	        				$request->input('month_s').
+	        				"-".($request->input('date_s')<10?"0":"").
+	        				$request->input('date_s');
+	        	$date_finish = $request->input('year_f').
+		        				"-".($request->input('month_f')<10?"0":"").$request->input('month_f').
+		        				"-".($request->input('date_f')<10?"0":"").
+		        				$request->input('date_f');
+		    }
+
     		$edit = Edit::create([
-	        	'text' => $request->input('text'),
-	        	'comment' => $request->input('comment'),
-	        	'submission_id' => $submission->id,
+	        	'text' => $text,
+	        	'comment' => $comment,
+	        	'submission_id' => $submission_id,
 	        	'verifier_id' => Auth::user()->id,
-	        	'date_start' => $request->input('year_s').
-	        				"-".$request->input('month_s').
-	        				"-".$request->input('date_s'),
-	        	'date_finish' => $request->input('year_f').
-	        				"-".$request->input('month_f').
-	        				"-".$request->input('date_f'),
+	        	'date_start' => $date_start,
+	        	'date_finish' => $date_finish,
 	        	]);
 
     		// jika ini verifikasi ketiga, update submission
@@ -84,7 +101,7 @@ class StudentController extends Controller
 	    		if($submission->fact_id == null)
 	    		{
 	    			$fact = Fact::create([
-		    			'text' => $request->input('text'),
+		    			'text' => $edit->text,
 		    			'date_start' => $edit->date_start,
 		    			'date_finish' => $edit->date_finish,
 		    			'type_id' => $submission->type_id,
@@ -95,7 +112,7 @@ class StudentController extends Controller
 	    		else // jika fact-nya sudah ada
 	    		{
 	    			$fact = Fact::find($submission->fact_id);
-	    			$fact->text = $request->input('text');
+	    			$fact->text = $edit->text;
 	    			$fact->date_start = $edit->date_start;
 	    			$fact->date_finish = $edit->date_finish;
 	    			$fact->save();
