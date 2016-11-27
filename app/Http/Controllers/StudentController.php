@@ -12,6 +12,11 @@ use App\Reference;
 use App\Verification;
 use App\Submission;
 use App\Edit;
+use App\User;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Job;
+use App\Mail\EditStatus;
 
 
 class StudentController extends Controller
@@ -120,6 +125,24 @@ class StudentController extends Controller
 	    		$submission->is_rejected = false;
 	    		$submission->save();
 	    	}
+	    	Mail::to($submission->submitter->email)
+          		->queue(new EditStatus(true, $submission));
+
+          	if($submission->first_verifier_id == null &&
+	    		$submission->second_verifier_id != null)
+          	{
+          		Mail::to(User::find($submission->second_verifier_id)->email)
+          		->queue(new Job($submission));
+          	}
+
+          	if($submission->first_verifier_id == null && 
+          		$submission->second_verifier_id == null &&
+	    		$submission->third_verifier_id != null)
+          	{
+          		Mail::to(User::find($submission->third_verifier_id)->email)
+          		->queue(new Job($submission));
+          	}
+          	
 
     		$request->session()->flash('status', 'Edit kamu berhasil tersimpan...');
     	}
@@ -144,7 +167,8 @@ class StudentController extends Controller
         $submission->third_verifier_id = null;
         $submission->save();
 
-        // TODO, notif submitter, kalau ditolak doi...
+        Mail::to($submission->submitter->email)
+          		->queue(new EditStatus(false, $submission));
 
         $request->session()->flash('status', 'Penolakan kamu berhasil tersimpan...');
 

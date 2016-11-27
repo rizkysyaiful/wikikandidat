@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Job;
+use App\Mail\EditStatus;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +18,10 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/tes', function(){
-  $facts = App\Fact::all();
-  foreach ($facts as $f) {
-    if($f->date_start == $f->date_finish){
-      $f->date_start = "0000-00-00";
-      $f->save();
-    }
-  }
+  $submission = App\Submission::find(1);
+  Mail::to('rizky.syaiful@gmail.com')
+          //->send(new Job());
+          ->queue(new EditStatus(false, $submission));
 });
 
 Route::post('/reveal-all', function(Request $r){

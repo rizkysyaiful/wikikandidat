@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class Helper
 {
-    public static function wk_date($start, $finish)
+    public static function wk_date($start, $finish = null)
     {
       $date_s = (int)substr($start, 8, 10);
       $month_s = (int)substr($start, 5, -3);
@@ -29,6 +29,10 @@ class Helper
         $output .= $date_f != 0 ? $date_f." " : "";
         $output .= $month_f != 0 ? $month_opt[$month_f-1]." " : "";
         $output .= $year_f != 0 ? $year_f : "";
+      }
+      if($output === "")
+      {
+        $output .= "(belum ada info waktu)";
       }
       return $output;
     }

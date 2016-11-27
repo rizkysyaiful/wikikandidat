@@ -218,7 +218,7 @@ DKI Jakarta - Pilkada 2017
                           <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=45">
                         </div>
                         <div class="media-body">
-                          <strong>{{$s->submitter->name}}</strong>, <span class="text-muted">{{Helper::wk_date($s->created_at, null)}}</span>
+                          <strong>{{$s->submitter->name}}</strong>, <span class="text-muted">{{Helper::wk_date($s->created_at)}}</span>
                           <div>
                             {{$s->text}}
                           </div>
@@ -231,7 +231,7 @@ DKI Jakarta - Pilkada 2017
                               <img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->verifier->email ) ) )}}?s=45">
                             </div>
                             <div class="media-body">
-                              <strong>{{$e->verifier->name}}</strong>, <span class="text-muted">{{(new DateTime($e->created_at))->format(('j M Y'))}}</span><br>
+                              <strong>{{$e->verifier->name}}</strong>, <span class="text-muted">{{Helper::wk_date($e->created_at)}}</span><br>
                               <?php
                                 $is_no_change = false;
                                 if(!$loop->first && $previous_edit->text == $e->text && $previous_edit->date_start == $e->date_start && $previous_edit->date_finish == $e->date_finish)

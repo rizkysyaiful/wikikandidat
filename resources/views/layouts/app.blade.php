@@ -175,7 +175,7 @@
           <ul class="nav navbar-nav navbar-right">
             @if(Auth::check())
                 <li><a href="verification">Verification</a></li>
-                <li><a href="home">Home</a></li>
+                <li><a href="home">{{Auth::user()->name}}</a></li>
                 <li><a href="logout">Logout</a></li>
             @else
                 <li><a href="register">Register</a></li>

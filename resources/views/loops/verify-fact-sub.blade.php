@@ -49,7 +49,7 @@
         @endif
     ">
         @if(!$is_new)
-            <strong>{{$s->candidate->nickname}}, {{$s->fact->type->name}}</strong>
+            <strong>{{$s->candidate->name}}, {{$s->fact->type->name}}</strong>
             <div class="bs-callout bs-callout-default" style="margin-top: 5px;">
                 <strong>{{Helper::wk_date($s->fact->date_start, $s->fact->date_finish)}}</strong>
                 {!!markdown($s->fact->text)!!}
@@ -68,7 +68,7 @@
                 @if( $is_new )
                     Ini saranku, untuk tambahkan fakta {{$s->type->name}} milik kandidat {{$s->candidate->nickname}}:<br>
                 @else
-                    Ini saranku, tentang perubahan dari fakta di atas
+                    Ini saranku, tentang perubahan dari fakta di atas:<br>
                 @endif
                 {{$s->text}}
             </div>
@@ -114,7 +114,7 @@
                         </a>
                       </div>
                       <div class="media-body">
-                        <strong>{{{{Helper::wk_date($latest_edit->date_start, $latest_edit->date_finish)}}</strong><br>
+                        <strong>{{Helper::wk_date($latest_edit->date_start, $latest_edit->date_finish)}}</strong><br>
                         {!!markdown($latest_edit->text)!!}
                         <span class="text-muted">Berikut teks di atas dalam format markdown: (silahkan copy paste)</span><br>
                         <textarea   class="form-control"            style="width:100%;"
@@ -134,7 +134,7 @@
                     <span>Teks fakta saat ini dalam format markdown: (salin untuk mulai mengubahnya)</span><br>
                     <textarea   class="form-control"            style="width:100%;"
                                 readonly="">{{$s->fact->text}}</textarea>
-                    <span>Informasi waktu dari fakta di atas: {{($fact_start != "" ? $fact_start." - " : "")}}{{$fact_finish}}</span>
+                    <span>Informasi waktu dari fakta di atas: {{Helper::wk_date($s->fact->date_start, $s->fact->date_finish)}}</span>
                     <br><br>
                 @endif
                 
