@@ -18,10 +18,7 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-  $submission = App\Submission::find(1);
-  Mail::to('rizky.syaiful@gmail.com')
-          //->send(new Job());
-          ->queue(new EditStatus(false, $submission));
+
 });
 
 Route::post('/reveal-all', function(Request $r){
@@ -77,6 +74,14 @@ Route::get('/edit-bukti', function(){
     ])->get();
   return view('edit-bukti')->with('references', $references);
 })->middleware('auth');
+
+Route::get('/user/{any}', function($any){
+  $user = App\User::where('username', $any)->first();
+  if($user)
+  {
+    return view('profile')->with('user', $user);
+  }
+});
 
 Route::get('{any}', function($any){
   $election = App\Election::where('urlname', $any)->first();

@@ -162,9 +162,6 @@ class StudentController extends Controller
         $submission = Submission::find($request->input('submission_id'));
         $submission->is_rejected = true;
         $submission->rejection_reason = $request->input('rejection_reason');
-        $submission->first_verifier_id = null;
-        $submission->second_verifier_id = null;
-        $submission->third_verifier_id = null;
         $submission->save();
 
         Mail::to($submission->submitter->email)

@@ -145,8 +145,9 @@
     }(document, 'script', 'facebook-jssdk'));</script> -->
     <div    class="navbar navbar-default navbar-fixed-top"
             @if(App::environment('local','staging'))
-                style="background-color: #2c7eb9;">
+                style="background-color: #2c7eb9;"
             @endif
+            >
       <div class="container">
         <div class="navbar-header">
           <a href="/" class="navbar-brand">Wikikandidat</a>

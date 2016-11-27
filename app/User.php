@@ -37,9 +37,14 @@ class User extends Authenticatable
         return $this->belongsTo('App\University');
     }
 
-    public function references()
+    public function submissions()
     {
         return $this->hasMany('App\Submission', 'submitter_id');
+    }
+
+    public function edits()
+    {
+        return $this->hasMany('App\Edit', 'verifier_id');
     }
 
     public function jobs_as_first()
@@ -78,8 +83,4 @@ class User extends Authenticatable
         return $this->hasMany('App\Reference', 'third_verifier_id');
     }    
 */
-    public function verifications()
-    {
-        return $this->hasMany('App\Verification', 'verifier_id');
-    }
 }
