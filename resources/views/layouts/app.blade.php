@@ -135,14 +135,14 @@
     @yield('head')
 </head>
 <body>
-<!--    <div id="fb-root"></div>
+    <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=125602920880407";
+      js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.8&appId=1412350799013815";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script> -->
+    }(document, 'script', 'facebook-jssdk'));</script>
     <div    class="navbar navbar-default navbar-fixed-top"
             @if(App::environment('local','staging'))
                 style="background-color: #2c7eb9;"
@@ -150,7 +150,7 @@
             >
       <div class="container">
         <div class="navbar-header">
-          <a href="/" class="navbar-brand">Wikikandidat</a>
+          <span class="navbar-brand">Wikikandidat</span>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -160,7 +160,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="#">Pilkada 2017</a>
+              <a href="">Pilkada 2017</a>
             </li>
             <li>
               <a href="http://wikikandidat.tumblr.com/post/82547489919/manfaat-kami-di-pemilu-legislatif-2014-jumlah" target="_blank">Kesuksesan Pileg 2014</a>

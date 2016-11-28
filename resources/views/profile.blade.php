@@ -5,17 +5,32 @@
 @endsection
 
 @section('head')
+<style type="text/css">
+	.well{
+		max-width: 481px;
+	}
+	.well ol,ul{
+		padding-left: 17px;
+	}
+</style>
 @endsection
 
 @section('content')
 	<div class="container reading">
+		@if($user->is_verifier)
+		<span class="pull-right" style="text-align: right;margin-top: 25px;">
+			<strong>
+				Verifikator<br>
+				{{$user->university->name}}
+			</strong>
+		</span>
+		@endif
 		<h1>{{$user->name}}</h1>
 		<div class="media">
 			<div class="media-left">
 				<img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $user->email ) ) )}}?s=120">
 			</div>
 			<div class="media-body">
-				<div>
 
 				  <!-- Nav tabs -->
 				  <ul class="nav nav-tabs" role="tablist">
@@ -25,6 +40,7 @@
 
 				  <!-- Tab panes -->
 				  <div class="tab-content">
+
 				    <div role="tabpanel" class="tab-pane active" id="submits">
 				    	<?php
 						$submissions = $user->submissions;
@@ -41,7 +57,10 @@
 									@endif
 								</span>
 								<span class="text-muted">{{(new DateTime($s->created_at))->format("d M Y")}}</span><br>
-								"{{$s->text}}" &xrarr; <a href="{{$s->candidate->urlname}}">{{$s->candidate->name}}, {{App\Type::find($s->type_id)->name}}</a>
+								"{{$s->text}}" &#10142; <a href="{{$s->candidate->urlname}}">{{$s->candidate->name}}, {{App\Type::find($s->type_id)->name}}</a><br>
+								@if($s->is_rejected === 1)
+									<span class="text-muted">Alasan ditolak:</span> "{{$s->rejection_reason}}"
+								@endif
 							</div>
 						@endforeach
 				    </div>
@@ -52,17 +71,19 @@
 							?>
 							@foreach($edits as $e)
 							<div class="well well-sm">
-								{{$e->text}}
+								<a class="pull-right" href="">{{$e->submission->candidate->name}}</a>
+								<span class="text-muted">{{(new DateTime($s->created_at))->format("d M Y")}}</span><br>
+								<u>{{Helper::wk_date($e->date_start, $e->date_finish)}}</u>
+								{!!markdown($e->text)!!}
+								<span class="text-muted">Hasil edit di atas adalah respon dari</span><br>
+								<img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->submission->submitter->email ) ) )}}?s=15"> <a href="{{url('user/'.$e->submission->submitter->username)}}">{{$e->submission->submitter->name}}</a>: "{{$e->submission->text}}"
 							</div>
 							@endforeach
 				    	@else
-				    		Ups, aku bukan seorang
-				    	@endif 
+				    		{{$user->name}} belum terdaftar sebagai verifikator. Hanya mahasiswa program sarjana atau diploma yang bisa jadi verifikator. Syarat-syarat berikutnya bisa dibaca di <a href="#">sini</a>. 
+				    	@endif
 				    </div>
 				  </div>
-
-				</div>
-
 				
 			</div>
 		</div>
