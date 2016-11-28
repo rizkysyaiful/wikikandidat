@@ -160,7 +160,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="">Pilkada 2017</a>
+              <a href="{{url('/')}}">Pilkada 2017</a>
             </li>
             <li>
               <a href="http://wikikandidat.tumblr.com/post/82547489919/manfaat-kami-di-pemilu-legislatif-2014-jumlah" target="_blank">Kesuksesan Pileg 2014</a>
@@ -168,19 +168,19 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FAQ <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a data-scroll href="faq#utama">Pertanyaan Utama</a></li>
-                <li><a data-scroll href="faq#fakta-bukti">Ajukan Bukti Baru</a></li>
+                <li><a data-scroll href="{{url('faq#utama')}}">Pertanyaan Utama</a></li>
+                <li><a data-scroll href="{{url('faq#fakta-bukti')}}">Ajukan Bukti Baru</a></li>
               </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             @if(Auth::check())
-                <li><a href="verification">Verification</a></li>
-                <li><a href="home">{{Auth::user()->name}}</a></li>
-                <li><a href="logout">Logout</a></li>
+                <li><a href="{{url('verification')}}">Verification</a></li>
+                <li><a href="{{url('user'.Auth::user()->username)}}">{{Auth::user()->name}}</a></li>
+                <li><a href="{{url('logout')}}">Logout</a></li>
             @else
-                <li><a href="register">Register</a></li>
-                <li><a href="login">Login</a></li>
+                <li><a href="{{url('register')}}">Register</a></li>
+                <li><a href="{{url('login')}}">Login</a></li>
             @endif
           </ul>
         </div>
