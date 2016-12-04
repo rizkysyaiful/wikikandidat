@@ -146,7 +146,7 @@
                 'color' => 'rgb(255, 251, 235)',
                 'candidate' => $c])
 
-              <!-- <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="240" data-numposts="5"></div> -->
+              <!-- <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="240" data-numposts="5" data-order-by="social"></div> -->
 
             </div>
 
@@ -191,7 +191,7 @@
                 'color' => 'rgb(255, 251, 235)',
                 'candidate' => $rm])
 
-              <!-- <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-numposts="5" data-width="220"></div> -->
+              <!-- <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-numposts="5" data-width="220" data-order-by="social"></div> -->
 
             </div>
           </div>

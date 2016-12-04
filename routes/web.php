@@ -41,8 +41,11 @@ Route::get('/logout', function(){
   return redirect('/');
 });
 
-Route::get('/faq', function(){
-  return view('static.faq');
+Route::get('/tentang-kami', function(){
+  return view('static.about');
+});
+Route::get('/cara-kontribusi', function(){
+  return view('static.contribute');
 });
 
 // Auth::routes();

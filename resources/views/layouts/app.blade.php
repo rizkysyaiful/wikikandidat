@@ -165,12 +165,11 @@
             <li>
               <a href="http://wikikandidat.tumblr.com/post/82547489919/manfaat-kami-di-pemilu-legislatif-2014-jumlah" target="_blank">Kesuksesan Pileg 2014</a>
             </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FAQ <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a data-scroll href="{{url('faq#utama')}}">Pertanyaan Utama</a></li>
-                <li><a data-scroll href="{{url('faq#fakta-bukti')}}">Ajukan Bukti Baru</a></li>
-              </ul>
+            <li>
+              <a href="{{url('tentang-kami')}}">Wikikandidat?</a>
+            </li>
+            <li>
+              <a href="{{url('cara-kontribusi')}}">Kontribusi</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
