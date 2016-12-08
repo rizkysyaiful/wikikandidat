@@ -116,6 +116,9 @@
                 </div>
               </div>
 
+              <h5>Berdasarkan rekam jejak, menurut kamu apa Impian-impian terdalam beliau?</h5>
+              <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
+
               @include('layouts.fact-panel', [
                 'category' => 'Careers',
                 'name' => 'Karir',
@@ -195,9 +198,6 @@
 
             </div>
           </div>
-
-  <!--        <h5>Testimoni:</h5>
-              <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="5"></div> -->
         </div>
     
         <?php
