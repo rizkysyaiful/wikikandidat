@@ -41,14 +41,41 @@ class UserController extends Controller
         return view('home');
     }
 
+    public function hibernate_on(Request $request)
+    {
+        $user = Auth::user();
+        if( count($user->jobs_as_first) == 0 &&
+            count($user->jobs_as_second) == 0 &&
+            count($user->jobs_as_third) == 0 )
+        {
+            $user->is_hibernate = true;
+            $user->save();
+            $request->session()->flash('status', 'Berhasil masuk mode hibernasi, tidak akan ada permintaan verifikasi ke kamu.', []);
+        }
+        else
+        {
+            $request->session()->flash('status', 'Selesaikan dulu seluruh tugas verifikasi, baru bisa masuk mode hibernasi. Maaf ya...', []);
+        }
+        return redirect('/');
+    }
+
+    public function hibernate_off(Request $request)
+    {
+        $user = Auth::user();
+        $user->is_hibernate = false;
+        $user->save();
+        $request->session()->flash('Sudah keluar mode hibernasi. Begitu dapat notif tugas, langsung segera verifikasi ya.', []);
+        return redirect('/');
+    }
+
     private function get_random_students()
     {
         $random_students = null;
         // id 2, 3, 4, & 5 adalah mahasiswa test, tidak dijalankan di production
         if (App::environment('local')) {
-            $random_students = DB::select('select id from users where is_verifier = ? AND id != ? ORDER BY rand() LIMIT 3', [1, Auth::user()->id]);
+            $random_students = DB::select('select id from users where is_hibernate = ? AND is_verifier = ? AND id != ? ORDER BY rand() LIMIT 3', [0, 1, Auth::user()->id]);
         }else{
-            $random_students = DB::select('select id from users where is_verifier = ? AND id != ? AND id != ? AND id != ? AND id != ? AND id != ? ORDER BY rand() LIMIT 3', [1, Auth::user()->id, 2, 3, 4, 5]);
+            $random_students = DB::select('select id from users where is_hibernate = ? AND is_verifier = ? AND id != ? AND id != ? AND id != ? AND id != ? AND id != ? ORDER BY rand() LIMIT 3', [0, 1, Auth::user()->id, 2, 3, 4, 5]);
         } 
         return $random_students;
     }

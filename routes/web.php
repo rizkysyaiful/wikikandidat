@@ -34,12 +34,21 @@ Route::get('/', function () {
 });
 
 Route::get('/verification', function(){
-  return view('home-sub');
-})->middleware('auth');
+    if( !Auth::user()->is_hibernate )
+    {
+      return view('home-sub');
+    }
+    else
+    {
+      echo "Kamu sedang hibernasi, tidak ada pekerjaan untuk kamu.";
+    }
+  })->middleware('auth');
+Route::get('/hibernate-on', 'UserController@hibernate_on')->middleware('auth');
+Route::get('/hibernate-off', 'UserController@hibernate_off')->middleware('auth');
 Route::get('/logout', function(){
-  Auth::logout();
-  return redirect('/');
-});
+    Auth::logout();
+    return redirect('/');
+  });
 
 Route::get('/tentang-kami', function(){
   return view('static.about');
