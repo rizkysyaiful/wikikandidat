@@ -24,7 +24,7 @@
     <style type="text/css">
         /** html tweak **/
         .anchor{
-            padding-top: 50px;
+            padding-top: 60px;
             margin-top: -50px;
         }
         /** bootstrap tweak **/

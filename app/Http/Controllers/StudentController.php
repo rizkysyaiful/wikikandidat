@@ -96,6 +96,11 @@ class StudentController extends Controller
 	        	'date_finish' => $date_finish,
 	        	]);
 
+    		if($request->has('is_no_change'))
+    		{
+    			$edit->is_agree = true;
+    		}
+
     		// jika ini verifikasi ketiga, update submission
 			if(	$submission->first_verifier_id == null &&
 	    		$submission->second_verifier_id == null &&

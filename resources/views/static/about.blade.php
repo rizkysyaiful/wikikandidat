@@ -6,7 +6,7 @@ Tentang
 
 @section('content')
 <div class="container reading">
-	<h2 class="anchor" id="atas">Tentang Kami<br></h2>
+	<h1 class="anchor" id="atas">Tentang Kami</h1>
 	<?php
 		$faq = [
 			[
@@ -20,16 +20,17 @@ Tentang
 					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qp0HIF3SfI4?hl=id-id&amp;cc_lang_pref=id-id&amp;cc_load_policy=1" allowfullscreen></iframe>
 				</div>
 				<blockquote>
+					<p><strong>Kenapa kami membuat Wikikandidat?</strong></p>
 					<p>
-						<strong>Kami percaya rakyat Indonesia harus memilih berdasarkan impian terdalam ("why") si kandidat. Karena impian terdalamlah yang jadi dasar aksi-aksi seorang manusia.</strong> 
+						<strong>Karena kami percaya rakyat Indonesia harus memilih berdasarkan impian terdalam ("why") si kandidat. Karena impian terdalam seseoranglah yang jadi pemicu aksi-aksi besarnya di masa depan.</strong> 
 					</p>
 					</blockquote>
 				<p>
-					Masalahnya: media massa masih jadi saluran informasi utama para kandidat ke pemilih. Apa yang salah dengan media massa? 
+					Masalahnya, sekarang, media massa masih jadi saluran informasi utama para kandidat ke pemilih. Apa yang salah dengan media massa? 
 				</p>
 				<ol>
-					<li>Mereka memihak</li>
-					<li>Mereka hanya menampilkan berita terbaru (tidak mengangkat riwayat hidup)</li>
+					<li>Media massa memihak</li>
+					<li>Media massa fokus menampilkan berita terbaru (tidak mengangkat riwayat hidup)</li>
 				</ol>
 				<blockquote>
 				<p>

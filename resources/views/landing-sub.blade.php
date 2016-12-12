@@ -71,7 +71,7 @@
 
 @section('content')
     <div class="container">
-      <span class="pull-right random-quote"><em>"Demokrasi tidak bisa hanya berisi pemilu, yang hampir selalu fiktif dan diatur oleh tuan tanah serta politisi profesional."<br>~ Che Guavara</em></span>
+      <span class="pull-right random-quote"><em>Kami percaya, yang terbaik adalah <br>~ Che Guavara</em></span>
       <h1>Pilkada 2017</h1>
       <div class="btn-group">
         <a href="#" class="btn btn-default btn-lg">Provinsi</a>
@@ -116,7 +116,7 @@
                 </div>
               </div>
 
-              <h5>Berdasarkan rekam jejak, menurut kamu apa Impian-impian terdalam beliau?</h5>
+              <h5><strong>Berdasarkan rekam jejak {{$c->nickname}} di bawah, apa impian-impian terdalamnya?</strong></h5>
               <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
 
               @include('layouts.fact-panel', [
@@ -163,6 +163,9 @@
                   </div>
                 </div>
               </div>
+
+              <h5><strong>Berdasarkan rekam jejak {{$rm->nickname}} di bawah, apa impian-impian terdalamnya?</strong></h5>
+              <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
 
               @include('layouts.fact-panel', [
                 'category' => 'Careers',

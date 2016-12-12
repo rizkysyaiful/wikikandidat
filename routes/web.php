@@ -33,28 +33,14 @@ Route::get('/', function () {
   return view('landing-sub')->with('election', App\Election::find(1));
 });
 
-Route::get('/verification', function(){
-    if( !Auth::user()->is_hibernate )
-    {
-      return view('home-sub');
-    }
-    else
-    {
-      echo "Kamu sedang hibernasi, tidak ada pekerjaan untuk kamu.";
-    }
-  })->middleware('auth');
-Route::get('/hibernate-on', 'UserController@hibernate_on')->middleware('auth');
-Route::get('/hibernate-off', 'UserController@hibernate_off')->middleware('auth');
-Route::get('/logout', function(){
-    Auth::logout();
-    return redirect('/');
-  });
-
 Route::get('/tentang-kami', function(){
   return view('static.about');
 });
 Route::get('/cara-kontribusi', function(){
   return view('static.contribute');
+});
+Route::get('/contoh', function(){
+  return view('static.example');
 });
 
 // Auth::routes();
@@ -78,6 +64,19 @@ Route::post('student/create_edit', 'StudentController@create_edit')->middleware(
 */
 // Route::get('/home', 'UserController@index')->middleware('auth');
 
+Route::get('/verification', function(){
+    if( !Auth::user()->is_hibernate ){
+      return view('home-sub');
+    }else{
+      echo "Kamu sedang hibernasi, tidak ada pekerjaan untuk kamu.";
+    }
+  })->middleware('auth');
+Route::get('/hibernate-on', 'UserController@hibernate_on')->middleware('auth'); // TODO ganti middleware verfikator 
+Route::get('/hibernate-off', 'UserController@hibernate_off')->middleware('auth'); // TODO ganti middleware verfikator
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/');
+  });
 Route::get('/edit-bukti', function(){
   $references = App\Reference::where([
       ['first_verifier_id', '=', null],

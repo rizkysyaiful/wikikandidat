@@ -49,7 +49,7 @@
         @endif
     ">
         @if(!$is_new)
-            <strong>{{$s->candidate->name}}, {{$s->fact->type->name}}</strong>
+            <strong>{{$s->candidate->name}} &rarr; {{$s->fact->type->name}}</strong>
             <div class="bs-callout bs-callout-default" style="margin-top: 5px;">
                 <strong>{{Helper::wk_date($s->fact->date_start, $s->fact->date_finish)}}</strong>
                 {!!markdown($s->fact->text)!!}
@@ -116,7 +116,7 @@
                       <div class="media-body">
                         <strong>{{Helper::wk_date($latest_edit->date_start, $latest_edit->date_finish)}}</strong><br>
                         {!!markdown($latest_edit->text)!!}
-                        <span class="text-muted">Berikut teks di atas dalam format markdown: (silahkan copy paste)</span><br>
+                        <span class="text-muted">Berikut ketikan {{$latest_edit->verifier->name}} untuk memunculkan teks di atas: (silahkan copy paste)</span><br>
                         <textarea   class="form-control"            style="width:100%;"
                                     readonly="">{{$latest_edit->text}}</textarea>
                       </div>
@@ -138,7 +138,7 @@
                     <br><br>
                 @endif
                 
-                <a class="pull-right" data-s-id="{{$s->id}}" href="#">contoh-contoh</a>
+                <a class="pull-right" data-s-id="{{$s->id}}" href="{{url('/contoh#format-tulisan')}}" target="_blank">contoh-contoh</a>
                 <strong><u>Hasil edit {{Auth::user()->name}}</u></strong>
                 <div class="media" style="margin-top:5px;">
                   <div class="media-left">
@@ -293,7 +293,7 @@
                         Contoh :
                         <ol>
                             <li>
-                                "Bukan hal yang penting untuk pembaca Wikikandidat."
+                                "Bukan hal yang penting untuk calon pemilih."
                             </li>
                             <li>
                                 "Sumbernya kurang valid."

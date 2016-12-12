@@ -6,8 +6,8 @@ Kontribusi
 
 @section('content')
 <div class="container reading">
-	<h2 class="anchor" id="kontribusi">Mengajukan Fakta &amp; Bukti Baru ke Wikikandidat<br><small>
-	Cara Semua Orang untuk Berkontribusi</small></h2>
+	<h1 class="anchor" id="kontribusi">Mengajukan Fakta &amp; Bukti Baru ke Wikikandidat<br><small>
+	Cara Semua Orang untuk Berkontribusi</small></h1>
 	<?php
 		$faq = [
 			[
