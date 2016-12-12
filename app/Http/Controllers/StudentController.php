@@ -98,7 +98,8 @@ class StudentController extends Controller
 
     		if($request->has('is_no_change'))
     		{
-    			$edit->is_agree = true;
+    			$edit->is_agree = $request->input("latest_edit_id");
+    			$edit->save();
     		}
 
     		// jika ini verifikasi ketiga, update submission
