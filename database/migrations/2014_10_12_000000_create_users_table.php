@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('national_pin')->unique();
             $table->string('pin_card_photo_url')->nullable();
 
+            
             $table->boolean('is_verifier')->default(false);
             $table->date('join_verifier_date')->nullable();
             $table->date('exit_verifier_date')->nullable();

@@ -138,7 +138,7 @@
                     <br><br>
                 @endif
                 
-                <a class="pull-right" data-s-id="{{$s->id}}" href="{{url('/contoh#format-tulisan')}}" target="_blank">contoh-contoh</a>
+                <a class="pull-right" data-s-id="{{$s->id}}" href="{{url('/contoh#format-tulisan')}}" target="_blank">contoh format tulisan (wajib baca)</a>
                 <strong><u>Hasil edit {{Auth::user()->name}}</u></strong>
                 <div class="media" style="margin-top:5px;">
                   <div class="media-left">

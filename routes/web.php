@@ -18,12 +18,34 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-
+  
+  foreach([6,7,8,9] as $i)
+  {
+    $user = Auth::find($i);
+    $user->password = bcrypt('wikikandidat');
+    $user->save();
+  }
 });
 
 Route::post('/reveal-all', function(Request $r){
   print_r($r->all());
 });
+
+Route::get('/admin', function(){  
+  if(Auth::user() && 
+      ( Auth::user()->id == 1 || Auth::user()->id == 6 ) )
+  {
+    return view('admin');  
+  }
+});
+Route::post('/admin/add-place', 'AdminController@add_place');
+Route::post('/admin/add-uni', 'AdminController@add_uni');
+Route::post('/admin/promote-verifier', 'AdminController@promote_verifier');
+Route::post('/admin/add-election', 'AdminController@add_election');
+Route::post('/admin/add-candidate', 'AdminController@add_candidate');
+Route::post('/admin/add-couple', 'AdminController@add_couple');
+Route::post('/admin/add-party', 'AdminController@add_party');
+Route::post('/admin/assign-party-to-couple', 'AdminController@assign_party_to_couple');
 
 /**
 * Pages for reader
@@ -99,6 +121,8 @@ Route::get('{any}', function($any){
   if($election)
   {
     return view('landing-sub')->with('election', $election);
+  }else{
+    echo "URL tidak ada nich.. Mungkin kamu salah ketik alamat URL.";
   }
 });
 

@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Couple extends Model
 {
-    //
+    protected $guarded = [];
+
     public function election()
     {
     	return $this->belongsTo('App\Election');
