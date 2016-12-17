@@ -65,8 +65,8 @@ Route::get('/contoh', function(){
   return view('static.example');
 });
 
- Auth::routes();
-/*Route::get('/login', 'Auth\LoginController@showLoginForm' );
+//Auth::routes();
+Route::get('/login', 'Auth\LoginController@showLoginForm' );
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index');
@@ -74,7 +74,6 @@ Route::get('/register', function(){
   echo "Wikikandidat.com masih dalam tahap closed-beta.<br> Artinya, penambah data & verifikator masih direkrut dengan interview tatap muka.<br>November ini akan fokus merekrut di Universitas Indonesia Depok.<br><br>Ikuti perkembangan pergerakan kami di <a href='http://wikikandidat.tumblr.com'>wikikandidat.tumblr.com</a><br>
     Dari sisi pengembangan software di <a href='https://github.com/rizkysyaiful/wikikandidat#readme'>github.com/rizkysyaiful/wikikandidat#readme</a><br><br>Tertarik bantu? Hubungi kami di rizky.syaiful@gmail.com."; 
 });
-*/
 
 Route::post('user/process_new_fact_submission', 'UserController@process_new_fact_submission')->middleware('auth');
 Route::post('user/process_edit_fact_submission', 'UserController@process_edit_fact_submission')->middleware('auth');
