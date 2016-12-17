@@ -18,6 +18,7 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
+  
   foreach([6,7,8,9] as $i)
   {
     $user = App\User::find($i);
@@ -64,9 +65,8 @@ Route::get('/contoh', function(){
   return view('static.example');
 });
 
-Auth::routes();
-/*
-Route::get('/login', 'Auth\LoginController@showLoginForm' );
+ Auth::routes();
+/*Route::get('/login', 'Auth\LoginController@showLoginForm' );
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index');
@@ -75,7 +75,6 @@ Route::get('/register', function(){
     Dari sisi pengembangan software di <a href='https://github.com/rizkysyaiful/wikikandidat#readme'>github.com/rizkysyaiful/wikikandidat#readme</a><br><br>Tertarik bantu? Hubungi kami di rizky.syaiful@gmail.com."; 
 });
 */
-
 
 Route::post('user/process_new_fact_submission', 'UserController@process_new_fact_submission')->middleware('auth');
 Route::post('user/process_edit_fact_submission', 'UserController@process_edit_fact_submission')->middleware('auth');
