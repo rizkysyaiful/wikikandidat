@@ -18,7 +18,6 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-  
   foreach([6,7,8,9] as $i)
   {
     $user = App\User::find($i);
