@@ -241,7 +241,7 @@
                         
                     </div>
                 </div>
-                <strong><u>Komentar yang menjelaskan alasan dari setiap edit kamu</u></strong>
+                <strong><u>Komentar Tambahan</u></strong> <span class="text-muted">(contoh: penjelasan tentang segala yang berbeda dengan yang dimasukan submitter, atau sekedar ucapan terima kasih.)</span>
                 <div class="media" style="margin-top:5px;">
                   <div class="media-left">
                     <a href="#">

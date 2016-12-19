@@ -53,9 +53,10 @@
     cursor: pointer;
   }
   .random-quote{
-    max-width: 300px;
+    max-width: 600px;
     margin-top: 25px;
     text-align: right;
+    font-size: 14px;
   }
   .well > img{
     width: 100%;
@@ -71,7 +72,10 @@
 
 @section('content')
     <div class="container">
-      <span class="pull-right random-quote"><em>Kami percaya, yang terbaik adalah <br>~ Che Guavara</em></span>
+      <p class="pull-right random-quote">Wikikandidat.com adalah museum rekam jejak kandidat.<br>Semua bisa menambah/mengubah rekam jejak,<br>tapi hanya informasi yang valid menurut tiga mahasiswa acak yang tampil.<br>
+      <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa')}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi')}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
+       <a href="{{url('/tentang-kami#kontak')}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
+      </p>
       <h1>Pilkada 2017</h1>
       <div class="btn-group">
         <a href="#" class="btn btn-default btn-lg">Provinsi</a>
