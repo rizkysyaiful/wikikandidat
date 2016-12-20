@@ -30,11 +30,15 @@ Route::post('/reveal-all', function(Request $r){
   print_r($r->all());
 });
 
+/**
+* Pages for admin
+*/
+
 Route::get('/admin', function(){  
   if(Auth::user() && 
       ( Auth::user()->id == 1 || Auth::user()->id == 6 ) )
   {
-    return view('admin');  
+    return view('admin');
   }
 });
 Route::post('/admin/add-place', 'AdminController@add_place');
@@ -62,6 +66,9 @@ Route::get('/cara-kontribusi', function(){
 });
 Route::get('/contoh', function(){
   return view('static.example');
+});
+Route::get('/panduan-verifikasi', function(){
+  return view('static.verifier-how-to');
 });
 
 Route::get('/daftar', function(){
@@ -98,6 +105,7 @@ Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
   });
+/*
 Route::get('/edit-bukti', function(){
   $references = App\Reference::where([
       ['first_verifier_id', '=', null],
@@ -106,7 +114,7 @@ Route::get('/edit-bukti', function(){
     ])->get();
   return view('edit-bukti')->with('references', $references);
 })->middleware('auth');
-
+*/
 Route::get('/user/{any}', function($any){
   $user = App\User::where('username', $any)->first();
   if($user)

@@ -164,10 +164,19 @@ Tentang
 				'wikileaks',
 				'
 				<p>
-					Bukan. Kami tidak menerima bukti mentah &amp; melakukan proses verifikasi kebenaran seperti Wikileaks.
+					Bukan.
 				</p>
 				<p>
-					Fokus kami adalah kurasi/pengumpulan/pencatatatan apa yang sudah terverifikasi benar di publik. Sehingga publik bisa langsung mengenal seorang kandidat seobyektif mungkin.
+					Verifikator Wikikandidat tidak perlu khawatir. Kita memang bersinggungan dengan politik. Tapi kita 100% aman.
+				</p>
+				<p>	
+					Karena kami tidak menerima bukti mentah &amp; melakukan proses verifikasi kebenaran seperti Wikileaks.
+				</p>
+				<p>
+					Karena tidak seperti media massa, kami tidak merilis informasi.
+				</p>
+				<p>
+					Fokus kami adalah kurasi/pengumpulan/pencatatatan informasi yang sudah terverifikasi benar di publik. Sehingga publik bisa langsung mengenal seorang kandidat seobyektif mungkin.
 				</p>
 				<p>
 					Namun, jika kamu memiliki fakta sensitif &amp; rahasia, yang bisa mengubah pandangan orang banyak tentang seseorang, kami menyarankan untuk mempublikasikan fakta tersebut.
@@ -177,6 +186,15 @@ Tentang
 				</p>
 				'
 			],
+			[
+				'Kontak',
+				'kontak',
+				'
+				<p>
+					Untuk saat ini, kirimkan email ke : rizky.syaiful@gmail.com. Atau kontak via LINE di rizky_syaiful.
+				</p>
+				'
+			]
 		];
 	?>
 	<ul>
