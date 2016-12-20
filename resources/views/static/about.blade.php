@@ -22,23 +22,40 @@ Tentang
 				<blockquote>
 					<p><strong>Kenapa kami membuat Wikikandidat?</strong></p>
 					<p>
-						<strong>Karena kami percaya rakyat Indonesia harus memilih berdasarkan impian terdalam ("why") si kandidat. Karena impian terdalam seseoranglah yang jadi pemicu aksi-aksi besarnya di masa depan.</strong> 
+						<strong>Karena kami percaya rakyat Indonesia harus memilih berdasarkan impian terdalam ("why") si kandidat. Impian terdalam adalah pemicu aksi-aksi besar seseorang di masa depan.</strong> 
 					</p>
-					</blockquote>
+				</blockquote>
 				<p>
-					Masalahnya, sekarang, media massa masih jadi saluran informasi utama para kandidat ke pemilih. Apa yang salah dengan media massa? 
+					Masalahnya, sekarang, media massa masih jadi saluran informasi utama para kandidat ke pemilih. Apa yang salah? 
 				</p>
 				<ol>
-					<li>Media massa memihak</li>
-					<li>Media massa fokus menampilkan berita terbaru (tidak mengangkat riwayat hidup)</li>
+					<li>Media massa bisa memihak&mdash;karena bisa dimiliki orang yang punya kepentingan politik.</li>
+					<li>Manusia punya bias & sentimen. </li>
+					<li>Media massa online penuh dengan komentator-komentator anonim yang.. urgh.. lihat saja sendiri</li>
+					<li>Media massa hanya fokus menampilkan berita terbaru (dibanding riwayat hidup)</li>
 				</ol>
+				<p>
+					Sementara...
+				</p>
 				<blockquote>
 				<p>
-					Impian terdalam seseorang, hanya bisa diverifikasi lewat semua yang sudah nyata dia lakukan di masa lalu. Semua. Positif. Maupun negatif.
+					<strong>Kami juga percaya, impian terdalam seseorang, hanya bisa dilihat dari aksi-aksi besarnya di masa lalu.</strong>
 				</p>
 				</blockquote>
 				<p>
-					<u>Bukan lewat janji kampanye. Bukan lewat aksi kampanye.</u>
+					Pidato fenomenal Martin Luther King Jr., <a href="https://en.wikipedia.org/wiki/I_Have_a_Dream">"I Have a Dream"</a>, mungkin tidak pernah ada, kalau jauh sebelumnya dia tidak ikut memimpin aksi <a href="https://en.wikipedia.org/wiki/Montgomery_bus_boycott">Boikot Bus Montgomery</a>&mdash;di umur 26.
+				</p>
+				<p>
+					Kepemimpinan Mahatma Ghandi di India mungkin akan diragukan, jika dia tidak punya reputasi memperjuangkan HAM selama berkarir di Afrika Selatan&mdash;umur 24 sampai 43. 
+				</p>
+				<p>
+					Sebaliknya, ada orang yang tiba-tiba menyalonkan diri jadi presiden atau kepala desa, namun sepanjang hidupnya hanya terlihat memperkuat diri & keluarganya sendiri. Tentu tidak aneh kalau motivasi beliau diragukan.  
+				</p>
+				<p>
+					Namun kembali lagi, sayangnya, kebanyakan manusia mudah termakan bias dan sentimen.
+				</p>
+				<p>
+					
 				</p>
 				<p>
 					Terima kasih kepada teknologi internet, saat ini kita punya mekanisme untuk mengumpulkan dan menjaga informasi rekam jejak seseorang.

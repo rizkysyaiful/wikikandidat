@@ -69,7 +69,7 @@ Panduan Lengkap Verifikator
 					Pada suatu hari, HP kamu berbunyi. Ada email masuk. Email itu ternyata dari Wikikandidat.com.
 				</p>
 				<p>
-					<a href="https://github.com/rizkysyaiful/wikikandidat/blob/master/app/Http/Controllers/UserController.php#L78" target="_blank">Algoritma acak di Wikikandidat.com</a> telah menunjuk kamu untuk memverifikasi sebuah data yang baru masuk. Dalam waktu dekat, kamu harus menunaikan tugas kamu.
+					<a href="https://github.com/rizkysyaiful/wikikandidat/commit/10d3376fe652827645200eb4561c46c5adf8b0f9#diff-a518e07b7b176623eb0f989f8920e724R71" target="_blank">Algoritma acak di Wikikandidat.com</a> telah menunjuk kamu untuk memverifikasi sebuah data yang baru masuk. Dalam waktu dekat, kamu harus menunaikan tugas kamu.
 				</p>
 				<img class="img-thumbnail" src="http://55quotes.com/wp-content/uploads/2015/09/55Quotes.com-Great-Life-Power-Movies-Spiderman-1-686x361.jpg" width="400px" alt="">
 				<p>
