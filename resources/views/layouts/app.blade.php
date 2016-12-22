@@ -174,7 +174,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             @if(Auth::check())
-                <li><a href="{{url('verification')}}">Verification</a></li>
+                <li><a href="{{url('verification')}}">Tugas Verifikasi</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">

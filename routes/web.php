@@ -18,7 +18,7 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-  foreach([6,7,8,9] as $i)
+  foreach([1] as $i)
   {
     $user = App\User::find($i);
     $user->password = bcrypt('wikikandidat');

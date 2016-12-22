@@ -56,6 +56,8 @@
             </div>
         @endif
 
+        <h3></h3>
+
         <strong>{{$s->submitter->name}}</strong>, <span class="text-muted">{{(new DateTime($s->created_at))->format('j M Y, H:i')}}</span>
         <div class="media">
           <div class="media-left">
