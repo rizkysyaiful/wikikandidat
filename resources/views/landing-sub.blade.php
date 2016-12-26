@@ -133,7 +133,7 @@
         <?php
           $types =  App\Type::all();
         ?>
-        @foreach($election->couples as $co)
+        @foreach($election->couples->sortBy('order') as $co)
           <?php 
             $c = App\Candidate::find($co->candidate_id);
             $rm = App\Candidate::find($co->running_mate_id);
@@ -155,7 +155,7 @@
                 </div>
               </div>
 
-              <h5><strong>Berdasarkan rekam jejak {{$c->nickname}} di bawah, apa impian-impian terdalamnya?</strong></h5>
+              <h5><strong>Setelah membaca rekam jejak di bawah, seperti apa pandangan kamu tentang {{$c->nickname}}?</strong></h5>
               <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
 
               @include('layouts.fact-panel', [
