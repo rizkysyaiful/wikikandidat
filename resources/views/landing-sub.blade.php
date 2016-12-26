@@ -103,7 +103,7 @@
           <div class="col-md-5">
             @if($election->initiator == NULL)
               <u>1. Tolong bantu kumpulkan data inisial kandidat</u><br>
-              Punya organisasi mahasiswa? Tertarik mengumpulkan data versi pertama seluruh kandidat {{$election->place->name}}? Selain konkrit membantu {{$election->place->name}}, nama, logo &amp; link ke organisasi kamu akan muncul di banner ini, di halaman ini, selama-lamanya. Karena kontribusi organisasi kamu, halaman ini jadi bisa mulai bermanfaat untuk orang lain. <a href="#">Segera hubungi, jangan sampai keduluan organisasi lain</a>.
+              Punya organisasi mahasiswa? Tertarik mengumpulkan data versi pertama seluruh kandidat {{$election->place->name}}? Selain konkrit membantu {{$election->place->name}}, nama, logo &amp; link ke organisasi kamu akan muncul di banner ini, di halaman ini, selama-lamanya. Karena kontribusi organisasi kamu, halaman ini jadi bisa mulai bermanfaat untuk orang lain. <a href="{{asset('img/contoh-initiator.jpeg')}}" target="_blank">Ingin seperti contoh ini? Segera hubungi, jangan sampai keduluan organisasi lain</a>.
             @else
               Terima kasih kepada teman-teman di<br>
               {!!$election->initiator!!}<br>
@@ -125,7 +125,7 @@
         ?>
         <div style="text-align: center; padding-top: 10px;">
           <strong>
-            Ingin bantu warga {{$election->place->name}}? Ingin tercantum di atas? Hubungi {{$cp->name}} di {{$cp->email}}
+            Ingin bantu warga {{$election->place->name}}? Ingin nama organisasi kamu tercantum di atas? Hubungi {{$cp->name}} di {{$cp->email}}
           </strong>
         </div>
       </div>
