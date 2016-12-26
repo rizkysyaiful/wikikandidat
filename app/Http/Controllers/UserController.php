@@ -68,14 +68,14 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    private function get_random_students()
+    private function get_random_students($place)
     {
         $random_students = null;
         // id 2, 3, 4, & 5 adalah mahasiswa test, tidak dijalankan di production
         if (App::environment('local')) {
-            $random_students = DB::select('select id from users where is_hibernate = ? AND is_verifier = ? AND id != ? ORDER BY rand() LIMIT 3', [0, 1, Auth::user()->id]);
+            $random_students = DB::select('select id from users where place_id = ? AND is_hibernate = ? AND is_verifier = ? AND id != ? ORDER BY rand() LIMIT 3', [$place, 0, 1, Auth::user()->id]);
         }else{
-            $random_students = DB::select('select id from users where is_hibernate = ? AND is_verifier = ? AND id != ? AND id != ? AND id != ? AND id != ? AND id != ? ORDER BY rand() LIMIT 3', [0, 1, Auth::user()->id, 2, 3, 4, 5]);
+            $random_students = DB::select('select id from users where place_id = ? AND is_hibernate = ? AND is_verifier = ? AND id != ? AND id != ? AND id != ? AND id != ? AND id != ? ORDER BY rand() LIMIT 3', [$place, 0, 1, Auth::user()->id, 2, 3, 4, 5]);
         } 
         return $random_students;
     }
@@ -86,11 +86,12 @@ class UserController extends Controller
 
         Validator::make($request->all(), [
             'text' => 'required',
+            'place_id' => 'required',
             'type_id' => 'required|exists:types,id',
             'candidate_id' => 'required|exists:candidates,id'
         ])->validate();
 
-        $random_students = $this->get_random_students();
+        $random_students = $this->get_random_students($request->input('place_id'));
 
         // fact_id null karena ini submission baru
         $submission = Submission::create([
@@ -119,12 +120,13 @@ class UserController extends Controller
 
         Validator::make($request->all(), [
             'text' => 'required',
+            'place_id' => 'required',
             'fact_id' => 'required|exists:facts,id',
             'type_id' => 'required|exists:types,id',
             'candidate_id' => 'required|exists:candidates,id'
         ])->validate();
 
-        $random_students = $this->get_random_students();
+        $random_students = $this->get_random_students($request->input('place_id'));
 
         // fact_id null karena ini submission baru
         $submission = Submission::create([
@@ -142,7 +144,7 @@ class UserController extends Controller
 
         return redirect('/');
     }
-
+/*
     public function submit_fact(Request $request)
     {
         $request->session()->flash('status', 'gagal tersimpan...');
@@ -176,5 +178,5 @@ class UserController extends Controller
         return redirect('/');
 
     }
-
+*/
 }

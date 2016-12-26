@@ -60,33 +60,71 @@ Panduan Lengkap Verifikator
 				',
 			],
 			[
-				'Skenario #1: Kamu jadi verifikator pertama',
-				'pertama',
+				'Skenario 1A: Rekam jejak baru &amp; jadi verifikator pertama',
+				'1a',
 				'<p>
 					Anggaplah kamu sudah resmi jadi seorang verifikator Wikikandidat.
 				</p>
 				<p>
-					Pada suatu hari, HP kamu berbunyi. Ada email masuk. Email itu ternyata dari Wikikandidat.com.
+					Pada suatu hari, HP kamu berbunyi, "telolet telolet". Ada email masuk. Email itu ternyata dari Wikikandidat.
 				</p>
 				<p>
-					<a href="https://github.com/rizkysyaiful/wikikandidat/commit/10d3376fe652827645200eb4561c46c5adf8b0f9#diff-a518e07b7b176623eb0f989f8920e724R71" target="_blank">Algoritma acak di Wikikandidat.com</a> telah menunjuk kamu untuk memverifikasi sebuah data yang baru masuk. Dalam waktu dekat, kamu harus menunaikan tugas kamu.
+					Seseorang telah memasukan informasi baru ke Wikikandidat. Lalu, <a href="https://github.com/rizkysyaiful/wikikandidat/commit/10d3376fe652827645200eb4561c46c5adf8b0f9#diff-a518e07b7b176623eb0f989f8920e724R71" target="_blank">algoritma acak di Wikikandidat.com</a> telah menunjuk kamu untuk memverifikasi sebuah informasi tersebut. Dalam waktu dekat, kamu harus menunaikan tugas kamu.
 				</p>
-				<img class="img-thumbnail" src="http://55quotes.com/wp-content/uploads/2015/09/55Quotes.com-Great-Life-Power-Movies-Spiderman-1-686x361.jpg" width="400px" alt="">
-				<p>
-					Link di email kamu membawa kamu ke halaman wikikandidat.com/verification. Di sana, kamu melihat hal-hal seperti ini.
+				<p style="text-align:center;">
+					<img class="img-thumbnail" src="'.asset('img/spiderman-quote.jpg').'" width="400px" alt="spiderman quote">
 				</p>
-				-- screenshot judul satu item verifikasi
 				<p>
-					<strong>1. Menilai apakah poin yang diajukan itu baru & bermanfaat buat pembaca.</strong> 
+					Link di email kamu membawa kamu ke halaman wikikandidat.com/verification. Di halaman itu, kamu melihat penampakan berikut.
 				</p>
-				-- screenshot mengecek fakta di kandidat X dan kategori Y  
+				<p style="text-align:center;">
+					<img class="img-thumbnail" src="'.asset('img/pand-ver-1.png').'" width="550px">
+				</p>
 				<p>
-					<strong>2. </strong>
-				</p>'
+					Dari situ kamu tahu, kalau pengguna Wikikandidat bernama Rizky Syaiful, ingin menambah rekam jejak karir kandidat bernama Hange Zoe.
+				</p>
+				<blockquote>
+					<p>
+						Hal pertama yang kamu lakukan adalah memahami informasi tersebut.
+					</p>
+				</blockquote>
+				<p>
+					Menurut kamu yang Rizky maksud adalah "Hange Zoe menjabat sebagai Komandan Pasukan Peninjau terhitung mulai tahun 2016". Rizky juga terlihat memberikan bukti dari website Wikia.com.
+				</p>
+				<blockquote>
+					<p>
+						Hal kedua: melihat apakah informasinya baru dan bermanfaat.
+					</p>
+				</blockquote>
+				<p>
+					Untuk itu, kamu pergi ke halaman personal kandidat tersebut. Alamat kandidat Hange Zoe adalah wikikandidat.com/hange. Kamu mendapatkannya dengan mengklik...
+				</p>
+				<p style="text-align:center;">
+					<img class="img-thumbnail" src="'.asset('img/pand-ver-2-zoom-hange.png').'">
+				</p>
+				<p>
+					Lalu, di halaman Hange Zoe, kamu akan melihat seluruh rekam jejak Hange.  
+				</p>
+				<p style="text-align:center;">
+					<img class="img-thumbnail" src="'.asset('img/pand-ver-3-profil.png').'">
+				</p>
+				<p>
+					Kamu akan fokus melihat bagian karir. Kamu lalu membayangkan informasi yang Rizky masukan tertulis di sana.
+				</p>
+				<p>
+					Muncul pertanyaan dalam diri kamu, "Bermanfaatkah untuk pembaca Wikikandidat? Kalau <em>Komandan Pasukan Peninjau terhitung mulai tahun 2016</em> tertulis di sini?"
+				</p>
+				<p>
+					Jangan lupa cek. Bisa jadi informasi tersebut sudah ada di halaman kandidat Hange sebelumnya. 
+				</p>
+				<p>
+					
+				</p>
+				'
 			],
 			[
-				'Skenario #2: Kamu jadi verifikator kedua atau ketiga',
-				'kedua-ketiga',
+				'Skenario 1B: Kamu jadi verifikator kedua atau ketiga',
+				'1b',
 				'<p>
 					
 				</p>'

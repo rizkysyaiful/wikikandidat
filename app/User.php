@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Submission', 'third_verifier_id');
     }
 
+    public function supervised_elections()
+    {
+        return $this->hasMany('App\Election', 'cp');
+    }
+
 /*
     public function references()
     {

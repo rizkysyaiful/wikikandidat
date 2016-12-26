@@ -9,10 +9,10 @@
   data-toggle="modal"
   data-target="#SubmitFactModal"
   data-candidate="{{$candidate->id}}"
-  data-nickname="{{$candidate->nickname}}" data-fact-type-name="{{$name}}"
+  data-nickname="{{$candidate->nickname}}" data-fact-type-name="{{$category}}"
   data-fact-type="{{$type_id}}"
   aria-hidden="true"></span> 
-  <h5>{{$name}}:</h5>
+  <h5>{{$category}}:</h5>
   @foreach($facts as $i => $f)
   <div class="data {{$first}}">
     <?php $first = ""; ?>

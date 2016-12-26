@@ -73,6 +73,7 @@ class AdminController extends Controller
 		$user->is_verifier = true;
 		$user->join_verifier_date = date("Y-m-d");
 		$user->exit_verifier_date = date('Y-m-d', strtotime('+1 year'));
+		$user->place_id = $request->input("place_id");
 		$user->save();
 
     	$request->session()->flash('status', $user->name.' sudah jadi verifikator..');

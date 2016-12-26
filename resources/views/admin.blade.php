@@ -89,8 +89,21 @@ Admin
                               @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Daerah Tugas di Dapil</label>
+                            <select name="place_id" class="form-control">
+                              <?php
+                                $places = App\Place::all();
+                              ?>
+                              @foreach($places as $p)
+                                <option value="{{$p->id}}">{{$p->name}}</option>
+                              @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-default">Buat Dia Jadi Verifikator</button>
                     </form>
+
+                    <h3></h3>
                 </div>
             </div>
             <div class="col-sm-4">

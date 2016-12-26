@@ -129,7 +129,12 @@ Route::get('{any}', function($any){
   {
     return view('landing-sub')->with('election', $election);
   }else{
-    echo "URL tidak ada nich.. Mungkin kamu salah ketik alamat URL.";
+    $candidate = App\Candidate::where('urlname', $any)->first();
+    if($candidate)
+    {
+      return view('candidate')->with('c', $candidate);
+    }
+    abort(404, "URL ".url($any)." tidak ada kaka... Kaka salah ketik?");
   }
 });
 

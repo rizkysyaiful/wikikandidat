@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}" media="screen">
     <link rel="stylesheet" href="{{asset('css/custom.min.css')}}">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://bootswatch.com/bower_components/html5shiv/dist/html5shiv.js"></script>
@@ -109,7 +110,7 @@
         .alert{
             margin-top: -5px;
         }
-        .dont-break-out {
+        div {
             /* These are technically the same, but use both */
             overflow-wrap: break-word;
             word-wrap: break-word;
@@ -119,12 +120,6 @@
             word-break: break-all;
             /* Instead use this non-standard one: */
             word-break: break-word;
-
-            /* Adds a hyphen where the word breaks, if supported (No Blink) */
-            -ms-hyphens: auto;
-            -moz-hyphens: auto;
-            -webkit-hyphens: auto;
-            hyphens: auto;
         }
     </style>
     <script>

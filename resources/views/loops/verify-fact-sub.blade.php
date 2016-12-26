@@ -56,31 +56,41 @@
             </div>
         @endif
 
-        <h3></h3>
+        
 
+        <h3 style="margin-top: 0px;">
+            @if( $is_new )
+                Fakta Baru untuk {{$s->candidate->nickname}}, Kategori {{$s->type->name}}
+            @else
+                Perubahan Sebuah Fakta Milik {{$s->candidate->nickname}}
+            @endif
+        </h3>
+        <span class="pull-right"><strong>&#8680; {{$s->type->name}} <a href="{{url($s->candidate->urlname)}}">{{$s->candidate->name}}</a></strong></span>
         <strong>{{$s->submitter->name}}</strong>, <span class="text-muted">{{(new DateTime($s->created_at))->format('j M Y, H:i')}}</span>
-        <div class="media">
-          <div class="media-left">
-            <a href="{{url('user'.$s->submitter->username)}}">
-              <img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=60">
-            </a>
-          </div>
-          <div class="media-body">
-            <div class="well well-sm"> 
-                @if( $is_new )
-                    Ini saranku, untuk tambahkan fakta {{$s->type->name}} milik kandidat {{$s->candidate->nickname}}:<br>
-                @else
-                    Ini saranku, tentang perubahan dari fakta di atas:<br>
-                @endif
-                {{$s->text}}
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="{{url('user'.$s->submitter->username)}}">
+                      <img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=60">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <div class="well well-sm">
+                        {{$s->text}}
+                    </div>
+                  </div>
+                </div>
             </div>
-          </div>
+            <div class="col-sm-2" style="padding-left: 0;">
+                <img width="87px;" src="{{$s->candidate->photo_url}}">
+            </div>
         </div>
 
         <ul class="nav nav-pills nav-justified"
             role="tablist" 
         >
-            <li role="presentation" class="active">
+            <li role="presentation">
                 <a  href="#agree-{{$s->id}}" 
                     aria-controls="agree"
                     role="tab"
@@ -89,7 +99,7 @@
                     <img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=20">: <strong>"Ide Bagus. Saya edit ya.."</strong>
                 </a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="active">
                 <a  href="#disagree-{{$s->id}}" 
                     aria-controls="disagree" 
                     role="tab" 
@@ -102,7 +112,7 @@
         <hr>
         <div class="tab-content">
             <div    role="tabpanel" 
-                    class="tab-pane active" 
+                    class="tab-pane" 
                     id="agree-{{$s->id}}">
                 <form   method="POST"
                         action="student/create_edit">
@@ -274,7 +284,7 @@
                 
             </div>
             <div    role="tabpanel"
-                    class="tab-pane" 
+                    class="tab-pane active" 
                     id="disagree-{{$s->id}}"
             >
                 <form   method="POST"

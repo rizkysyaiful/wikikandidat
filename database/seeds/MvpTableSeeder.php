@@ -131,22 +131,22 @@ class MvpTableSeeder extends Seeder
         ]);
 
         DB::table('types')->insert([
-            'name' => 'Educations',
+            'name' => 'Pendidikan',
         ]);
         DB::table('types')->insert([
-            'name' => 'Careers',
+            'name' => 'Karir',
         ]);
         DB::table('types')->insert([
-            'name' => 'Contributions',
+            'name' => 'Kontribusi ke Organisasi',
         ]);
         DB::table('types')->insert([
-            'name' => 'Achievements',
+            'name' => 'Prestasi',
         ]);
         DB::table('types')->insert([
-            'name' => 'Controversies',
+            'name' => 'Kontroversi',
         ]);
         DB::table('types')->insert([
-            'name' => 'Quotes',
+            'name' => 'Kutipan',
         ]);
 
         DB::table('topics')->insert([
