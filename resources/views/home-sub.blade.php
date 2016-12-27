@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 @extends('layouts.app')
 
 @section('title')
