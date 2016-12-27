@@ -70,6 +70,10 @@ Route::get('/contoh', function(){
 Route::get('/panduan-verifikasi', function(){
   return view('static.verifier-how-to');
 });
+Route::get('/inisiator', function(){
+  return view('static.inisiator');
+});
+
 
 Route::get('/daftar', function(){
   echo "Wikikandidat.com masih dalam tahap closed-beta.<br> Artinya, penambah data & verifikator masih direkrut dengan interview tatap muka.<br>Desember ini akan fokus merekrut di Universitas Indonesia Depok.<br><br>Ikuti perkembangan pergerakan kami di <a href='http://wikikandidat.tumblr.com'>wikikandidat.tumblr.com</a><br>
@@ -102,9 +106,9 @@ Route::get('/verification', function(){
 Route::get('/hibernate-on', 'UserController@hibernate_on')->middleware('auth'); // TODO ganti middleware verfikator 
 Route::get('/hibernate-off', 'UserController@hibernate_off')->middleware('auth'); // TODO ganti middleware verfikator
 Route::get('/logout', function(){
-    Auth::logout();
-    return redirect('/');
-  });
+  Auth::logout();
+  return redirect('/');
+});
 /*
 Route::get('/edit-bukti', function(){
   $references = App\Reference::where([

@@ -78,7 +78,7 @@
       <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa', [], $secure)}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi', [], $secure)}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
        <a href="{{url('/tentang-kami#kontak', [], $secure)}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
       </p>
-      <h1>Pilkada 2017</h1>
+      <h1>{{$election->name}}</h1>
       <div class="btn-group">
         <a href="#" class="btn btn-default btn-lg">Provinsi</a>
         <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
