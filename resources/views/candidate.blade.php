@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 @extends('layouts.app')
 
 @section('title')
@@ -146,10 +149,10 @@
               @if($s->is_rejected === 0)
                 <div class="media">
                   <div class="media-left">
-                    <a href="{{url('user/'.$s->submitter->username)}}"><img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=45"></a>
+                    <a href="{{url('user/'.$s->submitter->username, [], $secure)}}"><img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=45"></a>
                   </div>
                   <div class="media-body">
-                    <strong><a href="{{url('user/'.$s->submitter->username)}}">{{$s->submitter->name}}</a></strong>, <span class="text-muted">{{Helper::wk_date($s->created_at)}}</span>
+                    <strong><a href="{{url('user/'.$s->submitter->username, [], $secure)}}">{{$s->submitter->name}}</a></strong>, <span class="text-muted">{{Helper::wk_date($s->created_at)}}</span>
                     <div>
                       {{$s->text}}
                     </div>
@@ -159,10 +162,10 @@
                     @foreach($s->edits as $e)
                     <div class="media">
                       <div class="media-left">
-                        <a href="{{url('user/'.$e->verifier->username)}}"><img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->verifier->email ) ) )}}?s=45"></a>
+                        <a href="{{url('user/'.$e->verifier->username, [], $secure)}}"><img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->verifier->email ) ) )}}?s=45"></a>
                       </div>
                       <div class="media-body">
-                        <a href="{{url('user/'.$e->verifier->username)}}"><strong>{{$e->verifier->name}}</strong></a> ({{$e->verifier->university->abbreviation}}), <span class="text-muted">{{Helper::wk_date($e->created_at)}}</span><br>
+                        <a href="{{url('user/'.$e->verifier->username, [], $secure)}}"><strong>{{$e->verifier->name}}</strong></a> ({{$e->verifier->university->abbreviation}}), <span class="text-muted">{{Helper::wk_date($e->created_at)}}</span><br>
                         <?php
                           $is_no_change = false;
                           if(!$loop->first && $previous_edit->text == $e->text && $previous_edit->date_start == $e->date_start && $previous_edit->date_finish == $e->date_finish)

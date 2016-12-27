@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 @extends('layouts.app')
 
 @section('title')
@@ -232,7 +235,7 @@ Tentang
 @endsection
 
 @section('js')
-	<script src="{{asset('js/smooth-scroll.js')}}"></script>
+	<script src="{{asset('js/smooth-scroll.js', $secure)}}"></script>
 	<script>
 		smoothScroll.init();
 	</script>

@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 
     <?php
         $is_new = false;
@@ -65,13 +68,13 @@
                 Perubahan Sebuah Fakta Milik {{$s->candidate->nickname}}
             @endif
         </h3>
-        <span class="pull-right"><strong>&#8680; {{$s->type->name}} <a href="{{url($s->candidate->urlname)}}">{{$s->candidate->name}}</a></strong></span>
+        <span class="pull-right"><strong>&#8680; {{$s->type->name}} <a href="{{url($s->candidate->urlname, [], $secure)}}">{{$s->candidate->name}}</a></strong></span>
         <strong>{{$s->submitter->name}}</strong>, <span class="text-muted">{{(new DateTime($s->created_at))->format('j M Y, H:i')}}</span>
         <div class="row">
             <div class="col-sm-10">
                 <div class="media">
                   <div class="media-left">
-                    <a href="{{url('user'.$s->submitter->username)}}">
+                    <a href="{{url('user'.$s->submitter->username, [], $secure)}}">
                       <img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=60">
                     </a>
                   </div>
@@ -121,7 +124,7 @@
                     <strong><u>Hasil edit verifikator sebelumnya, {{$latest_edit->verifier->name}}</u></strong>
                     <div class="media" style="margin-top:5px;">
                       <div class="media-left">
-                        <a href="{{url('user'.$latest_edit->verifier->username)}}">
+                        <a href="{{url('user'.$latest_edit->verifier->username, [], $secure)}}">
                           <img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $latest_edit->verifier->email ) ) )}}?s=60">
                         </a>
                       </div>
@@ -150,7 +153,7 @@
                     <br><br>
                 @endif
                 
-                <a class="pull-right" data-s-id="{{$s->id}}" href="{{url('/contoh#format-tulisan')}}" target="_blank">contoh format tulisan (wajib baca)</a>
+                <a class="pull-right" data-s-id="{{$s->id}}" href="{{url('/contoh#format-tulisan', [], $secure)}}" target="_blank">contoh format tulisan (wajib baca)</a>
                 <strong><u>Hasil edit {{Auth::user()->name}}</u></strong>
                 <div class="media" style="margin-top:5px;">
                   <div class="media-left">

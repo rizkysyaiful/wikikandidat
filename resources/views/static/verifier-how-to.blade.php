@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 @extends('layouts.app')
 
 @section('title')
@@ -72,13 +75,13 @@ Panduan Lengkap Verifikator
 					Seseorang telah memasukan informasi baru ke Wikikandidat. Lalu, <a href="https://github.com/rizkysyaiful/wikikandidat/commit/10d3376fe652827645200eb4561c46c5adf8b0f9#diff-a518e07b7b176623eb0f989f8920e724R71" target="_blank">algoritma acak di Wikikandidat.com</a> telah menunjuk kamu untuk memverifikasi sebuah informasi tersebut. Dalam waktu dekat, kamu harus menunaikan tugas kamu.
 				</p>
 				<p style="text-align:center;">
-					<img class="img-thumbnail" src="'.asset('img/spiderman-quote.jpg').'" width="400px" alt="spiderman quote">
+					<img class="img-thumbnail" src="'.asset('img/spiderman-quote.jpg', $secure).'" width="400px" alt="spiderman quote">
 				</p>
 				<p>
 					Link di email kamu membawa kamu ke halaman wikikandidat.com/verification. Di halaman itu, kamu melihat penampakan berikut.
 				</p>
 				<p style="text-align:center;">
-					<img class="img-thumbnail" src="'.asset('img/pand-ver-1.png').'" width="550px">
+					<img class="img-thumbnail" src="'.asset('img/pand-ver-1.png', $secure).'" width="550px">
 				</p>
 				<p>
 					Dari situ kamu tahu, kalau pengguna Wikikandidat bernama Rizky Syaiful, ingin menambah rekam jejak karir kandidat bernama Hange Zoe.
@@ -100,13 +103,13 @@ Panduan Lengkap Verifikator
 					Untuk itu, kamu pergi ke halaman personal kandidat tersebut. Alamat kandidat Hange Zoe adalah wikikandidat.com/hange. Kamu mendapatkannya dengan mengklik...
 				</p>
 				<p style="text-align:center;">
-					<img class="img-thumbnail" src="'.asset('img/pand-ver-2-zoom-hange.png').'">
+					<img class="img-thumbnail" src="'.asset('img/pand-ver-2-zoom-hange.png', $secure).'">
 				</p>
 				<p>
 					Lalu, di halaman Hange Zoe, kamu akan melihat seluruh rekam jejak Hange.  
 				</p>
 				<p style="text-align:center;">
-					<img class="img-thumbnail" src="'.asset('img/pand-ver-3-profil.png').'">
+					<img class="img-thumbnail" src="'.asset('img/pand-ver-3-profil.png', $secure).'">
 				</p>
 				<p>
 					Kamu akan fokus melihat bagian karir. Kamu lalu membayangkan informasi yang Rizky masukan tertulis di sana.
@@ -118,7 +121,7 @@ Panduan Lengkap Verifikator
 					Jangan lupa cek. Bisa jadi informasi tersebut sudah ada di halaman kandidat Hange sebelumnya. 
 				</p>
 				<p>
-					
+
 				</p>
 				'
 			],
@@ -149,7 +152,7 @@ Panduan Lengkap Verifikator
 @endsection
 
 @section('js')
-	<script src="{{asset('js/smooth-scroll.js')}}"></script>
+	<script src="{{asset('js/smooth-scroll.js', $secure)}}"></script>
 	<script>
 		smoothScroll.init();
 	</script>

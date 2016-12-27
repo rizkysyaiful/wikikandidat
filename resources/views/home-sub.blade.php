@@ -13,7 +13,7 @@ Home
         margin-top: 5px;
     }
     select.date{
-        display: inline;
+        display: inline
     }
     ol,ul{
         padding-left: 17px;

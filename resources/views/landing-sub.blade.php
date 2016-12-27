@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 @extends('layouts.app')
 
 @section('title')
@@ -75,18 +78,18 @@
 @section('content')
     <div class="container">
       <p class="pull-right random-quote"><strong>Makin cerdas pemilih, makin keren pemimpinnya!</strong><br>Wikikandidat adalah museum rekam jejak kandidat.<br>Semua bisa menambah/mengubah rekam jejak,<br>tapi hanya informasi yang valid menurut tiga mahasiswa acak yang tampil.<br>
-      <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa')}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi')}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
-       <a href="{{url('/tentang-kami#kontak')}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
+      <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa', [], $secure)}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi', [], $secure)}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
+       <a href="{{url('/tentang-kami#kontak', [], $secure)}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
       </p>
       <h1>Pilkada 2017</h1>
       <div class="btn-group">
         <a href="#" class="btn btn-default btn-lg">Provinsi</a>
         <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{{url('pilkada-2017-aceh')}}" href="pilkada-2017-aceh">Aceh</a></li>
-          <li><a href="{{url('pilkada-2017-babel')}}" href="">Bangka Belitung</a></li>
-          <li><a href="{{url('/')}}" href="pilkada-2017-jakarta">DKI Jakarta</a></li>
-          <li><a href="{{url('pilkada-2017-banten')}}" href="pilkada-2017-banten">Banten</a></li>
+          <li><a href="{{url('pilkada-2017-aceh', [], $secure)}}" href="pilkada-2017-aceh">Aceh</a></li>
+          <li><a href="{{url('pilkada-2017-babel', [], $secure)}}" href="">Bangka Belitung</a></li>
+          <li><a href="{{url('/', [], $secure)}}" href="pilkada-2017-jakarta">DKI Jakarta</a></li>
+          <li><a href="{{url('pilkada-2017-banten', [], $secure)}}" href="pilkada-2017-banten">Banten</a></li>
         </ul>
       </div>
       <div class="btn-group">
@@ -105,7 +108,7 @@
           <div class="col-md-5">
             @if($election->initiator == NULL)
               <u>1. Tolong bantu kumpulkan data inisial kandidat</u><br>
-              Punya organisasi mahasiswa? Tertarik mengumpulkan data versi pertama seluruh kandidat {{$election->place->name}}? Selain konkrit membantu {{$election->place->name}}, nama, logo &amp; link ke organisasi kamu akan muncul di banner ini, di halaman ini, selama-lamanya. Karena kontribusi organisasi kamu, halaman ini jadi bisa mulai bermanfaat untuk orang lain. <a href="{{asset('img/contoh-initiator.jpeg')}}" target="_blank">Ingin seperti contoh ini? Segera hubungi, jangan sampai keduluan organisasi lain</a>.
+              Punya organisasi mahasiswa? Tertarik mengumpulkan data versi pertama seluruh kandidat {{$election->place->name}}? Selain konkrit membantu {{$election->place->name}}, nama, logo &amp; link ke organisasi kamu akan muncul di banner ini, di halaman ini, selama-lamanya. Karena kontribusi organisasi kamu, halaman ini jadi bisa mulai bermanfaat untuk orang lain. <a href="{{asset('img/contoh-initiator.jpeg', $secure)}}" target="_blank">Ingin seperti contoh ini? Segera hubungi, jangan sampai keduluan organisasi lain</a>.
             @else
               Terima kasih kepada teman-teman di<br>
               {!!$election->initiator!!}<br>
@@ -253,10 +256,10 @@
                     @if($s->is_rejected === 0)
                       <div class="media">
                         <div class="media-left">
-                          <a href="{{url('user/'.$s->submitter->username)}}"><img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=45"></a>
+                          <a href="{{url('user/'.$s->submitter->username, [], $secure)}}"><img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $s->submitter->email ) ) )}}?s=45"></a>
                         </div>
                         <div class="media-body">
-                          <strong><a href="{{url('user/'.$s->submitter->username)}}">{{$s->submitter->name}}</a></strong>, <span class="text-muted">{{Helper::wk_date($s->created_at)}}</span>
+                          <strong><a href="{{url('user/'.$s->submitter->username, [], $secure)}}">{{$s->submitter->name}}</a></strong>, <span class="text-muted">{{Helper::wk_date($s->created_at)}}</span>
                           <div>
                             {{$s->text}}
                           </div>
@@ -266,10 +269,10 @@
                           @foreach($s->edits as $e)
                           <div class="media">
                             <div class="media-left">
-                              <a href="{{url('user/'.$e->verifier->username)}}"><img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->verifier->email ) ) )}}?s=45"></a>
+                              <a href="{{url('user/'.$e->verifier->username, [], $secure)}}"><img style="display: inline;" class="media-object" src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->verifier->email ) ) )}}?s=45"></a>
                             </div>
                             <div class="media-body">
-                              <a href="{{url('user/'.$e->verifier->username)}}"><strong>{{$e->verifier->name}}</strong></a> ({{$e->verifier->university->abbreviation}}), <span class="text-muted">{{Helper::wk_date($e->created_at)}}</span><br>
+                              <a href="{{url('user/'.$e->verifier->username, [], $secure)}}"><strong>{{$e->verifier->name}}</strong></a> ({{$e->verifier->university->abbreviation}}), <span class="text-muted">{{Helper::wk_date($e->created_at)}}</span><br>
                               <?php
                                 $is_no_change = false;
                                 if(!$loop->first && $previous_edit->text == $e->text && $previous_edit->date_start == $e->date_start && $previous_edit->date_finish == $e->date_finish)

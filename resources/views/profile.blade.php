@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 @extends('layouts.app')
 
 @section('title')
@@ -57,7 +60,7 @@
 									@endif
 								</span>
 								<span class="text-muted">{{(new DateTime($s->created_at))->format("d M Y")}}</span><br>
-								"{{$s->text}}" &#10142; <a href="{{url('#'.$s->candidate->urlname)}}">{{$s->candidate->name}}, {{App\Type::find($s->type_id)->name}}</a><br>
+								"{{$s->text}}" &#10142; <a href="{{url('#'.$s->candidate->urlname, [], $secure)}}">{{$s->candidate->name}}, {{App\Type::find($s->type_id)->name}}</a><br>
 								@if($s->is_rejected === 1)
 									<span class="text-muted">Alasan ditolak:</span> "{{$s->rejection_reason}}"
 								@endif
@@ -76,7 +79,7 @@
 								<u>{{Helper::wk_date($e->date_start, $e->date_finish)}}</u>
 								{!!markdown($e->text)!!}
 								<span class="text-muted">Hasil edit di atas adalah respon dari</span><br>
-								<img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->submission->submitter->email ) ) )}}?s=15"> <a href="{{url('user/'.$e->submission->submitter->username)}}">{{$e->submission->submitter->name}}</a>: "{{$e->submission->text}}"
+								<img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $e->submission->submitter->email ) ) )}}?s=15"> <a href="{{url('user/'.$e->submission->submitter->username, [], $secure)}}">{{$e->submission->submitter->name}}</a>: "{{$e->submission->text}}"
 							</div>
 							@endforeach
 				    	@else
