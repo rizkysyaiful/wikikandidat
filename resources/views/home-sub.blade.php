@@ -57,9 +57,9 @@ Home
 @endsection
 
 @section('js')
-    <script src="{{asset('js/showdown.min.js')}}"></script>
-    <script src="{{asset('js/donetyping.js')}}"></script>
-    <script src="{{asset('js/jashkenas/underscore-min.js')}}"></script>
+    <script src="{{asset('js/showdown.min.js', $secure)}}"></script>
+    <script src="{{asset('js/donetyping.js', $secure)}}"></script>
+    <script src="{{asset('js/jashkenas/underscore-min.js', $secure)}}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var converter = new showdown.Converter();
