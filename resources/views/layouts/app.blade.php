@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +16,8 @@
     <!-- Styles 
     <link href="/css/app.css" rel="stylesheet"> -->
 
-    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}" media="screen">
-    <link rel="stylesheet" href="{{asset('css/custom.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css', $secure)}}" media="screen">
+    <link rel="stylesheet" href="{{asset('css/custom.min.css', $secure)}}">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -155,25 +158,25 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="{{url('/')}}">Pilkada 2017</a>
+              <a href="{{url('/', [], $secure)}}">Pilkada 2017</a>
             </li>
             <li>
               <a href="http://wikikandidat.tumblr.com/post/82547489919/manfaat-kami-di-pemilu-legislatif-2014-jumlah" target="_blank">Kesuksesan Pileg 2014</a>
             </li>
             <li>
-              <a href="{{url('tentang-kami')}}">Wikikandidat?</a>
+              <a href="{{url('tentang-kami', [], $secure)}}">Wikikandidat?</a>
             </li>
             <li>
-              <a href="{{url('cara-kontribusi')}}">Kontribusi</a>
+              <a href="{{url('cara-kontribusi', [], $secure)}}">Kontribusi</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             @if(Auth::check())
-                <li><a href="{{url('verification')}}">Tugas Verifikasi</a></li>
+                <li><a href="{{url('verification', [], $secure)}}">Tugas Verifikasi</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('user/'.Auth::user()->username)}}">Profil</a></li>
+                        <li><a href="{{url('user/'.Auth::user()->username, [], $secure)}}">Profil</a></li>
                         @if(Auth::user()->is_hibernate)
                             <li><a href="/hibernate-off">Keluar Mode Hibernate</a></li>
                         @else
@@ -181,10 +184,10 @@
                         @endif
                     </ul>
                 </li>
-                <li><a href="{{url('logout')}}">Logout</a></li>
+                <li><a href="{{url('logout', [], $secure)}}">Logout</a></li>
             @else
-                <li><a href="{{url('daftar')}}">Daftar</a></li>
-                <li><a href="{{url('login')}}">Login</a></li>
+                <li><a href="{{url('daftar', [], $secure)}}">Daftar</a></li>
+                <li><a href="{{url('login', [], $secure)}}">Login</a></li>
             @endif
           </ul>
         </div>
@@ -204,9 +207,9 @@
     <!-- Scripts 
     <script src="/js/app.js"></script> -->
 
-    <script src="{{asset('js/jquery-1.10.2.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/custom.js')}}"></script>
+    <script src="{{asset('js/jquery-1.10.2.min.js', $secure)}}"></script>
+    <script src="{{asset('js/bootstrap.min.js', $secure)}}"></script>
+    <script src="{{asset('js/custom.js', $secure)}}"></script>
 
     @yield('js')
 

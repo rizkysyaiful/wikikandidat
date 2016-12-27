@@ -140,7 +140,7 @@ Route::get('{any}', function($any){
 
 /**
 * Actions of user
-*/
+*
 Route::post('/user/submit-fact',
   'UserController@submit_fact')
   ->middleware('auth');
@@ -153,7 +153,7 @@ Route::post('/user/change-reference',
 
 /**
 * Actions of student
-*/
+*
 Route::post('/student/approve-fact',
   'StudentController@approve_fact')
   ->middleware('auth'); // nanti cari middleware yang bisa filter student
@@ -163,7 +163,7 @@ Route::post('/student/reject-fact',
 Route::post('student/edit-reference-fact',
   'StudentController@edit_reference_fact')
   ->middleware('auth');
-
+*/
 
 
 
