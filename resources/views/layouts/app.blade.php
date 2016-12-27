@@ -130,6 +130,12 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <script >
+      window.___gcfg = {
+        lang: 'id'
+      };
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     @yield('head')
 </head>
 <body>

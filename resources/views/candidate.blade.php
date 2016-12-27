@@ -50,9 +50,7 @@
     margin-top: 0;
   }
   .panel-body > .pull-right.glyphicon-plus{
-    font-size: 20px;
-    margin-top: -5px;
-    font-weight: bold;
+    font-size: 12px;
     cursor: pointer;
   }
   .random-quote{
@@ -76,6 +74,7 @@
 @section('content')
     <div class="container">
       <h1>{{$c->name}}</h1>
+      <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
       <hr>
       <div class="row">
         <div class="col-md-2">

@@ -50,9 +50,7 @@
     margin-top: 0;
   }
   .panel-body > .pull-right.glyphicon-plus{
-    font-size: 20px;
-    margin-top: -5px;
-    font-weight: bold;
+    font-size: 12px;
     cursor: pointer;
   }
   .random-quote{
@@ -71,7 +69,6 @@
     padding-left: 17px;
   }
 </style>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 @endsection
 
@@ -155,7 +152,7 @@
                 <div class="panel-body">
                   <div class="head">
                     <img src="{{$c->photo_url}}" alt="">
-                    <h3><strong>{{$c->name}}</strong></h3>
+                    <h3><a href="{{url($c->urlname, [], $secure)}}"><strong>{{$c->name}}</strong></a></h3>
                     <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
                   </div>
                 </div>
