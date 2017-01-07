@@ -173,7 +173,15 @@
               <a href="{{url('tentang-kami', [], $secure)}}">Wikikandidat?</a>
             </li>
             <li>
-              <a href="{{url('cara-kontribusi', [], $secure)}}">Kontribusi</a>
+              
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kontribusi <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{url('cara-kontribusi', [], $secure)}}">Sebagai Penambah Fakta</a></li>
+                <li><a href="{{url('panduan-verifikasi', [], $secure)}}">Sebagai Verifikator (draft)</a></li>
+                <li><a href="{{url('inisiator', [], $secure)}}">Sebagai Organisasi Inisiator</a></li>
+              </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

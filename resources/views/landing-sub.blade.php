@@ -99,7 +99,7 @@
       <div class="well well-sm" style="background-color: #faebcc;">
         <div style="text-align: center; margin-bottom: 10px;">
           <i class="em em-loudspeaker"></i> <strong>Pengumuman! Buat kamu yang peduli dengan {{$election->place->name}}</strong> <i class="em em-speaker"></i><br>
-          <span class="text-muted">Mari bantu warga {{$election->place->name}} memilih pemimpin dengan lebih cerdas, rasional, dan obyektif</span>
+          <span class="text-muted">Bantu warga {{$election->place->name}} memilih pemimpin dengan lebih cerdas &amp; munculkan nama organisasi kamu di sini.</span>
         </div>
         <div class="row">
           <div class="col-md-5">

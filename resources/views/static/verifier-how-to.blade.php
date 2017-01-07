@@ -129,7 +129,7 @@ Panduan Lengkap Verifikator
 				'Skenario 1B: Kamu jadi verifikator kedua atau ketiga',
 				'1b',
 				'<p>
-					
+					(to be continued)
 				</p>'
 			]
 		];
