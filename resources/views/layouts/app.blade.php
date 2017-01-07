@@ -217,7 +217,10 @@
     @endif
 
     @yield('content')
-
+    
+    <footer class="footer">
+        In collaboration with Ristek
+    </footer>
     <!-- Scripts 
     <script src="/js/app.js"></script> -->
 
