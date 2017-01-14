@@ -172,9 +172,7 @@
             <li>
               <a href="{{url('tentang-kami', [], $secure)}}">Wikikandidat?</a>
             </li>
-            <li>
-              
-            </li>
+            <!--
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kontribusi <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -183,7 +181,9 @@
                 <li><a href="{{url('inisiator', [], $secure)}}">Sebagai Organisasi Inisiator</a></li>
               </ul>
             </li>
+            -->
           </ul>
+          <!--
           <ul class="nav navbar-nav navbar-right">
             @if(Auth::check())
                 <li><a href="{{url('verification', [], $secure)}}">Tugas Verifikasi</a></li>
@@ -204,6 +204,7 @@
                 <li><a href="{{url('login', [], $secure)}}">Login</a></li>
             @endif
           </ul>
+          -->
         </div>
       </div>
     </div>

@@ -160,7 +160,7 @@
                 </div>
               </div>
 
-              <h5><strong>Setelah membaca rekam jejak di bawah, seperti apa pandangan kamu tentang {{$c->nickname}}?</strong></h5>
+              <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
               <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
 
             </div>
@@ -176,7 +176,7 @@
                 </div>
               </div>
 
-              <h5><strong>Berdasarkan rekam jejak {{$rm->nickname}} di bawah, apa impian-impian terdalamnya?</strong></h5>
+              <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
               <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
 
 
@@ -190,33 +190,6 @@
       </div>
     </div>
 
-    <div class="modal fade" id="SubmitFactModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" >Tambah Fakta <span id="type"></span> <span id="nickname"></span></h4>
-          </div>
-          <div class="modal-body">
-            @if(Auth::check())
-              <form method="POST" action="user/process_new_fact_submission">
-                {{ csrf_field() }}
-                <div class="form-group">
-                  <label>Silahkan masukan fakta baru, jangan lupa, harus ditunjang bukti asli. Taruh ke link internet.</label>
-                  <textarea class="form-control" name="text" id="" rows="3"></textarea>
-                </div>
-                <input type="hidden" name="place_id" value="{{$election->place->id}}">
-                <input type="hidden" name="type_id" value="">
-                <input type="hidden" name="candidate_id" value="">
-                <button type="submit" class="btn btn-default">Submit</button>
-              </form>
-            @else
-            Login dahulu untuk memasukan fakta baru. Kalau ingin anonimus karena faktanya terlalu sensitif, ikuti petunjuk berikut. 
-            @endif
-          </div>
-        </div>
-      </div>
-    </div>
 @endsection
 
 @section('js')
