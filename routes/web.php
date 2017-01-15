@@ -18,12 +18,14 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-  foreach([1] as $i)
+/*  foreach([1] as $i)
   {
     $user = App\User::find($i);
     $user->password = bcrypt('wikikandidat');
     $user->save();
   }
+*/
+  var_dump( App\Candidate::where("urlname", "basuki_cp")->first() );
 });
 
 Route::post('/reveal-all', function(Request $r){
@@ -48,7 +50,6 @@ Route::post('/admin/add-election', 'AdminController@add_election');
 Route::post('/admin/add-candidate', 'AdminController@add_candidate');
 Route::post('/admin/add-couple', 'AdminController@add_couple');
 Route::post('/admin/add-party', 'AdminController@add_party');
-Route::post('/admin/assign-party-to-couple', 'AdminController@assign_party_to_couple');
 
 /**
 * Pages for reader
@@ -62,14 +63,15 @@ Route::get('/tentang-kami', function(){
   return view('static.about-2017-ver');
 });
 
-/*
-
-Route::get('/cara-kontribusi', function(){
-  return view('static.contribute');
-});
 Route::get('/contoh', function(){
   return view('static.example');
 });
+
+/*
+Route::get('/cara-kontribusi', function(){
+  return view('static.contribute');
+});
+
 Route::get('/panduan-verifikasi', function(){
   return view('static.verifier-how-to');
 });

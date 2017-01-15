@@ -12,15 +12,108 @@ Admin
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="well well-sm">
+
+        <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#tambahkandidat" role="tab" data-toggle="tab">Tambah Kandidat</a></li>
+        <li role="presentation"><a href="#tambahdapil" role="tab" data-toggle="tab">Tambah Dapil</a></li>
+        <li role="presentation"><a href="#tambahpasangan" role="tab" data-toggle="tab">Tambah Pasangan</a></li>
+        <li role="presentation"><a href="#tambahpartai" role="tab" data-toggle="tab">Tambah Partai</a></li>
+        <li role="presentation"><a href="#tambahverifikator" role="tab" data-toggle="tab">Tambah Verifikator</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="tambahkandidat">
+            <form action="{{url('admin/add-candidate')}}" method="POST">
+            <h3>Tambah Kandidat</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label class="control-label">Nama</label>
+                        <input name="name" type="text" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nama Panggilan</label>
+                        <input name="nickname" type="text" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">nama URL (wikikandidat.com/NamaURL) &mdash; format: namadominan_singkatannamasisanya &mdash; contoh: bh_obama atau sherlock_h (jika kebetulan sudah ada, kasih angka di ujung akhir contoh sherlock_h2. <strong>Cek dulu</strong>)</label>
+                        <input name="urlname" type="text" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Photo URL &mdash; copy alamat foto ybs di pilkada2017.kpu.go.id &mdash; <strong>jangan lupa tugas 'save as' foto dengan nama file NamaURL di atas (tanpa extension seperti png atau jpg)</strong></label>
+                        <input name="photo_url" type="text" class="form-control" required="">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Pendidikan</label>
+                        <textarea class="form-control"          style="width:100%;"
+                                  name="pendidikan"
+                                  rows="5" 
+                                  ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Karir/Organisasi</label>
+                        <textarea class="form-control"          style="width:100%;"
+                                  name="karir"
+                                  rows="5"
+                                  ></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Sumber dari Lembaga Pemerintah (Contoh: KPU, DPR.go.id, dll)</label>
+                        <textarea class="form-control"          style="width:100%;"
+                                  name="sumber_pemerintah"
+                                  rows="2"
+                                  ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Sumber dari non Lembaga Pemerintah (Contoh: website tim sukses atau website partai)</label>
+                        <textarea class="form-control"          style="width:100%;"
+                                  name="sumber_non_pemerintah"
+                                  rows="2"
+                                  ></textarea>
+                    </div>
+                    <div class="form-group">
+                            <label>Di Pilkada 2017 ada di dapil (silahkan bikin dulu kalau belum ada&mdash;daftar ini diurut dari yang terbaru)</label>
+                            <select name="election_id" class="form-control">
+                              <?php
+                                $elections = App\Election::all();
+                                $elections = $elections->sortByDesc('created_at');
+                              ?>
+                              @foreach($elections as $e)
+                                <option value="{{$e->id}}">{{$e->name}}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                    <button type="submit" class="btn btn-default">Simpan</button>
+                </div>
+            </div>
+            </form>
+        </div>  
+
+        <div role="tabpanel" class="tab-pane" id="tambahdapil">
+            <div class="row">
+                <div class="col-sm-6">
                     <h3>Tambah Tempat</h3>
                     <form action="{{url('admin/add-place')}}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="control-label">Nama Tempat</label>
+                            <label class="control-label">Nama Tempat (tanpa Prov. / Kab. / atau Kota)</label>
                             <input name="name" type="text" class="form-control" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>Tingkat</label>
+                            <select name="level" class="form-control">
+                                <option value="1">Provinsi</option>
+                                <option value="2">Kota</option>
+                                <option value="3">Kabupaten</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Kabupaten / kota dari provinsi</label>
@@ -28,6 +121,7 @@ Admin
                               <option value="0">(Hey! Tempat ini provinsi)</option>
                               <?php
                                 $provinces = App\Place::where('level', '=', 1)->get();
+                                $provinces = $provinces->sortBy('name');
                               ?>
                               @foreach($provinces as $p)
                                 <option value="{{$p->id}}">{{$p->name}}</option>
@@ -37,8 +131,151 @@ Admin
                          <button type="submit" class="btn btn-default">Simpan</button>
                     </form>
                 </div>
-                
-                <div class="well well-sm">
+                <div class="col-sm-6">
+                    <h3>Tambah Pemilihan</h3>
+                    <form action="{{url('admin/add-election')}}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label>Nama &mdash; format: Pilkada 2017 [NamaTempat] &mdash; contoh: Pilkada 2017 Kota Tangerang (dengan Prov., Kab., atau Kota)</label>
+                            <input name="name" type="text" class="form-control" required="">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">URL &mdash; format: pilkada-2017-[NamaTempat] &mdash; contoh: pilkada-2017-tangerang / pilkada-2017-jakarta-barat</label>
+                            <input name="urlname" type="text" class="form-control" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>Tempat</label>
+                            <select name="place_id" class="form-control">
+                              <?php
+                                $provinces = App\Place::all();
+                                 $provinces = $provinces->sortByDesc('created_at');
+                              ?>
+                              @foreach($provinces as $p)
+                                <option value="{{$p->id}}">{{$p->name}} &mdash;
+                                    @if($p->level == 1)
+                                        provinsi
+                                    @else
+                                        kabupaten / kota
+                                    @endif
+                                </option>
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kode Embed Video Debat</label>
+                            <textarea class="form-control"          style="width:100%;"
+                                  name="description"
+                                  rows="5"
+                                  ></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-default">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="tambahpartai">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Tambah Partai</h3>
+                    <form action="{{url('admin/add-party')}}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label>Nama Partai</label>
+                            <input name="name" type="text" class="form-control" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>Singkatan Partai</label>
+                            <input name="abbreviation" type="text" class="form-control" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>URL Logo Partai</label>
+                            <input name="photo_url" type="text" class="form-control" required="">
+                        </div>
+                        <button type="submit" class="btn btn-default">Tambah Partai</button>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+
+                </div>
+            </div>
+          
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="tambahpasangan">
+            <div class="row">
+                <form action="{{url('admin/add-couple')}}" method="POST">
+                <div class="col-sm-4">
+                    <h3>Tambah Pasangan</h3>
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label>Ketua</label>
+                            <select name="candidate_id" class="form-control">
+                              <?php
+                                $candidates = App\Candidate::all();
+                                $candidates = $candidates->sortByDesc('created_at');
+                              ?>
+                              @foreach($candidates as $c)
+                                <option value="{{$c->id}}">{{$c->name}}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Wakil</label>
+                            <select name="running_mate_id" class="form-control">
+                              <?php
+                                $candidates = App\Candidate::all();
+                                $candidates = $candidates->sortByDesc('created_at');
+                              ?>
+                              @foreach($candidates as $c)
+                                <option value="{{$c->id}}">{{$c->name}}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Urut</label>
+                            <input name="order" type="number" class="form-control" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>Di Dapil</label>
+                            <select name="election_id" class="form-control">
+                              <?php
+                                $elections = App\Election::all();
+                                $elections = $elections->sortByDesc('created_at');
+                              ?>
+                              @foreach($elections as $e)
+                                <option value="{{$e->id}}">{{$e->name}}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                </div>
+                <div class="col-sm-4">
+                    @php
+                        $parties = App\Party::all();
+                        $parties = $parties->sortBy('name');
+                    @endphp
+                    @foreach($parties as $p)
+                        <div class="checkbox">
+                          <label>
+                            <input  type="checkbox"
+                                    value="{{$p->id}}"
+                                    name="party[]">
+                            {{$p->name}} ({{$p->abbreviation}})
+                          </label>
+                        </div>
+                    @endforeach
+                    <button type="submit" class="btn btn-default">Tambah Pasangan</button>
+                </div>
+                <div class="col-sm-4">
+                    
+                </div>
+                </form>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="tambahverifikator">
+            <div class="row">
+                <div class="col-sm-6">
                     <h3>Tambah Universitas</h3>
                     <form action="{{url('admin/add-uni')}}" method="POST">
                         {{ csrf_field() }}
@@ -50,11 +287,13 @@ Admin
                             <label class="control-label">Singkatan</label>
                             <input name="abbreviation" type="text" class="form-control" required="">
                         </div>
+
                         <div class="form-group">
                             <label>Tempat</label>
                             <select name="place_id" class="form-control">
                               <?php
                                 $provinces = App\Place::all();
+                                $provinces = $provinces->sortByDesc('created_at');
                               ?>
                               @foreach($provinces as $p)
                                 <option value="{{$p->id}}">{{$p->name}}</option>
@@ -63,7 +302,8 @@ Admin
                         </div>
                         <button type="submit" class="btn btn-default">Simpan</button>
                     </form>
-
+                </div>
+                <div class="col-sm-6">
                     <h3>Tambah Verifikator</h3>
                     <form action="{{url('admin/promote-verifier')}}" method="POST">
                         {{ csrf_field() }}
@@ -102,154 +342,11 @@ Admin
                         </div>
                         <button type="submit" class="btn btn-default">Buat Dia Jadi Verifikator</button>
                     </form>
-
-                    <h3></h3>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="well well-sm">
-                    <h3>Tambah Pemilihan</h3>
-                    <form action="{{url('admin/add-election')}}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label>Nama &mdash; format: Pilkada [NamaTempat]</label>
-                            <input name="name" type="text" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">URL &mdash; format: pilkada-2017-[NamaTempatSingkatan]</label>
-                            <input name="urlname" type="text" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>Tempat</label>
-                            <select name="place_id" class="form-control">
-                              <?php
-                                $provinces = App\Place::all();
-                              ?>
-                              @foreach($provinces as $p)
-                                <option value="{{$p->id}}">{{$p->name}}</option>
-                              @endforeach
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-default">Simpan</button>
-                    </form>
-                    <h3>Tambah Kandidat</h3>
-                    <form action="{{url('admin/add-candidate')}}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label class="control-label">Nama</label>
-                            <input name="name" type="text" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Nama Panggilan</label>
-                            <input name="nickname" type="text" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">URL &mdash; format: namautama_singkatannamasisanya</label>
-                            <input name="urlname" type="text" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Photo URL</label>
-                            <input name="photo_url" type="text" class="form-control" required="">
-                        </div>
-                        <button type="submit" class="btn btn-default">Simpan</button>
-                    </form>
-                    
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="well well-sm">
-                    <h3>Tambah Pasangan</h3>
-                    <form action="{{url('admin/add-couple')}}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label>Ketua</label>
-                            <select name="candidate_id" class="form-control">
-                              <?php
-                                $candidates = App\Candidate::all();
-                              ?>
-                              @foreach($candidates as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
-                              @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Wakil</label>
-                            <select name="running_mate_id" class="form-control">
-                              <?php
-                                $candidates = App\Candidate::all();
-                              ?>
-                              @foreach($candidates as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
-                              @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Nomor Urut</label>
-                            <input name="order" type="number" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>Di Pemilihan</label>
-                            <select name="election_id" class="form-control">
-                              <?php
-                                $elections = App\Election::all();
-                              ?>
-                              @foreach($elections as $e)
-                                <option value="{{$e->id}}">{{$e->name}}</option>
-                              @endforeach
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-default">Tambah Pasangan</button>
-                    </form>
-                    <h3>Tambah Partai</h3>
-                    <form action="{{url('admin/add-party')}}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label>Nama Partai</label>
-                            <input name="name" type="text" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>Singkatan Partai</label>
-                            <input name="abbreviation" type="text" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>URL Logo Partai</label>
-                            <input name="photo_url" type="text" class="form-control" required="">
-                        </div>
-                        <button type="submit" class="btn btn-default">Tambah Partai</button>
-                    </form>
-                    <h3>Tambah Partai ke Pasangan</h3>
-                    <form action="{{url('admin/assign-party-to-couple')}}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label>Nama Pasangan</label>
-                            <select name="couple_id" class="form-control">
-                                <?php
-                                $couples = App\Couple::all();
-                                ?>
-                                @foreach($couples as $c)
-                                    <option value="{{$c->id}}">{{$c->candidate->nickname}}-{{$c->running_mate->nickname}} @ {{$c->election->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Nama Partai Pendukung</label>
-                            <select name="party_id" class="form-control">
-                                <?php
-                                $parties = App\Party::all();
-                                ?>
-                                @foreach($parties as $p)
-                                    <option value="{{$p->id}}">{{$p->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-default">Tambah Dukungan</button>
-                    </form>
-                </div>
-            </div>
+        </div> 
+                
+                
         </div>
-        
-            
-        
-        
     </div>
 @endsection

@@ -31,11 +31,11 @@ class AdminController extends Controller
     {
     	$request->session()->flash('status', 'Gagal tersimpan..');
 
-    	$level = 1;
+    	$level = $request->input("level");
     	$parent_id = null;
     	if($request->input("parent_id") != 0)
     	{
-    		$level = 2;
+    		$level = 3;
     		$parent_id = $request->input("parent_id");
     	}
 
@@ -90,7 +90,7 @@ class AdminController extends Controller
     		'urlname' => $request->input('urlname'),
     		'is_gov' => true,
     		'vote_date' => '2017-02-15',
-    		'description' => "-",
+    		'description' => $request->input('description'),
     		'place_id' => $request->input('place_id')
     		]);
 
@@ -103,30 +103,60 @@ class AdminController extends Controller
     {
     	$request->session()->flash('status', 'Gagal tersimpan..');
 
-    	Candidate::create([
-    		'name' => $request->input("name"),
-    		'nickname' => $request->input("nickname"),
-    		'urlname' => $request->input("urlname"),
-    		'photo_url' => $request->input("photo_url")
-    		]);
+        // kalau urlnamenya ga duplikat
+        if( Candidate::where("urlname", $request->input("urlname"))->first() == null )
+        {
+            Candidate::create([
+                'name' => $request->input("name"),
+                'nickname' => $request->input("nickname"),
+                'urlname' => $request->input("urlname"),
+                'photo_url' => $request->input("photo_url"),
+                'pendidikan' => $request->input("pendidikan"),
+                'karir' => $request->input("karir"),
+                'sumber_pemerintah' => $request->input("sumber_pemerintah"),
+                'sumber_non_pemerintah' => $request->input("sumber_non_pemerintah"),
+                'election_id' => $request->input("election_id"),
+                'entrier_id' => Auth::user()->id
+            ]);
 
-    	$request->session()->flash('status', $request->input("name").' berhasil tersimpan..');
+            $request->session()->flash('status', $request->input("name").' berhasil tersimpan..');
+        }else{
+            $request->session()->flash('status', $request->input("name").' gagal tersimpan.. '.$request->input("urlname").' sudah ada yang punya');
+        }
 
     	return redirect('/admin');
     }
 
     public function add_couple(Request $request)
     {
+        
     	$request->session()->flash('status', 'Gagal tersimpan..');
 
-    	$couple = Couple::create([
-    		'election_id' => $request->input('election_id'),
-    		'order' => $request->input('order'),
-    		'candidate_id' => $request->input('candidate_id'),
-    		'running_mate_id' => $request->input('running_mate_id')
-    		]);
+        if( $request->input('candidate_id') != $request->input('running_mate_id') )
+        {
+            $couple = Couple::create([
+                'election_id' => $request->input('election_id'),
+                'order' => $request->input('order'),
+                'candidate_id' => $request->input('candidate_id'),
+                'running_mate_id' => $request->input('running_mate_id')
+            ]);
 
-    	$request->session()->flash('status', 'Pasangan '.$couple->candidate->nickname.'-'.$couple->running_mate->nickname.' berhasil tersimpan..');
+            foreach ($request->input('party') as $p) {
+                $result = DB::table('couple_party')
+                    ->where('couple_id', $couple->id)
+                    ->where('party_id', $p)
+                    ->get();
+                if(count($result) == 0)
+                {
+                    DB::table('couple_party')->insert([
+                        'couple_id' => $couple->id,
+                        'party_id' => $p
+                        ]);
+                }
+            }
+
+            $request->session()->flash('status', 'Pasangan '.$couple->candidate->nickname.'-'.$couple->running_mate->nickname.' berhasil tersimpan..');
+        }
 
     	return redirect('/admin');
     }
@@ -146,30 +176,6 @@ class AdminController extends Controller
     	return redirect('/admin');
     }
 
-    public function assign_party_to_couple(Request $request)
-    {
-    	$request->session()->flash('status', 'Gagal tersimpan..');
-
-    	$result = DB::table('couple_party')
-                    ->where('couple_id', $request->input('couple_id'))
-                    ->where('party_id', $request->input('party_id'))
-                    ->get();
-
-        if(count($result) == 0)
-        {
-        	DB::table('couple_party')->insert([
-	    		'couple_id' => $request->input('couple_id'),
-			    'party_id' => $request->input('party_id')
-			    ]);
-
-	    	$couple = Couple::find($request->input('couple_id'));
-	    	$party = Party::find($request->input('party_id'));
-
-	    	$request->session()->flash('status', 'Dukungan partai '.$party->name.' ke pasangan '.$couple->candidate->nickname.'-'.$couple->running_mate->nickname.' berhasil tersimpan..');
-        }
-
-    	return redirect('/admin');
-    }
 
     public function template(Request $request)
     {

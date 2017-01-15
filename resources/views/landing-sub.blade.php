@@ -74,10 +74,12 @@
 
 @section('content')
     <div class="container">
+      <!--
       <p class="pull-right random-quote"><strong>Makin cerdas pemilih, makin keren pemimpinnya!</strong><br>Wikikandidat adalah museum rekam jejak kandidat.<br>Semua bisa menambah/mengubah rekam jejak,<br>tapi hanya informasi yang valid menurut tiga mahasiswa acak yang tampil.<br>
       <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa', [], $secure)}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi', [], $secure)}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
        <a href="{{url('/tentang-kami#kontak', [], $secure)}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
       </p>
+      -->
       <h1>{{$election->name}}</h1>
       <div class="btn-group">
         <a href="#" class="btn btn-default btn-lg">Provinsi</a>
@@ -160,6 +162,34 @@
                 </div>
               </div>
 
+              <div class="panel panel-default" >
+                <div class="panel-body">
+                  <strong>Pendidikan:</strong><br>
+                  {!!markdown($c->pendidikan)!!}
+                </div>
+              </div>
+
+              <div class="panel panel-default" >
+                <div class="panel-body">
+                  <strong>Karir &amp; Organisasi:</strong><br>
+                  {!!markdown($c->karir)!!}
+                </div>
+              </div>
+
+              <div class="panel panel-default" >
+                <div class="panel-body">
+                  <strong>Sumber data lembaga pemerintah:</strong><br>
+                  {!!markdown($c->sumber_pemerintah)!!}
+                </div>
+              </div>
+
+              <div class="panel panel-default" >
+                <div class="panel-body">
+                  <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+                  {!!markdown($c->sumber_pemerintah)!!}
+                </div>
+              </div>
+
               <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
               <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
 
@@ -176,9 +206,36 @@
                 </div>
               </div>
 
+              <div class="panel panel-default" >
+                <div class="panel-body">
+                  <strong>Pendidikan:</strong><br>
+                  {!!markdown($rm->pendidikan)!!}
+                </div>
+              </div>
+
+              <div class="panel panel-default" >
+                <div class="panel-body">
+                  <strong>Karir &amp; Organisasi:</strong><br>
+                  {!!markdown($rm->karir)!!}
+                </div>
+              </div>
+
+              <div class="panel panel-default" >
+                <div class="panel-body">
+                  <strong>Sumber data lembaga pemerintah:</strong><br>
+                  {!!markdown($rm->sumber_pemerintah)!!}
+                </div>
+              </div>
+
+              <div class="panel panel-default" >
+                <div class="panel-body">
+                  <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+                  {!!markdown($rm->sumber_pemerintah)!!}
+                </div>
+              </div>
+
               <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
               <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
-
 
             </div>
           </div>
