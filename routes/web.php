@@ -38,7 +38,11 @@ Route::post('/reveal-all', function(Request $r){
 
 Route::get('/admin', function(){  
   if(Auth::user() && 
-      ( Auth::user()->id == 1 || Auth::user()->id == 6 ) )
+      ( Auth::user()->id == 1 ||
+        Auth::user()->id == 6 ||
+        Auth::user()->id == 13 ||
+        Auth::user()->id == 14
+         ))
   {
     return view('admin');
   }

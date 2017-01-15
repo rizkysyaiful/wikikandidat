@@ -135,6 +135,7 @@
         </div>
       </div>
       -->
+      {!!$election->description!!}
       <div class="row">
         <?php
           $types =  App\Type::all();
@@ -201,7 +202,7 @@
                 <div class="panel-body">
                   <div class="head">
                     <img src="{{$rm->photo_url}}" alt="">
-                    <h3><strong>{{$rm->name}}</strong></h3>
+                    <h3><a href="{{url($rm->urlname, [], $secure)}}"><strong>{{$rm->name}}</strong></a></h3>
                   </div>
                 </div>
               </div>
