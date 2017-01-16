@@ -76,35 +76,42 @@
     <div class="container">
       <h1>{{$election->name}}</h1>
       <div class="btn-group">
-        <a href="#" class="btn btn-default btn-lg">Provinsi</a>
+        <a href="#" class="btn btn-default btn-lg">Cari Pemilihan Lain</a>
         <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{{url('pilkada-2017-aceh', [], $secure)}}" href="pilkada-2017-aceh">Aceh</a></li>
-          <li><a href="{{url('pilkada-2017-babel', [], $secure)}}" href="">Bangka Belitung</a></li>
-          <li><a href="{{url('/', [], $secure)}}" href="pilkada-2017-jakarta">DKI Jakarta</a></li>
-          <li><a href="{{url('pilkada-2017-banten', [], $secure)}}" href="pilkada-2017-banten">Banten</a></li>
-        </ul>
-      </div>
-      <div class="btn-group">
-        <a href="#" class="btn btn-default btn-lg">Kota/Kab</a>
-        <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-        <ul class="dropdown-menu">
+          @php
+            $elections =  App\Election::all();
+            $elections = $elections->sortBy('name');
+          @endphp
+          @foreach($elections as $e)
+            <?php 
+              if($e->place->level == 1)
+                $prefix = "Prov.";
+              if($e->place->level == 2)
+                $prefix = "Kota";
+              if($e->place->level == 3)
+                $prefix = "Kab.";
+            ?>
+            <li><a href="{{url($e->urlname, [], $secure)}}">{{$prefix}} {{$e->place->name}}</a></li>
+          @endforeach
         </ul>
       </div>
       <hr>
-      @php 
-        $videos = explode(", ", $election->description);
-      @endphp
-      <div class="row">
-        @foreach($videos as $v)
-          <div class="col-sm-3">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$v}}" allowfullscreen></iframe>
-            </div>  
-          </div>
-        @endforeach
-      </div>
-      <hr>
+      @if($election->description != "")
+        @php
+          $videos = explode(", ", $election->description);
+        @endphp
+        <div class="row">
+          @foreach($videos as $v)
+            <div class="col-sm-3">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$v}}" allowfullscreen></iframe>
+              </div>  
+            </div>
+          @endforeach
+        </div>
+        <hr>
+      @endif
       <div class="row">
         <?php
           $types =  App\Type::all();
