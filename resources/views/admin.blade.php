@@ -1,3 +1,6 @@
+<?php
+    $secure = App::environment('production') ? true : NULL;
+?>
 @extends('layouts.app')
 
 @section('title')
@@ -5,7 +8,7 @@ Admin
 @endsection
 
 @section('head')
-<link rel="stylesheet" type="text/css" href="http://bootstrap-wysiwyg.github.io/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.min.css">
+<link rel="stylesheet" href="{{asset('css/bootstrap3-wysihtml5.min.css', $secure)}}">
 <style type="text/css">
     
 </style>
@@ -315,9 +318,9 @@ Admin
 @endsection
 
 @section('js')
-    <script src="http://bootstrap-wysiwyg.github.io/bootstrap3-wysiwyg/components/wysihtml5x/dist/wysihtml5x-toolbar.min.js"></script>
-    <script src="http://bootstrap-wysiwyg.github.io/bootstrap3-wysiwyg/components/handlebars/handlebars.runtime.min.js"></script>
-    <script src="http://bootstrap-wysiwyg.github.io/bootstrap3-wysiwyg/dist/bootstrap3-wysihtml5.min.js"></script>
+    <script src="{{asset('js/bootstrap3-wysiwyg/wysihtml5x-toolbar.min.js', $secure)}}"></script>
+    <script src="{{asset('js/bootstrap3-wysiwyg/handlebars.runtime.min.js', $secure)}}"></script>
+    <script src="{{asset('js/bootstrap3-wysiwyg/bootstrap3-wysihtml5.min.js', $secure)}}"></script>
     <script>
       $('textarea').wysihtml5({
         toolbar: {
