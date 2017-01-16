@@ -33,7 +33,7 @@ Admin
       <div class="tab-content">
 
         <div role="tabpanel" class="tab-pane active" id="tambahkandidat">
-            <form action="{{url('admin/add-candidate')}}" method="POST">
+            <form action="{{url('admin/add-candidate', [], $secure)}}" method="POST">
             <h3>Tambah Kandidat</h3>
             <div class="row">
                 <div class="col-sm-4">
@@ -115,7 +115,7 @@ Admin
             <h3>Tambah Dapil</h3>
             <div class="row">
                 <div class="col-sm-6">
-                    <form action="{{url('admin/add-election')}}" method="POST">
+                    <form action="{{url('admin/add-election', [], $secure)}}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Tingkat</label>
@@ -143,7 +143,7 @@ Admin
             <div class="row">
                 <div class="col-sm-6">
                     <h3>Tambah Partai</h3>
-                    <form action="{{url('admin/add-party')}}" method="POST">
+                    <form action="{{url('admin/add-party', [], $secure)}}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Nama Partai</label>
@@ -169,7 +169,7 @@ Admin
 
         <div role="tabpanel" class="tab-pane" id="tambahpasangan">
             <div class="row">
-                <form action="{{url('admin/add-couple')}}" method="POST">
+                <form action="{{url('admin/add-couple', [], $secure)}}" method="POST">
                 <div class="col-sm-4">
                     <h3>Tambah Pasangan</h3>
                         {{ csrf_field() }}
@@ -243,7 +243,7 @@ Admin
             <div class="row">
                 <div class="col-sm-6">
                     <h3>Tambah Universitas</h3>
-                    <form action="{{url('admin/add-uni')}}" method="POST">
+                    <form action="{{url('admin/add-uni', [], $secure)}}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="control-label">Nama</label>
@@ -271,7 +271,7 @@ Admin
                 </div>
                 <div class="col-sm-6">
                     <h3>Tambah Verifikator</h3>
-                    <form action="{{url('admin/promote-verifier')}}" method="POST">
+                    <form action="{{url('admin/promote-verifier', [], $secure)}}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Nama &amp; Email Pengguna</label>
