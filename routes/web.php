@@ -50,7 +50,7 @@ Route::get('/admin', function(){
 Route::post('/admin/add-place', 'AdminController@add_place');
 Route::post('/admin/add-uni', 'AdminController@add_uni');
 Route::post('/admin/promote-verifier', 'AdminController@promote_verifier');
-Route::post('/admin/add-election', 'AdminController@add_election');
+Route::post('/admin/add-election', 'AdminController@add_election_2017_ver');
 Route::post('/admin/add-candidate', 'AdminController@add_candidate');
 Route::post('/admin/add-couple', 'AdminController@add_couple');
 Route::post('/admin/add-party', 'AdminController@add_party');
