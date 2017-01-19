@@ -217,12 +217,15 @@
 
       </div>
     </div>
-
+    <div id="root">
+    </div>
 @endsection
 
 @section('js')
     <script>
       $(document).ready(function(){
+        import React from 'react';
+        import ReactDOM from 'react-dom';
         $('.panel-body > .pull-right.glyphicon-plus').click(function (e) {
           $("#SubmitFactModal input[name='eternal_url']").val("");
           $("#SubmitFactModal input[name='text']").val("");
@@ -238,4 +241,7 @@
         });
       });
     </script>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="{{asset('js/compiled/face-support.js')}}"></script>
 @endsection
