@@ -51,7 +51,7 @@ Inisiator
 							Akan lebih baik kalau ada juga organisasi-organisasi mahasiswa lain di perahu. Di perahu itu, kita semua sadar, kalau Wikikandidat berkualitas &amp; populer, kita semua sama-sama dapat hasil.
 						</p>
 						<p>
-							Pilkada 2017 kebetulan diadakan di banyak dapil. Tentu banyak tersebar organisasi mahasiswa daerah yang secara hati dan fisik lebih dekat dengan warga di dapil tersebut.
+							Pilkada 2017 kebetulan diadakan di banyak dapil. Tentu banyak tersebar organisasi mahasiswa daerah&mdash;yang secara hati dan fisik lebih dekat dengan warga di sebuah dapil.
 						</p>
 					</li>
 				</ol>
@@ -135,7 +135,7 @@ Inisiator
 					<img class="img-thumbnail" src="'.asset('img/wikikandidat-interaktif.png', $secure).'" alt="">
 				</p>
 				<p>
-					Pengunjung akan segera menyadari kalau, dia bisa melihat komentar temannya di masa lampau. Yang artinya, komentar dia sendiri akan dilihat teman-temannya di masa depan. 
+					Pengunjung akan segera menyadari kalau, dia bisa melihat komentar temannya di masa lampau. Yang artinya, dia sadar, komentar dia sendiri akan dilihat teman-temannya di masa depan. 
 				</p>
 				<blockquote>
 					<p>
@@ -215,14 +215,14 @@ Inisiator
 						...Tim lalu berusaha melengkapi rekam jejak semua kandidat. Beberapa KPUD merilis rekam jejak. Jika tidak, tim perlu menghubungi tim sukses tiap kandidat. Riset dari media massa juga dimungkinkan. Standar sumber kredibel menurut Wikikandidat akan jelas tersedia.<br><br>
 					</li>
 					<li>
-						Di titik ini, rekam jejak kandidat sudah lengkap dan tertulis di format Wikikandidat. Namun masih di berkas docx, belum di wikikandidat.com. Selanjutnya, Seluruh anggota tim melakukan pemasukan sekaligus verifikasi di wikikandidat.com. Proses ini cepat, tidak lebih dari satu hari, karena memang data sudah dirapihkan &amp; diedit bersama-sama.<br><br>
+						Di titik ini, rekam jejak kandidat sudah lengkap dan tertulis di format Wikikandidat. Namun masih di berkas docx, belum di wikikandidat.com. Selanjutnya, Seluruh anggota tim melakukan pemasukan sekaligus verifikasi di wikikandidat.com. Proses ini cepat, tidak lebih dari satu hari, karena memang data sudah  diedit oleh Contact Person dapil tim.<br><br>
 					</li>
 					<li>
 						Hore! Sebuah halaman dapil resmi bisa digunakan. Contact person dapil akan segera menampilkan logo organisasi kamu. Sebarkan seluas mungkin.<br><br>
 					</li>
 				</ol>
 				<p>
-					Sepanjang langkah-langkah tersebut, organisasi kamu akan dipandu oleh contact person dari dapil.
+					Sepanjang langkah-langkah tersebut, organisasi kamu akan selalu dipandu oleh contact person dari dapil.
 				</p>
 				<p>
 					Jadi tunggu apa lagi, segera hubungi contact person. Ada di bagian atas tiap halaman dapil Wikikandidat.
@@ -237,7 +237,7 @@ Inisiator
 					Oke. Biaya (cost) dan hasil (benefit) sudah dijelaskan. Bagaimana dengan resiko (risk)?
 				</p>
 				<p>
-					<em>Selain fakta bahwa kami suka transparansi, membahas resiko adalah sesuatu yang bagus. Entrepreneur adalah pengambil resiko, tapi entrepreneur yang bagus adalah yang tahu "meski hal terburuk terjadi, mereka tidak akan rugi".</em>
+					<em>Selain fakta bahwa filosofi Wikikandidat itu adalah transparansi, transparan terhadap resiko adalah sesuatu yang bagus. Semua entrepreneur adalah pengambil  resiko, tapi entrepreneur yang bagus adalah yang tahu "meski hal terburuk terjadi, mereka tidak akan rugi".</em>
 				</p>
 				<p>
 					Apa kemungkinan terburuk dari membantu Wikikandidat?
@@ -254,7 +254,7 @@ Inisiator
 					Tapi tetap saja, Wikikandidat tidak bisa digugat. Karena Wikikandidat hanya mengumpulkan dan merangkum informasi-informasi yang sudah dirilis ke publik.
 				</p>
 				<p>
-					Kalau ada masalah, perilis informasi-lah yang digugat&mdash;bukan organisasi mahasiswa kamu. Informasi di Wikikandidat bisa segera diperbarui  jika ternyata sumbernya tidak relevan lagi.
+					Kalau ada masalah, perilis informasi-lah yang digugat&mdash;bukan organisasi mahasiswa kamu. Selain itu, informasi di Wikikandidat bisa segera diperbarui jika ternyata sumbernya tidak relevan lagi.
 				</p>
 				<p>
 					Dalam proses riset di awal, seluruh organisasi mahasiswa akan menggunakan definisi sumber kredibel yang sama.
@@ -274,14 +274,14 @@ Inisiator
 					Apa benar Wikikandidat akan laris manis?
 				</p>
 				<p>
-					Meski dengan segala visi luhurnya, 25.928 penggunanya di tahun 2014,  fitur-fitur inovatif saat ini, anggaplah pengunjungnya di pilkada 2017 ini sedikit.
+					Meski dengan segala visi luhurnya, 25.928 penggunanya di tahun 2014,  fitur-fitur inovatifnya saat ini, anggaplah Wikikandidat di pilkada 2017 ini sepi pengunjung.
 				</p>
 				<p>
 					Anggaplah usaha dua hari penuh, lima orang di organisasi kamu, dalam melengkapi dan memasukan data inisial kandidat di sebuah dapil, hanya membawa 100 pengunjung & hanya 10 yang memberi komentar tentang kandidat.
 				</p>
 				<blockquote>
 					<p>
-						Di skenario terburuk itu, kerugian konkrit kamu <u>hanyalah</u> dukungan (dana) lebih dari almamater organisasi.
+						Di skenario terburuk itu, kerugian konkrit kamu <u>hanyalah</u> peluang peningkatan dukungan (dana) dari almamater organisasi.
 					</p>
 				</blockquote>
 				<p>
@@ -294,7 +294,7 @@ Inisiator
 					Kenapa?
 				</p>
 				<p>
-					Karena kamu tetap membuat orang lain bahagia&mdash;meski orangnya tidak banyak. Apalagi kalau orang tersebut adalah memang <em>base follower</em> kamu.
+					Karena kamu tetap membuat orang lain bahagia&mdash;meski orangnya tidak banyak. Kamu tetap melayani <em>base follower</em> kamu.
 				</p>
 				<p>
 					Seburuk-buruknya, dua hari milik lima orang anggota kamu telah merubah  infografis statik seperti ini...
@@ -321,7 +321,7 @@ Inisiator
 					Karena di skenario terburuk-pun kamu tidak merugi, melengkapi data inisial sebuah dapil adalah langkah mereka yang berjiwa entrepreneur sukses.
 				</p>
 				<p>
-					<a data-scroll href="#usaha">Segera lakukan</a>.
+					<a data-scroll href="#usaha">Segera bantu lengkapi</a>.
 				</p>
 				'
 			]

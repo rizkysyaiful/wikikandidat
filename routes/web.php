@@ -59,8 +59,11 @@ Route::get('/', function () {
 });
 
 Route::get('/tentang-kami', function(){
-  return view('static.about');
+  return view('static.about-2017-ver');
 });
+
+/*
+
 Route::get('/cara-kontribusi', function(){
   return view('static.contribute');
 });
@@ -74,11 +77,13 @@ Route::get('/inisiator', function(){
   return view('static.inisiator');
 });
 
+*/
 
+/*
 Route::get('/daftar', function(){
   echo "Wikikandidat.com masih dalam tahap closed-beta.<br> Artinya, penambah data & verifikator masih direkrut dengan interview tatap muka.<br>Desember ini akan fokus merekrut di Universitas Indonesia Depok.<br><br>Ikuti perkembangan pergerakan kami di <a href='http://wikikandidat.tumblr.com'>wikikandidat.tumblr.com</a><br>
     Dari sisi pengembangan software di <a href='https://github.com/rizkysyaiful/wikikandidat#readme'>github.com/rizkysyaiful/wikikandidat#readme</a><br><br>Tertarik bantu? Hubungi kami di rizky.syaiful@gmail.com."; 
-});
+});*/
 Auth::routes();
 /*Route::get('/login', 'Auth\LoginController@showLoginForm' );
 Route::post('/login', 'Auth\LoginController@login');
