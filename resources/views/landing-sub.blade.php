@@ -136,12 +136,23 @@
       <div class="row">
         <?php
           $types =  App\Type::all();
+          $count = $election->couples->count();
+          for($i = 0; $i < 2; $i++)
+            $cand[$i] = rand(1,$count);
+
+          while($cand[0] == $cand[1])
+            $cand[1] = rand(1, $count);
+
+          $i = 0;
         ?>
-        @foreach($election->couples->sortBy('order') as $co)
           <?php
-            $c = App\Candidate::find($co->candidate_id);
-            $rm = App\Candidate::find($co->running_mate_id);
+            $wcand1 = App\Couple::find($cand[$i])->running_mate_id;
+            $cand1 = App\Couple::find($cand[$i])->candidate_id;
+
+            $c = App\Candidate::find($cand1);
+            $rm = App\Candidate::find($wcand1);
           ?>
+          <div class="candidate1">
           <div class="col-md-3">
             <div class="panel panel-default" >
               <div class="panel-body">
@@ -169,54 +180,46 @@
             <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
             <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
           </div>
-          <?php /*
-        <div class="col-md-4">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#primary-tab-{{$co->id}}" class="btn-md" data-toggle="tab" aria-expanded="true">{{$c->nickname}}</a></li>
-            <li class=""><a href="#vice-tab-{{$co->id}}" class="btn-md" data-toggle="tab" aria-expanded="false">{{$rm->nickname}}</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane fade active in" id="primary-tab-{{$co->id}}">
+        </div>
+        <?php $i++ ?>
+        <?php
+          $wcand1 = App\Couple::find($cand[$i])->running_mate_id;
+          $cand1 = App\Couple::find($cand[$i])->candidate_id;
 
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <div class="head">
-                    <img src="{{$c->photo_url}}" alt="">
-                    <h3><a href="{{url($c->urlname, [], $secure)}}"><strong>{{$c->name}}</strong></a></h3>
-                    <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
-                  </div>
-                </div>
+          $c = App\Candidate::find($cand1);
+          $rm = App\Candidate::find($wcand1);
+        ?>
+        <div class="candidate2">
+        <div class="col-md-3">
+          <div class="panel panel-default" >
+            <div class="panel-body">
+              <div class="head">
+                <img src="{{$c->photo_url}}" alt="">
+                <h3><a href="{{url($c->urlname, [], $secure)}}"><strong>{{$c->name}}</strong></a></h3>
+                <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
               </div>
-
-              <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
-              <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
-
-            </div>
-
-            <div class="tab-pane fade" id="vice-tab-{{$co->id}}">
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <div class="head">
-                    <img src="{{$rm->photo_url}}" alt="">
-                    <h3><strong>{{$rm->name}}</strong></h3>
-                  </div>
-                </div>
-              </div>
-
-              <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
-              <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
-
-
             </div>
           </div>
+
+          <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+          <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
         </div>
-        */?>
+        <div class="col-md-3">
+          <div class="panel panel-default" >
+            <div class="panel-body">
+              <div class="head">
+                <img src="{{$rm->photo_url}}" alt="">
+                <h3><strong>{{$rm->name}}</strong></h3>
+              </div>
+            </div>
+          </div>
 
-        @endforeach
-
+          <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+          <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
+        </div>
       </div>
     </div>
+  </div>
     <div id="root">
     </div>
 @endsection
