@@ -29,7 +29,7 @@
   .panel-body > .data{
     border-bottom: 1px solid #cacaca;
     padding: 2px 5px;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
   }
   .data.first{
     border-top: 1px solid #cacaca;
@@ -38,7 +38,7 @@
     margin-top: 3px;
     padding-left: 0.5em;
     padding-right: 0.5em;
-    margin-left: 5px; 
+    margin-left: 5px;
     cursor: pointer;
   }
   .panel-body .corner-date{
@@ -123,7 +123,7 @@
             @endif
           </div>
         </div>
-        <?php 
+        <?php
           $cp = App\User::find($election->cp);
         ?>
         <div style="text-align: center; padding-top: 10px;">
@@ -138,10 +138,38 @@
           $types =  App\Type::all();
         ?>
         @foreach($election->couples->sortBy('order') as $co)
-          <?php 
+          <?php
             $c = App\Candidate::find($co->candidate_id);
             $rm = App\Candidate::find($co->running_mate_id);
           ?>
+          <div class="col-md-3">
+            <div class="panel panel-default" >
+              <div class="panel-body">
+                <div class="head">
+                  <img src="{{$c->photo_url}}" alt="">
+                  <h3><a href="{{url($c->urlname, [], $secure)}}"><strong>{{$c->name}}</strong></a></h3>
+                  <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
+                </div>
+              </div>
+            </div>
+
+            <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+            <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
+          </div>
+          <div class="col-md-3">
+            <div class="panel panel-default" >
+              <div class="panel-body">
+                <div class="head">
+                  <img src="{{$rm->photo_url}}" alt="">
+                  <h3><strong>{{$rm->name}}</strong></h3>
+                </div>
+              </div>
+            </div>
+
+            <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+            <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
+          </div>
+          <?php /*
         <div class="col-md-4">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#primary-tab-{{$co->id}}" class="btn-md" data-toggle="tab" aria-expanded="true">{{$c->nickname}}</a></li>
@@ -149,7 +177,7 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane fade active in" id="primary-tab-{{$co->id}}">
-            
+
               <div class="panel panel-default" >
                 <div class="panel-body">
                   <div class="head">
@@ -183,10 +211,10 @@
             </div>
           </div>
         </div>
-    
+        */?>
 
         @endforeach
-        
+
       </div>
     </div>
 
@@ -203,7 +231,7 @@
           $("#SubmitFactModal span#nickname").html( $(this).data("nickname") );
           $("#SubmitFactModal span#type").html( $(this).data("fact-type-name") );
         });
-        
+
         $(".div-replace-reference").hide();
         $('.toggle-replace-reference').click(function(){
           $('#replaceReference-'+$(this).data('id') ).slideToggle("slow");
