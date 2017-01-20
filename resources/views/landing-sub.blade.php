@@ -225,10 +225,6 @@
 @endsection
 
 @section('js')
-
-    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
-    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
-    <script src="{{asset('compiled-js/face-support.js')}}"></script>
     <script>
       $(document).ready(function(){
         $('.panel-body > .pull-right.glyphicon-plus').click(function (e) {
@@ -246,8 +242,5 @@
         });
 
       });
-    </script>
-    <script>
-      candidate1.setState({url:'{{$c->photo_url}}', name:'{{}}'});
     </script>
 @endsection
