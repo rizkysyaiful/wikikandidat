@@ -3,7 +3,7 @@
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch",
-    "build": "babel public/js -d public/js/compiled"
+    "build": "babel public/js -d public/compiled-js"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

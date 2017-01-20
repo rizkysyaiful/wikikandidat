@@ -186,17 +186,17 @@
           $wcand1 = App\Couple::find($cand[$i])->running_mate_id;
           $cand1 = App\Couple::find($cand[$i])->candidate_id;
 
-          $c = App\Candidate::find($cand1);
-          $rm = App\Candidate::find($wcand1);
+          $c2 = App\Candidate::find($cand1);
+          $rm2 = App\Candidate::find($wcand1);
         ?>
         <div class="candidate2">
         <div class="col-md-3">
           <div class="panel panel-default" >
             <div class="panel-body">
               <div class="head">
-                <img src="{{$c->photo_url}}" alt="">
-                <h3><a href="{{url($c->urlname, [], $secure)}}"><strong>{{$c->name}}</strong></a></h3>
-                <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
+                <img src="{{$c2->photo_url}}" alt="">
+                <h3><a href="{{url($c2->urlname, [], $secure)}}"><strong>{{$c2->name}}</strong></a></h3>
+                <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c2->urlname}}" data-annotation="inline"></div>
               </div>
             </div>
           </div>
@@ -208,14 +208,14 @@
           <div class="panel panel-default" >
             <div class="panel-body">
               <div class="head">
-                <img src="{{$rm->photo_url}}" alt="">
-                <h3><strong>{{$rm->name}}</strong></h3>
+                <img src="{{$rm2->photo_url}}" alt="">
+                <h3><strong>{{$rm2->name}}</strong></h3>
               </div>
             </div>
           </div>
 
           <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
-          <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
+          <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm2->urlname}}" data-width="335" data-numposts="2"></div>
         </div>
       </div>
     </div>
@@ -225,10 +225,12 @@
 @endsection
 
 @section('js')
+
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="{{asset('compiled-js/face-support.js')}}"></script>
     <script>
       $(document).ready(function(){
-        import React from 'react';
-        import ReactDOM from 'react-dom';
         $('.panel-body > .pull-right.glyphicon-plus').click(function (e) {
           $("#SubmitFactModal input[name='eternal_url']").val("");
           $("#SubmitFactModal input[name='text']").val("");
@@ -242,9 +244,10 @@
         $('.toggle-replace-reference').click(function(){
           $('#replaceReference-'+$(this).data('id') ).slideToggle("slow");
         });
+
       });
     </script>
-    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
-    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
-    <script src="{{asset('js/compiled/face-support.js')}}"></script>
+    <script>
+      candidate1.setState({url:'{{$c->photo_url}}', name:'{{}}'});
+    </script>
 @endsection
