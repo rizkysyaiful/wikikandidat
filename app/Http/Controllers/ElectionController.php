@@ -72,12 +72,17 @@ class ElectionController extends Controller
       $cp = User::find($election->cp);
 
       if(Input::get('candidate1') == null )  {
+
+      $i = 0;
+      foreach($election->couples as $couple)  {
+        $cands[$i] = $couple->id;
+      }
       $count = $election->couples->count();
       for($i = 0; $i < 2; $i++)
-        $cand[$i] = rand(1,$count);
+        $cand[$i] = array_rand($cands);
 
       while($cand[0] == $cand[1])
-        $cand[1] = rand(1, $count);
+        $cand[1] = array_rand($cands);
       }
       else {
         $cand[0] = Input::get('candidate1');
