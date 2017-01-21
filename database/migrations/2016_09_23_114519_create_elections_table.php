@@ -16,7 +16,7 @@ class CreateElectionsTable extends Migration
         Schema::create('elections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('urlname');
+            $table->string('urlname')->unique();
             $table->boolean('is_gov');
             $table->date('vote_date');
             $table->text('description');

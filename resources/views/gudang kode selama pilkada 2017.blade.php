@@ -199,3 +199,49 @@ gudang kode selama pilkada 2017
         </div>
       </div>
     </div>
+
+
+<!--
+      <p class="pull-right random-quote"><strong>Makin cerdas pemilih, makin keren pemimpinnya!</strong><br>Wikikandidat adalah museum rekam jejak kandidat.<br>Semua bisa menambah/mengubah rekam jejak,<br>tapi hanya informasi yang valid menurut tiga mahasiswa acak yang tampil.<br>
+      <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa', [], $secure)}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi', [], $secure)}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
+       <a href="{{url('/tentang-kami#kontak', [], $secure)}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
+      </p>
+      -->
+
+
+      <!-- <div class="well well-sm" style="background-color: #faebcc;">
+        <div style="text-align: center; margin-bottom: 10px;">
+          <i class="em em-loudspeaker"></i> <strong>Pengumuman! Buat kamu yang peduli dengan {{$election->place->name}}</strong> <i class="em em-speaker"></i><br>
+          <span class="text-muted">Bantu warga {{$election->place->name}} memilih pemimpin dengan lebih cerdas &amp; munculkan nama organisasi kamu di sini.</span>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            @if($election->initiator == NULL)
+              <u>1. Tolong bantu kumpulkan data inisial kandidat</u><br>
+              Punya organisasi mahasiswa? Tertarik mengumpulkan data versi pertama seluruh kandidat {{$election->place->name}}? Selain konkrit membantu {{$election->place->name}}, nama, logo &amp; link ke organisasi kamu akan muncul di banner ini, di halaman ini, selama-lamanya. Karena kontribusi organisasi kamu, halaman ini jadi bisa mulai bermanfaat untuk orang lain. <a href="{{asset('img/contoh-initiator.jpeg', $secure)}}" target="_blank">Ingin seperti contoh ini? Segera hubungi, jangan sampai keduluan organisasi lain</a>.
+            @else
+              Terima kasih kepada teman-teman di<br>
+              {!!$election->initiator!!}<br>
+              atas bantuannya dalam meriset versi pertama rekam jejak kandidat {{$election->place->name}}. Karena kalian, halaman ini jadi bisa dibaca &amp; mulai dilengkapi orang banyak.
+            @endif
+          </div>
+          <div class="col-md-7" style="padding-left: 0px;">
+            @if($election->promoters == NULL)
+              <u>2. Tolong bantu sebarkan keberadaan Wikikandidat ke pemilih</u><br>
+              Setelah data versi pertama terkumpul, Wikikandidat sudah bisa digunakan. Sayang, belum banyak orang di {{$election->place->name}} yang tahu. Yuk, bantu dengan menulis artikel tentang halaman ini. Atau bisa juga dengan mengadakan penyuluhan langsung. Dokumentasikan segala kegiatan kamu secara online. Lalu beritahu kami. Semua link ke bantuan kamu akan tercatat di sini. Selama-lamanya (FYI, selain membuat organisasi kamu lebih populer, akan mendongkrak ranking website kamu di Google juga).
+            @else
+              Teman-teman yang sudah beraksi demi pilkada yang lebih cerdas {{$election->place->name}}:<br>
+              {!!$election->promoters!!}
+            @endif
+          </div>
+        </div>
+        <?php 
+          $cp = App\User::find($election->cp);
+        ?>
+        <div style="text-align: center; padding-top: 10px;">
+          <strong>
+            Ingin bantu warga {{$election->place->name}}? Ingin nama organisasi kamu tercantum di atas? Hubungi {{$cp->name}} di {{$cp->email}}
+          </strong>
+        </div>
+      </div>
+      -->

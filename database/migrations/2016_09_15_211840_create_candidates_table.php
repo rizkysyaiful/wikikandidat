@@ -17,7 +17,7 @@ class CreateCandidatesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('nickname');
-            $table->string('urlname');
+            $table->string('urlname')->unique();
             $table->string('photo_url');
 
             $table->date('birthdate')->nullable();

@@ -18,12 +18,14 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-  foreach([1] as $i)
+/*  foreach([1] as $i)
   {
     $user = App\User::find($i);
     $user->password = bcrypt('wikikandidat');
     $user->save();
   }
+*/
+  var_dump( App\Candidate::where("urlname", "basuki_cp")->first() );
 });
 
 Route::post('/reveal-all', function(Request $r){
@@ -34,9 +36,14 @@ Route::post('/reveal-all', function(Request $r){
 * Pages for admin
 */
 
+
 Route::get('/admin', function(){
   if(Auth::user() &&
-      ( Auth::user()->id == 1 || Auth::user()->id == 6 ) )
+      ( Auth::user()->id == 1 ||
+        Auth::user()->id == 6 ||
+        Auth::user()->id == 13 ||
+        Auth::user()->id == 14
+         ))
   {
     return view('admin');
   }
@@ -44,11 +51,10 @@ Route::get('/admin', function(){
 Route::post('/admin/add-place', 'AdminController@add_place');
 Route::post('/admin/add-uni', 'AdminController@add_uni');
 Route::post('/admin/promote-verifier', 'AdminController@promote_verifier');
-Route::post('/admin/add-election', 'AdminController@add_election');
+Route::post('/admin/add-election', 'AdminController@add_election_2017_ver');
 Route::post('/admin/add-candidate', 'AdminController@add_candidate');
 Route::post('/admin/add-couple', 'AdminController@add_couple');
 Route::post('/admin/add-party', 'AdminController@add_party');
-Route::post('/admin/assign-party-to-couple', 'AdminController@assign_party_to_couple');
 
 /**
 * Pages for reader
@@ -59,14 +65,15 @@ Route::get('/tentang-kami', function(){
   return view('static.about-2017-ver');
 });
 
-/*
-
-Route::get('/cara-kontribusi', function(){
-  return view('static.contribute');
-});
 Route::get('/contoh', function(){
   return view('static.example');
 });
+
+/*
+Route::get('/cara-kontribusi', function(){
+  return view('static.contribute');
+});
+
 Route::get('/panduan-verifikasi', function(){
   return view('static.verifier-how-to');
 });

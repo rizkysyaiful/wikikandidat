@@ -99,28 +99,31 @@
       </p>
       <h1>{{$election->name}}</h1>
       <div class="btn-group">
-        <a href="#" class="btn btn-default btn-lg">Provinsi</a>
+        <a href="#" class="btn btn-default btn-lg">Cari Pemilihan Lain</a>
         <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="{{url('pilkada-2017-aceh', [], $secure)}}" href="pilkada-2017-aceh">Aceh</a></li>
-          <li><a href="{{url('pilkada-2017-babel', [], $secure)}}" href="">Bangka Belitung</a></li>
-          <li><a href="{{url('/', [], $secure)}}" href="pilkada-2017-jakarta">DKI Jakarta</a></li>
-          <li><a href="{{url('pilkada-2017-banten', [], $secure)}}" href="pilkada-2017-banten">Banten</a></li>
-        </ul>
-      </div>
-      <div class="btn-group">
-        <a href="#" class="btn btn-default btn-lg">Kota/Kab</a>
-        <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-        <ul class="dropdown-menu">
+          @php
+            $elections =  App\Election::all();
+            $elections = $elections->sortBy('name');
+          @endphp
+          @foreach($elections as $e)
+            <?php
+              if($e->place->level == 1)
+                $prefix = "Prov.";
+              if($e->place->level == 2)
+                $prefix = "Kota";
+              if($e->place->level == 3)
+                $prefix = "Kab.";
+            ?>
+            <li><a href="{{url($e->urlname, [], $secure)}}">{{$prefix}} {{$e->place->name}}</a></li>
+          @endforeach
         </ul>
       </div>
       <hr>
-
-      <!-- <div class="well well-sm" style="background-color: #faebcc;">
-        <div style="text-align: center; margin-bottom: 10px;">
-          <i class="em em-loudspeaker"></i> <strong>Pengumuman! Buat kamu yang peduli dengan {{$election->place->name}}</strong> <i class="em em-speaker"></i><br>
-          <span class="text-muted">Bantu warga {{$election->place->name}} memilih pemimpin dengan lebih cerdas &amp; munculkan nama organisasi kamu di sini.</span>
-        </div>
+      @if($election->description != "")
+        @php
+          $videos = explode(", ", $election->description);
+        @endphp
         <div class="row">
           <div class="col-md-5">
             @if($election->initiator == NULL)
@@ -150,34 +153,58 @@
             Ingin bantu warga {{$election->place->name}}? Ingin nama organisasi kamu tercantum di atas? Hubungi {{$cp->name}} di {{$cp->email}}
           </strong>
         </div>
-      </div>
-      -->
-      <div class="row select-candidate form-group">
-        <form action="{{url()->current()}}" name='candidate' id='candidate'>
-          <div class="col-md-6">
-            <label for="candidate1">Kandidat Pertama</label>
-            <select name='candidate1' class='form-control'>
-            @foreach($couples as $couple)
-              <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
-            @endforeach
-            <select>
-          </div>
-          <div class="col-md-6">
-            <label for="candidate2">Kandidat Kedua</label>
-            <select name='candidate2' class='form-control'>
-            @foreach($couples as $couple)
-              <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
-            @endforeach
-            <select>
-          </div>
-          {{ csrf_field() }}
-        </form>
+          @foreach($videos as $v)
+            <div class="col-sm-3">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$v}}" allowfullscreen></iframe>
+              </div>
+            </div>
+          @endforeach
+        <hr>
+      @endif
+      <div class='row col-md-12'>
+        <div class="row select-candidate form-group">
+          <form action="{{url(url()->current(), [], $secure)}}" name='candidate' id='candidate'>
+            <div class="col-md-6">
+              <label for="candidate1">Kandidat Pertama</label>
+              <select name='candidate1' class='form-control'>
+              @foreach($couples as $couple)
+                <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
+              @endforeach
+              <select>
+            </div>
+            <div class="col-md-6">
+              <label for="candidate2">Kandidat Kedua</label>
+              <select name='candidate2' class='form-control'>
+              @foreach($couples as $couple)
+                <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
+              @endforeach
+              <select>
+            </div>
+            {{ csrf_field() }}
+          </form>
+        </div>
       </div>
       <div class="row">
         <?php
           $types =  App\Type::all();
         ?>
           <div class="candidate1 col-md-6 col-sm-12">
+
+          <div class="col-md-6 col-sm-6">
+            <div class="panel panel-default" >
+              <div class="panel-body">
+                <div class="head">
+                  <img src="{{$rm->photo_url}}" alt="">
+                  <h3><strong>{{$rm->name}}</strong></h3>
+
+                </div>
+              </div>
+            </div>
+
+            <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+            <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
+          </div>
           <div class="col-md-6 col-sm-6">
             <div class="panel panel-default" >
               <div class="panel-body">
@@ -192,19 +219,6 @@
             <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
             <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
           </div>
-          <div class="col-md-6 col-sm-6">
-            <div class="panel panel-default" >
-              <div class="panel-body">
-                <div class="head">
-                  <img src="{{$rm->photo_url}}" alt="">
-                  <h3><strong>{{$rm->name}}</strong></h3>
-                </div>
-              </div>
-            </div>
-
-            <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
-            <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
-          </div>
         </div>
         <div class="candidate2 col-md-6 col-sm-6">
         <div class="col-md-6 col-sm-6">
@@ -215,11 +229,12 @@
                 <h3><a href="{{url($c2->urlname, [], $secure)}}"><strong>{{$c2->name}}</strong></a></h3>
                 <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c2->urlname}}" data-annotation="inline"></div>
               </div>
+
             </div>
           </div>
 
-          <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
-          <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
+          <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c2->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+          <div class="fb-comments" data-href="https://wikikandidat.com/{{$c2->urlname}}" data-width="335" data-numposts="2"></div>
         </div>
         <div class="col-md-6 col-sm-6">
           <div class="panel panel-default" >
@@ -231,7 +246,7 @@
             </div>
           </div>
 
-          <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+          <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm2->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
           <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm2->urlname}}" data-width="335" data-numposts="2"></div>
         </div>
       </div>
