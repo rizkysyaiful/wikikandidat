@@ -36,7 +36,7 @@ Register
                             <label for="username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" placeholder="Untuk wikikandidat.com/@usenamekamu" required>
+                                <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" placeholder="Untuk wikikandidat.com/user/usenamekamu" required>
 
                                 @if ($errors->has('username'))
                                     <span class="help-block">

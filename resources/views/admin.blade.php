@@ -250,8 +250,7 @@ Admin
                           <label>
                             <input  type="checkbox"
                                     value="{{$p->id}}"
-                                    name="party[]"
-                                    required="">
+                                    name="party[]">
                             <strong>{{$p->abbreviation}}</strong> ({{$p->name}})
                           </label>
                         </div>
