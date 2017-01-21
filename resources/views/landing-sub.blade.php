@@ -84,6 +84,9 @@
       width: 1170px;
     }
   }
+  .select-candidate {
+    padding-bottom: 2%;
+  }
 </style>
 
 @endsection
@@ -149,7 +152,7 @@
         </div>
       </div>
       -->
-      <div class="row">
+      <div class="row select-candidate">
         <form action="{{url()->current()}}" name='candidate' id='candidate'>
           <div class="col-md-6">
             <label for="candidate1">Kandidat Pertama</label>
