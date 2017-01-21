@@ -23,4 +23,9 @@ class Election extends Model
     {
     	return $this->hasMany('App\Couple');
     }
+
+    public function tesdong()
+    {
+        echo "tesdong";
+    }
 }

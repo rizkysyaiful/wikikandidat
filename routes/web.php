@@ -18,14 +18,11 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-/*  foreach([1] as $i)
-  {
-    $user = App\User::find($i);
-    $user->password = bcrypt('wikikandidat');
-    $user->save();
-  }
-*/
-  var_dump( App\Candidate::where("urlname", "basuki_cp")->first() );
+
+   $e_jakarta = App\Election::find(1);
+
+   $e_jakarta->tesdong();
+
 });
 
 Route::post('/reveal-all', function(Request $r){
@@ -37,16 +34,13 @@ Route::post('/reveal-all', function(Request $r){
 */
 
 Route::get('/admin', function(){  
-  if(Auth::user() && 
-      ( Auth::user()->id == 1 ||
-        Auth::user()->id == 6 ||
-        Auth::user()->id == 13 ||
-        Auth::user()->id == 14
-         ))
+  if( Auth::user() && !Auth::user()->is_hibernate )
   {
     return view('admin');
   }
 });
+
+// TODO, protect this routes so that only admin can access it
 Route::post('/admin/add-place', 'AdminController@add_place');
 Route::post('/admin/add-uni', 'AdminController@add_uni');
 Route::post('/admin/promote-verifier', 'AdminController@promote_verifier');
@@ -54,6 +48,11 @@ Route::post('/admin/add-election', 'AdminController@add_election_2017_ver');
 Route::post('/admin/add-candidate', 'AdminController@add_candidate');
 Route::post('/admin/add-couple', 'AdminController@add_couple');
 Route::post('/admin/add-party', 'AdminController@add_party');
+
+Route::get("/admin/edit-candidate", function(){
+  return view('edit-candidate');
+});
+Route::post("/admin/edit-candidate", 'AdminController@edit_candidate');
 
 /**
 * Pages for reader
