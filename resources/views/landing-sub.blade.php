@@ -152,11 +152,11 @@
         </div>
       </div>
       -->
-      <div class="row select-candidate">
+      <div class="row select-candidate form-group">
         <form action="{{url()->current()}}" name='candidate' id='candidate'>
           <div class="col-md-6">
             <label for="candidate1">Kandidat Pertama</label>
-            <select name='candidate1'>
+            <select name='candidate1' class='form-control'>
             @foreach($couples as $couple)
               <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
             @endforeach
@@ -164,7 +164,7 @@
           </div>
           <div class="col-md-6">
             <label for="candidate2">Kandidat Kedua</label>
-            <select name='candidate2'>
+            <select name='candidate2' class='form-control'>
             @foreach($couples as $couple)
               <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
             @endforeach
