@@ -58,6 +58,7 @@ Edit Candidate
 	    			class="btn btn-edit btn-xs btn-default"
 	    			data-toggle="modal"
 	    			data-target="#myModal"
+	    			data-candidate_id = "{{$c->id}}"
 	    			data-name = "{{$c->name}}"
 	    			data-nickname = "{{$c->nickname}}"
 	    			data-urlname = "{{$c->urlname}}"
@@ -87,7 +88,7 @@ Edit Candidate
       <div class="modal-body">
 		<form action="{{url('admin/edit-candidate', [], $secure)}}" method="POST">
 			{{ csrf_field() }}
-			<input type="hidden" name="candidate_id" value="{{$c->id}}">
+			<input type="hidden" name="candidate_id">
 
 			<div class="form-group">
 				<label>Nama Lengkap</label>
@@ -169,6 +170,7 @@ Edit Candidate
 	<script type="text/javascript">
 		$(document).ready( function () {
 			$(".btn-edit").click(function(){
+				$("#myModal input[name='candidate_id']").val($(this).data('candidate_id'));
 				$("#myModal input[name='name']").val($(this).data('name'));
 				$("#myModal input[name='nickname']").val($(this).data('nickname'));
 				$("#myModal input[name='urlname']").val($(this).data('urlname'));
