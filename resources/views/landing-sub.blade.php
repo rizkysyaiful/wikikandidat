@@ -120,31 +120,12 @@
         </ul>
       </div>
       <hr>
+      <div class='row'>
       @if($election->description != "")
         @php
           $videos = explode(", ", $election->description);
         @endphp
-        <div class="row">
-          <div class="col-md-5">
-            @if($election->initiator == NULL)
-              <u>1. Tolong bantu kumpulkan data inisial kandidat</u><br>
-              Punya organisasi mahasiswa? Tertarik mengumpulkan data versi pertama seluruh kandidat {{$election->place->name}}? Selain konkrit membantu {{$election->place->name}}, nama, logo &amp; link ke organisasi kamu akan muncul di banner ini, di halaman ini, selama-lamanya. Karena kontribusi organisasi kamu, halaman ini jadi bisa mulai bermanfaat untuk orang lain. <a href="{{asset('img/contoh-initiator.jpeg', $secure)}}" target="_blank">Ingin seperti contoh ini? Segera hubungi, jangan sampai keduluan organisasi lain</a>.
-            @else
-              Terima kasih kepada teman-teman di<br>
-              {!!$election->initiator!!}<br>
-              atas bantuannya dalam meriset versi pertama rekam jejak kandidat {{$election->place->name}}. Karena kalian, halaman ini jadi bisa dibaca &amp; mulai dilengkapi orang banyak.
-            @endif
-          </div>
-          <div class="col-md-7" style="padding-left: 0px;">
-            @if($election->promoters == NULL)
-              <u>2. Tolong bantu sebarkan keberadaan Wikikandidat ke pemilih</u><br>
-              Setelah data versi pertama terkumpul, Wikikandidat sudah bisa digunakan. Sayang, belum banyak orang di {{$election->place->name}} yang tahu. Yuk, bantu dengan menulis artikel tentang halaman ini. Atau bisa juga dengan mengadakan penyuluhan langsung. Dokumentasikan segala kegiatan kamu secara online. Lalu beritahu kami. Semua link ke bantuan kamu akan tercatat di sini. Selama-lamanya (FYI, selain membuat organisasi kamu lebih populer, akan mendongkrak ranking website kamu di Google juga).
-            @else
-              Teman-teman yang sudah beraksi demi pilkada yang lebih cerdas {{$election->place->name}}:<br>
-              {!!$election->promoters!!}
-            @endif
-          </div>
-        </div>
+      </div>
         <?php
           $cp = App\User::find($election->cp);
         ?>
@@ -251,7 +232,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-3">
         <div class="panel panel-default" >
