@@ -29,7 +29,7 @@
   .panel-body > .data{
     border-bottom: 1px solid #cacaca;
     padding: 2px 5px;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
   }
   .data.first{
     border-top: 1px solid #cacaca;
@@ -38,7 +38,7 @@
     margin-top: 3px;
     padding-left: 0.5em;
     padding-right: 0.5em;
-    margin-left: 5px; 
+    margin-left: 5px;
     cursor: pointer;
   }
   .panel-body .corner-date{
@@ -68,12 +68,35 @@
   .media-body > .well > ol,ul{
     padding-left: 17px;
   }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
+  .select-candidate {
+    padding-bottom: 2%;
+  }
 </style>
 
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
+      <p class="pull-right random-quote"><strong>Makin cerdas pemilih, makin keren pemimpinnya!</strong><br>Wikikandidat adalah museum rekam jejak kandidat.<br>Semua bisa menambah/mengubah rekam jejak,<br>tapi hanya informasi yang valid menurut tiga mahasiswa acak yang tampil.<br>
+      <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa', [], $secure)}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi', [], $secure)}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
+       <a href="{{url('/tentang-kami#kontak', [], $secure)}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
+      </p>
       <h1>{{$election->name}}</h1>
       <div class="btn-group">
         <a href="#" class="btn btn-default btn-lg">Cari Pemilihan Lain</a>
@@ -84,7 +107,7 @@
             $elections = $elections->sortBy('name');
           @endphp
           @foreach($elections as $e)
-            <?php 
+            <?php
               if($e->place->level == 1)
                 $prefix = "Prov.";
               if($e->place->level == 2)
@@ -97,149 +120,295 @@
         </ul>
       </div>
       <hr>
+      <div class='row'>
       @if($election->description != "")
         @php
           $videos = explode(", ", $election->description);
         @endphp
-        <div class="row">
+      </div>
+        <?php
+          $cp = App\User::find($election->cp);
+        ?>
+        <div style="text-align: center; padding-top: 10px;">
+          <strong>
+            Ingin bantu warga {{$election->place->name}}? Ingin nama organisasi kamu tercantum di atas? Hubungi {{$cp->name}} di {{$cp->email}}
+          </strong>
+        </div>
           @foreach($videos as $v)
             <div class="col-sm-3">
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$v}}" allowfullscreen></iframe>
-              </div>  
+              </div>
             </div>
           @endforeach
-        </div>
         <hr>
       @endif
+      <div class='row col-md-12'>
+        <div class="row select-candidate form-group">
+          <form action="{{url(url()->current(), [], $secure)}}" name='candidate' id='candidate' method='POST'>
+            <div class="col-md-6">
+              <label for="candidate1">Kandidat Pertama</label>
+              <select name='candidate1' class='form-control'>
+              @foreach($couples as $couple)
+                <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
+              @endforeach
+              <select>
+            </div>
+            <div class="col-md-6">
+              <label for="candidate2">Kandidat Kedua</label>
+              <select name='candidate2' class='form-control'>
+              @foreach($couples as $couple)
+                <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
+              @endforeach
+              <select>
+            </div>
+            {!! csrf_field() !!}
+          </form>
+        </div>
+      </div>
       <div class="row">
         <?php
           $types =  App\Type::all();
         ?>
-        @foreach($election->couples->sortBy('order') as $co)
-          <?php 
-            $c = App\Candidate::find($co->candidate_id);
-            $rm = App\Candidate::find($co->running_mate_id);
-          ?>
-        <div class="col-md-4">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#primary-tab-{{$co->id}}" class="btn-md" data-toggle="tab" aria-expanded="true">{{$c->nickname}}</a></li>
-            <li class=""><a href="#vice-tab-{{$co->id}}" class="btn-md" data-toggle="tab" aria-expanded="false">{{$rm->nickname}}</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane fade active in" id="primary-tab-{{$co->id}}">
-            
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <div class="head">
-                    <img src="{{$c->photo_url}}" alt="">
-                    <h3><a href="{{url($c->urlname, [], $secure)}}"><strong>{{$c->name}}</strong></a></h3>
-                    <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
-                  </div>
+          <div class="candidate1 col-md-6 col-sm-12">
+
+          <div class="col-md-6 col-sm-6">
+            <div class="panel panel-default" >
+              <div class="panel-body">
+                <div class="head">
+                  <img src="{{$rm->photo_url}}" alt="">
+                  <h3><strong>{{$rm->name}}</strong></h3>
+
                 </div>
               </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Pendidikan:</strong><br>
-                  {!!$c->pendidikan!!}
-                </div>
-              </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Karir &amp; Organisasi:</strong><br>
-                  {!!$c->karir!!}
-                </div>
-              </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Penghargaan dari organisasi:</strong><br>
-                  {!!$c->penghargaan!!}
-                </div>
-              </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Sumber data lembaga pemerintah:</strong><br>
-                  {!!$c->sumber_pemerintah!!}
-                </div>
-              </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
-                  {!!$c->sumber_non_pemerintah!!}
-                </div>
-              </div>
-
-              <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
-              <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
-
             </div>
 
-            <div class="tab-pane fade" id="vice-tab-{{$co->id}}">
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <div class="head">
-                    <img src="{{$rm->photo_url}}" alt="">
-                    <h3><a href="{{url($rm->urlname, [], $secure)}}"><strong>{{$rm->name}}</strong></a></h3>
-                  </div>
+            <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+            <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="panel panel-default" >
+              <div class="panel-body">
+                <div class="head">
+                  <img src="{{$c->photo_url}}" alt="">
+                  <h3><a href="{{url($c->urlname, [], $secure)}}"><strong>{{$c->name}}</strong></a></h3>
+                  <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
                 </div>
               </div>
+            </div>
 
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Pendidikan:</strong><br>
-                  {!!$rm->pendidikan!!}
-                </div>
+            <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+            <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
+          </div>
+        </div>
+        <div class="candidate2 col-md-6 col-sm-6">
+        <div class="col-md-6 col-sm-6">
+          <div class="panel panel-default" >
+            <div class="panel-body">
+              <div class="head">
+                <img src="{{$c2->photo_url}}" alt="">
+                <h3><a href="{{url($c2->urlname, [], $secure)}}"><strong>{{$c2->name}}</strong></a></h3>
+                <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c2->urlname}}" data-annotation="inline"></div>
               </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Karir &amp; Organisasi:</strong><br>
-                  {!!$rm->karir!!}
-                </div>
-              </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Penghargaan dari organisasi:</strong><br>
-                  {!!$rm->penghargaan!!}
-                </div>
-              </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Sumber data lembaga pemerintah:</strong><br>
-                  {!!$rm->sumber_pemerintah!!}
-                </div>
-              </div>
-
-              <div class="panel panel-default" >
-                <div class="panel-body">
-                  <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
-                  {!!$rm->sumber_non_pemerintah!!}
-                </div>
-              </div>
-
-
-
-              <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
-              <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
 
             </div>
           </div>
-        </div>
-    
 
-        @endforeach
-        
+          <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c2->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+          <div class="fb-comments" data-href="https://wikikandidat.com/{{$c2->urlname}}" data-width="335" data-numposts="2"></div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="panel panel-default" >
+            <div class="panel-body">
+              <div class="head">
+                <img src="{{$rm2->photo_url}}" alt="">
+                <h3><strong>{{$rm2->name}}</strong></h3>
+              </div>
+            </div>
+          </div>
+
+          <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$rm2->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
+          <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm2->urlname}}" data-width="335" data-numposts="2"></div>
+        </div>
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+                        <div class="panel-body">
+                          <strong>Pendidikan:</strong><br>
+                          {!!$rm->pendidikan!!}
+                        </div>
+                      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+                        <div class="panel-body">
+                          <strong>Pendidikan:</strong><br>
+                          {!!$c->pendidikan!!}
+                        </div>
+                      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+                        <div class="panel-body">
+                          <strong>Pendidikan:</strong><br>
+                          {!!$c2->pendidikan!!}
+                        </div>
+                      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+          <div class="panel-body">
+            <strong>Pendidikan:</strong><br>
+            {!!$rm2->pendidikan!!}
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="panel panel-default" >
+        <div class="panel-body">
+          <strong>Karir &amp; Organisasi:</strong><br>
+          {!!$rm->karir!!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default" >
+        <div class="panel-body">
+          <strong>Karir &amp; Organisasi:</strong><br>
+          {!!$c->karir!!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default" >
+        <div class="panel-body">
+          <strong>Karir &amp; Organisasi:</strong><br>
+          {!!$c2->karir!!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default" >
+        <div class="panel-body">
+          <strong>Karir &amp; Organisasi:</strong><br>
+          {!!$rm2->karir!!}
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Penghargaan dari organisasi:</strong><br>
+        {!!$rm->penghargaan!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Penghargaan dari organisasi:</strong><br>
+        {!!$c->penghargaan!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Penghargaan dari organisasi:</strong><br>
+        {!!$c->penghargaan!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Penghargaan dari organisasi:</strong><br>
+        {!!$c->penghargaan!!}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data lembaga pemerintah:</strong><br>
+        {!!$rm->sumber_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data lembaga pemerintah:</strong><br>
+        {!!$c->sumber_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data lembaga pemerintah:</strong><br>
+        {!!$c2->sumber_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data lembaga pemerintah:</strong><br>
+        {!!$rm2->sumber_pemerintah!!}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+        {!!$rm->sumber_non_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+        {!!$c->sumber_non_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+        {!!$c2->sumber_non_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+        {!!$rm2->sumber_non_pemerintah!!}
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
 @endsection
 
 @section('js')
@@ -253,10 +422,13 @@
           $("#SubmitFactModal span#nickname").html( $(this).data("nickname") );
           $("#SubmitFactModal span#type").html( $(this).data("fact-type-name") );
         });
-        
+
         $(".div-replace-reference").hide();
         $('.toggle-replace-reference').click(function(){
           $('#replaceReference-'+$(this).data('id') ).slideToggle("slow");
+        });
+        $('#candidate').change(function() {
+          $('#candidate').submit();
         });
       });
     </script>

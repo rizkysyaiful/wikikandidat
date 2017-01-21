@@ -33,6 +33,7 @@ Route::post('/reveal-all', function(Request $r){
 * Pages for admin
 */
 
+
 Route::get('/admin', function(){  
   if( Auth::user() && !Auth::user()->is_hibernate )
   {
@@ -57,10 +58,8 @@ Route::post("/admin/edit-candidate", 'AdminController@edit_candidate');
 /**
 * Pages for reader
 */
-
-Route::get('/', function () {
-  return view('landing-sub')->with('election', App\Election::find(1));
-});
+Route::get('/','ElectionController@index');
+Route::post('/', 'ElectionController@index');
 
 Route::get('/tentang-kami', function(){
   return view('static.about-2017-ver');
@@ -87,7 +86,7 @@ Route::get('/inisiator', function(){
 /*
 Route::get('/daftar', function(){
   echo "Wikikandidat.com masih dalam tahap closed-beta.<br> Artinya, penambah data & verifikator masih direkrut dengan interview tatap muka.<br>Desember ini akan fokus merekrut di Universitas Indonesia Depok.<br><br>Ikuti perkembangan pergerakan kami di <a href='http://wikikandidat.tumblr.com'>wikikandidat.tumblr.com</a><br>
-    Dari sisi pengembangan software di <a href='https://github.com/rizkysyaiful/wikikandidat#readme'>github.com/rizkysyaiful/wikikandidat#readme</a><br><br>Tertarik bantu? Hubungi kami di rizky.syaiful@gmail.com."; 
+    Dari sisi pengembangan software di <a href='https://github.com/rizkysyaiful/wikikandidat#readme'>github.com/rizkysyaiful/wikikandidat#readme</a><br><br>Tertarik bantu? Hubungi kami di rizky.syaiful@gmail.com.";
 });*/
 Auth::routes();
 /*Route::get('/login', 'Auth\LoginController@showLoginForm' );
@@ -113,7 +112,7 @@ Route::get('/verification', function(){
       echo "Kamu sedang hibernasi, tidak ada pekerjaan untuk kamu.";
     }
   })->middleware('auth');
-Route::get('/hibernate-on', 'UserController@hibernate_on')->middleware('auth'); // TODO ganti middleware verfikator 
+Route::get('/hibernate-on', 'UserController@hibernate_on')->middleware('auth'); // TODO ganti middleware verfikator
 Route::get('/hibernate-off', 'UserController@hibernate_off')->middleware('auth'); // TODO ganti middleware verfikator
 Route::get('/logout', function(){
   Auth::logout();
@@ -137,20 +136,8 @@ Route::get('/user/{any}', function($any){
   }
 });
 
-Route::get('{any}', function($any){
-  $election = App\Election::where('urlname', $any)->first();
-  if($election)
-  {
-    return view('landing-sub')->with('election', $election);
-  }else{
-    $candidate = App\Candidate::where('urlname', $any)->first();
-    if($candidate)
-    {
-      return view('candidate')->with('c', $candidate);
-    }
-    abort(404, "URL ".url($any)." tidak ada kaka... Kaka salah ketik?");
-  }
-});
+Route::get('{any}', 'ElectionController@election');
+Route::post('{any}', 'ElectionController@election');
 
 /**
 * Actions of user
@@ -171,13 +158,10 @@ Route::post('/user/change-reference',
 Route::post('/student/approve-fact',
   'StudentController@approve_fact')
   ->middleware('auth'); // nanti cari middleware yang bisa filter student
-Route::post('/student/reject-fact', 
+Route::post('/student/reject-fact',
   'StudentController@reject_fact')
   ->middleware('auth');
 Route::post('student/edit-reference-fact',
   'StudentController@edit_reference_fact')
   ->middleware('auth');
 */
-
-
-
