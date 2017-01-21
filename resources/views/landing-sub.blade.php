@@ -68,12 +68,28 @@
   .media-body > .well > ol,ul{
     padding-left: 17px;
   }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
 </style>
 
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
       <p class="pull-right random-quote"><strong>Makin cerdas pemilih, makin keren pemimpinnya!</strong><br>Wikikandidat adalah museum rekam jejak kandidat.<br>Semua bisa menambah/mengubah rekam jejak,<br>tapi hanya informasi yang valid menurut tiga mahasiswa acak yang tampil.<br>
       <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa', [], $secure)}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi', [], $secure)}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
        <a href="{{url('/tentang-kami#kontak', [], $secure)}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
@@ -158,8 +174,8 @@
         <?php
           $types =  App\Type::all();
         ?>
-          <div class="candidate1">
-          <div class="col-md-3">
+          <div class="candidate1 col-md-6 col-sm-12">
+          <div class="col-md-6 col-sm-6">
             <div class="panel panel-default" >
               <div class="panel-body">
                 <div class="head">
@@ -173,7 +189,7 @@
             <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
             <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6 col-sm-6">
             <div class="panel panel-default" >
               <div class="panel-body">
                 <div class="head">
@@ -187,8 +203,8 @@
             <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
           </div>
         </div>
-        <div class="candidate2">
-        <div class="col-md-3">
+        <div class="candidate2 col-md-6 col-sm-6">
+        <div class="col-md-6 col-sm-6">
           <div class="panel panel-default" >
             <div class="panel-body">
               <div class="head">
@@ -202,7 +218,7 @@
           <h5><strong>Ceritakan pengalaman pribadi kamu dengan {{$c->nickname}}, bisa sebagai tetangganya, keluarganya, rekan kerjanya, warga daerah yang pernah dia pimpin, atau apapun.</strong></h5>
           <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6 col-sm-6">
           <div class="panel panel-default" >
             <div class="panel-body">
               <div class="head">
