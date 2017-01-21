@@ -134,24 +134,30 @@
       </div>
       -->
       <div class="row">
+        <form action="{{url()->current()}}" name='candidate' id='candidate'>
+          <div class="col-md-6">
+            <label for="candidate1">Kandidat Pertama</label>
+            <select name='candidate1'>
+            @foreach($couples as $couple)
+              <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
+            @endforeach
+            <select>
+          </div>
+          <div class="col-md-6">
+            <label for="candidate2">Kandidat Kedua</label>
+            <select name='candidate2'>
+            @foreach($couples as $couple)
+              <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
+            @endforeach
+            <select>
+          </div>
+          {{ csrf_field() }}
+        </form>
+      </div>
+      <div class="row">
         <?php
           $types =  App\Type::all();
-          $count = $election->couples->count();
-          for($i = 0; $i < 2; $i++)
-            $cand[$i] = rand(1,$count);
-
-          while($cand[0] == $cand[1])
-            $cand[1] = rand(1, $count);
-
-          $i = 0;
         ?>
-          <?php
-            $wcand1 = App\Couple::find($cand[$i])->running_mate_id;
-            $cand1 = App\Couple::find($cand[$i])->candidate_id;
-
-            $c = App\Candidate::find($cand1);
-            $rm = App\Candidate::find($wcand1);
-          ?>
           <div class="candidate1">
           <div class="col-md-3">
             <div class="panel panel-default" >
@@ -181,14 +187,6 @@
             <div class="fb-comments" data-href="https://wikikandidat.com/{{$rm->urlname}}" data-width="335" data-numposts="2"></div>
           </div>
         </div>
-        <?php $i++ ?>
-        <?php
-          $wcand1 = App\Couple::find($cand[$i])->running_mate_id;
-          $cand1 = App\Couple::find($cand[$i])->candidate_id;
-
-          $c2 = App\Candidate::find($cand1);
-          $rm2 = App\Candidate::find($wcand1);
-        ?>
         <div class="candidate2">
         <div class="col-md-3">
           <div class="panel panel-default" >
@@ -240,7 +238,9 @@
         $('.toggle-replace-reference').click(function(){
           $('#replaceReference-'+$(this).data('id') ).slideToggle("slow");
         });
-
+        $('#candidate').change(function() {
+          $('#candidate').submit();
+        });
       });
     </script>
 @endsection

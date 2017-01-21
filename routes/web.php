@@ -53,8 +53,7 @@ Route::post('/admin/assign-party-to-couple', 'AdminController@assign_party_to_co
 /**
 * Pages for reader
 */
-
-Route::get('/', 'ElectionController@index');
+Route::get('/','ElectionController@index');
 
 Route::get('/tentang-kami', function(){
   return view('static.about-2017-ver');
@@ -130,20 +129,7 @@ Route::get('/user/{any}', function($any){
   }
 });
 
-Route::get('{any}', function($any){
-  $election = App\Election::where('urlname', $any)->first();
-  if($election)
-  {
-    return view('landing-sub')->with('election', $election);
-  }else{
-    $candidate = App\Candidate::where('urlname', $any)->first();
-    if($candidate)
-    {
-      return view('candidate')->with('c', $candidate);
-    }
-    abort(404, "URL ".url($any)." tidak ada kaka... Kaka salah ketik?");
-  }
-});
+Route::get('{any}', 'ElectionController@election');
 
 /**
 * Actions of user
