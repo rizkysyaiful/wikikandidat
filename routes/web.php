@@ -34,8 +34,8 @@ Route::post('/reveal-all', function(Request $r){
 * Pages for admin
 */
 
-Route::get('/admin', function(){  
-  if(Auth::user() && 
+Route::get('/admin', function(){
+  if(Auth::user() &&
       ( Auth::user()->id == 1 || Auth::user()->id == 6 ) )
   {
     return view('admin');
@@ -54,9 +54,7 @@ Route::post('/admin/assign-party-to-couple', 'AdminController@assign_party_to_co
 * Pages for reader
 */
 
-Route::get('/', function () {
-  return view('landing-sub')->with('election', App\Election::find(1));
-});
+Route::get('/', 'ElectionController@index');
 
 Route::get('/tentang-kami', function(){
   return view('static.about-2017-ver');
@@ -82,7 +80,7 @@ Route::get('/inisiator', function(){
 /*
 Route::get('/daftar', function(){
   echo "Wikikandidat.com masih dalam tahap closed-beta.<br> Artinya, penambah data & verifikator masih direkrut dengan interview tatap muka.<br>Desember ini akan fokus merekrut di Universitas Indonesia Depok.<br><br>Ikuti perkembangan pergerakan kami di <a href='http://wikikandidat.tumblr.com'>wikikandidat.tumblr.com</a><br>
-    Dari sisi pengembangan software di <a href='https://github.com/rizkysyaiful/wikikandidat#readme'>github.com/rizkysyaiful/wikikandidat#readme</a><br><br>Tertarik bantu? Hubungi kami di rizky.syaiful@gmail.com."; 
+    Dari sisi pengembangan software di <a href='https://github.com/rizkysyaiful/wikikandidat#readme'>github.com/rizkysyaiful/wikikandidat#readme</a><br><br>Tertarik bantu? Hubungi kami di rizky.syaiful@gmail.com.";
 });*/
 Auth::routes();
 /*Route::get('/login', 'Auth\LoginController@showLoginForm' );
@@ -108,7 +106,7 @@ Route::get('/verification', function(){
       echo "Kamu sedang hibernasi, tidak ada pekerjaan untuk kamu.";
     }
   })->middleware('auth');
-Route::get('/hibernate-on', 'UserController@hibernate_on')->middleware('auth'); // TODO ganti middleware verfikator 
+Route::get('/hibernate-on', 'UserController@hibernate_on')->middleware('auth'); // TODO ganti middleware verfikator
 Route::get('/hibernate-off', 'UserController@hibernate_off')->middleware('auth'); // TODO ganti middleware verfikator
 Route::get('/logout', function(){
   Auth::logout();
@@ -166,13 +164,10 @@ Route::post('/user/change-reference',
 Route::post('/student/approve-fact',
   'StudentController@approve_fact')
   ->middleware('auth'); // nanti cari middleware yang bisa filter student
-Route::post('/student/reject-fact', 
+Route::post('/student/reject-fact',
   'StudentController@reject_fact')
   ->middleware('auth');
 Route::post('student/edit-reference-fact',
   'StudentController@edit_reference_fact')
   ->middleware('auth');
 */
-
-
-
