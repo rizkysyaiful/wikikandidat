@@ -60,6 +60,7 @@ Route::post('/admin/add-party', 'AdminController@add_party');
 * Pages for reader
 */
 Route::get('/','ElectionController@index');
+Route::post('/', 'ElectionController@index');
 
 Route::get('/tentang-kami', function(){
   return view('static.about-2017-ver');
@@ -137,6 +138,7 @@ Route::get('/user/{any}', function($any){
 });
 
 Route::get('{any}', 'ElectionController@election');
+Route::post('{any}', 'ElectionController@election');
 
 /**
 * Actions of user

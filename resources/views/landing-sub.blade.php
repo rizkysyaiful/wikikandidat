@@ -164,7 +164,7 @@
       @endif
       <div class='row col-md-12'>
         <div class="row select-candidate form-group">
-          <form action="{{url(url()->current(), [], $secure)}}" name='candidate' id='candidate'>
+          <form action="{{url(url()->current(), [], $secure)}}" name='candidate' id='candidate' method='POST'>
             <div class="col-md-6">
               <label for="candidate1">Kandidat Pertama</label>
               <select name='candidate1' class='form-control'>
@@ -181,7 +181,7 @@
               @endforeach
               <select>
             </div>
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
           </form>
         </div>
       </div>
