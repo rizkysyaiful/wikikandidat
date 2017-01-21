@@ -251,9 +251,183 @@
         </div>
       </div>
     </div>
+    
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+                        <div class="panel-body">
+                          <strong>Pendidikan:</strong><br>
+                          {!!$rm->pendidikan!!}
+                        </div>
+                      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+                        <div class="panel-body">
+                          <strong>Pendidikan:</strong><br>
+                          {!!$c->pendidikan!!}
+                        </div>
+                      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+                        <div class="panel-body">
+                          <strong>Pendidikan:</strong><br>
+                          {!!$c2->pendidikan!!}
+                        </div>
+                      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default" >
+          <div class="panel-body">
+            <strong>Pendidikan:</strong><br>
+            {!!$rm2->pendidikan!!}
+          </div>
+        </div>
+      </div>
   </div>
-    <div id="root">
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="panel panel-default" >
+        <div class="panel-body">
+          <strong>Karir &amp; Organisasi:</strong><br>
+          {!!$rm->karir!!}
+        </div>
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="panel panel-default" >
+        <div class="panel-body">
+          <strong>Karir &amp; Organisasi:</strong><br>
+          {!!$c->karir!!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default" >
+        <div class="panel-body">
+          <strong>Karir &amp; Organisasi:</strong><br>
+          {!!$c2->karir!!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default" >
+        <div class="panel-body">
+          <strong>Karir &amp; Organisasi:</strong><br>
+          {!!$rm2->karir!!}
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Penghargaan dari organisasi:</strong><br>
+        {!!$rm->penghargaan!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Penghargaan dari organisasi:</strong><br>
+        {!!$c->penghargaan!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Penghargaan dari organisasi:</strong><br>
+        {!!$c->penghargaan!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Penghargaan dari organisasi:</strong><br>
+        {!!$c->penghargaan!!}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data lembaga pemerintah:</strong><br>
+        {!!$rm->sumber_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data lembaga pemerintah:</strong><br>
+        {!!$c->sumber_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data lembaga pemerintah:</strong><br>
+        {!!$c2->sumber_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data lembaga pemerintah:</strong><br>
+        {!!$rm2->sumber_pemerintah!!}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+        {!!$rm->sumber_non_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+        {!!$c->sumber_non_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+        {!!$c2->sumber_non_pemerintah!!}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <strong>Sumber data non-lembaga pemerintah (silahkan validasi sendiri kebenarannya):</strong><br>
+        {!!$rm2->sumber_non_pemerintah!!}
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
 @endsection
 
 @section('js')
