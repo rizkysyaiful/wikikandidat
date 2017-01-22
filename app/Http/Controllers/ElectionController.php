@@ -26,9 +26,16 @@ class ElectionController extends Controller
     public function election($any)
     {
         $election = Election::where('urlname', $any)->first();
-        if($election)
+
+        if( $election )
         {
-          return $this->show($election);
+          if( count($election->couples) > 1 )
+          {
+            return $this->show($election);
+          }else{
+            //impementasi view khusus untuk paslon yang cuma satu di sini.
+            echo "Dapil ini belum bisa diakses, karena paslon yang dimasukan belum cukup 2";
+          }
         }else{
           $candidate = Candidate::where('urlname', $any)->first();
           if($candidate)
