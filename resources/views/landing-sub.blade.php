@@ -93,10 +93,6 @@
 
 @section('content')
     <div class="container-fluid">
-      <p class="pull-right random-quote"><strong>Makin cerdas pemilih, makin keren pemimpinnya!</strong><br>Wikikandidat adalah museum rekam jejak kandidat.<br>Semua bisa menambah/mengubah rekam jejak,<br>tapi hanya informasi yang valid menurut tiga mahasiswa acak yang tampil.<br>
-      <span class="text-muted">Bantu Wikikandidat.com sebagai:</span> <a href="{{url('tentang-kami#mahasiswa', [], $secure)}}">verifikator</a> &middot; <a href="{{url('cara-kontribusi', [], $secure)}}">penambah data</a> &middot; <a href="#">pemasar</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat" target="_blank">developer</a><br>
-       <a href="{{url('/tentang-kami#kontak', [], $secure)}}">Kontak</a> &middot; <a href="https://github.com/rizkysyaiful/wikikandidat/milestones?direction=asc&sort=due_date&state=open" target="_blank">Roadmap</a> <span class="text-muted">(ya, visi kami jauh melampaui pilkada 2017)</span>
-      </p>
       <h1>{{$election->name}}</h1>
       <div class="btn-group">
         <a href="#" class="btn btn-default btn-lg">Cari Pemilihan Lain</a>
@@ -120,34 +116,25 @@
         </ul>
       </div>
       <hr>
-      <div class='row'>
       @if($election->description != "")
+      <div class='row'>
         @php
           $videos = explode(", ", $election->description);
         @endphp
-      </div>
-        <?php
-          $cp = App\User::find($election->cp);
-        ?>
-        <div style="text-align: center; padding-top: 10px;">
-          <strong>
-            Ingin bantu warga {{$election->place->name}}? Ingin nama organisasi kamu tercantum di atas? Hubungi {{$cp->name}} di {{$cp->email}}
-          </strong>
-        </div>
-          @foreach($videos as $v)
-            <div class="col-sm-3">
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$v}}" allowfullscreen></iframe>
-              </div>
+        @foreach($videos as $v)
+          <div class="col-sm-3">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$v}}" allowfullscreen></iframe>
             </div>
-          @endforeach
-        <hr>
+          </div>
+        @endforeach
+      </div>
       @endif
+      <h3 class="text-center">Head to Head</h3>
       <div class='row col-md-12'>
         <div class="row select-candidate form-group">
           <form action="{{url(url()->current(), [], $secure)}}" name='candidate' id='candidate' method='POST'>
             <div class="col-md-6">
-              <label for="candidate1">Kandidat Pertama</label>
               <select name='candidate1' class='form-control'>
               @foreach($couples as $couple)
                 <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
@@ -155,7 +142,6 @@
               <select>
             </div>
             <div class="col-md-6">
-              <label for="candidate2">Kandidat Kedua</label>
               <select name='candidate2' class='form-control'>
               @foreach($couples as $couple)
                 <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
