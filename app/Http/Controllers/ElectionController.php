@@ -78,7 +78,18 @@ class ElectionController extends Controller
         $cands[$s] = $couple->id;
       $s++;
       }
-      $count = $election->couples->count();
+      $length = count($cands);
+      if($length == 0 ) {
+        return view('landing-sub',['election'=>$election, 'couples'=>$election->couples, 'notice'=>"No data"]);
+      }
+      if($length == 1)  {
+        $wcand1 = Couple::find($cand[0])->running_mate_id;
+        $cand1 = Couple::find($cand[0])->candidate_id;
+
+        $c = Candidate::find($cand1);
+        $rm = Candidate::find($wcand1);
+        return view('landing-sub',['election'=>$election, 'couples'=>$election->couples, 'cp'=>$cp, 'c'=>$c, 'rm'=>$rm]);
+      }
       for($i = 0; $i < 2; $i++)
         $cand[$i] = $cands[array_rand($cands)];
 
