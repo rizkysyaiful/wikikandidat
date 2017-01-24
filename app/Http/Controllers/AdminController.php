@@ -83,13 +83,39 @@ class AdminController extends Controller
             'is_gov' => true,
             'vote_date' => '2017-02-15',
             'description' => $request->input('description'),
-            'place_id' => $place->id
+            'place_id' => $place->id,
+            'cp' => Auth::user()->id
             ]);
 
 
         $request->session()->flash('status', 'Dapil '.$place->name.' berhasil tersimpan..');
 
         return redirect('/admin');
+    }
+
+    public function edit_candidate(Request $request)
+    {
+        $request->session()->flash('status', 'Gagal tersimpan..');
+
+        $c = Candidate::find($request->input("candidate_id"));
+
+        $c->name = $request->input("name");
+        $c->nickname = $request->input("nickname");
+        $c->urlname = $request->input("urlname");
+        $c->photo_url = $request->input("photo_url");
+
+        $c->pendidikan = $request->input("pendidikan");
+        $c->karir = $request->input("karir");
+        $c->penghargaan = $request->input("penghargaan");
+        $c->sumber_pemerintah = $request->input("sumber_pemerintah");
+        $c->sumber_non_pemerintah = $request->input("sumber_non_pemerintah");
+        $c->election_id = $request->input("election_id");
+
+        $c->save();
+
+        $request->session()->flash('status', 'Data '.$c->name.' berhasil tersimpan...');
+
+        return redirect('/admin/edit-candidate');
     }
 
     public function add_candidate(Request $request)

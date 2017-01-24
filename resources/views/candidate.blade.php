@@ -73,6 +73,8 @@
 
 @section('content')
     <div class="container">
+      <?php $e = App\Election::find($c->election_id); ?>
+      <h3 class="pull-right"><a href="{{url($e->urlname, [], $secure)}}">Bertarung di {{$e->name}}</a></h3>
       <h1>{{$c->name}}</h1>
       <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$c->urlname}}" data-annotation="inline"></div>
       <hr>

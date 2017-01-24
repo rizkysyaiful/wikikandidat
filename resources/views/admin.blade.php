@@ -109,6 +109,18 @@ Admin
                 </div>
             </div>
             </form>
+            <strong>Kandidat Terbaru:</strong><br>
+            @php
+                $candidates = App\Candidate::all();
+                $candidates = $candidates->sortByDesc('created_at');
+            @endphp
+            <ul>
+            @foreach($candidates as $c)
+                <li>
+                {{$c->created_at}}: {{$c->name}} @ {{App\User::find($c->entrier_id)->name}}
+                </li>
+            @endforeach
+            </ul>
         </div>  
 
         <div role="tabpanel" class="tab-pane" id="tambahdapil">
@@ -135,6 +147,20 @@ Admin
                         </div>
                         <button type="submit" class="btn btn-default">Simpan</button>
                     </form>
+                </div>
+                <div class="col-sm-6">
+                    <strong>Dapil Terbaru:</strong><br>
+                    @php
+                        $elections = App\Election::all();
+                        $elections = $elections->sortByDesc('created_at');
+                    @endphp
+                    <ul>
+                    @foreach($elections as $e)
+                        <li>
+                        {{$e->name}} <span class="pull-right">{{$e->created_at}}</span>
+                        </li>
+                    @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
@@ -225,14 +251,27 @@ Admin
                             <input  type="checkbox"
                                     value="{{$p->id}}"
                                     name="party[]">
-                            {{$p->name}} ({{$p->abbreviation}})
+                            <strong>{{$p->abbreviation}}</strong> ({{$p->name}})
                           </label>
                         </div>
                     @endforeach
                     <button type="submit" class="btn btn-default">Tambah Pasangan</button>
                 </div>
                 <div class="col-sm-4">
-                    
+                    <strong>Pasangan Terbaru:</strong><br>
+                    @php
+                        $couples = App\Couple::all();
+                        $couples = $couples->sortByDesc('created_at');
+                    @endphp
+                    <ul>
+                    @foreach($couples as $c)
+                        <li>
+                        <strong>{{$c->created_at}}</strong><br>
+                        {{$c->election->name}}<br>
+                        {{$c->candidate->urlname}} &amp; {{$c->running_mate->urlname}}
+                        </li>
+                    @endforeach
+                    </ul>
                 </div>
                 </form>
             </div>
