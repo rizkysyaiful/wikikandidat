@@ -18,14 +18,26 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-
+/*
    $all = App\Candidate::all();
 
     foreach($all as $a){
       if( App\Election::find($a->election_id) === null ){
         echo $a->name." (".$a->id.")<br>";
+
+        if( App\Couple::where("candidate_id", $a->id) || App\Couple::where("running_mate_id", $a->id) ){
+          $couples = App\Couple::where("running_mate_id", $a->id)->get();
+        }
       }
     }
+*/
+    $all = App\Couple::all();
+
+    foreach($all as $a){
+      if( App\Candidate::find($a->candidate_id) === null || App\Candidate::find($a->running_mate_id) === null ){
+        echo $a->name." (".$a->id.")<br>";
+    }
+
 /*
     echo "<h3>Sama</h3>";
 
