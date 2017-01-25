@@ -36,6 +36,7 @@ Route::get('/tes', function(){
     foreach($all as $a){
       if( App\Candidate::find($a->candidate_id) === null || App\Candidate::find($a->running_mate_id) === null ){
         echo $a->name." (".$a->id.")<br>";
+      }
     }
 
 /*
