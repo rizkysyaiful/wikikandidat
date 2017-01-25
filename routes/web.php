@@ -19,9 +19,13 @@ use App\Mail\EditStatus;
 
 Route::get('/tes', function(){
 
-   $e_jakarta = App\Election::find(1);
+   $all = App\Candidate::all();
 
-   $e_jakarta->tesdong();
+   foreach($all as $a){
+    if( App\Election::find($a->election_id) === null ){
+      echo $a->name."<br>";
+    }
+  }
 
 });
 
