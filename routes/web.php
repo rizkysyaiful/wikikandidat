@@ -21,12 +21,21 @@ Route::get('/tes', function(){
 
    $all = App\Candidate::all();
 
-   foreach($all as $a){
-    if( App\Election::find($a->election_id) === null ){
-      echo $a->name."<br>";
+    foreach($all as $a){
+      if( App\Election::find($a->election_id) === null ){
+        echo $a->name." (".$a->id.")<br>";
+      }
     }
-  }
+/*
+    echo "<h3>Sama</h3>";
 
+    foreach($all as $a){
+
+      if( App\Election::find($a->election_id) === null ){
+        echo $a->name." (".$a->id.")<br>";
+      }
+    }
+*/
 });
 
 Route::post('/reveal-all', function(Request $r){
