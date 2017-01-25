@@ -10,11 +10,12 @@ Edit Candidate
 @section('head')
 <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css', $secure)}}">
 <link rel="stylesheet" href="{{asset('css/bootstrap3-wysihtml5.min.css', $secure)}}">
+<link rel="stylesheet" href="{{asset('css/select2.min.css', $secure)}}">
 @endsection
 
 @section('content')
 <div class="container">
-	<h1>Edit Kandidat <small><br>Spesial buat sesi entri data saat masih ketemu langsung.</small></h1>
+	<h1>Edit Kandidat <small><br>Spesial buat sesi entri data saat masih ketemu langsung</small></h1>
 	<hr>
 	<table id="table_id" class="display">
     <thead>
@@ -166,7 +167,9 @@ Edit Candidate
 
 @section('js')
 
-	<script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="{{asset('js/select2.full.min.js', $secure)}}"></script>	
+
+	<script type="text/javascript" src="{{asset('js/jquery.dataTables.min.js', $secure)}}"></script>
 	<script type="text/javascript">
 		$(document).ready( function () {
 			$(".btn-edit").click(function(){

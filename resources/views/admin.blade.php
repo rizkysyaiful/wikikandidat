@@ -9,6 +9,7 @@ Admin
 
 @section('head')
 <link rel="stylesheet" href="{{asset('css/bootstrap3-wysihtml5.min.css', $secure)}}">
+<link rel="stylesheet" href="{{asset('css/select2.min.css', $secure)}}">
 <style type="text/css">
     
 </style>
@@ -357,6 +358,14 @@ Admin
 @endsection
 
 @section('js')
+
+    <script type="text/javascript" src="{{asset('js/select2.full.min.js', $secure)}}"></script> 
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $("select").select2();
+        });
+    </script>
+
     <script src="{{asset('js/bootstrap3-wysiwyg/wysihtml5x-toolbar.min.js', $secure)}}"></script>
     <script src="{{asset('js/bootstrap3-wysiwyg/handlebars.runtime.min.js', $secure)}}"></script>
     <script src="{{asset('js/bootstrap3-wysiwyg/bootstrap3-wysihtml5.min.js', $secure)}}"></script>
