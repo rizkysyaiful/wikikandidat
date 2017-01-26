@@ -195,87 +195,87 @@ Admin
         </div>
 
         <div role="tabpanel" class="tab-pane" id="tambahpasangan">
-            <div class="row">
-                <form action="{{url('admin/add-couple', [], $secure)}}" method="POST">
-                <div class="col-sm-4">
-                    <h3>Tambah Pasangan</h3>
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label>Ketua</label>
-                            <select name="candidate_id" class="form-control">
-                              <?php
-                                $candidates = App\Candidate::all();
-                                $candidates = $candidates->sortByDesc('created_at');
-                              ?>
-                              @foreach($candidates as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
-                              @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Wakil</label>
-                            <select name="running_mate_id" class="form-control">
-                              <?php
-                                $candidates = App\Candidate::all();
-                                $candidates = $candidates->sortByDesc('created_at');
-                              ?>
-                              @foreach($candidates as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
-                              @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Nomor Urut</label>
-                            <input name="order" type="number" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>Di Dapil</label>
-                            <select name="election_id" class="form-control">
-                              <?php
-                                $elections = App\Election::all();
-                                $elections = $elections->sortByDesc('created_at');
-                              ?>
-                              @foreach($elections as $e)
-                                <option value="{{$e->id}}">{{$e->name}}</option>
-                              @endforeach
-                            </select>
-                        </div>
+            <form action="{{url('admin/add-couple', [], $secure)}}" method="POST">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3>Tambah Pasangan</h3>
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label>Ketua</label>
+                                <select name="candidate_id" class="form-control">
+                                  <?php
+                                    $candidates = App\Candidate::all();
+                                    $candidates = $candidates->sortByDesc('created_at');
+                                  ?>
+                                  @foreach($candidates as $c)
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                  @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Wakil</label>
+                                <select name="running_mate_id" class="form-control">
+                                  <?php
+                                    $candidates = App\Candidate::all();
+                                    $candidates = $candidates->sortByDesc('created_at');
+                                  ?>
+                                  @foreach($candidates as $c)
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                  @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor Urut</label>
+                                <input name="order" type="number" class="form-control" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Di Dapil</label>
+                                <select name="election_id" class="form-control">
+                                  <?php
+                                    $elections = App\Election::all();
+                                    $elections = $elections->sortByDesc('created_at');
+                                  ?>
+                                  @foreach($elections as $e)
+                                    <option value="{{$e->id}}">{{$e->name}}</option>
+                                  @endforeach
+                                </select>
+                            </div>
+                    </div>
+                    <div class="col-sm-4">
+                        @php
+                            $parties = App\Party::all();
+                            $parties = $parties->sortBy('name');
+                        @endphp
+                        @foreach($parties as $p)
+                            <div class="checkbox">
+                              <label>
+                                <input  type="checkbox"
+                                        value="{{$p->id}}"
+                                        name="party[]">
+                                <strong>{{$p->abbreviation}}</strong> ({{$p->name}})
+                              </label>
+                            </div>
+                        @endforeach
+                        <button type="submit" class="btn btn-default">Tambah Pasangan</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>Pasangan Terbaru:</strong><br>
+                        @php
+                            $couples = App\Couple::all();
+                            $couples = $couples->sortByDesc('created_at');
+                        @endphp
+                        <ul>
+                        @foreach($couples as $c)
+                            <li>
+                            <strong>{{$c->created_at}}</strong><br>
+                            {{$c->election->name}}<br>
+                            {{$c->candidate->urlname}} &amp; {{$c->running_mate->urlname}}
+                            </li>
+                        @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-sm-4">
-                    @php
-                        $parties = App\Party::all();
-                        $parties = $parties->sortBy('name');
-                    @endphp
-                    @foreach($parties as $p)
-                        <div class="checkbox">
-                          <label>
-                            <input  type="checkbox"
-                                    value="{{$p->id}}"
-                                    name="party[]">
-                            <strong>{{$p->abbreviation}}</strong> ({{$p->name}})
-                          </label>
-                        </div>
-                    @endforeach
-                    <button type="submit" class="btn btn-default">Tambah Pasangan</button>
-                </div>
-                <div class="col-sm-4">
-                    <strong>Pasangan Terbaru:</strong><br>
-                    @php
-                        $couples = App\Couple::all();
-                        $couples = $couples->sortByDesc('created_at');
-                    @endphp
-                    <ul>
-                    @foreach($couples as $c)
-                        <li>
-                        <strong>{{$c->created_at}}</strong><br>
-                        {{$c->election->name}}<br>
-                        {{$c->candidate->urlname}} &amp; {{$c->running_mate->urlname}}
-                        </li>
-                    @endforeach
-                    </ul>
-                </div>
-                </form>
-            </div>
+            </form>
         </div>
         
         <!--

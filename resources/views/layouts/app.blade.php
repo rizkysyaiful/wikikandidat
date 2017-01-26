@@ -187,6 +187,7 @@
           <ul class="nav navbar-nav navbar-right">
             @if(Auth::check())
                 <li><a href="{{url('admin', [], $secure)}}">Halaman Admin {{Auth::user()->name}}</a></li>
+                <li><a href="{{url('admin/edit-candidate', [], $secure)}}">Halaman Edit Kandidat</a></li>
                 <!--
                 <li><a href="{{url('verification', [], $secure)}}">Tugas Verifikasi</a></li>
                 <li class="dropdown">
@@ -207,6 +208,7 @@
                 <li><a href="{{url('daftar', [], $secure)}}">Daftar</a></li>
                 <li><a href="{{url('login', [], $secure)}}">Login</a></li>
                 -->
+                <li><a href="{{url('login', [], $secure)}}">Login</a></li>
             @endif
           </ul>
           
