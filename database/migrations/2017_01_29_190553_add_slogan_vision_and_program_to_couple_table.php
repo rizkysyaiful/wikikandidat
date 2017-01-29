@@ -33,13 +33,13 @@ class AddSloganVisionAndProgramToCoupleTable extends Migration
     public function down()
     {
         Schema::table('couples', function (Blueprint $table) {
-            //$table->dropColumn('picture_url');
+            $table->dropColumn('picture_url');
             $table->dropColumn('slogan');
             $table->dropColumn('visi');
             $table->dropColumn('program');
             $table->dropColumn('janji');
-            //$table->dropColumn('website');
-            //$table->dropColumn('sumber');
+            $table->dropColumn('website');
+            $table->dropColumn('sumber');
         });
     }
 }
