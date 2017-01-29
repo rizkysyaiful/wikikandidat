@@ -20,6 +20,8 @@ class AddSloganVisionAndProgramToCoupleTable extends Migration
             $table->text('visi')->nullable()->after('running_mate_id');
             $table->text('program')->nullable()->after('running_mate_id');
             $table->text('janji')->nullable()->after('running_mate_id');
+            $table->text('website')->nullable()->after('running_mate_id');
+            $table->text('sumber')->nullable()->after('running_mate_id');
         });
     }
 
@@ -36,6 +38,8 @@ class AddSloganVisionAndProgramToCoupleTable extends Migration
             $table->dropColumn('visi');
             $table->dropColumn('program');
             $table->dropColumn('janji');
+            //$table->dropColumn('website');
+            //$table->dropColumn('sumber');
         });
     }
 }
