@@ -177,6 +177,11 @@ Route::group(['prefix' => 'json'], function () {
     });
     Route::get('{any}', function ($any) {
       $election = App\Election::where('urlname', $any)->first();
+      $election->couples;
+      foreach ($election->couples as $c) {
+        $c->candidate->name;
+        $c->running_mate->name;
+      }
       echo $election;
     });
 });
