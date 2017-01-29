@@ -171,9 +171,13 @@ Route::get('/paslon/{any}', function($any){
   }
 });
 
-Route::group(['prefix' => 'baru'], function () {
+Route::group(['prefix' => 'json'], function () {
     Route::get('', function () {
-        echo App\Place::all();
+        echo App\Election::all();
+    });
+    Route::get('{any}', function ($any) {
+      $election = App\Election::where('urlname', $any)->first();
+      echo $election;
     });
 });
 
