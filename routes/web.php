@@ -162,6 +162,21 @@ Route::get('/user/{any}', function($any){
   }
 });
 
+Route::get('/paslon/{any}', function($any){
+  $couple = App\Couple::find($any);
+  if($couple)
+  {
+    $couple->election;
+    echo $couple;
+  }
+});
+
+Route::group(['prefix' => 'baru'], function () {
+    Route::get('', function () {
+        echo App\Place::all();
+    });
+});
+
 Route::get('{any}', 'ElectionController@election');
 Route::post('{any}', 'ElectionController@election');
 
