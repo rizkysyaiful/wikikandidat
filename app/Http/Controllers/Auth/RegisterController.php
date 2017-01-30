@@ -72,6 +72,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'phone_number' => $data['phone_number'],
             'national_pin' => $data['national_pin'],
+            'is_hibernate' => true,
         ]);
     }
 }

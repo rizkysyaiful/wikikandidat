@@ -33,8 +33,16 @@ class ElectionController extends Controller
           {
             return $this->show($election);
           }else{
-            //impementasi view khusus untuk paslon yang cuma satu di sini.
-            echo "Dapil ini belum bisa diakses, karena paslon yang dimasukan belum cukup 2";
+            if( count($election->couples) == 1 )
+            {
+              foreach ($election->couples as $c) {
+                echo "Kandidatnya cuma satu dan ini orangnya:<br>.";
+                echo $c->candidate->name;
+                echo "<br>Tolong kasih tahu mas Rizky untuk cek.";
+              }
+            }else{
+              echo "Dapil ini belum bisa diakses, karena ".App\User::find($election->cp)->name." belum memasukan ";
+            }
           }
         }else{
           $candidate = Candidate::where('urlname', $any)->first();

@@ -18,7 +18,7 @@ use App\Mail\EditStatus;
 */
 
 Route::get('/tes', function(){
-/*
+
    $all = App\Candidate::all();
 
     foreach($all as $a){
@@ -30,7 +30,7 @@ Route::get('/tes', function(){
         }
       }
     }
-*/
+/*
     $all = App\Couple::all();
 
     foreach($all as $a){
