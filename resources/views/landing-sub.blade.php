@@ -310,7 +310,7 @@
     <div class="panel panel-default" >
       <div class="panel-body">
         <strong>Penghargaan dari organisasi:</strong><br>
-        {!!$c->penghargaan!!}
+        {!!$c2->penghargaan!!}
       </div>
     </div>
   </div>
@@ -318,7 +318,7 @@
     <div class="panel panel-default" >
       <div class="panel-body">
         <strong>Penghargaan dari organisasi:</strong><br>
-        {!!$c->penghargaan!!}
+        {!!$c2->penghargaan!!}
       </div>
     </div>
   </div>
