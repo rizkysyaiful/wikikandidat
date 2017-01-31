@@ -99,7 +99,7 @@
         <a href="#" class="btn btn-default btn-lg dropdown-toggle " data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
         <ul class="dropdown-menu">
           @php
-            $elections =  App\Election::all();
+            $elections = App\Election::all();
             $elections = $elections->sortBy('name');
           @endphp
           @foreach($elections as $e)
@@ -137,14 +137,22 @@
             <div class="col-md-6">
               <select name='candidate1' class='form-control'>
               @foreach($couples as $couple)
-                <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
+                <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} ||
+                  @foreach($couple->parties as $p)
+                    {{$p->abbreviation}} 
+                  @endforeach
+                </option>
               @endforeach
               <select>
             </div>
             <div class="col-md-6">
               <select name='candidate2' class='form-control'>
               @foreach($couples as $couple)
-                <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} </option>
+                <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} ||
+                  @foreach($couple->parties as $p)
+                    {{$p->abbreviation}} 
+                  @endforeach
+                </option>
               @endforeach
               <select>
             </div>
@@ -152,19 +160,19 @@
           </form>
         </div>
       </div>
+
       <div class="row">
         <?php
           $types =  App\Type::all();
         ?>
-          <div class="candidate1 col-md-6 col-sm-12">
 
+          <div class="candidate1 col-md-6 col-sm-12">
           <div class="col-md-6 col-sm-6">
             <div class="panel panel-default" >
               <div class="panel-body">
                 <div class="head">
                   <img src="{{$rm->photo_url}}" alt="">
                   <h3><strong>{{$rm->name}}</strong></h3>
-
                 </div>
               </div>
             </div>
@@ -187,6 +195,7 @@
             <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="335" data-numposts="2"></div>
           </div>
         </div>
+        
         <div class="candidate2 col-md-6 col-sm-6">
         <div class="col-md-6 col-sm-6">
           <div class="panel panel-default" >
