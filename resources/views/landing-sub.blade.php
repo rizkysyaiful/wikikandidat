@@ -139,7 +139,7 @@
               @foreach($couples as $couple)
                 <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} ||
                   @foreach($couple->parties as $p)
-                    {{$p->abbreviation}} 
+                    {{$p->abbreviation}}, 
                   @endforeach
                 </option>
               @endforeach
@@ -150,7 +150,7 @@
               @foreach($couples as $couple)
                 <option value="{{$couple->id}}" <?php if(($couple->candidate_id) === $c2->id) echo "selected" ?>> {{App\Candidate::find($couple->candidate_id)->nickname}} - {{App\Candidate::find($couple->running_mate_id)->nickname}} ||
                   @foreach($couple->parties as $p)
-                    {{$p->abbreviation}} 
+                    {{$p->abbreviation}}, 
                   @endforeach
                 </option>
               @endforeach
