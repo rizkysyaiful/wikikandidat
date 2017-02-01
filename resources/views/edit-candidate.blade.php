@@ -63,6 +63,17 @@ Edit Candidate
 	    			data-name = "{{$c->name}}"
 	    			data-nickname = "{{$c->nickname}}"
 	    			data-urlname = "{{$c->urlname}}"
+	    			@php
+	    				if($c->birthdate != null){
+	    					$birthdate = explode("-", $c->birthdate);
+	    				}
+			    	@endphp
+			    	@if($c->birthdate != null)
+						data-year = "{{$birthdate[0]}}"
+		    			data-month = "{{$birthdate[1]}}"
+		    			data-date = "{{$birthdate[2]}}"
+			    	@endif
+			    	data-birthcity="{{$c->birthcity}}"
 	    			data-pendidikan="{{$c->pendidikan}}"
 	    			data-karir="{{$c->karir}}"
 	    			data-photo_url="{{$c->photo_url}}"
@@ -102,13 +113,41 @@ Edit Candidate
 			</div>
 
 			<div class="form-group">
-				<label>Nama URL</label>
+				<label>Nama URL (huruf kecil semua, tanpa spasi, _ boleh)</label>
 				<input name="urlname" type="text" class="form-control" required="">
 			</div>
 
 			<div class="form-group">
-				<label>Photo URL</label>
+				<label>Photo URL (contoh https://pilkada2017.kpu.go.id/img/paslon//2407/2407_foto-kd_1_.jpg)</label>
 				<input name="photo_url" type="text" class="form-control" required="">
+			</div>
+
+			<div class="form-group">
+				<label>Tempat Lahir (cari di ijazah, kosongkan jika tidak ada informasi)</label>
+				<input name="birthcity" type="text" class="form-control">
+			</div>
+
+			<div class="form-inline">
+				<div class="form-group">
+					<label>Tanggal Lahir (kosongkan jika tidak ada informasi)</label><br>
+					<select name="month" class="form-control">
+						<option value="">Tidak ada informasi</option>
+						<option value="01">Januari</option>
+						<option value="02">Februari</option>
+						<option value="03">Maret</option>
+						<option value="04">April</option>
+						<option value="05">Mei</option>
+						<option value="06">Juni</option>
+						<option value="07">Juli</option>
+						<option value="08">Agustus</option>
+						<option value="09">September</option>
+						<option value="10">Oktober</option>
+						<option value="11">November</option>
+						<option value="12">Desember</option>
+					</select>
+					<input name="date" type="number" class="form-control" min="1" max="31" placeholder="DD">
+					<input name="year" type="number" class="form-control" min="1900" max="2000" placeholder="YYYY">
+				</div>
 			</div>
 
 			<div class="form-group">
@@ -178,6 +217,11 @@ Edit Candidate
 				$("#myModal input[name='nickname']").val($(this).data('nickname'));
 				$("#myModal input[name='urlname']").val($(this).data('urlname'));
 				$("#myModal input[name='photo_url']").val($(this).data('photo_url'));
+				$("#myModal input[name='year']").val($(this).data('year'));
+				$("#myModal select[name='month']").val( $(this).data('month'))
+				$("#myModal input[name='date']").val($(this).data('date'));
+				$("#myModal input[name='birthcity']").val($(this).data('birthcity'));
+
 
 				var editorObj = $("#myModal textarea[name='pendidikan']").data('wysihtml5');
 				var editor = editorObj.editor;
@@ -217,7 +261,7 @@ Edit Candidate
             "emphasis": true, //Italics, bold, etc. Default true
             "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
             "html": false, //Button which allows you to edit the generated HTML. Default false
-            "link": true, //Button to insert a link. Default true
+            "link": false, //Button to insert a link. Default true
             "image": false, //Button to insert an image. Default true,
             "color": false, //Button to change color of font  
             "blockquote": false, //Blockquote 

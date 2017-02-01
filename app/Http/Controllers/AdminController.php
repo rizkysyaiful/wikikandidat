@@ -85,7 +85,7 @@ class AdminController extends Controller
             'description' => $request->input('description'),
             'place_id' => $place->id,
             'cp' => Auth::user()->id
-            ]);
+        ]);
 
 
         $request->session()->flash('status', 'Dapil '.$place->name.' berhasil tersimpan..');
@@ -103,6 +103,13 @@ class AdminController extends Controller
         $c->nickname = $request->input("nickname");
         $c->urlname = $request->input("urlname");
         $c->photo_url = $request->input("photo_url");
+
+        if(     $request->input("year") != "" && 
+                $request->input("month") != "" &&
+                $request->input("date") != ""){
+            $c->birthdate = $request->input("year")."-".$request->input("month")."-".str_pad($request->input("date"), 2, 0, STR_PAD_LEFT);
+        }
+        $c->birthcity = $request->input("birthcity");
 
         $c->pendidikan = $request->input("pendidikan");
         $c->karir = $request->input("karir");
