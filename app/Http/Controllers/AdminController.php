@@ -27,8 +27,6 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    
-
     public function add_uni(Request $request)
     {
     	$request->session()->flash('status', 'Gagal tersimpan..');
@@ -87,10 +85,42 @@ class AdminController extends Controller
             'cp' => Auth::user()->id
         ]);
 
-
         $request->session()->flash('status', 'Dapil '.$place->name.' berhasil tersimpan..');
 
         return redirect('/admin');
+    }
+
+    public function edit_couple(Request $request)
+    {
+        $request->session()->flash('status', 'Gagal tersimpan..');
+
+        $c = Couple::find($request->input("couple_id"));
+
+        $c->running_mate_id = $request->input("running_mate_id");
+        $c->election_id = $request->input("election_id");
+        $c->order = $request->input("order");
+        $c->website = $request->input("website");
+        $c->slogan = $request->input("slogan");
+        $c->visi = $request->input("visi");
+        $c->misi = $request->input("misi");
+        $c->program = $request->input("program");
+        $c->sumber = $request->input("sumber");
+
+        $c->save();
+
+        DB::table('couple_party')
+                ->where('couple_id', $c->id)
+                ->delete();
+        foreach ( $request->input('party') as $p ) {
+            DB::table('couple_party')->insert([
+                'couple_id' => $c->id,
+                'party_id' => $p
+            ]);
+        }
+
+        $request->session()->flash('status', 'Data pasangan '.$c->candidate->name.' - '.$c->running_mate->name.' berhasil diperbarui...');
+
+        return redirect('/admin/edit-couple');
     }
 
     public function edit_candidate(Request $request)
@@ -114,6 +144,7 @@ class AdminController extends Controller
         $c->pendidikan = $request->input("pendidikan");
         $c->karir = $request->input("karir");
         $c->penghargaan = $request->input("penghargaan");
+        $c->dakwaan = $request->input("dakwaan");
         $c->sumber_pemerintah = $request->input("sumber_pemerintah");
         $c->sumber_non_pemerintah = $request->input("sumber_non_pemerintah");
         $c->election_id = $request->input("election_id");
@@ -133,14 +164,25 @@ class AdminController extends Controller
         // kalau urlnamenya ga duplikat
         if( Candidate::where("urlname", $request->input("urlname"))->first() == null )
         {
+            if( $request->input("year") != "" && 
+                $request->input("month") != "" &&
+                $request->input("date") != "")
+            {
+                $birthdate = $request->input("year").
+                            "-".$request->input("month").
+                            "-".str_pad($request->input("date"), 2, 0, STR_PAD_LEFT);
+            }
             Candidate::create([
                 'name' => $request->input("name"),
                 'nickname' => $request->input("nickname"),
                 'urlname' => $request->input("urlname"),
                 'photo_url' => $request->input("photo_url"),
+                'birthdate' => $birthdate,
+                'birthcity' => $request->input("birthcity"),
                 'pendidikan' => $request->input("pendidikan"),
                 'karir' => $request->input("karir"),
                 'penghargaan' => $request->input("penghargaan"),
+                'dakwaan' => $request->input("dakwaan"),
                 'sumber_pemerintah' => $request->input("sumber_pemerintah"),
                 'sumber_non_pemerintah' => $request->input("sumber_non_pemerintah"),
                 'election_id' => $request->input("election_id"),
@@ -151,7 +193,6 @@ class AdminController extends Controller
         }else{
             $request->session()->flash('status', $request->input("name").' gagal tersimpan.. '.$request->input("urlname").' sudah ada yang punya');
         }
-
     	return redirect('/admin');
     }
 
@@ -166,7 +207,13 @@ class AdminController extends Controller
                 'election_id' => $request->input('election_id'),
                 'order' => $request->input('order'),
                 'candidate_id' => $request->input('candidate_id'),
-                'running_mate_id' => $request->input('running_mate_id')
+                'running_mate_id' => $request->input('running_mate_id'),
+                'slogan' => $request->input('slogan'),
+                'visi' => $request->input('visi'),
+                'misi' => $request->input('misi'),
+                'program' => $request->input('program'),
+                'website' => $request->input('website'),
+                'sumber' => $request->input('sumber')
             ]);
 
             foreach ($request->input('party') as $p) {

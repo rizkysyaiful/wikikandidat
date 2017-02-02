@@ -15,18 +15,14 @@ Edit Candidate
 
 @section('content')
 <div class="container">
-	<h1>Edit Kandidat <small><br>Spesial buat sesi entri data saat masih ketemu langsung</small></h1>
+	<h1>Agar Pengguna Melihat Data Kandidat yang Detail &amp; Akurat!<br><small><a href="https://pilkada2017.kpu.go.id/paslon/tahapPenetapan" target="_blank">pilkada2017.kpu.go.id/paslon/tahapPenetapan</a></small></h1>
 	<hr>
 	<table id="table_id" class="display">
     <thead>
         <tr>
         	<th>Pilkada</th>
             <th>Nama</th>
-            <th>Pendidikan</th>
-            <th>Karir</th>
-            <th>Penghargaan</th>
-            <th>Sumber Pemerintah</th>
-            <th>Sumber Non Pemerintah</th>
+            <th>Halaman Pribadi</th>
             <th>Edit</th>
         </tr>
     </thead>
@@ -39,26 +35,12 @@ Edit Candidate
         	<?php $e = App\Election::find($c->election_id); ?>
         	<td><a href="{{url($e->urlname, [], $secure)}}">{{$e->place->name}}</a></td>
             <td>{{$c->name}}</td>
+            <td><a href="{{url($c->urlname, [], $secure)}}">{{url($c->urlname, [], $secure)}}</a></td>
             <td>
-            	{!!$c->pendidikan!!}
-            </td>
-            <td>
-            	{!!$c->karir!!}
-            </td>
-            <td>
-            	{!!$c->penghargaan!!}
-            </td>
-            <td>
-            	{!!$c->sumber_pemerintah!!}
-            </td>
-            <td>
-            	{!!$c->sumber_non_pemerintah!!}
-            </td>
-            <td>
-            <button type="submit"
-	    			class="btn btn-edit btn-xs btn-default"
-	    			data-toggle="modal"
-	    			data-target="#myModal"
+            <button type = "submit"
+	    			class = "btn btn-edit btn-xs btn-default"
+	    			data-toggle = "modal"
+	    			data-target = "#myModal"
 	    			data-candidate_id = "{{$c->id}}"
 	    			data-name = "{{$c->name}}"
 	    			data-nickname = "{{$c->nickname}}"
@@ -101,6 +83,18 @@ Edit Candidate
 		<form action="{{url('admin/edit-candidate', [], $secure)}}" method="POST">
 			{{ csrf_field() }}
 			<input type="hidden" name="candidate_id">
+
+			<div class="form-group">
+	        	@php
+	        		$elections = App\Election::all();
+	        		$elections = $elections->sortByDesc('created_at');
+	        	@endphp
+	        	<select name="election_id" class="form-control autocomplete">
+                @foreach($elections as $e)
+                    <option value="{{$e->id}}">{{$e->name}}</option>
+                @endforeach
+                </select>
+	        </div>
 
 			<div class="form-group">
 				<label>Nama Lengkap</label>
@@ -171,6 +165,15 @@ Edit Candidate
 							name="penghargaan"
 	            ></textarea>
 	        </div>
+
+	        <div class="form-group">
+	            <label>Kasus Pidana</label>
+	            <textarea 	class="form-control"
+            				style="width:100%;"
+							name="dakwaan"
+	            ></textarea>
+	        </div>
+
 	        <div class="form-group">
 	            <label>Sumber Pemerintah (buat link, scroll sampai ada tombol karena ada bug)</label>
 	            <textarea 	class="form-control"
@@ -185,17 +188,6 @@ Edit Candidate
 							name="sumber_non_pemerintah"
 	            ></textarea>
 	        </div>
-	        <div class="form-group">
-	        	@php
-	        		$elections = App\Election::all();
-	        		$elections = $elections->sortByDesc('created_at');
-	        	@endphp
-	        	<select name="election_id">
-                @foreach($elections as $e)
-                    <option value="{{$e->id}}">{{$e->name}}</option>
-                @endforeach
-                </select>
-	        </div>
 	        <button type="submit" class="btn btn-primary">Perbarui</button>
 		</form>
       </div>
@@ -207,6 +199,12 @@ Edit Candidate
 @section('js')
 
 	<script type="text/javascript" src="{{asset('js/select2.full.min.js', $secure)}}"></script>	
+	<script type="text/javascript">
+        $(document).ready( function () {
+            $("select.autocomplete").select2({ width: '100%' });
+            $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+        });        
+    </script>
 
 	<script type="text/javascript" src="{{asset('js/jquery.dataTables.min.js', $secure)}}"></script>
 	<script type="text/javascript">
@@ -235,6 +233,10 @@ Edit Candidate
 				var editor = editorObj.editor;
 				editor.setValue($(this).data('penghargaan'));
 
+				var editorObj = $("#myModal textarea[name='dakwaan']").data('wysihtml5');
+				var editor = editorObj.editor;
+				editor.setValue($(this).data('dakwaan'));
+
 				var editorObj = $("#myModal textarea[name='sumber_pemerintah']").data('wysihtml5');
 				var editor = editorObj.editor;
 				editor.setValue($(this).data('sumber_pemerintah'));
@@ -243,7 +245,7 @@ Edit Candidate
 				var editor = editorObj.editor;
 				editor.setValue($(this).data('sumber_non_pemerintah'));
 
-				$("#myModal select[name='election_id']").val( $(this).data('election_id'))
+				$("#myModal select[name='election_id']").val($(this).data('election_id')).trigger("change");
 			});
 
 		    $('#table_id').DataTable({

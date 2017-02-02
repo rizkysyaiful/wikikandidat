@@ -174,9 +174,19 @@
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
-            @if(Auth::check())
-                <li><a href="{{url('admin', [], $secure)}}">Halaman Admin {{Auth::user()->name}}</a></li>
-                <li><a href="{{url('admin/edit-candidate', [], $secure)}}">Halaman Edit Kandidat</a></li>
+            @if( Auth::check() && !Auth::user()->is_hibernate )
+                <li>
+                    <a href="#">Halo {{Auth::user()->name}}!</a>
+                </li>
+                <li>
+                    <a href="{{url('admin', [], $secure)}}">&rarr; Tambah Data</a>
+                </li>
+                <li>
+                    <a href="{{url('admin/edit-candidate', [], $secure)}}">&rarr; Edit Kandidat</a>
+                </li>
+                <li>
+                    <a href="{{url('admin/edit-couple', [], $secure)}}">&rarr; Edit Pasangan</a>
+                </li>
                 <!--
                 <li><a href="{{url('verification', [], $secure)}}">Tugas Verifikasi</a></li>
                 <li class="dropdown">

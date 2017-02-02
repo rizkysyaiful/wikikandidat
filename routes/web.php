@@ -17,7 +17,17 @@ use App\Mail\EditStatus;
 |
 */
 
+
+
 Route::get('/tes', function(){
+
+    $parties = App\Party::all();
+                $parties = $parties->sortBy('abbreviation');
+                $parties = $parties->toArray();
+                echo "<pre>";
+                print_r($parties);
+                echo "</pre>";
+
 
    $all = App\Candidate::all();
 
@@ -51,6 +61,10 @@ Route::get('/tes', function(){
 */
 });
 
+Route::get('/home', function(){  
+  return redirect('/');
+});
+
 Route::post('/reveal-all', function(Request $r){
   print_r($r->all());
 });
@@ -64,6 +78,8 @@ Route::get('/admin', function(){
   if( Auth::user() && !Auth::user()->is_hibernate )
   {
     return view('admin');
+  }else{
+    echo "Sudah logout, silahkan ke wikikandidat.com/login dulu...";
   }
 });
 
@@ -77,9 +93,24 @@ Route::post('/admin/add-couple', 'AdminController@add_couple');
 Route::post('/admin/add-party', 'AdminController@add_party');
 
 Route::get("/admin/edit-candidate", function(){
-  return view('edit-candidate');
+  if( Auth::user() && !Auth::user()->is_hibernate )
+  {
+    return view('edit-candidate');
+  }else{
+    echo "Sudah logout, silahkan ke wikikandidat.com/login dulu...";
+  }
 });
 Route::post("/admin/edit-candidate", 'AdminController@edit_candidate');
+
+Route::get("/admin/edit-couple", function(){
+  if( Auth::user() && !Auth::user()->is_hibernate )
+  {
+    return view('edit-couple');
+  }else{
+    echo "Sudah logout, silahkan ke wikikandidat.com/login dulu...";
+  }
+});
+Route::post("/admin/edit-couple", 'AdminController@edit_couple');
 
 /**
 * Pages for reader
