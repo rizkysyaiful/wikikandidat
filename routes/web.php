@@ -55,6 +55,7 @@ Route::group(['prefix' => 'qa'], function () {
               echo "<strong>".count($e->couples)."</strong>";
               if(count($e->couples) > 0){
                 echo "<br>";
+                $e->couples = $e->couples->sortBy('order');
                 foreach ($e->couples as $c) {
                   echo $c->order.") ".$c->candidate->name." - ";
                   echo $c->running_mate->name."<br>";
