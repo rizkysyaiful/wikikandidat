@@ -22,7 +22,7 @@ Route::group(['prefix' => 'qa'], function () {
 
   Route::get('/', function(){
     $elections = App\Election::all();
-    $elections = $elections->sortBy('abbreviation');
+    $elections = $elections->sortBy('urlname');
     foreach($elections as $e){
       if($e->place->level == 1)
         $prefix = "Prov.";
@@ -41,8 +41,10 @@ Route::group(['prefix' => 'qa'], function () {
   Route::get('{electionurl}', function($electionurl){
     $e = App\Election::where('urlname', $electionurl)->first();
     echo "<h2>".$e->name."</h2>";
-    foreach ($e->couples as $c) {
-      echo "<a href='".$electionurl."/".$c->order."' target='_blank'>".$c->candidate->name."-".$c->running_mate->name."</a><br>";
+    $couples = $e->couples;
+    $couples = $couples->sortBy('order');
+    foreach ($couples as $c) {
+      echo $c->order.". <a href='".$electionurl."/".$c->order."' target='_blank'>".$c->candidate->name." - ".$c->running_mate->name."</a><br>";
     }
     echo "<p>Content Manager: ".App\User::find($e->cp)->name."</p>";
     $videos = explode(", ", $e->description);
@@ -53,8 +55,51 @@ Route::group(['prefix' => 'qa'], function () {
   });
 
   Route::get('{electionurl}/{order}', function($electionurl, $order){
-
+    $e = App\Election::where('urlname', $electionurl)->first();
+    $c = App\Couple::where('election_id', $e->id)
+                    ->where('order', $order)->first();
+    $cp = App\User::find($e->cp);
+    echo '<link rel="stylesheet" href="'.asset('css/bootstrap.css').'" media="screen">
+    <link rel="stylesheet" href="'.asset('css/custom.min.css').'">';
+    echo "<div class='container'>";
+      echo "<span class='pull-right'>Content Manager: ".$cp->name." (".$cp->email." ".$cp->phone_number.")</span>";
+      echo "<h1>".$c->candidate->nickname." &amp; ".$c->running_mate->nickname."</h1>";
+      echo "<div class='row'>";
+        echo "<div class='col-sm-4'>";
+          echo "<h4>Website Resmi:</h4><p>".$c->website."</p>";
+          echo "<h4>Slogan:</h4><p>".$c->slogan."</p>";
+          echo "<h4>Visi:</h4><p>".$c->visi."</p>";
+          echo "<h4>Misi:</h4><p>".$c->misi."</p>";
+          echo "<h4>Program:</h4><p>".$c->program."</p>";
+          echo "<h4>Sumber:</h4><p>".$c->sumber."</p>";
+        echo "</div>";
+          echo "<div class='col-sm-4'>";
+            echo "<img src='".$c->candidate->photo_url."' width='150'>";
+            echo "<h3>".$c->candidate->name."<br><small>".$c->candidate->nickname." (".$c->candidate->urlname."). Tanding di <a href='".url(App\Election::find($c->candidate->election_id)->urlname)."'>".App\Election::find($c->candidate->election_id)->urlname."</a></small></h3>";
+            echo "<h4>Lahir:</h4><p>".$c->candidate->birthcity.", ".$c->candidate->birthdate."</p>";
+            echo "<h4>Pendidikan:</h4><p>".$c->candidate->pendidikan."</p>";
+            echo "<h4>Karir:</h4><p>".$c->candidate->karir."</p>";
+            echo "<h4>Penghargaan:</h4><p>".$c->candidate->penghargaan."</p>";
+            echo "<h4>Kasus Pidana:</h4><p>".$c->candidate->dakwaan."</p>";
+            echo "<h4>Sumber Pemerintah:</h4><p>".$c->candidate->sumber_pemerintah."</p>";
+            echo "<h4>Sumber Non-Pemerintah:</h4><p>".$c->candidate->sumber_non_pemerintah."</p>";
+          echo "</div>";
+          echo "<div class='col-sm-4'>";
+            echo "<img src='".$c->running_mate->photo_url."' width='150'>";
+            echo "<h3>".$c->running_mate->name."<br><small>".$c->running_mate->nickname." (".$c->running_mate->urlname."). Tanding di <a href='".url(App\Election::find($c->running_mate->election_id)->urlname)."'>".App\Election::find($c->running_mate->election_id)->urlname."</a></small></h3>";
+            echo "<h4>Lahir:</h4><p>".$c->running_mate->birthcity.", ".$c->running_mate->birthdate."</p>";
+            echo "<h4>Pendidikan:</h4><p>".$c->running_mate->pendidikan."</p>";
+            echo "<h4>Karir:</h4><p>".$c->running_mate->karir."</p>";
+            echo "<h4>Penghargaan:</h4><p>".$c->running_mate->penghargaan."</p>";
+            echo "<h4>Kasus Pidana:</h4><p>".$c->running_mate->dakwaan."</p>";
+            echo "<h4>Sumber Pemerintah:</h4><p>".$c->running_mate->sumber_pemerintah."</p>";
+            echo "<h4>Sumber Non-Pemerintah:</h4><p>".$c->running_mate->sumber_non_pemerintah."</p>";
+          echo "</div>";
+        echo "</div>";
+      echo "</div>";
+    echo "</div>";
   });
+
 
 });
 
@@ -110,7 +155,6 @@ Route::post('/reveal-all', function(Request $r){
 /**
 * Pages for admin
 */
-
 
 Route::get('/admin', function(){  
   if( Auth::user() && !Auth::user()->is_hibernate )
