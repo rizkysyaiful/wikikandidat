@@ -23,19 +23,52 @@ Route::group(['prefix' => 'qa'], function () {
   Route::get('/', function(){
     $elections = App\Election::all();
     $elections = $elections->sortBy('urlname');
-    foreach($elections as $e){
-      if($e->place->level == 1)
-        $prefix = "Prov.";
-      if($e->place->level == 2)
-        $prefix = "Kota";
-      if($e->place->level == 3)
-        $prefix = "Kab.";
-      echo "<a href='".url("qa/".$e->urlname, [])."' 
-                target='_blank'>".$prefix." ".
-                $e->place->name." (".
-                count($e->couples)." paslon)".
-                "</a><br>";
-    }
+    echo "<table  border='1'>";
+      echo "<thead>";
+        echo "<tr>";
+          echo "<th>";
+            echo "Dapil";
+          echo "</th>";
+          echo "<th>";
+            echo "Paslon yang sudah diinput";
+          echo "</th>";
+          echo "<th>";
+            echo "Content Manager";
+          echo "</th>";
+        echo "</tr>";
+      echo "</thead>";
+      echo "<tbody>";
+        foreach($elections as $e){
+          if($e->place->level == 1)
+            $prefix = "Prov.";
+          if($e->place->level == 2)
+            $prefix = "Kota";
+          if($e->place->level == 3)
+            $prefix = "Kab.";
+          echo "<tr>";
+            echo "<td>";
+              echo "<a href='".url("qa/".$e->urlname, [])."' 
+                    target='_blank'>".$prefix." ".
+                    $e->place->name."</a>";
+            echo "</td>";
+            echo "<td>";
+              echo "<strong>".count($e->couples)."</strong>";
+              if(count($e->couples) > 0){
+                echo "<br>";
+                foreach ($e->couples as $c) {
+                  echo $c->order.") ".$c->candidate->name." - ";
+                  echo $c->running_mate->name."<br>";
+                }
+              }
+            echo "</td>";
+            echo "<td>";
+              echo App\User::find($e->cp)->name;
+            echo "</td>";
+          echo "</tr>";
+        }
+      echo "</tbody>";
+    echo "</table>";
+    
   });
 
   Route::get('{electionurl}', function($electionurl){
