@@ -41,7 +41,7 @@ class ElectionController extends Controller
                 echo "<br>Tolong kasih tahu mas Rizky untuk cek.";
               }
             }else{
-              echo "Dapil ini belum bisa diakses, karena ".App\User::find($election->cp)->name." belum memasukan ";
+              echo "Dapil ini belum bisa diakses, karena ".User::find($election->cp)->name." belum memasukan ";
             }
           }
         }else{

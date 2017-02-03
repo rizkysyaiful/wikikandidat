@@ -18,16 +18,54 @@ use App\Mail\EditStatus;
 */
 
 
+Route::group(['prefix' => 'qa'], function () {
+
+  Route::get('/', function(){
+    $elections = App\Election::all();
+    $elections = $elections->sortBy('abbreviation');
+    foreach($elections as $e){
+      if($e->place->level == 1)
+        $prefix = "Prov.";
+      if($e->place->level == 2)
+        $prefix = "Kota";
+      if($e->place->level == 3)
+        $prefix = "Kab.";
+      echo "<a href='".url("qa/".$e->urlname, [])."' 
+                target='_blank'>".$prefix." ".
+                $e->place->name." (".
+                count($e->couples)." paslon)".
+                "</a><br>";
+    }
+  });
+
+  Route::get('{electionurl}', function($electionurl){
+    $e = App\Election::where('urlname', $electionurl)->first();
+    echo "<h2>".$e->name."</h2>";
+    foreach ($e->couples as $c) {
+      echo "<a href='".$electionurl."/".$c->order."' target='_blank'>".$c->candidate->name."-".$c->running_mate->name."</a><br>";
+    }
+    echo "<p>Content Manager: ".App\User::find($e->cp)->name."</p>";
+    $videos = explode(", ", $e->description);
+    foreach($videos as $v){
+      echo '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/'.$v.'" allowfullscreen></iframe>';
+    }
+
+  });
+
+  Route::get('{electionurl}/{order}', function($electionurl, $order){
+
+  });
+
+});
 
 Route::get('/tes', function(){
 
     $parties = App\Party::all();
-                $parties = $parties->sortBy('abbreviation');
-                $parties = $parties->toArray();
-                echo "<pre>";
-                print_r($parties);
-                echo "</pre>";
-
+    $parties = $parties->sortBy('abbreviation');
+    $parties = $parties->toArray();
+    echo "<pre>";
+    print_r($parties);
+    echo "</pre>";
 
    $all = App\Candidate::all();
 
