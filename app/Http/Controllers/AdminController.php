@@ -111,11 +111,15 @@ class AdminController extends Controller
         DB::table('couple_party')
                 ->where('couple_id', $c->id)
                 ->delete();
-        foreach ( $request->input('party') as $p ) {
-            DB::table('couple_party')->insert([
-                'couple_id' => $c->id,
-                'party_id' => $p
-            ]);
+
+        if(isset($request->input('party')))
+        {
+            foreach ( $request->input('party') as $p ) {
+                DB::table('couple_party')->insert([
+                    'couple_id' => $c->id,
+                    'party_id' => $p
+                ]);
+            }
         }
 
         $request->session()->flash('status', 'Data pasangan '.$c->candidate->name.' - '.$c->running_mate->name.' berhasil diperbarui...');
@@ -216,17 +220,20 @@ class AdminController extends Controller
                 'sumber' => $request->input('sumber')
             ]);
 
-            foreach ($request->input('party') as $p) {
-                $result = DB::table('couple_party')
-                    ->where('couple_id', $couple->id)
-                    ->where('party_id', $p)
-                    ->get();
-                if(count($result) == 0)
-                {
-                    DB::table('couple_party')->insert([
-                        'couple_id' => $couple->id,
-                        'party_id' => $p
-                        ]);
+            if(isset($request->input('party')))
+            {
+                foreach ($request->input('party') as $p) {
+                    $result = DB::table('couple_party')
+                        ->where('couple_id', $couple->id)
+                        ->where('party_id', $p)
+                        ->get();
+                    if(count($result) == 0)
+                    {
+                        DB::table('couple_party')->insert([
+                            'couple_id' => $couple->id,
+                            'party_id' => $p
+                            ]);
+                    }
                 }
             }
 
