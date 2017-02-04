@@ -23,7 +23,7 @@ Route::group(['prefix' => 'qa'], function () {
   Route::get('/', function(){
     $elections = App\Election::all();
     $elections = $elections->sortBy('urlname');
-    echo "<table  border='1'>";
+    echo "<table border='1'>";
       echo "<thead>";
         echo "<tr>";
           echo "<th>";
@@ -57,8 +57,12 @@ Route::group(['prefix' => 'qa'], function () {
                 echo "<br>";
                 $e->couples = $e->couples->sortBy('order');
                 foreach ($e->couples as $c) {
-                  echo $c->order.") ".$c->candidate->name." - ";
-                  echo $c->running_mate->name."<br>";
+                  echo $c->order.") <strong>".$c->candidate->name." - ";
+                  echo $c->running_mate->name."</strong> (";
+                  foreach ($c->parties as $p) {
+                    echo $p->abbreviation.", ";
+                  }
+                  echo ") -- ".$c->id."<br>";
                 }
               }
             echo "</td>";
