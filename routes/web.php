@@ -17,11 +17,8 @@ use App\Mail\EditStatus;
 |
 */
 
-Route::group(['prefix' => 'baru'], function () {
-
-  Route::get('/', function(){
-    return view('jogja.home');
-  });
+Route::get('/', function(){
+  return view('jogja.home');
 });
 
 Route::group(['prefix' => 'qa'], function () {
@@ -241,9 +238,10 @@ Route::post("/admin/edit-couple", 'AdminController@edit_couple');
 /**
 * Pages for reader
 */
+/*
 Route::get('/','ElectionController@index');
 Route::post('/', 'ElectionController@index');
-
+*/
 Route::get('/tentang-kami', function(){
   return view('static.about-2017-ver');
 });
