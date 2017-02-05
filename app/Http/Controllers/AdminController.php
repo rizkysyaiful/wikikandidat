@@ -175,6 +175,8 @@ class AdminController extends Controller
                 $birthdate = $request->input("year").
                             "-".$request->input("month").
                             "-".str_pad($request->input("date"), 2, 0, STR_PAD_LEFT);
+            }else{
+                $birthdate = null;
             }
             Candidate::create([
                 'name' => $request->input("name"),
