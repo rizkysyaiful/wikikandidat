@@ -17,6 +17,12 @@ use App\Mail\EditStatus;
 |
 */
 
+Route::group(['prefix' => 'baru'], function () {
+
+  Route::get('/', function(){
+    return view('jogja.home');
+  });
+});
 
 Route::group(['prefix' => 'qa'], function () {
 
