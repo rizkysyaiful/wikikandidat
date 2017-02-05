@@ -112,7 +112,7 @@ class AdminController extends Controller
                 ->where('couple_id', $c->id)
                 ->delete();
 
-        if(isset($request->input('party')))
+        if($request->has('party'))
         {
             foreach ( $request->input('party') as $p ) {
                 DB::table('couple_party')->insert([
@@ -220,7 +220,7 @@ class AdminController extends Controller
                 'sumber' => $request->input('sumber')
             ]);
 
-            if(isset($request->input('party')))
+            if($request->has('party'))
             {
                 foreach ($request->input('party') as $p) {
                     $result = DB::table('couple_party')
