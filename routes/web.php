@@ -281,8 +281,8 @@ Route::post("/admin/edit-couple", 'AdminController@edit_couple');
 /**
 * Pages for reader
 */
-Route::get('/','ElectionController@index');
-Route::post('/', 'ElectionController@index');
+//Route::get('/','ElectionController@index');
+//Route::post('/', 'ElectionController@index');
 
 Route::get('/tentang-kami', function(){
   return view('static.about-2017-ver');
