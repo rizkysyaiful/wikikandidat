@@ -27,12 +27,18 @@
 <div class="page-comparison">
 
   <div class="container">
-    <a href="{{url($election->urlname, [], $secure)}}" class="btn btn-primary-o">
-      &#8678; Kembali Pilih Pasangan
-    </a>
+    @if(count($election->couples) == 2 )
+      <a href="{{url('', [], $secure)}}" class="btn btn-primary-o">
+        &#8678; Kembali Pilih Daerah Pemilihan
+      </a>
+    @else
+      <a href="{{url($election->urlname, [], $secure)}}" class="btn btn-primary-o">
+        &#8678; Kembali Pilih Pasangan
+      </a>
+    @endif
     <div class="box title">
       <div class="text center">
-        <h1 class="heading _title-list">{{$lc->nickname}}? Atau {{$rc->nickname}}?</h1>
+        <h1 class="heading _title-list">{{$lc->nickname}}-{{$lrm->nickname}}? Atau {{$rc->nickname}}-{{$rrm->nickname}}?</h1>
         <h2 class="heading __sub-title-list">Untuk {{$election->place->name}}</h2>
         <div class="heading __period-list">Periode 2017-2022</div>
       </div>

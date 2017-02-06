@@ -44,7 +44,7 @@
                 <img src="{{$c->candidate->photo_url}}" alt="" class="img-cover">
               </div>
               <div class="avatar">
-                <img src="{{$c->running_mate->photo_url}}" alt="">
+                <img src="{{$c->running_mate->photo_url}}" alt="" class="img-cover">
               </div>
             </div>
             <div class="couple-info-paslon">
@@ -97,9 +97,9 @@
       });
       $(".compare-btn").click( function () {
       	if( $("#first-select").val() == "" ||
-      	    $("#second-select").val() == "" )
+      	    $("#second-select").val() == "" || $("#second-select").val() == $("#first-select").val())
       	{
-      		alert("Isi dulu ya, dua pasang kandidat yang ingin dibandingkan..")
+      		alert("Isi dulu ya, dua pasang kandidat berbeda yang ingin dibandingkan..")
       	}else
   	    {
   	    	window.location.href = "{{url('', [], $secure)}}/{{$election->urlname}}"+"/"+$("#first-select").val()+"--vs--"+$("#second-select").val();

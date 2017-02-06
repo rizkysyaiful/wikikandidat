@@ -365,9 +365,9 @@ Route::get('{electionurl}', function($electionurl){
                         'right' => $couples->last()
                       ]);
     }elseif(count($e->couples) == 1){
-
+      echo "paslon hanya ada satu, belum diimplementasikan";
     }else{
-
+      echo "paslong dapil ini belum ada";
     }
   });
 
