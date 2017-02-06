@@ -110,6 +110,7 @@
 		      	  <option value=""></option>
                   @php
                     $elections = App\Election::all();
+                    $elections = $elections->sortBy('abbreviation');
                   @endphp
                   @foreach($elections as $e)
 				    <option value="{{$e->urlname}}">{{$e->name}}</option>
