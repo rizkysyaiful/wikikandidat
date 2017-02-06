@@ -178,3 +178,10 @@
 		box-shadow: 0px 0px 6px 0px #d6d6d6, 0px 10px 25px -10px #8fabe4;
 	}
 }
+
+@media all and (min-width:0px) and (max-width: 600px) {
+	.couple-card-paslon .box{
+		padding: 10px;
+		margin: 15px 5px;
+	}
+}

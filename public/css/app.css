@@ -465,6 +465,10 @@ header.header-section {
   border-radius: 6px;
   box-shadow: 0px 0px 6px 0px #d6d6d6, 0px 10px 25px -10px #8fabe4; }
 
+@media all and (min-width: 0px) and (max-width: 600px) {
+  .couple-card-paslon .box {
+    padding: 10px;
+    margin: 15px 5px; } }
 .page-list {
   padding: 50px 0; }
   .page-list h1.heading._title-list {
@@ -532,10 +536,14 @@ header.header-section {
   .box .box__comment .btn, .box .box__comment .btn-primary, .box .box__comment .btn-primary-o {
     float: right; }
 
-@media all and (min-width: 0px) and (max-width: 600px) {
+@media all and (min-width: 410px) and (max-width: 600px) {
   .couple-avatar-paslon-main .avatar {
     width: 100px;
     height: 100px; } }
+@media all and (min-width: 0px) and (max-width: 410px) {
+  .couple-avatar-paslon-main .avatar {
+    width: 60px;
+    height: 60px; } }
 .heading {
   margin-bottom: 0; }
 
