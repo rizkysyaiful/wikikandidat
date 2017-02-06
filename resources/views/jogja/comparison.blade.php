@@ -149,7 +149,7 @@
             </div>
             <div class="box karir">
               <div class="box__title">
-                {{$b->running_mate->nickname}
+                {{$b->running_mate->nickname}}
               </div>
               {!!$b->running_mate->karir!!}
             </div>
