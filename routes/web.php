@@ -358,6 +358,7 @@ Route::get('{electionurl}', function($electionurl){
       return view('jogja.election')->with('election', $e);
     }
     elseif(count($e->couples) == 2){
+      // nanti diubah jadi redirect ke head to head (dan kasih informasi)
       $couples = $e->couples->sortBy('order');
       return view("jogja.comparison",[
                         'election' => $e,
@@ -365,9 +366,10 @@ Route::get('{electionurl}', function($electionurl){
                         'right' => $couples->last()
                       ]);
     }elseif(count($e->couples) == 1){
+      // redirect ke halaman paslon (kasih informasi jangan lupa)
       echo "paslon hanya ada satu, belum diimplementasikan";
     }else{
-      echo "paslong dapil ini belum ada";
+      echo "Error! Paslon dapil ini belum ada";
     }
   });
 

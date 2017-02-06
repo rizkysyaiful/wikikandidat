@@ -50,3 +50,10 @@
     }
   }
 }
+
+@media all and (min-width:0px) and (max-width: 600px) {
+  .couple-avatar-paslon-main .avatar{
+    width: 100px;
+    height: 100px;
+  }
+}

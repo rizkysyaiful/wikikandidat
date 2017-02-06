@@ -57,6 +57,9 @@ a {
   margin: 0 auto;
   padding: 0px 20px; }
 
+@media all and (min-width: 0px) and (max-width: 600px) {
+  .container {
+    padding: 0; } }
 img {
   max-width: 100%; }
 
@@ -326,6 +329,9 @@ header.header-section {
   width: 80%;
   margin: 0 auto; }
 
+@media all and (min-width: 0px) and (max-width: 600px) {
+  .container.box {
+    width: 100%; } }
 .page-personal {
   width: 100%;
   padding: 100px 0px;
@@ -526,6 +532,10 @@ header.header-section {
   .box .box__comment .btn, .box .box__comment .btn-primary, .box .box__comment .btn-primary-o {
     float: right; }
 
+@media all and (min-width: 0px) and (max-width: 600px) {
+  .couple-avatar-paslon-main .avatar {
+    width: 100px;
+    height: 100px; } }
 .heading {
   margin-bottom: 0; }
 

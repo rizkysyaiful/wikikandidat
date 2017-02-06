@@ -22,7 +22,11 @@ a {
  	margin: 0 auto;
 	padding: 0px 20px;
 }
-
+@media all and (min-width:0px) and (max-width: 600px) {
+  .container{
+    padding: 0;
+  }
+}
 img {
 	max-width: 100%;
 }

@@ -2,3 +2,8 @@
   width: 80%;
   margin: 0 auto;
 }
+@media all and (min-width:0px) and (max-width: 600px) {
+  .container.box{
+    width: 100%;
+  }
+}
