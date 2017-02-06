@@ -5,7 +5,7 @@
 @extends('jogja.layouts.app')
 
 @section('title')
-Basmi Korupsi dengan Memilih Cerdas
+Home
 @endsection
 
 @section('head')
@@ -23,14 +23,17 @@ Basmi Korupsi dengan Memilih Cerdas
 	    <h2 class="sub-heading">Di Tangan Kamu, Masa Depan Daerah Tercinta!</h2>
 	    	<a id="doubt-btn" href="#" class="btn btn-primary-o">Apa kamu berfikir "Ah, tidak ada satu kandidatpun yang bagus..." ?</a>
 	    	<p class="doubt-answer">
-	    		Baca profil seluruh kandidat di Wikikandidat. Boleh jadi ada yang kamu suka.
+	    		Baca profil* seluruh kandidat di Wikikandidat. Boleh jadi ada yang kamu suka.
 	    	</p>
 	    	<p class="doubt-answer">
-	    		Misal ternyata tidak ada yang lulus standar kamu, jangan golput. Pilih yang terbaik dari yang buruk-buruk. Tulis <a href="#">petisi ini</a>&mdash;tentang pemimpin ideal menurut kamu.
+	    		Misal ternyata tidak ada yang lulus standar kamu, jangan golput. Pilih yang terbaik dari yang buruk-buruk. Lalu tulis <a href="#">petisi ini</a>&mdash;tentang pemimpin ideal menurut kamu.
 	    	</p>
 	    	<p class="doubt-answer">
 	    		Beri pesan ke politikus Indonesia, bahwa dengan lahirnya Wikikandidat,<br>era pemilih cerdas &amp; kritis sudah dimulai.
 	    	</p>
+            <p class="doubt-answer">
+                *) Kali ini ada fitur testimoni di Wikikandidat, kamu bisa baca pendapat teman-teman kamu (dan orang lain) tentang seorang kandidat. Seru kan? ;)
+            </p>
 	    	<form action="" class="default-form">
 		      <div class="search">
 		      	<select>

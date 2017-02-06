@@ -39,7 +39,15 @@
     <div class="box title">
       <div class="text center">
         <h1 class="heading _title-list">{{$lc->nickname}}-{{$lrm->nickname}}? Atau {{$rc->nickname}}-{{$rrm->nickname}}?</h1>
-        <h2 class="heading __sub-title-list">Untuk {{$election->place->name}}</h2>
+        @php
+          if($election->place->level == 1)
+            $prefix = "Prov.";
+          if($election->place->level == 2)
+            $prefix = "Kota";
+          if($election->place->level == 3)
+            $prefix = "Kab.";
+        @endphp
+        <h2 class="heading __sub-title-list">Untuk {{$prefix}} {{$election->place->name}}</h2>
         <div class="heading __period-list">Periode 2017-2022</div>
       </div>
     </div>
