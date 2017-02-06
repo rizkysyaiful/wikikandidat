@@ -1,0 +1,39 @@
+.avatar{
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	border-radius: 100%;
+	background: #ddd;
+}
+
+
+.couple-avatar-paslon {
+	.avatar {
+		width: 80px;
+		height: 80px;
+		display: inline-block;
+		border: 3px solid #ffffff;
+		z-index: 2;
+		position: relative;
+		&:last-child {
+ 			left: -30px;
+			z-index: 1;
+		}
+	}
+}
+
+.couple-avatar-paslon-main {
+	text-align: center;
+	.avatar {
+		width: 220px;
+		height: 220px;
+		display: inline-block;
+		border: 3px solid #9c9c9c;
+		z-index: 2;
+		position: relative;
+		&:last-child {
+ 			left: -30px;
+			z-index: 1;
+		}
+	}
+}

@@ -1,0 +1,38 @@
+.btn {
+	border: none;
+	padding: 15px 20px;
+	border-radius: 4px;
+	display: inline-block;
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+.btn-primary {
+	@extend .btn;
+	background: $color-primary;
+	color: $color-soft;
+	box-shadow: 0 8px 24px -5px rgb(234, 85, 85), 0 0 3px 0 #ff0404;
+	&:hover {
+		background:darken($color-primary, 8%);
+	}
+}
+
+.btn-primary-o {
+	@extend .btn;
+	border:1px solid $color-primary;
+	color: $color-primary;
+	&:hover {
+		background:$color-primary;
+		color: $color-soft;
+	}
+}
+
+
+.btn-big {
+	padding: 25px 30px;
+	font-size: 1.2em;
+}
+.btn-small {
+	padding: 5px 8px;
+	font-size: 11px;
+}

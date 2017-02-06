@@ -1,0 +1,44 @@
+.page-list {
+  padding: 50px 0;
+
+  & h1.heading._title-list {
+    font-size: 2.4em;
+  }
+
+  & h2.heading.__sub-title-list {
+    font-size: 1.7em;
+    color: $color-grey;
+  }
+
+  & .heading.__period-list {
+    text-transform: uppercase;
+    margin-top: 20px;
+    color: $color-grey-soft;
+  }
+}
+
+.couple-card-paslon.__list a {
+  position: relative;
+
+  & .btn-detail {
+    position: absolute;
+    bottom: -60px;
+    background-color: $color-soft;
+    border-radius: 6px;
+		box-shadow: 0px 0px 6px 0px #d6d6d6, 0px 10px 25px -10px #8fabe4;
+    right: 0;
+    left: 0;
+    padding: 1em;
+    text-align: center;
+
+    &:hover {
+      background-color: $color-primary;
+      color: white;
+    }
+  }
+}
+
+.box__comparison {
+  margin-top: 20px;
+  text-align: center;
+}

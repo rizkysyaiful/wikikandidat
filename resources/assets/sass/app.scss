@@ -1,9 +1,26 @@
+// HELPERS
+@import 'helpers/variables';
 
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+// base
+@import 'base/reset';
+@import 'base/base';
+@import 'base/typography';
 
-// Variables
-@import "variables";
+// Components
+@import 'components/navigation';
+@import 'components/button';
+@import 'components/dropdown';
+@import 'components/textarea';
+@import 'components/avatar';
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// layouts
+@import 'layout/header';
+@import 'layout/head';
+@import 'layout/forms';
+@import 'layout/layout';
+
+// Pages
+@import 'pages/personal';
+@import 'pages/list';
+@import 'pages/comparison';
+@import 'pages/home';

@@ -1,0 +1,16 @@
+div.sidebar {
+	position: fixed;
+	width: 200px;
+	height: 100vh;
+	background: $color-dark;
+	ul {
+		padding: 20px 0px;
+		li {
+			a {
+				display: block;
+				padding: 10px 15px;
+				color: $color-soft;
+			}
+		}
+	}
+}
