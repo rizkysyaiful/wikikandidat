@@ -115,67 +115,67 @@
               <div class="box__title">
                 Visi
               </div>
-              {{$b->visi}}
+              {!!$b->visi!!}
             </div>
             <div class="box visi">
               <div class="box__title">
                 Misi
               </div>
-              {{$b->misi}}
+              {!!$b->misi!!}
             </div>
             <div class="box program">
               <div class="box__title">
                 Program
               </div>
-              {{$b->program}}
+              {!!$b->program!!}
             </div>
             <div class="box pendidikan">
               <div class="box__title">
                 {{$b->candidate->nickname}}
               </div>
-              {{$b->candidate->pendidikan}}
+              {!!$b->candidate->pendidikan!!}
             </div>
             <div class="box pendidikan">
               <div class="box__title">
                 {{$b->running_mate->nickname}}
               </div>
-              {{$b->running_mate->pendidikan}}
+              {!!$b->running_mate->pendidikan!!}
             </div>
             <div class="box karir">
               <div class="box__title">
                 {{$b->candidate->nickname}}
               </div>
-              {{$b->candidate->karir}}
+              {!!$b->candidate->karir!!}
             </div>
             <div class="box karir">
               <div class="box__title">
-                {{$b->running_mate->nickname}}
+                {{$b->running_mate->nickname}
               </div>
-              {{$b->running_mate->karir}}
+              {!!$b->running_mate->karir!!}
             </div>
             <div class="box penghargaan">
               <div class="box__title">
                 {{$b->candidate->nickname}}
               </div>
-              {{$b->candidate->penghargaan}}
+              {!!$b->candidate->penghargaan!!}
             </div>
             <div class="box penghargaan">
               <div class="box__title">
                 {{$b->running_mate->nickname}}
               </div>
-              {{$b->running_mate->penghargaan}}
+              {!!$b->running_mate->penghargaan!!}
             </div>
             <div class="box dakwaan">
               <div class="box__title">
                 {{$b->candidate->nickname}}
               </div>
-              {{$b->candidate->dakwaan}}
+              {!!$b->candidate->dakwaan!!}
             </div>
             <div class="box dakwaan">
               <div class="box__title">
                 {{$b->running_mate->nickname}}
               </div>
-              {{$b->running_mate->dakwaan}}
+              {!!$b->running_mate->dakwaan!!}
             </div>
             <div class="box testimoni">
               <div class="box__title">
@@ -188,10 +188,6 @@
                 {{$b->running_mate->nickname}}
               </div>
               <div class="fb-comments" data-href="https://wikikandidat.com/{{$b->running_mate->urlname}}" data-width="350" data-numposts="4"></div>
-            </div>
-            <hr>
-            <div>
-              Sumber Referensi
             </div>
           </div>
         </div>

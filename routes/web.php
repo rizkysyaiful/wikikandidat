@@ -20,49 +20,6 @@ use App\Mail\EditStatus;
   Route::get('/', function(){
     return view('jogja.home');
   });
-  Route::get('{electionurl}', function($electionurl){
-    $e = App\Election::where('urlname', $electionurl)->first();
-    if(count($e->couples) > 2){
-      return view('jogja.election')->with('election', $e);
-    }
-    elseif(count($candidates) == 2){
-      
-    }elseif(count($candidates) == 1){
-
-    }else{
-
-    }
-  });
-  Route::get('{electionurl}/{versus}', function($electionurl, $versus){
-    $candidates = explode('--vs--', $versus);
-    if( count($candidates) == 2 && $candidates[0] != $candidates[1]){
-      $e = App\Election::where('urlname', $electionurl)->first();
-      $left = false;
-      $right = false;
-      $couples = $e->couples;
-      foreach ($couples as $c) {
-        if($c->candidate->urlname == $candidates[0])
-        {
-          $left = $c;
-        }
-        if($c->candidate->urlname == $candidates[1])
-        {
-          $right = $c;
-        }
-      }
-      if($left && $right)
-      {
-        return view("jogja.comparison",[
-                        'election' => $e,
-                        'left' => $left,
-                        'right' => $right
-                      ]);
-      }else
-      {
-        echo "Data kandidat tidak ditemukan di dapil ini.";
-      }
-    }
-  });
 
 Route::group(['prefix' => 'qa'], function () {
 
@@ -395,8 +352,53 @@ Route::group(['prefix' => 'json'], function () {
 
 });
 
-Route::get('{any}', 'ElectionController@election');
-Route::post('{any}', 'ElectionController@election');
+Route::get('{electionurl}', function($electionurl){
+    $e = App\Election::where('urlname', $electionurl)->first();
+    if(count($e->couples) > 2){
+      return view('jogja.election')->with('election', $e);
+    }
+    elseif(count($candidates) == 2){
+      
+    }elseif(count($candidates) == 1){
+
+    }else{
+
+    }
+  });
+
+  Route::get('{electionurl}/{versus}', function($electionurl, $versus){
+    $candidates = explode('--vs--', $versus);
+    if( count($candidates) == 2 && $candidates[0] != $candidates[1]){
+      $e = App\Election::where('urlname', $electionurl)->first();
+      $left = false;
+      $right = false;
+      $couples = $e->couples;
+      foreach ($couples as $c) {
+        if($c->candidate->urlname == $candidates[0])
+        {
+          $left = $c;
+        }
+        if($c->candidate->urlname == $candidates[1])
+        {
+          $right = $c;
+        }
+      }
+      if($left && $right)
+      {
+        return view("jogja.comparison",[
+                        'election' => $e,
+                        'left' => $left,
+                        'right' => $right
+                      ]);
+      }else
+      {
+        echo "Data kandidat tidak ditemukan di dapil ini.";
+      }
+    }
+  });
+
+//Route::get('{any}', 'ElectionController@election');
+//Route::post('{any}', 'ElectionController@election');
 
 /**
 * Actions of user

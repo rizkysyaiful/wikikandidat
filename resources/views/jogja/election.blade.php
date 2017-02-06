@@ -14,7 +14,7 @@
 @section('content')
 <div class="page-list">
   <div class="container">
-    <a href="" class="btn btn-primary-o">
+    <a href="{{url('/', [], $secure)}}" class="btn btn-primary-o">
       &#8678; Kembali Pilih Daerah Pemilihan
     </a>
     <div class="box title">
