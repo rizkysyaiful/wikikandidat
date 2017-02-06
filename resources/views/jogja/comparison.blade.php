@@ -44,7 +44,7 @@
 
           <div class="couple-avatar-paslon-main left">
             <div class="avatar">
-              <img src="{{$lrm->photo_url}}" alt="">
+              <img src="{{$lrm->photo_url}}" alt="" class="img-cover">
             </div>
             <div class="avatar">
               <img src="{{$lc->photo_url}}" alt="" class="img-cover">
@@ -64,7 +64,7 @@
               <img src="{{$rc->photo_url}}" alt="" class="img-cover">
             </div>
             <div class="avatar">
-              <img src="{{$rrm->photo_url}}">
+              <img src="{{$rrm->photo_url}}" class="img-cover">
             </div>
           </div>
 
