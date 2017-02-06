@@ -44,7 +44,7 @@
                 <img src="{{$c->candidate->photo_url}}" alt="" class="img-cover">
               </div>
               <div class="avatar">
-                <img src="{{$c->running_mate->photo_url}}" alt="" class="img-cover">
+                <img src="{{$c->running_mate->photo_url}}" alt="">
               </div>
             </div>
             <div class="couple-info-paslon">

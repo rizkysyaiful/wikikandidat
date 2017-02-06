@@ -44,7 +44,7 @@
 
           <div class="couple-avatar-paslon-main left">
             <div class="avatar">
-              <img src="{{$lrm->photo_url}}" alt="" class="img-cover">
+              <img src="{{$lrm->photo_url}}" alt="">
             </div>
             <div class="avatar">
               <img src="{{$lc->photo_url}}" alt="" class="img-cover">
@@ -59,7 +59,7 @@
 
         </div>
         <div class="pure-u-1-2">
-          <div class="couple-avatar-paslon-main">
+          <div class="couple-avatar-paslon-main" style="text-align: right;">
             <div class="avatar">
               <img src="{{$rc->photo_url}}" alt="" class="img-cover">
             </div>
@@ -76,7 +76,7 @@
 
         </div>
       </div>
-      <div style="margin-top: 20px;">
+      <div style="margin-top: 20px; text-align: center;">
         <span class="btn btn-primary-o" data-type="visi">
           Visi
         </span>

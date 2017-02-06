@@ -87,7 +87,7 @@
         <ul class="menu">
           <ul>
             <li>
-              <a href=""><img src="{{asset('img/logo.png', $secure)}}" alt=""></a>
+              <a href="{{url('/', [], $secure)}}"><img src="{{asset('img/logo.png', $secure)}}" alt=""></a>
             </li>
           </ul>
         </ul>

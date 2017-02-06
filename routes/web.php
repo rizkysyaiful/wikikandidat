@@ -357,9 +357,14 @@ Route::get('{electionurl}', function($electionurl){
     if(count($e->couples) > 2){
       return view('jogja.election')->with('election', $e);
     }
-    elseif(count($candidates) == 2){
-      
-    }elseif(count($candidates) == 1){
+    elseif(count($e->couples) == 2){
+      $couples = $e->couples->sortBy('order');
+      return view("jogja.comparison",[
+                        'election' => $e,
+                        'left' => $couples->first(),
+                        'right' => $couples->last()
+                      ]);
+    }elseif(count($e->couples) == 1){
 
     }else{
 
