@@ -32,7 +32,7 @@ Home
 	    		Beri pesan ke politikus Indonesia, bahwa dengan lahirnya Wikikandidat,<br>era pemilih cerdas &amp; kritis sudah dimulai.
 	    	</p>
             <p class="doubt-answer">
-                *) Kali ini ada fitur testimoni di Wikikandidat, kamu bisa baca pendapat teman-teman kamu (dan orang lain) tentang seorang kandidat. Seru kan? ;)
+                *) Ada fitur baru di Wikikandidat tahun ini! Testimoni! Kamu bisa baca pendapat teman-teman kamu (dan orang lain) tentang kepribadian seorang kandidat. Seru kan? ;)
             </p>
 	    	<form action="" class="default-form">
 		      <div class="search">
@@ -52,6 +52,7 @@ Home
 		        -->
 		      </div>
 	    	</form>
+            narasi keren dimulai di sini...
 	    <!--<ul class="link">
 	      <li><a href="">Bandingkan Kandidat</a></li>
 	      <li><a href="">Informasi Kandidat</a></li>

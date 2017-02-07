@@ -23,67 +23,47 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
 <section class="page-personal">
     <div class="container">
       <div class="box-sidebar">
-        <h5>{{$c->name}} ({{$c->nickname}})</h5>
-        @if($c->birthdate)
+        <h3>{{$c->name}} ({{$c->nickname}})</h3>
         <p>
-        	Lahir: {{$c->birthcity}}, {{$c->birthdate}}
+        	<a href="{{url($c->urlname), [], $secure}}" class="btn btn-primary-o">Baca Riwayat Pendidikan &amp; <span class="fb-comments-count" data-href="https://wikikandidat.com/{{$c->urlname}}"></span> Pengakuan Orang tentang Kepribadian {{$c->nickname}}</a>	
         </p>
-        @endif
-        @if($c->pendidikan)
-        <div>
-        	{!!$c->pendidikan!!}
-        </div>
-        @endif
+        <h3>{{$rm->name}} ({{$rm->nickname}})</h3>
         <p>
-        	<a href="#">Lebih lanjut tentang profil {{$c->nickname}} >></a>	
-        </p>
-        <h5>{{$rm->name}} ({{$rm->nickname}})</h5>
-        @if($rm->birthdate)
-        <p>
-        	Lahir: {{$rm->birthcity}}, {{$rm->birthdate}}
-        </p>
-        @endif
-        @if($rm->pendidikan)
-        <div>
-        	{!!$rm->pendidikan!!}
-        </div>
-        @endif
-        <p>
-        	<a href="#">Lebih lanjut tentang profil {{$rm->nickname}} >></a>
+        	<a href="{{url($rm->urlname), [], $secure}}" class="btn btn-primary-o">Baca Riwayat Pendidikan &amp; <span class="fb-comments-count" data-href="https://wikikandidat.com/{{$c->urlname}}"></span> Pengakuan Orang tentang Kepribadian {{$rm->nickname}}</a>
         </p>
         <hr>
         @if($couple->slogan)
-        <h5>Slogan</h5>
+        <h3>Slogan</h3>
         <p>
         	{{$couple->slogan}}
         </p>
         @endif
         @if($couple->visi)
-        <h5>Visi</h5>
+        <h3>Visi</h3>
         <div>
         	{!!$couple->visi!!}	
         </div>
         @endif
         @if($couple->misi)
-        <h5>Misi</h5>
+        <h3>Misi</h3>
         <div>
         	{!!$couple->misi!!}
         </div>
         @endif
         @if($couple->program)
-        <h5>Program</h5>
+        <h3>Program</h3>
         <div>
         	{!!$couple->program!!}
         </div>
         @endif
         @if($couple->website)
-        <h5>Website</h5>
-        <div>
-        	{!!$couple->website!!}
-        </div>
+        <h3>Website</h3>
+        <p>
+        	<a href="{!!$couple->website!!}">{!!$couple->website!!}</a>
+        </p>
         @endif
         @if($couple->sumber)
-        <h5>Sumber Data di Atas</h5>
+        <h5>Sumber-Sumber Data di Atas</h5>
         <div>
         	{!!$couple->sumber!!}
         </div>
@@ -101,7 +81,7 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
         <div class="divider"></div><br>
         <div class="fb-like" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
         
-        <h1>Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}}...</h1>
+        <h1>Menurut Kamu, Apa Kelebihan dan Kekurangan Pasangan {{$c->nickname}}-{{$rm->nickname}}?</h1>
         <div class="fb-comments" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-width="600" data-numposts="10"></div>
         <hr>
         @php
@@ -110,7 +90,7 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
         @foreach($couples as $co)
 			@if($co->id != $couple->id)
 				<a href="{{url($co->election->urlname."/".$co->order, [], $secure)}}" class="btn btn-primary-o">
-			      Lihat alasan orang-orang memilih pasangan {{$co->candidate->nickname}}-{{$co->running_mate->nickname}} >>
+			      Kelebihan dan Kekurangan {{$co->candidate->nickname}}-{{$co->running_mate->nickname}} >>
 			    </a>
 			@endif
         @endforeach
@@ -120,7 +100,8 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
 @endsection
 
 @section('javascript')
-	<script type="text/javascript" src="https://raw.githubusercontent.com/viralpatel/jquery.shorten/master/src/jquery.shorten.min.js"></script>
+	<script type="text/javascript" src="{{asset('js/jquery.shorten.min.js', $secure)}}"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".box-sidebar > div").shorten({
