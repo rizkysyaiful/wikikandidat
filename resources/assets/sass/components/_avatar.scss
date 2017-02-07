@@ -15,8 +15,9 @@
 		border: 3px solid #ffffff;
 		z-index: 2;
 		position: relative;
+		left: 14px;
 		&:last-child {
- 			left: -30px;
+ 			left: -11px;
 			z-index: 1;
 		}
 	}

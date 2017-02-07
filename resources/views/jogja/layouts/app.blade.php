@@ -12,7 +12,7 @@
 
     <title>@yield('title') | Wikikandidat</title>
 
-    <meta name="keywords" content="#" />
+    <!--<meta name="keywords" content="#" />
     <meta name="url" content="#" />
     <meta name="description" content="#" />
 
@@ -52,7 +52,7 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="'images//ms-icon-144x144.png'">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#ffffff"> -->
 
     <link rel="stylesheet" href="{{asset('css/app.css', $secure)}}">
     <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">

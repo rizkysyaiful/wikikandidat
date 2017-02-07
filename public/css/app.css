@@ -236,9 +236,10 @@ textarea {
   display: inline-block;
   border: 3px solid #ffffff;
   z-index: 2;
-  position: relative; }
+  position: relative;
+  left: 14px; }
   .couple-avatar-paslon .avatar:last-child {
-    left: -30px;
+    left: -11px;
     z-index: 1; }
 
 .couple-avatar-paslon-main {

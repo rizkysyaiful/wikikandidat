@@ -106,7 +106,7 @@ Kelebihan &amp; Kekurangan {{$c->nickname}}-{{$rm->nickname}} Menurut Teman Face
         	{{$partai}}
         </div>
         <div class="divider"></div><br>
-        <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-annotation="inline"></div>
+        <div class="g-plusone" data-size="standard" data-annotation="bubble" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-annotation="inline"></div>
         
         <h1>Menurut Kamu, Apa Kelebihan dan Kekurangan Pasangan {{$c->nickname}}-{{$rm->nickname}}?</h1>
         <div class="fb-comments" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-width="600" data-numposts="10" data-order-by="social"></div>

@@ -80,7 +80,7 @@ Kepribadian {{$c->name}} Menurut Orang yang Pernah Berinteraksi
         <div class="divider"></div><br>
         <div class="fb-like" data-href="https://wikikandidat.com/{{$c->urlname}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
         
-        <h1>Ceritakan Kepribadian {{$c->nickname}}, ke Kita yang Belum Pernah Kenal Personal dengan Beliau...</h1>
+        <h1>Ceritakan Kepribadian {{$c->nickname}}, ke Kita yang Belum Pernah Berinteraksi dengan Beliau...</h1>
         <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="600" data-numposts="10" data-order-by="social"></div>
         <hr>
         @php
