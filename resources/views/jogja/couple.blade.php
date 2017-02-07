@@ -15,7 +15,14 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
 
 @section('head')
 <style type="text/css">
-    
+    h3{
+    	margin-top: 17px;
+    	margin-bottom: 10px;
+    }
+    hr{
+    	margin-top: 15px;
+    		margin-bottom: 30px;
+    }
 </style>
 @endsection
 
@@ -34,9 +41,9 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
         <hr>
         @if($couple->slogan)
         <h3>Slogan</h3>
-        <p>
+        <div>
         	{{$couple->slogan}}
-        </p>
+        </div>
         @endif
         @if($couple->visi)
         <h3>Visi</h3>
@@ -63,7 +70,7 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
         </p>
         @endif
         @if($couple->sumber)
-        <h5>Sumber-Sumber Data di Atas</h5>
+        <h3>Sumber-Sumber Data di Atas</h3>
         <div>
         	{!!$couple->sumber!!}
         </div>
@@ -82,7 +89,7 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
         <div class="fb-like" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
         
         <h1>Menurut Kamu, Apa Kelebihan dan Kekurangan Pasangan {{$c->nickname}}-{{$rm->nickname}}?</h1>
-        <div class="fb-comments" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-width="600" data-numposts="10"></div>
+        <div class="fb-comments" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-width="600" data-numposts="10" data-order-by="social"></div>
         <hr>
         @php
         	$couples = $couple->election->couples;
@@ -91,7 +98,7 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
 			@if($co->id != $couple->id)
 				<a href="{{url($co->election->urlname."/".$co->order, [], $secure)}}" class="btn btn-primary-o">
 			      Kelebihan dan Kekurangan {{$co->candidate->nickname}}-{{$co->running_mate->nickname}} >>
-			    </a>
+			    </a><br>
 			@endif
         @endforeach
       </div>
