@@ -29,7 +29,7 @@ Home
 	    		Misal ternyata tidak ada yang lulus standar kamu, jangan golput. Pilih yang terbaik dari yang buruk-buruk. Lalu tulis <a href="#">petisi ini</a>&mdash;tentang pemimpin ideal menurut kamu.
 	    	</p>
 	    	<p class="doubt-answer">
-	    		Beri pesan ke politikus Indonesia, bahwa dengan lahirnya Wikikandidat,<br>era pemilih cerdas &amp; kritis sudah dimulai.
+	    		Beri pesan ke politikus Indonesia, bahwa dengan lahirnya Wikikandidat,<br>era pemilih cerdas &amp; kritis sudah dimulai. Agar mereka mulai mencari kandidat-kandidat yang lulus standar kita.
 	    	</p>
             <p class="doubt-answer">
                 *) Ada fitur baru di Wikikandidat tahun ini! Testimoni! Kamu bisa baca pendapat teman-teman kamu (dan orang lain) tentang kepribadian seorang kandidat. Seru kan? ;)

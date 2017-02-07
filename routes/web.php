@@ -342,24 +342,39 @@ Route::group(['prefix' => 'json'], function () {
   });
 });
 
-Route::get('{electionurl}', function($electionurl){
-  $e = App\Election::where('urlname', $electionurl)->first();
-  if(count($e->couples) > 2){
-    return view('jogja.election')->with('election', $e);
+Route::get('{first}', function($first){
+  $e = App\Election::where('urlname', $first)->first();
+  if($e)
+  {
+    if(count($e->couples) > 2){
+      return view('jogja.election')->with('election', $e);
+    }
+    elseif(count($e->couples) == 2){
+      // nanti diubah jadi redirect ke head to head (dan kasih informasi)
+      $couples = $e->couples->sortBy('order');
+      return view("jogja.comparison",[
+                        'election' => $e,
+                        'left' => $couples->first(),
+                        'right' => $couples->last()
+                      ]);
+    }elseif(count($e->couples) == 1){
+      // redirect ke halaman paslon (kasih informasi jangan lupa)
+      echo "paslon hanya ada satu, belum diimplementasikan";
+    }else{
+      echo "Error! Paslon dapil ini belum ada";
+    }
   }
-  elseif(count($e->couples) == 2){
-    // nanti diubah jadi redirect ke head to head (dan kasih informasi)
-    $couples = $e->couples->sortBy('order');
-    return view("jogja.comparison",[
-                      'election' => $e,
-                      'left' => $couples->first(),
-                      'right' => $couples->last()
-                    ]);
-  }elseif(count($e->couples) == 1){
-    // redirect ke halaman paslon (kasih informasi jangan lupa)
-    echo "paslon hanya ada satu, belum diimplementasikan";
-  }else{
-    echo "Error! Paslon dapil ini belum ada";
+  else
+  {
+    $c = App\Candidate::where('urlname', $first)->first();
+    if($c)
+    {
+      return view("jogja.personal")->with('c', $c);
+    }
+    else
+    {
+      echo "URL tersebut tidak ada kk...";
+    }
   }
 });
 

@@ -10,7 +10,7 @@
 @endphp
 
 @section('title')
-Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->election->name}}
+Kelebihan &amp; Kekurangan {{$c->nickname}}-{{$rm->nickname}} Menurut Teman Facebook Kamu
 @endsection
 
 @section('head')
@@ -28,15 +28,18 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
 
 @section('content')
 <section class="page-personal">
+	<a href="{{url($couple->election->urlname, [], $secure)}}" class="btn btn-primary-o">
+	  &#8678; Kembali ke Halaman  
+	</a>
     <div class="container">
       <div class="box-sidebar">
         <h3>{{$c->name}} ({{$c->nickname}})</h3>
         <p>
-        	<a href="{{url($c->urlname), [], $secure}}" class="btn btn-primary-o">Baca Riwayat Pendidikan &amp; <span class="fb-comments-count" data-href="https://wikikandidat.com/{{$c->urlname}}"></span> Pengakuan Orang tentang Kepribadian {{$c->nickname}}</a>	
+        	<a href="{{url($c->urlname), [], $secure}}" class="btn btn-primary-o">Baca Riwayat Pendidikan &amp;<br><span class="fb-comments-count" data-href="https://wikikandidat.com/{{$c->urlname}}"></span> Testimoni Orang tentang Kepribadian {{$c->nickname}}</a>	
         </p>
         <h3>{{$rm->name}} ({{$rm->nickname}})</h3>
         <p>
-        	<a href="{{url($rm->urlname), [], $secure}}" class="btn btn-primary-o">Baca Riwayat Pendidikan &amp; <span class="fb-comments-count" data-href="https://wikikandidat.com/{{$c->urlname}}"></span> Pengakuan Orang tentang Kepribadian {{$rm->nickname}}</a>
+        	<a href="{{url($rm->urlname), [], $secure}}" class="btn btn-primary-o">Baca Riwayat Pendidikan &amp;<br><span class="fb-comments-count" data-href="https://wikikandidat.com/{{$c->urlname}}"></span> Testimoni Orang tentang Kepribadian {{$rm->nickname}}</a>
         </p>
         <hr>
         @if($couple->slogan)
@@ -65,14 +68,16 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
         @endif
         @if($couple->website)
         <h3>Website</h3>
-        <p>
+        <div>
         	<a href="{!!$couple->website!!}">{!!$couple->website!!}</a>
-        </p>
+        </div>
         @endif
         @if($couple->sumber)
         <h3>Sumber-Sumber Data di Atas</h3>
         <div>
         	{!!$couple->sumber!!}
+        	{!!$c->sumber_pemerintah!!}
+        	{!!$rm->sumber_pemerintah!!}
         </div>
         @endif
       </div>
@@ -86,7 +91,7 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
             </div>
         </div>
         <div class="divider"></div><br>
-        <div class="fb-like" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+        <div class="g-plusone" data-size="tall" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-annotation="inline"></div>
         
         <h1>Menurut Kamu, Apa Kelebihan dan Kekurangan Pasangan {{$c->nickname}}-{{$rm->nickname}}?</h1>
         <div class="fb-comments" data-href="https://wikikandidat.com/{{$couple->election->urlname}}/{{$couple->order}}" data-width="600" data-numposts="10" data-order-by="social"></div>
