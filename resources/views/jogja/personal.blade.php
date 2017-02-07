@@ -5,18 +5,21 @@
 @extends('jogja.layouts.app')
 
 @section('title')
-Kepribadian {{$c->name}} Menurut Orang yang Pernah Bertemu 
+Kepribadian {{$c->name}} Menurut Orang yang Pernah Berinteraksi 
 @endsection
 
 @section('head')
 <style type="text/css">
+    h1{
+        line-height: 124%;
+    }
     h3{
     	margin-top: 17px;
     	margin-bottom: 10px;
     }
     hr{
     	margin-top: 15px;
-    		margin-bottom: 30px;
+    	margin-bottom: 30px;
     }
 </style>
 @endsection
@@ -25,6 +28,12 @@ Kepribadian {{$c->name}} Menurut Orang yang Pernah Bertemu
 <section class="page-personal">
     <div class="container">
       <div class="box-sidebar">
+        @if($c->name)
+        <h3>Nama Lengkap</h3>
+        <div>
+            {{$c->name}}
+        </div>
+        @endif
         @if($c->birthdate)
         <h3>Lahir</h3>
         <div>
@@ -78,15 +87,19 @@ Kepribadian {{$c->name}} Menurut Orang yang Pernah Bertemu
         	$e = App\Election::find($c->election_id);
             $couple = $e->couples->sortBy('order');
         @endphp
+        <a href="{{url($e->urlname, [], $secure)}}" class="btn btn-primary-o">
+            &#8678; Kembali Lihat Seluruh Pasangan di {{$e->place->name}}
+        </a>
+        <br><br>
         @foreach($couple as $co)
             @if($co->candidate->id != $c->id )
 			<a href="{{url($co->candidate->urlname, [], $secure)}}" class="btn btn-primary-o">
-		      Kepribadian {{$co->candidate->name}}<br>Menurut Orang-Orang yang Pernah Berhubungan dengan Beliau (<span class="fb-comments-count" data-href="https://wikikandidat.com/{{$co->candidate->urlname}}"></span> Testimoni)
+		      Kepribadian {{$co->candidate->name}}<br>Menurut Orang-Orang yang Pernah Berinteraksi dengan Beliau (<span class="fb-comments-count" data-href="https://wikikandidat.com/{{$co->candidate->urlname}}"></span> Testimoni)
 		    </a><br>
             @endif
             @if($co->running_mate->id != $c->id )
             <a href="{{url($co->running_mate->urlname, [], $secure)}}" class="btn btn-primary-o">
-              Kepribadian {{$co->running_mate->name}}<br>Menurut Orang-Orang yang Pernah Berhubungan dengan Beliau (<span class="fb-comments-count" data-href="https://wikikandidat.com/{{$co->running_mate->urlname}}"></span> Testimoni)
+              Kepribadian {{$co->running_mate->name}}<br>Menurut Orang-Orang yang Pernah Berinteraksi dengan Beliau (<span class="fb-comments-count" data-href="https://wikikandidat.com/{{$co->running_mate->urlname}}"></span> Testimoni)
             </a><br>
             @endif
         @endforeach
