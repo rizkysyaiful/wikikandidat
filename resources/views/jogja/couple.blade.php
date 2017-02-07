@@ -120,7 +120,7 @@ Alasan saya pilih {{$c->nickname}}-{{$rm->nickname}} di Pilkada {{$couple->elect
 @endsection
 
 @section('javascript')
-	<script type="text/javascript" src="https://github.com/viralpatel/jquery.shorten/blob/master/src/jquery.shorten.min.js"></script>
+	<script type="text/javascript" src="https://raw.githubusercontent.com/viralpatel/jquery.shorten/master/src/jquery.shorten.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".box-sidebar > div").shorten({
