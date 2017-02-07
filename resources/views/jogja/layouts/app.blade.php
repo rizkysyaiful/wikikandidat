@@ -5,11 +5,10 @@
 <html lang="en">
   <head>
   	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <meta name="robots" content="index,nofollow" />
     <meta name="copyright" content="Copyright © 2017" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google" content="notranslate" />
 
     <title>@yield('title') | Wikikandidat</title>
 

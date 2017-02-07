@@ -38,7 +38,7 @@
     @foreach($couples as $c)
       <div class="pure-u-1-3">
         <div class="couple-card-paslon __list">
-          <a href="">
+          <a href="#">
             <div class="couple-avatar-paslon">
               <div class="avatar">
                 <img src="{{$c->candidate->photo_url}}" alt="" class="img-cover">

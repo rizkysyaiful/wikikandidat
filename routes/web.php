@@ -17,9 +17,9 @@ use App\Mail\EditStatus;
 |
 */
 
-  Route::get('/', function(){
-    return view('jogja.home');
-  });
+Route::get('/', function(){
+  return view('jogja.home');
+});
 
 Route::group(['prefix' => 'qa'], function () {
 
@@ -316,67 +316,72 @@ Route::get('/user/{any}', function($any){
   }
 });
 
-Route::get('/paslon/{any}', function($any){
-  $couple = App\Couple::find($any);
-  if($couple)
-  {
-    $couple->election;
-    echo $couple;
-  }
-});
-
 Route::group(['prefix' => 'json'], function () {
-    Route::get('', function () {
-        echo App\Election::all();
-    });
-    Route::get('{any}', function ($any) {
-      $election = App\Election::where('urlname', $any)->first();
-      if($election)
-      {
-        $election->couples;
-        foreach ($election->couples as $c) {
-          $c->candidate->name;
-          $c->running_mate->name;
-        }
-        echo $election;
-      }else{
-        $candidate = App\Candidate::where('urlname', $any)->first();
-        if($candidate)
-        {
-          echo $candidate;
-        }else{
-          echo "URL tidak dikenal";
-        }
+  Route::get('', function () {
+      echo App\Election::all();
+  });
+  Route::get('{any}', function ($any) {
+    $election = App\Election::where('urlname', $any)->first();
+    if($election)
+    {
+      $election->couples;
+      foreach ($election->couples as $c) {
+        $c->candidate->name;
+        $c->running_mate->name;
       }
-    });
-
+      echo $election;
+    }else{
+      $candidate = App\Candidate::where('urlname', $any)->first();
+      if($candidate)
+      {
+        echo $candidate;
+      }else{
+        echo "URL tidak dikenal";
+      }
+    }
+  });
 });
 
 Route::get('{electionurl}', function($electionurl){
-    $e = App\Election::where('urlname', $electionurl)->first();
-    if(count($e->couples) > 2){
-      return view('jogja.election')->with('election', $e);
-    }
-    elseif(count($e->couples) == 2){
-      // nanti diubah jadi redirect ke head to head (dan kasih informasi)
-      $couples = $e->couples->sortBy('order');
-      return view("jogja.comparison",[
-                        'election' => $e,
-                        'left' => $couples->first(),
-                        'right' => $couples->last()
-                      ]);
-    }elseif(count($e->couples) == 1){
-      // redirect ke halaman paslon (kasih informasi jangan lupa)
-      echo "paslon hanya ada satu, belum diimplementasikan";
-    }else{
-      echo "Error! Paslon dapil ini belum ada";
-    }
-  });
+  $e = App\Election::where('urlname', $electionurl)->first();
+  if(count($e->couples) > 2){
+    return view('jogja.election')->with('election', $e);
+  }
+  elseif(count($e->couples) == 2){
+    // nanti diubah jadi redirect ke head to head (dan kasih informasi)
+    $couples = $e->couples->sortBy('order');
+    return view("jogja.comparison",[
+                      'election' => $e,
+                      'left' => $couples->first(),
+                      'right' => $couples->last()
+                    ]);
+  }elseif(count($e->couples) == 1){
+    // redirect ke halaman paslon (kasih informasi jangan lupa)
+    echo "paslon hanya ada satu, belum diimplementasikan";
+  }else{
+    echo "Error! Paslon dapil ini belum ada";
+  }
+});
 
-  Route::get('{electionurl}/{versus}', function($electionurl, $versus){
-    $candidates = explode('--vs--', $versus);
+Route::get('{electionurl}/{second}', function($electionurl, $second){
+  $e = App\Election::where('urlname', $electionurl)->first();
+  if(is_numeric($second)){
+    $couples = $e->couples;
+    $couple  = false;
+    foreach ($couples as $c) {
+      if($c->order == (int) $second)
+      {
+        $couple = $c;
+      }
+    }
+    if($couple){
+      return view("jogja.couple")->with("couple", $couple);
+    }else{
+      echo "Pasangan dengan nomor urut tersebut tidak ada di dapil ini";
+    }
+  }else{
+    $candidates = explode('--vs--', $second);
     if( count($candidates) == 2 && $candidates[0] != $candidates[1]){
-      $e = App\Election::where('urlname', $electionurl)->first();
       $left = false;
       $right = false;
       $couples = $e->couples;
@@ -402,7 +407,8 @@ Route::get('{electionurl}', function($electionurl){
         echo "Data kandidat tidak ditemukan di dapil ini.";
       }
     }
-  });
+  }
+});
 
 //Route::get('{any}', 'ElectionController@election');
 //Route::post('{any}', 'ElectionController@election');
