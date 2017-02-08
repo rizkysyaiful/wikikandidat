@@ -55,12 +55,12 @@
     <meta name="theme-color" content="#ffffff"> -->
 
     <link rel="stylesheet" href="{{asset('css/app.css', $secure)}}">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="{{asset('css/pure-min.css', $secure)}}">
+    <link rel="stylesheet" href="{{asset('css/grids-responsive-min.css', $secure)}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather:700,300i|Montserrat" rel="stylesheet">
 
-    <link href="https://select2.github.io/dist/css/select2.min.css" rel="stylesheet">
+    <link href="{{asset('css/select2.min.css', $secure)}}" rel="stylesheet">
 
     
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -117,7 +117,7 @@
       };
     </script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
- 	<script type="text/javascript" src="https://select2.github.io/dist/js/select2.full.js"></script>
+ 	<script type="text/javascript" src="{{asset('js/select2.full.min.js', $secure)}}"></script>
   	@yield('javascript')
   </body>
 </html>

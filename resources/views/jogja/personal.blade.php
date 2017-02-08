@@ -114,8 +114,8 @@ Kepribadian {{$c->name}} Menurut Orang yang Pernah Berinteraksi
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".box-sidebar > div").shorten({
-			    moreText: 'selengkapnya',
-			    lessText: 'ringkaskan',
+			    moreText: 'Selengkapnya',
+			    lessText: 'Ringkaskan',
 			    showChars: 200,
 			});
 		});
