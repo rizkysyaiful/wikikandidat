@@ -54,6 +54,9 @@
     <meta name="msapplication-TileImage" content="'images//ms-icon-144x144.png'">
     <meta name="theme-color" content="#ffffff"> -->
 
+
+    <meta property="fb:app_id" content="1412350799013815">
+
     <link rel="stylesheet" href="{{asset('css/app.css', $secure)}}">
     <link rel="stylesheet" href="{{asset('css/pure-min.css', $secure)}}">
     <link rel="stylesheet" href="{{asset('css/grids-responsive-min.css', $secure)}}">

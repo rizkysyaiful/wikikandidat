@@ -49,35 +49,14 @@ Kelebihan &amp; Kekurangan {{$c->nickname}}-{{$rm->nickname}} Menurut Teman Face
         </div>
         @endif
         @if($couple->visi)
-        <h3>Visi</h3>
+        <h3>Visi, Misi, & Program Kerja</h3>
         <div>
         	{!!$couple->visi!!}	
         </div>
         @endif
-        @if($couple->misi)
-        <h3>Misi</h3>
-        <div>
-        	{!!$couple->misi!!}
-        </div>
-        @endif
-        @if($couple->program)
-        <h3>Program</h3>
-        <div>
-        	{!!$couple->program!!}
-        </div>
-        @endif
-        @if($couple->website)
         <h3>Website</h3>
         <div >
         	<a href="{!!$couple->website!!}">{!!$couple->website!!}</a>
-        </div>
-        @endif
-        @if($couple->sumber)
-        <h3>Sumber-Sumber Data di Atas</h3>
-        <div>
-        	{!!$couple->sumber!!}
-        	{!!$c->sumber_pemerintah!!}
-        	{!!$rm->sumber_pemerintah!!}
         </div>
         @endif
       </div>
