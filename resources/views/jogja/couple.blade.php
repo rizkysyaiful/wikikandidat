@@ -54,6 +54,7 @@ Kelebihan &amp; Kekurangan {{$c->nickname}}-{{$rm->nickname}} Menurut Teman Face
         	{!!$couple->visi!!}	
         </div>
         @endif
+        @if($couple->website)
         <h3>Website</h3>
         <div >
         	<a href="{!!$couple->website!!}">{!!$couple->website!!}</a>
