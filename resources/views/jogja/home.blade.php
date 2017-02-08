@@ -9,6 +9,7 @@ Home
 @endsection
 
 @section('head')
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css">
     header.header-section:before{
         background: url({{asset('img/maps.png', $secure)}}) no-repeat center center;
@@ -52,7 +53,6 @@ Home
 		        -->
 		      </div>
 	    	</form>
-            narasi keren dimulai di sini...
 	    <!--<ul class="link">
 	      <li><a href="">Bandingkan Kandidat</a></li>
 	      <li><a href="">Informasi Kandidat</a></li>
