@@ -48,7 +48,7 @@ Kelebihan &amp; Kekurangan {{$c->nickname}}-{{$rm->nickname}} Menurut Teman Face
         	{{$couple->slogan}}
         </div>
         @endif
-        @if($couple->visi)
+        @if($couple->misi)
         <h3>Visi, Misi, & Program Kerja</h3>
         <div>
         	{!!$couple->misi!!}	
