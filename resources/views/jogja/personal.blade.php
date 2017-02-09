@@ -5,10 +5,11 @@
 @extends('jogja.layouts.app')
 
 @section('title')
-Kepribadian {{$c->name}} Menurut Orang yang Pernah Berinteraksi 
+Kepribadian {{$c->name}} Menurut Mereka yang Pernah Berinteraksi 
 @endsection
 
 @section('head')
+
 <style type="text/css">
     h1{
         line-height: 124%;
@@ -22,6 +23,9 @@ Kepribadian {{$c->name}} Menurut Orang yang Pernah Berinteraksi
     	margin-bottom: 30px;
     }
 </style>
+<meta property="og:type" content="article" />
+<meta property="og:description" content="Klik untuk baca testimoni-testimoni lain tentang {{$c->nickname}}. Penting kan ya, untuk tahu karakter/kepribadian orang yang akan bekerja melayani kita? Kamu juga bisa ikut menulis lho..." />
+<meta property="og:image" content="{{$c->photo_url}}"/>
 @endsection
 
 @section('content')
