@@ -146,14 +146,13 @@ Route::group(['prefix' => 'qa'], function () {
 
 Route::get('/tes', function(){
 
-    $parties = App\Party::all();
-    $parties = $parties->sortBy('abbreviation');
-    $parties = $parties->toArray();
-    echo "<pre>";
-    print_r($parties);
-    echo "</pre>";
-
    $all = App\Candidate::all();
+
+   foreach ($all as $c) {
+     $c->urlname = strtolower($c->urlname);
+     echo $c->urlname."<br>";
+     $c->save();
+   }
 
     foreach($all as $a){
       if( App\Election::find($a->election_id) === null ){
