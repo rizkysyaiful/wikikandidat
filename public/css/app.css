@@ -178,7 +178,8 @@ nav.navigation {
 
 .btn-primary-o {
   border: 1px solid #e85454;
-  color: #e85454; }
+  color: #e85454;
+  line-height: 1.2em; }
   .btn-primary-o:hover {
     background: #e85454;
     color: #ffffff; }
@@ -189,7 +190,7 @@ nav.navigation {
 
 .btn-small {
   padding: 5px 8px;
-  font-size: 11px; }
+  font-size: 13px; }
 
 select {
   background: #fff url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaBAMAAADKhlwxAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABJQTFRFAAAAISIhISIhISIhISIhISIhlDTCWAAAAAV0Uk5TAEBgj5/NA5/9AAAAmUlEQVRYw+3UsQ2DQAyFYcfKAIxgKfICTEDDAihv/1XSAHYR3dk176+wZH3X3CHCGGPsaa15+EyW37AYFNt4e8cRg+M7oRG4AmN8BwJ3YIi/gMAVALAM1h2B5+//aeCaz5niczqJFTrICn2bNfpCa/SFF+kTL9IJt9IV9wZ941Z8P96gT9zKj9MbtIh2aBE/Ov8JNWGMMfbgfiyyOOq6J2LcAAAAAElFTkSuQmCC") no-repeat right center;

@@ -21,6 +21,7 @@
 	@extend .btn;
 	border:1px solid $color-primary;
 	color: $color-primary;
+	line-height: 1.2em;
 	&:hover {
 		background:$color-primary;
 		color: $color-soft;
@@ -34,5 +35,5 @@
 }
 .btn-small {
 	padding: 5px 8px;
-	font-size: 11px;
+	font-size: 13px;
 }

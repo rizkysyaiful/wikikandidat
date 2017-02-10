@@ -341,16 +341,20 @@ Route::get('{first}', function($first){
       return view('jogja.election')->with('election', $e);
     }
     elseif(count($e->couples) == 2){
+      return view('jogja.election')->with('election', $e);
       // nanti diubah jadi redirect ke head to head (dan kasih informasi)
+      /*
       $couples = $e->couples->sortBy('order');
       return view("jogja.comparison",[
                         'election' => $e,
                         'left' => $couples->first(),
                         'right' => $couples->last()
                       ]);
+      */
     }elseif(count($e->couples) == 1){
       // redirect ke halaman paslon (kasih informasi jangan lupa)
-      echo "paslon hanya ada satu, belum diimplementasikan";
+      //echo "paslon hanya ada satu, belum diimplementasikan";
+      return view('jogja.election')->with('election', $e);
     }else{
       echo "Error! Paslon dapil ini belum ada";
     }
@@ -360,6 +364,7 @@ Route::get('{first}', function($first){
     $c = App\Candidate::where('urlname', $first)->first();
     if($c)
     {
+      //return redirect(App\Election::find($c->election_id)->urlname);
       return view("jogja.personal")->with('c', $c);
     }
     else
@@ -370,6 +375,8 @@ Route::get('{first}', function($first){
 });
 
 Route::get('{electionurl}/{second}', function($electionurl, $second){
+  //return redirect($electionurl);
+  
   $e = App\Election::where('urlname', $electionurl)->first();
   if(is_numeric($second)){
     $couples = $e->couples;
@@ -414,6 +421,7 @@ Route::get('{electionurl}/{second}', function($electionurl, $second){
       }
     }
   }
+  
 });
 
 //Route::get('{any}', 'ElectionController@election');

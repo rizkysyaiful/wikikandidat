@@ -7,7 +7,7 @@
   	<meta charset="UTF-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <meta name="robots" content="index,nofollow" />
-    <meta name="copyright" content="Copyright © 2017" />
+    <meta name="copyright" content="Copyright © Wikikandidat 2017" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>@yield('title') | Wikikandidat</title>
@@ -23,7 +23,6 @@
     <meta name="twitter:title" content="#">
     <meta name="twitter:description" content="#">
     <meta name="twitter:image" content="##">
-
 
     <meta property="og:url" content="#" />
     <meta property="og:type" content="article" />
@@ -54,6 +53,8 @@
     <meta name="msapplication-TileImage" content="'images//ms-icon-144x144.png'">
     <meta name="theme-color" content="#ffffff"> -->
 
+	<meta property="og:site_name" content="Wikikandidat" />
+	<meta property="og:locale" content="id_ID" />
 
     <meta property="fb:app_id" content="1412350799013815">
 
