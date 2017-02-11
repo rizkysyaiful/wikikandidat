@@ -86,6 +86,13 @@
 		  hyphens: auto;
 
 		}
+		.menu > li{
+			margin-top: 10px;
+		}
+		.menu > li > span{
+			display: block;
+    		padding: 15px;
+		}
     </style>
 
     
@@ -121,17 +128,23 @@
     <nav class="navigation">
       <div class="container">
         <ul class="menu">
-          	<li>
+          	<li style="margin-top:0px;">
 				<a href="{{url('/', [], $secure)}}"><img src="{{asset('img/logo.png', $secure)}}" alt=""></a>
 			</li>
-			<li style="margin-top: 10px;">
+			<li>
 				<a href="https://docs.google.com/forms/d/e/1FAIpQLScmHaa5exdSqwKOuPvTrc4_v696vadY7iCRXYdscogotX1GXg/viewform" target="_blank">Wikikandidat?</a>
 			</li>
 			<li>
-				<a href="">Kontributor</a>
+				<a href="http://wikikandidat.tumblr.com/post/157096787108/kontributor-versi-pilkada-2017" target="_blank">Kontributor</a>
 			</li>
 			<li>
-				<a href="whatsapp://send?text=Hello%20World!">Hello, world!</a>
+				<span>Suka? Sebarkan! -> </span>
+			</li>
+			<li>
+				<a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" target="_blank">Facebook</a>
+			</li>
+			<li>
+				<a href="https://twitter.com/intent/tweet?text={{url()->current()}}" target="_blank">Twitter</a>	
 			</li>
         </ul>
       </div>
