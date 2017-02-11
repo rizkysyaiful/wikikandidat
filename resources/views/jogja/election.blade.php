@@ -147,7 +147,7 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 
               	<span class="btn btn-primary-o btn-small" 
               	data-type="education-{{$c->candidate->urlname}}">Baca Riwayat Pendidikan dan Karir {{$c->candidate->nickname}}</span>
-              	<div class="secret-panel education-{{$c->candidate->urlname}}">
+              	<div class="secret-panel education-{{$c->candidate->urlname}} dont-break-out">
               		@if($c->candidate->birthdate)
 			        <div class="heading">Lahir</div>
 			        <div class="small">
@@ -188,7 +188,7 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
               	
               	<span class="btn btn-primary-o btn-small"
               	data-type="education-{{$c->running_mate->urlname}}">Baca Riwayat Pendidikan dan Karir {{$c->running_mate->nickname}}</span>
-				<div class="secret-panel education-{{$c->running_mate->urlname}}">
+				<div class="secret-panel education-{{$c->running_mate->urlname}} dont-break-out">
 					@if($c->running_mate->birthdate)
 			        <div class="heading">Lahir</div>
 			        <div class="small">

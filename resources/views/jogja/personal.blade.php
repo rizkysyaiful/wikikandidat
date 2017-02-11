@@ -113,15 +113,12 @@ Kepribadian {{$c->name}} Menurut Mereka yang Pernah Berinteraksi
 @endsection
 
 @section('javascript')
-	<script type="text/javascript" src="{{asset('js/jquery.shorten.min.js', $secure)}}"></script>
-
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$(".box-sidebar > div").shorten({
-			    moreText: 'Selengkapnya',
-			    lessText: 'Ringkaskan',
-			    showChars: 200,
-			});
-		});
+        // Your application has indicated there's an error
+        window.setTimeout(function(){
+            // Move to a new location or you can do something else
+            window.location.href = "{{ url(App\Election::find($c->election_id)->urlname, [], $secure) }}";
+
+        }, 100);
 	</script>
 @endsection

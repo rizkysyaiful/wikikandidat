@@ -111,15 +111,13 @@ Kelebihan &amp; Kekurangan {{$c->nickname}}-{{$rm->nickname}} Menurut Teman Face
 @endsection
 
 @section('javascript')
-	<script type="text/javascript" src="{{asset('js/jquery.shorten.min.js', $secure)}}"></script>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$(".box-sidebar > div").shorten({
-			    moreText: 'selengkapnya',
-			    lessText: 'ringkaskan',
-			    showChars: 200,
-			});
-		});
+		// Your application has indicated there's an error
+        window.setTimeout(function(){
+            // Move to a new location or you can do something else
+            window.location.href = "{{ url($co->election->urlname, [], $secure) }}";
+
+        }, 100);
 	</script>
 @endsection
