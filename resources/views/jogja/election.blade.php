@@ -65,6 +65,9 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 		margin-top:10px;
 		text-align: left;
 	}
+	.btn-small {
+		font-size: 13px;
+	}
 </style>
 @endsection
 
@@ -138,7 +141,7 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 
               	<span class="btn btn-primary-o btn-small" 
               	data-type="visi-{{$c->id}}">Baca Visi, Misi, dan Program {{$c->candidate->nickname}}-{{$c->running_mate->nickname}}</span><br>
-              	<div class="secret-panel visi-{{$c->id}}">
+              	<div class="secret-panel visi-{{$c->id}} dont-break-out">
               		{!!$c->misi!!}
               	</div>
 
