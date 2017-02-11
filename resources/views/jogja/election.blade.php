@@ -233,36 +233,24 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 				<hr>
 
               	<div class="heading">Ceritakan Pendapatmu Tentang Kelebihan dan Kekurangan {{$c->candidate->nickname}}-{{$c->running_mate->nickname}}...</div>
-              	<div class="small readmore" style="text-align: left;">
-              		Pendapat kamu penting &amp; bermanfaat! Kenapa?
-              		<ol>
-              			<li>Kamu </li>
-              			<li>Kamu punya informasi dan pandangan obyektif yang mungkin teman-teman kamu belum tahu.</li>
-              		</ol>
+				<div class="small readmore" style="text-align: left;">
+              		Pendapat kamu penting &amp; bermanfaat! Kenapa? Tulisan kamu pasti dibaca &amp; tidak akan tenggelam. Itu karena Facebook menaruh tulisan dari teman sendiri di tempat teratas. Saran: tulisan yang baik, adalah yang bisa kamu terima, saat kamu membacanya sebagai orang lain.
               	</div>
               	<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->election->urlname}}/{{$c->order}}" data-width="340" data-numposts="2" data-order-by="social"></div>
 
               	<hr>
 
               	<div class="heading">Baca (&amp; Tulis) Pengakuan Orang-Orang Dekat tentang Kepribadian {{$c->candidate->nickname}} yang Sebenarnya</div>
-              	<div class="small readmore" style="text-align: left;">
-              		Pendapat kamu penting &amp; bermanfaat! Kenapa?
-              		<ol>
-              			<li>Kamu </li>
-              			<li>Kamu punya informasi dan pandangan obyektif yang mungkin teman-teman kamu belum tahu.</li>
-              		</ol>
+              	<div class="small" style="text-align: left;">
+              		Jangan melakukan pengakuan palsu. Masing-masing penulis bertanggung jawab atas apa yang ditulisnya.
               	</div>
               	<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->candidate->urlname}}" data-width="340" data-numposts="2" data-order-by="social"></div>
               	              	
               	<hr>
               	
               	<div class="heading">Baca (&amp; Tulis) Pengakuan Orang-Orang Dekat tentang Kepribadian {{$c->running_mate->nickname}} yang Sebenarnya</div>
-              	<div class="small readmore" style="text-align: left;">
-              		Pendapat kamu penting &amp; bermanfaat! Kenapa?
-              		<ol>
-              			<li>Kamu </li>
-              			<li>Kamu punya informasi dan pandangan obyektif yang mungkin teman-teman kamu belum tahu.</li>
-              		</ol>
+              	<div class="small" style="text-align: left;">
+              		Jangan melakukan pengakuan palsu. Masing-masing penulis bertanggung jawab atas apa yang ditulisnya.
               	</div>
               	<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->running_mate->urlname}}" data-width="340" data-numposts="2" data-order-by="social"></div>
 		    </div>
@@ -303,7 +291,7 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
     	$(".readmore").shorten({
 			    moreText: 'Selengkapnya',
 			    lessText: 'Ringkaskan',
-			    showChars: 50,
+			    showChars: 70,
 			});
 
       $(".isi > span.btn").click(function(){
