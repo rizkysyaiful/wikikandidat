@@ -231,6 +231,7 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 
               	<div class="heading">Ceritakan Pendapatmu Tentang Kelebihan dan Kekurangan {{$c->candidate->nickname}}-{{$c->running_mate->nickname}}...</div>
               	<div class="small readmore" style="text-align: left;">
+              		Pendapat kamu penting! Baca dulu sebelum menulis
               		Pendapat kamu penting! 1) Komentar kamu pasti dibaca oleh teman Facebook kamu, jadi tidak akan tenggelam. 2) Sebagai pemilih rasional, kamu bisa berkomentar ke semua kandidat. Mari berbagi informasi yang semua harus tahu. Sebuah klaim harus disertai bukti.
               	</div>
               	<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->election->urlname}}/{{$c->order}}" data-width="340" data-numposts="2" data-order-by="social"></div>
@@ -238,7 +239,7 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
               	<hr>
               	
               	<span class="btn btn-primary-o btn-small"
-              	data-type="testimoni-{{$c->candidate->urlname}}">Baca (&amp; Tulis) <span class="fb-comments-count" data-href="https://wikikandidat.com/{{$c->candidate->urlname}}"></span> Pengakuan Orang-Orang Dekat tentang Kepribadian {{$c->candidate->nickname}} yang Sebenarnya</span>
+              	data-type="testimoni-{{$c->candidate->urlname}}">Baca (&amp; Tulis) Pengakuan Orang-Orang Dekat tentang Kepribadian {{$c->candidate->nickname}} yang Sebenarnya</span>
               	<div class="secret-panel testimoni-{{$c->candidate->urlname}}">
 					<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->candidate->urlname}}" data-width="340" data-numposts="2" data-order-by="social"></div>
 				</div>
@@ -246,7 +247,7 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
               	<hr>
               	
               	<span class="btn btn-primary-o btn-small"
-              	data-type="testimoni-{{$c->running_mate->urlname}}">Baca (&amp; Tulis) <span class="fb-comments-count" data-href="https://wikikandidat.com/{{$c->running_mate->urlname}}"></span> Pengakuan Orang-Orang Dekat tentang Kepribadian {{$c->running_mate->nickname}} yang Sebenarnya</span>
+              	data-type="testimoni-{{$c->running_mate->urlname}}">Baca (&amp; Tulis) Pengakuan Orang-Orang Dekat tentang Kepribadian {{$c->running_mate->nickname}} yang Sebenarnya</span>
               	<div class="secret-panel testimoni-{{$c->running_mate->urlname}}">
 					<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->running_mate->urlname}}" data-width="340" data-numposts="2" data-order-by="social"></div>
 				</div>

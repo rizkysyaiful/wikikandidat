@@ -61,11 +61,11 @@ Route::group(['prefix' => 'qa'], function () {
                 $e->couples = $e->couples->sortBy('order');
                 foreach ($e->couples as $c) {
                   echo $c->order.") <strong>".$c->candidate->name." - ";
-                  echo $c->running_mate->name."</strong> (";
-                  foreach ($c->parties as $p) {
-                    echo $p->abbreviation.", ";
-                  }
-                  echo ") -- ".$c->id."<br>";
+                  echo $c->running_mate->name."</strong> ";
+                  //foreach ($c->parties as $p) {
+                    //echo $p->abbreviation.", ";
+                  //}
+                  echo " -- ".$c->misi."<br>";
                 }
               }
             echo "</td>";

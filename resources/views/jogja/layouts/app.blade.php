@@ -121,11 +121,18 @@
     <nav class="navigation">
       <div class="container">
         <ul class="menu">
-          <ul>
-            <li>
-              <a href="{{url('/', [], $secure)}}"><img src="{{asset('img/logo.png', $secure)}}" alt=""></a>
-            </li>
-          </ul>
+          	<li>
+				<a href="{{url('/', [], $secure)}}"><img src="{{asset('img/logo.png', $secure)}}" alt=""></a>
+			</li>
+			<li style="margin-top: 10px;">
+				<a href="https://docs.google.com/forms/d/e/1FAIpQLScmHaa5exdSqwKOuPvTrc4_v696vadY7iCRXYdscogotX1GXg/viewform" target="_blank">Wikikandidat?</a>
+			</li>
+			<li>
+				<a href="">Kontributor</a>
+			</li>
+			<li>
+				<a href="whatsapp://send?text=Hello%20World!">Hello, world!</a>
+			</li>
         </ul>
       </div>
     </nav>
