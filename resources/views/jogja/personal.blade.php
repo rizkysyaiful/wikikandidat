@@ -5,7 +5,7 @@
 @extends('jogja.layouts.app')
 
 @section('title')
-Kepribadian {{$c->name}} Menurut Mereka yang Pernah Berinteraksi 
+Karakter Seorang {{$c->name}} 
 @endsection
 
 @section('head')
@@ -32,6 +32,11 @@ Kepribadian {{$c->name}} Menurut Mereka yang Pernah Berinteraksi
 <section class="page-personal">
     <div class="container">
       <div class="box-sidebar">
+        <div class="couple-avatar-paslon-main" style="text-align: center;">
+            <div class="avatar">
+              <img src="{{$c->photo_url}}" alt="" class="img-cover">
+            </div>
+        </div>
         @if($c->name)
         <h3>Nama Lengkap</h3>
         <div>
@@ -76,25 +81,21 @@ Kepribadian {{$c->name}} Menurut Mereka yang Pernah Berinteraksi
         @endif
       </div>
       <div class="box-content">
-      	<div class="couple-avatar-paslon-main" style="text-align: center;">
-            <div class="avatar">
-              <img src="{{$c->photo_url}}" alt="" class="img-cover">
-            </div>
-        </div>
-        <div class="divider"></div><br>
-        <div class="fb-like" data-href="https://wikikandidat.com/{{$c->urlname}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
-        
-        <h1>Ceritakan Kepribadian {{$c->nickname}}, ke Kita yang Belum Pernah Berinteraksi dengan Beliau...</h1>
-        <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="600" data-numposts="10" data-order-by="social"></div>
-        <hr>
         @php
-        	$e = App\Election::find($c->election_id);
+            $e = App\Election::find($c->election_id);
             $couple = $e->couples->sortBy('order');
         @endphp
         <a href="{{url($e->urlname, [], $secure)}}" class="btn btn-primary-o">
             &#8678; Kembali Lihat Seluruh Pasangan di {{$e->place->name}}
-        </a>
-        <br><br>
+        </a><br><br>
+        <div class="isi" style="width:100%;">
+            <h1>Ceritakan Kepribadian {{$c->nickname}}, ke Kita yang Belum Pernah Berinteraksi dengan Beliau...</h1>
+            <div class="fb-like" data-href="https://wikikandidat.com/{{$c->urlname}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+
+            <div style="color:grey;margin-top: 17px;">Tuliskan kenangan menarik dengan beliau. Tulis hanya jika kamu pernah berinteraksi langsung. Setiap pemilik akun bertanggung jawab atas apa yang ditulisnya.</div>
+            <div class="fb-comments" data-href="https://wikikandidat.com/{{$c->urlname}}" data-width="600" data-numposts="10" data-order-by="social"></div>
+        </div>
+        <hr>
         @foreach($couple as $co)
             @if($co->candidate->id != $c->id )
 			<a href="{{url($co->candidate->urlname, [], $secure)}}" class="btn btn-primary-o">
@@ -114,11 +115,6 @@ Kepribadian {{$c->name}} Menurut Mereka yang Pernah Berinteraksi
 
 @section('javascript')
 	<script type="text/javascript">
-        // Your application has indicated there's an error
-        window.setTimeout(function(){
-            // Move to a new location or you can do something else
-            window.location.href = "{{ url(App\Election::find($c->election_id)->urlname, [], $secure) }}";
-
-        }, 100);
+        
 	</script>
 @endsection

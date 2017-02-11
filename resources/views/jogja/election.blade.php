@@ -16,15 +16,13 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 	    width: 100%;
 	}
 
-	.isi {
-		width:374px;
-	    display:inline-block;
-	    background: #fff;
+	.popup {
+		max-width: 400px;
+		background: #fff;
 	    padding: 20px;
 	    margin: 12px;
 	    color: #373b3f;
 	    border-radius: 6px;
-	    box-shadow: 0px 0px 6px 0px #d6d6d6, 0px 10px 25px -10px #8fabe4;
 	}
 
 	h4{
@@ -67,6 +65,14 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 	}
 	.btn-small {
 		font-size: 13px;
+	}
+	button[class*='popup_close']{
+		position: absolute;
+	    top: 0;
+	    right: 0;
+	    margin-right: 10px;
+	    padding: 5px;
+	    margin-top: 10px;
 	}
 </style>
 @endsection
@@ -143,14 +149,17 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
               	<br>
 
               	<span class="btn btn-primary-o btn-small" 
-              	data-type="visi-{{$c->id}}">Baca Visi, Misi, dan Program {{$c->candidate->nickname}}-{{$c->running_mate->nickname}}</span><br>
+              	data-type="visi-{{$c->id}}">Baca Visi, Misi, dan Program {{$c->candidate->nickname}}-{{$c->running_mate->nickname}} &#8680;</span><br>
               	<div class="secret-panel visi-{{$c->id}} dont-break-out">
               		{!!$c->misi!!}
               	</div>
 
-              	<span class="btn btn-primary-o btn-small" 
-              	data-type="education-{{$c->candidate->urlname}}">Baca Riwayat Pendidikan dan Karir {{$c->candidate->nickname}}</span>
-              	<div class="secret-panel education-{{$c->candidate->urlname}} dont-break-out">
+              	<span class="btn btn-primary-o btn-small {{$c->candidate->urlname}}_popup_open" >Baca Riwayat Pendidikan dan Karir {{$c->candidate->nickname}}</span>
+              	<div id="{{$c->candidate->urlname}}_popup" class="popup dont-break-out">
+              		<button class="{{$c->candidate->urlname}}_popup_close">x</button>
+              		<div class="avatar" style="margin: 0 auto;">
+		                <img src="{{$c->candidate->photo_url}}" alt="" class="img-cover">
+		              </div>
               		@if($c->candidate->birthdate)
 			        <div class="heading">Lahir</div>
 			        <div class="small">
@@ -188,10 +197,15 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 			        </div>
 			        @endif
               	</div>
+
+              	<a href="{{url($c->candidate->urlname, [], $secure)}}" target="_blank" class="btn btn-primary-o btn-small " >Baca/Tulis Kepribadian Seorang {{$c->candidate->nickname}} &#8680;</a>
               	
-              	<span class="btn btn-primary-o btn-small"
-              	data-type="education-{{$c->running_mate->urlname}}">Baca Riwayat Pendidikan dan Karir {{$c->running_mate->nickname}}</span>
-				<div class="secret-panel education-{{$c->running_mate->urlname}} dont-break-out">
+              	<span class="btn btn-primary-o btn-small {{$c->running_mate->urlname}}_popup_open" >Baca Riwayat Pendidikan dan Karir {{$c->running_mate->nickname}}</span>
+              	<div id="{{$c->running_mate->urlname}}_popup" class="popup dont-break-out">
+              		<button class="{{$c->running_mate->urlname}}_popup_close">x</button>
+              		<div class="avatar" style="margin: 0 auto;">
+		                <img src="{{$c->running_mate->photo_url}}" alt="" class="img-cover">
+		              </div>
 					@if($c->running_mate->birthdate)
 			        <div class="heading">Lahir</div>
 			        <div class="small">
@@ -230,6 +244,8 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 			        @endif
 				</div>
 
+				<a href="{{url($c->running_mate->urlname, [], $secure)}}" target="_blank" class="btn btn-primary-o btn-small" >Baca/Tulis Kepribadian Seorang {{$c->running_mate->nickname}} &#8680;</a>
+
 				<hr>
 
               	<div class="heading">Ceritakan Pendapatmu Tentang Kelebihan dan Kekurangan {{$c->candidate->nickname}}-{{$c->running_mate->nickname}}...</div>
@@ -237,22 +253,6 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
               		Pendapat kamu penting &amp; bermanfaat! Kenapa? Tulisan kamu pasti dibaca &amp; tidak akan tenggelam. Itu karena Facebook menaruh tulisan dari teman sendiri di tempat teratas. Saran: tulisan yang baik, adalah yang bisa kamu terima, saat kamu membacanya sebagai orang lain.
               	</div>
               	<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->election->urlname}}/{{$c->order}}" data-width="340" data-numposts="2" data-order-by="social"></div>
-
-              	<hr>
-
-              	<div class="heading">Baca (&amp; Tulis) Pengakuan Orang-Orang Dekat tentang Kepribadian {{$c->candidate->nickname}} yang Sebenarnya</div>
-              	<div class="small" style="text-align: left;">
-              		Jangan melakukan pengakuan palsu. Masing-masing penulis bertanggung jawab atas apa yang ditulisnya.
-              	</div>
-              	<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->candidate->urlname}}" data-width="340" data-numposts="2" data-order-by="social"></div>
-              	              	
-              	<hr>
-              	
-              	<div class="heading">Baca (&amp; Tulis) Pengakuan Orang-Orang Dekat tentang Kepribadian {{$c->running_mate->nickname}} yang Sebenarnya</div>
-              	<div class="small" style="text-align: left;">
-              		Jangan melakukan pengakuan palsu. Masing-masing penulis bertanggung jawab atas apa yang ditulisnya.
-              	</div>
-              	<div class="fb-comments" data-href="https://wikikandidat.com/{{$c->running_mate->urlname}}" data-width="340" data-numposts="2" data-order-by="social"></div>
 		    </div>
 		    @endforeach
 		</div>
@@ -283,16 +283,22 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 @endsection
 
 @section('javascript')
+
 	<script type="text/javascript" src="{{asset('js/jquery.shorten.min.js', $secure)}}"></script>
 
+	<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+
   <script type="text/javascript">
+
     $(document).ready(function(){
 
-    	$(".readmore").shorten({
-			    moreText: 'Selengkapnya',
-			    lessText: 'Ringkaskan',
-			    showChars: 70,
-			});
+		$('.popup').popup();
+
+		$(".readmore").shorten({
+		    moreText: 'Selengkapnya',
+		    lessText: 'Ringkaskan',
+		    showChars: 70,
+		});
 
       $(".isi > span.btn").click(function(){
       	$( "."+$(this).data("type") ).slideToggle( "slow" );

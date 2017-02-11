@@ -93,6 +93,16 @@
 			display: block;
     		padding: 15px;
 		}
+		.isi {
+			width:374px;
+		    display:inline-block;
+		    background: #fff;
+		    padding: 20px;
+		    margin: 12px;
+		    color: #373b3f;
+		    border-radius: 6px;
+		    box-shadow: 0px 0px 6px 0px #d6d6d6, 0px 10px 25px -10px #8fabe4;
+		}
     </style>
 
     
