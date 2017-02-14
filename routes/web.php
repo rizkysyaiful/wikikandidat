@@ -65,7 +65,7 @@ Route::group(['prefix' => 'qa'], function () {
                   //foreach ($c->parties as $p) {
                     //echo $p->abbreviation.", ";
                   //}
-                  echo " -- ".$c->misi."<br>";
+                  echo " -- ".$c->misi." -- ".$c->id."<br>";
                 }
               }
             echo "</td>";

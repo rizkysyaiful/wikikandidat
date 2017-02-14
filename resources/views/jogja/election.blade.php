@@ -75,6 +75,7 @@ Kelebihan &amp; Kekurangan Kandidat {{$election->name}}
 	    margin-top: 10px;
 	}
 </style>
+
 @endsection
 
 @section('content')

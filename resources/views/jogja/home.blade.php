@@ -42,7 +42,7 @@ Home
 	        -->
 	      </div>
     	</form>
-
+<!--
         <a id="doubt-btn" href="#" class="btn btn-primary-o">Apa kamu berfikir "Ah, tidak ada satu kandidatpun yang bagus..." ?</a>
         <p class="doubt-answer">
             Baca dulu profil seluruh kandidat di Wikikandidat. Boleh jadi ada yang kamu suka.
@@ -51,13 +51,16 @@ Home
             Misal ternyata tidak ada yang lulus standar kamu, jangan golput. Pilih yang terbaik dari yang buruk-buruk. Lalu <a href="https://docs.google.com/forms/d/e/1FAIpQLScmHaa5exdSqwKOuPvTrc4_v696vadY7iCRXYdscogotX1GXg/viewform" target="_blank">isi survey ini</a>&mdash;tentang pemimpin ideal menurut kamu.
         </p>
         <p class="doubt-answer">
-            Beri pesan ke politikus Indonesia, bahwa dengan lahirnya Wikikandidat,<br>era pemilih cerdas &amp; kritis sudah dimulai. Agar mereka mulai mencari kandidat-kandidat yang lulus standar kita.
+            Beri pesan ke politikus Indonesia, bahwa dengan lahirnya Wikikandidat,<br>era pemilih cerdas &amp; kritis sudah dimulai. Mudah-mudahan mulai mencari kandidat-kandidat yang lulus standar kita.
         </p>
-	    <!--<ul class="link">
-	      <li><a href="">Bandingkan Kandidat</a></li>
-	      <li><a href="">Informasi Kandidat</a></li>
-	    </ul>
-		-->
+-->
+
+        <p style="padding-bottom: 0px;margin-top: -15px;">
+            Kami <a href="http://wikikandidat.tumblr.com/" target="_blank">sudah ada sejak 2014</a>, kami punya visi besar, dan kami serius. Klik gambar di bawah ini.
+        </p>
+
+	    <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScmHaa5exdSqwKOuPvTrc4_v696vadY7iCRXYdscogotX1GXg/viewform"><img src="{{asset('img/banner-survey.png', $secure)}}" width="899" height="170"></a>
+        </div>
 	  </div>
 	</header>
 @endsection

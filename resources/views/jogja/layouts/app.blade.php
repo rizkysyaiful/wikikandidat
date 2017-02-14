@@ -142,7 +142,7 @@
 				<a href="{{url('/', [], $secure)}}"><img src="{{asset('img/logo.png', $secure)}}" alt=""></a>
 			</li>
 			<li>
-				<a href="https://docs.google.com/forms/d/e/1FAIpQLScmHaa5exdSqwKOuPvTrc4_v696vadY7iCRXYdscogotX1GXg/viewform" target="_blank">Wikikandidat?</a>
+				<a href="https://medium.com/indonesia-raya/golput-bukan-solusi-argumen-singkat-be2b8046d26c#.76lijp679" target="_blank">Golput Bukan Solusi: Argumen Singkat</a>
 			</li>
 			<li>
 				<a href="http://wikikandidat.tumblr.com/post/157096787108/kontributor-versi-pilkada-2017" target="_blank">Kontributor</a>
@@ -154,7 +154,7 @@
 				<a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" target="_blank">Facebook</a>
 			</li>
 			<li>
-				<a href="https://twitter.com/intent/tweet?text={{url()->current()}}" target="_blank">Twitter</a>	
+				<a href="https://twitter.com/intent/tweet?text={{url()->current()}}" target="_blank">Twitter</a>
 			</li>
         </ul>
       </div>
